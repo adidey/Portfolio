@@ -11,7 +11,7 @@ const Contact: React.FC = () => {
     // Construct mailto link
     const subject = `Portfolio Inquiry from ${formData.name}`;
     const body = `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
-    window.location.href = `mailto:hello@lumina.studio?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = `mailto:hello@adityadey.me?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     
     setTimeout(() => setIsSending(false), 2000);
   };
@@ -29,8 +29,8 @@ const Contact: React.FC = () => {
           <div className="space-y-12">
             <div>
               <p className="text-[10px] uppercase tracking-widest text-neutral-600 mb-4">Direct Email</p>
-              <a href="mailto:hello@lumina.studio" className="text-2xl font-bold hover:text-blue-500 transition-colors" style={{ fontFamily: 'Satoshi, sans-serif' }}>
-                hello@lumina.studio
+              <a href="mailto:hello@adityadey.me" className="text-2xl font-bold hover:text-blue-500 transition-colors" style={{ fontFamily: 'Satoshi, sans-serif' }}>
+                hello@adityadey.me
               </a>
             </div>
             
@@ -38,9 +38,10 @@ const Contact: React.FC = () => {
               <div>
                 <p className="text-[10px] uppercase tracking-widest text-neutral-600 mb-4">Social</p>
                 <ul className="space-y-2 text-[10px] uppercase tracking-widest font-bold">
-                  <li><a href="#" className="hover:text-blue-500 transition-colors">LinkedIn</a></li>
-                  <li><a href="#" className="hover:text-blue-500 transition-colors">GitHub</a></li>
-                  <li><a href="#" className="hover:text-blue-500 transition-colors">Instagram</a></li>
+                  <li><a href="https://www.linkedin.com/in/adityadey27/" target="_blank" className="hover:text-blue-500 transition-colors">LinkedIn</a></li>
+                  <li><a href="https://github.com/adidey" target="_blank" className="hover:text-blue-500 transition-colors">GitHub</a></li>
+                  <li><a href="https://dribbble.com/Aditya_Dey" target="_blank" className="hover:text-blue-500 transition-colors">Dribbble</a></li>
+                  <li><a href="https://www.behance.net/adityadey" target="_blank" className="hover:text-blue-500 transition-colors">Behance</a></li>
                 </ul>
               </div>
               <div>

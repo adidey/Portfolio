@@ -25,7 +25,6 @@ const App: React.FC = () => {
     const moveCursor = (e: MouseEvent) => {
       setMousePos({ x: e.clientX, y: e.clientY });
       
-      // RequestAnimationFrame for smoother cursor sync
       requestAnimationFrame(() => {
         if (cursor && follower) {
           cursor.style.transform = `translate3d(${e.clientX - 3}px, ${e.clientY - 3}px, 0)`;
@@ -53,7 +52,7 @@ const App: React.FC = () => {
     setIsLoading(true);
     setTimeout(() => {
       setCurrentView(view);
-      window.scrollTo({ top: 0, behavior: 'auto' });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       setTimeout(() => setIsLoading(false), 600);
     }, 400);
   };
@@ -87,17 +86,43 @@ const App: React.FC = () => {
 
   const viewKey = typeof currentView === 'string' ? currentView : currentView.id;
 
+  const SocialLink = ({ href, label }: { href: string; label: string }) => (
+    <a 
+      href={href} 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      className="relative group block overflow-hidden"
+    >
+      <span className="block transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:-translate-y-full">
+        {label}
+      </span>
+      <span className="absolute inset-0 block translate-y-full transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:translate-y-0 text-blue-500">
+        {label}
+      </span>
+    </a>
+  );
+
   return (
     <div className="min-h-screen bg-[#000000] text-white selection:bg-white selection:text-black flex flex-col relative overflow-x-hidden">
       <LoadingScreen visible={isLoading} />
       
-      {/* Background Aura */}
-      <div 
-        className="fixed inset-0 pointer-events-none z-0 opacity-10"
-        style={{
-          background: `radial-gradient(1000px circle at ${mousePos.x}px ${mousePos.y}px, rgba(59, 130, 246, 0.08), transparent 70%)`
-        }}
-      />
+      {/* Dynamic Mesh Gradients */}
+      <div className="fixed inset-0 pointer-events-none z-0 opacity-[0.12] overflow-hidden">
+        <div 
+          className="absolute w-[120vw] h-[120vh] -top-[10%] -left-[10%] blur-[120px] bg-gradient-to-br from-blue-900/40 via-purple-900/20 to-transparent animate-slow-rotate"
+          style={{ transform: `translate(${mousePos.x * 0.02}px, ${mousePos.y * 0.02}px)` }}
+        />
+        <div 
+          className="absolute w-[80vw] h-[80vh] top-[20%] left-[40%] blur-[100px] bg-blue-500/10 rounded-full"
+          style={{ transform: `translate(${mousePos.x * -0.05}px, ${mousePos.y * -0.05}px)` }}
+        />
+      </div>
+
+      {/* Whitespace Micro-elements (Refined) */}
+      <div className="fixed inset-0 pointer-events-none z-10 select-none overflow-hidden opacity-20">
+        {/* Removed location coordinates */}
+        <div className="absolute bottom-1/4 left-24 text-[8px] font-mono tracking-widest animate-float" style={{ animationDelay: '4s' }}>+ + + +</div>
+      </div>
 
       <Navbar 
         currentView={currentView} 
@@ -108,24 +133,57 @@ const App: React.FC = () => {
       
       <div 
         key={`${viewKey}-${workLayout}`}
-        className="flex-grow page-fade-enter"
+        className="flex-grow page-fade-enter relative z-20"
       >
         {renderView()}
       </div>
 
-      <footer className="px-6 md:px-12 py-16 border-t border-neutral-900 bg-[#000000] mt-auto relative z-10">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 opacity-30 text-[9px] uppercase tracking-[0.4em]">
-          <p>© 2025 Aditya Dey — Melbourne, AU</p>
-          <div className="flex gap-12">
-            <a href="#" className="hover:text-white transition-colors duration-300">LinkedIn</a>
-            <a href="#" className="hover:text-white transition-colors duration-300">GitHub</a>
-            <a href="#" className="hover:text-white transition-colors duration-300">Twitter</a>
+      <footer className="px-6 md:px-20 py-24 border-t border-neutral-900 bg-[#000000] mt-auto relative z-30 group/footer">
+        <div className="max-w-[1800px] mx-auto">
+          {/* Main Footer Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-24 items-start opacity-50 hover:opacity-100 transition-opacity duration-700">
+            
+            {/* Copyright & Location */}
+            <div className="md:col-span-4 space-y-4">
+              <p className="text-[10px] uppercase tracking-[0.5em] font-bold" style={{ fontFamily: 'Satoshi, sans-serif' }}>
+                © 2025 ADITYA DEY™
+              </p>
+              <div className="flex items-center gap-3">
+                <span className="w-1.5 h-1.5 bg-blue-600 rounded-full animate-pulse" />
+                <p className="text-[9px] uppercase tracking-[0.4em]">Melbourne, Australia</p>
+              </div>
+            </div>
+
+            {/* Social Links with Roll-up Animation */}
+            <div className="md:col-span-4">
+              <p className="text-[8px] uppercase tracking-[0.6em] text-neutral-600 mb-8">CONNECT_ARCHIVE</p>
+              <div className="grid grid-cols-2 gap-x-12 gap-y-6 text-[11px] uppercase tracking-[0.4em] font-medium">
+                <SocialLink href="https://www.linkedin.com/in/adityadey27/" label="LinkedIn" />
+                <SocialLink href="https://github.com/adidey" label="GitHub" />
+                <SocialLink href="https://www.behance.net/adityadey" label="Behance" />
+                <SocialLink href="https://dribbble.com/Aditya_Dey" label="Dribbble" />
+                <SocialLink href="https://www.instagram.com/_adityadey/" label="Instagram" />
+              </div>
+            </div>
+
+            {/* Status & Availability */}
+            <div className="md:col-span-4 md:text-right space-y-6">
+              <div>
+                <p className="text-[8px] uppercase tracking-[0.6em] text-neutral-600 mb-2">AVAILABILITY</p>
+                <p className="text-2xl md:text-3xl font-bold font-mono tracking-tighter tabular-nums uppercase">
+                  Open for Collaborations
+                </p>
+              </div>
+            </div>
+
           </div>
-          <p className="font-mono">Timezone UTC+11</p>
+
+          {/* Bottom Micro-line */}
+          <div className="mt-20 w-full h-[1px] bg-neutral-900 overflow-hidden relative">
+            <div className="absolute inset-0 bg-blue-600/30 -translate-x-full group-hover/footer:translate-x-full transition-transform duration-1000 ease-in-out" />
+          </div>
         </div>
       </footer>
-
-      <div className="fixed inset-0 pointer-events-none opacity-[0.02] mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')] z-[99]" />
     </div>
   );
 };

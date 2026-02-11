@@ -6,7 +6,7 @@ interface HomeProps {
   onNavigate: (view: any) => void;
 }
 
-const PROFESSIONS = ['strategist', 'engineer', 'designer', 'maker'];
+const PROFESSIONS = ['graphic designer', 'product designer', 'web dev', 'consulting'];
 const TYPING_SPEED = 100;
 const DELETING_SPEED = 50;
 const PAUSE_TIME = 2000;
@@ -53,17 +53,15 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
         </div>
       </div>
 
-      {/* Top Section */}
-      <div className="relative z-10">
-        <p className="text-[10px] md:text-[11px] uppercase tracking-[0.6em] text-neutral-500 mb-2 font-medium">
-          BASED IN MELBOURNE, AUSTRALIA
-        </p>
-      </div>
-
       {/* Main Hero Content */}
-      <div className="relative z-10 flex flex-col justify-center max-w-6xl">
+      <div className="relative z-10 flex flex-col justify-center max-w-6xl mt-auto mb-auto">
         <div className="space-y-4 animate-in fade-in slide-in-from-bottom-12 duration-1000">
           
+          {/* Top Label (Moved closer to heading) */}
+          <p className="text-[10px] md:text-[11px] uppercase tracking-[0.6em] text-neutral-500 mb-6 font-medium">
+            BASED IN MELBOURNE, AUSTRALIA
+          </p>
+
           {/* Large Title */}
           <h1 className="text-[14vw] md:text-[12vw] font-black tracking-tighter leading-[0.8] text-white flex items-end" style={{ fontFamily: 'Satoshi, sans-serif' }}>
             ADITYA <br /> DEY<span className="inline-block w-[0.15em] h-[0.15em] bg-blue-600 rounded-full ml-2 mb-4"></span>
@@ -104,12 +102,6 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
           >
             CONTACT
           </button>
-        </div>
-
-        <div className="text-right">
-          <p className="text-[9px] md:text-[10px] uppercase tracking-[0.6em] text-neutral-700 font-mono">
-            LATENCY OPTIMIZED
-          </p>
         </div>
       </div>
 
