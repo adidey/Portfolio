@@ -44,7 +44,7 @@ const About: React.FC = () => {
         <div className="md:col-span-5 space-y-20">
           <div className="aspect-[4/5] bg-neutral-900 relative overflow-hidden group">
              <img 
-               src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800" 
+               src="/assets/portrait.jpg" 
                alt="Portrait" 
                className="w-full h-full object-cover grayscale transition-transform duration-1000 group-hover:scale-105"
              />
