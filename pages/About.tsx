@@ -46,6 +46,7 @@ const About: React.FC = () => {
             <img
               src="/assets/portrait.jpg"
               alt="Portrait"
+              loading="lazy"
               className="w-full h-full object-cover grayscale transition-transform duration-1000 group-hover:scale-105"
             />
             <div className="absolute inset-0 border border-white/5" />

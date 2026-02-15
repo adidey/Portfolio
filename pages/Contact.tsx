@@ -11,7 +11,7 @@ const Contact: React.FC = () => {
     // Construct mailto link
     const subject = `Portfolio Inquiry from ${formData.name}`;
     const body = `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
-    window.location.href = `mailto:hello@adityadey.me?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = `mailto:adidey27@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
     setTimeout(() => setIsSending(false), 2000);
   };
@@ -29,8 +29,8 @@ const Contact: React.FC = () => {
           <div className="space-y-10 md:space-y-12">
             <div>
               <p className="text-[9px] md:text-[10px] uppercase tracking-widest text-neutral-600 mb-3 md:mb-4">Direct Email</p>
-              <a href="mailto:hello@adityadey.me" className="text-xl md:text-2xl font-bold hover:text-blue-500 transition-colors" style={{ fontFamily: 'Satoshi, sans-serif' }}>
-                hello@adityadey.me
+              <a href="mailto:adidey27@gmail.com" className="text-xl md:text-2xl font-bold hover:text-blue-500 transition-colors" style={{ fontFamily: 'Satoshi, sans-serif' }}>
+                adidey27@gmail.com
               </a>
             </div>
 

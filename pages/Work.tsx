@@ -27,26 +27,55 @@ const Work: React.FC<WorkProps> = ({ onProjectClick, layout }) => {
         const [focus, setFocus] = useState(0);
 
         useEffect(() => {
-          const updateFocus = () => {
-            if (!itemRef.current) return;
-            const rect = itemRef.current.getBoundingClientRect();
-            const viewportCenter = window.innerHeight / 2;
-            const itemCenter = rect.top + rect.height / 2;
-            const dist = Math.abs(viewportCenter - itemCenter);
-
-            // Define a precise focus zone
-            const focusZone = window.innerHeight * 0.6;
-            const factor = Math.max(0, 1 - (dist / focusZone));
-            // Cubic curve for ultra-smooth motion
-            setFocus(Math.pow(factor, 2));
+          const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: Array.from({ length: 101 }, (_, i) => i / 100)
           };
 
-          updateFocus();
-          window.addEventListener('scroll', updateFocus, { passive: true });
-          window.addEventListener('resize', updateFocus);
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                const rect = entry.boundingClientRect;
+                const viewportCenter = window.innerHeight / 2;
+                const itemCenter = rect.top + rect.height / 2;
+                const dist = Math.abs(viewportCenter - itemCenter);
+
+                const focusZone = window.innerHeight * 0.6;
+                const factor = Math.max(0, 1 - (dist / focusZone));
+                setFocus(Math.pow(factor, 2));
+              }
+            });
+          }, observerOptions);
+
+          if (itemRef.current) {
+            observer.observe(itemRef.current);
+          }
+
+          // We still need a scroll listener for real-time updates while intersecting
+          const handleScroll = () => {
+            if (!itemRef.current) return;
+            const rect = itemRef.current.getBoundingClientRect();
+
+            // Only calculate if visible
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+              const viewportCenter = window.innerHeight / 2;
+              const itemCenter = rect.top + rect.height / 2;
+              const dist = Math.abs(viewportCenter - itemCenter);
+
+              const focusZone = window.innerHeight * 0.6;
+              const factor = Math.max(0, 1 - (dist / focusZone));
+              setFocus(Math.pow(factor, 2));
+            }
+          };
+
+          window.addEventListener('scroll', handleScroll, { passive: true });
+          window.addEventListener('resize', handleScroll);
+
           return () => {
-            window.removeEventListener('scroll', updateFocus);
-            window.removeEventListener('resize', updateFocus);
+            observer.disconnect();
+            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('resize', handleScroll);
           };
         }, []);
 
@@ -112,6 +141,7 @@ const Work: React.FC<WorkProps> = ({ onProjectClick, layout }) => {
                   <img
                     src={project.thumbnail}
                     alt={project.title}
+                    loading="lazy"
                     className="w-full h-full object-cover grayscale transition-all duration-1000 md:group-hover:grayscale-0 md:group-hover:scale-105"
                   />
                   {/* Subtle overlay for mobile focus */}
@@ -154,6 +184,7 @@ const Work: React.FC<WorkProps> = ({ onProjectClick, layout }) => {
             <img
               src={project.thumbnail}
               alt={project.title}
+              loading="lazy"
               className="w-full h-full object-cover md:grayscale md:brightness-[0.7] transition-all duration-500 md:group-hover:grayscale-0 md:group-hover:brightness-110 md:group-hover:scale-105"
             />
             <div className={`absolute inset-0 bg-white transition-opacity duration-300 pointer-events-none ${clickedId === project.id ? 'opacity-10' : 'opacity-0'}`} />
