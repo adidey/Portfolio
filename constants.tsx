@@ -74,18 +74,10 @@ export const PROJECTS: Project[] = [
  * 3. New posters will appear automatically in the Posters gallery.
  */
 export const POSTERS: Poster[] = [
-  { id: 'p1', title: 'Textile Study 01', imageUrl: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=800', year: '2024' },
-  { id: 'p2', title: 'Blue Forms II', imageUrl: 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=800', year: '2023' },
-  { id: 'p3', title: 'Open Your Brain', imageUrl: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800', year: '2024' },
-  { id: 'p4', title: 'La Petite Mort', imageUrl: 'https://images.unsplash.com/photo-1633167606207-d840b5070fc2?auto=format&fit=crop&q=80&w=800', year: '2024' },
-  { id: 'p5', title: 'Stuttgart Jazz', imageUrl: 'https://images.unsplash.com/photo-1557672172-298e090bd0f1?auto=format&fit=crop&q=80&w=800', year: '2023' },
-  { id: 'p6', title: 'Nine Lives', imageUrl: 'https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&q=80&w=800', year: '2024' },
-  { id: 'p7', title: 'Repeating', imageUrl: 'https://images.unsplash.com/photo-1502691876148-a84246f488db?auto=format&fit=crop&q=80&w=800', year: '2023' },
-  { id: 'p8', title: 'Tempo Vol 04', imageUrl: 'https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&q=80&w=800', year: '2024' },
-  { id: 'p9', title: 'Ballpark 89', imageUrl: 'https://images.unsplash.com/photo-1533134486753-c833f0ed4866?auto=format&fit=crop&q=80&w=800', year: '2024' },
-  { id: 'p10', title: 'Astral Project', imageUrl: 'https://images.unsplash.com/photo-1531315630201-bb152f598884?auto=format&fit=crop&q=80&w=800', year: '2023' },
-  { id: 'p11', title: 'Willow 1996', imageUrl: 'https://images.unsplash.com/photo-1543857778-c4a1a3e0b2eb?auto=format&fit=crop&q=80&w=800', year: '1996' },
-  { id: 'p12', title: 'CHOKE', imageUrl: 'https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?auto=format&fit=crop&q=80&w=800', year: '2024' },
+  { id: 'p1', title: '911 Lake Commo', imageUrl: '/assets/posters/poster1.jpg', year: '2024' },
+  { id: 'p2', title: 'Senna Marlboro', imageUrl: '/assets/posters/poster2.jpg', year: '2024' },
+  { id: 'p3', title: 'Vocal Intensity', imageUrl: '/assets/posters/poster3.jpg', year: '2024' },
+  { id: 'p4', title: 'STFU Vinyl', imageUrl: '/assets/posters/poster4.jpg', year: '2024' },
 ];
 
 export const EXPERIENCE: ResumeEntry[] = [
