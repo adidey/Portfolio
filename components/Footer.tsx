@@ -36,7 +36,7 @@ const Footer: React.FC = () => {
 
                     {/* Social Links */}
                     <div className="md:col-span-4">
-                        <p className="text-[10px] uppercase tracking-[0.6em] text-neutral-600 mb-6 md:mb-8">CONNECT_ARCHIVE</p>
+                        <p className="text-[10px] uppercase tracking-[0.6em] text-neutral-600 mb-6 md:mb-8">CONNECT_GALLERY</p>
                         <div className="grid grid-cols-2 gap-x-8 md:gap-x-12 gap-y-4 md:gap-y-6 text-[11px] md:text-xs uppercase tracking-[0.3em] md:tracking-[0.4em] font-medium">
                             <SocialLink href="https://www.linkedin.com/in/adityadey27/" label="LinkedIn" />
                             <SocialLink href="https://github.com/adidey" label="GitHub" />

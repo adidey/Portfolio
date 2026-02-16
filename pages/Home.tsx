@@ -44,13 +44,8 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
   return (
     <main className="min-h-screen w-full flex flex-col justify-between bg-[#000000] px-6 md:px-20 py-24 md:py-32 relative overflow-hidden select-none">
 
-      {/* Background Micro-elements - Hidden on small screens for performance */}
+      {/* Background Micro-elements */}
       <div className="absolute inset-0 pointer-events-none p-12 overflow-hidden z-0 hidden md:block">
-        <div
-          className="absolute top-[25%] right-[10%] border border-neutral-900 px-3 py-1.5 text-[7px] text-neutral-800 font-mono rotate-12 transition-all duration-1000 group-hover:rotate-0"
-        >
-          CORE_MANIFEST.JSON
-        </div>
       </div>
 
       {/* Main Hero Content */}
@@ -67,7 +62,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
             ADITYA <br className="hidden md:block" /> DEY<span className="inline-block w-[0.12em] h-[0.12em] bg-blue-600 rounded-full ml-2 mb-2 md:mb-4"></span>
           </h1>
 
-          {/* Typing Animation Section - Stacked on mobile */}
+          {/* Typing Animation Section */}
           <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-8 pt-6 md:pt-8">
             <span className="text-[9px] md:text-[12px] uppercase tracking-[0.4em] text-neutral-600 font-medium">CONCEPTUALLY</span>
             <span className="text-3xl md:text-7xl text-white font-bold tracking-tighter" style={{ fontFamily: 'Satoshi, sans-serif' }}>
@@ -76,33 +71,36 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
             </span>
           </div>
 
-          {/* Intro Paragraph with Left Line */}
-          <div className="max-w-xl pt-12 md:pt-16 md:ml-2">
-            <div className="border-l border-neutral-800 pl-6 md:pl-10 py-1 md:py-2">
+          {/* Description & CTAs - Refined copy & Linear flow */}
+          <div className="max-w-2xl pt-12 md:pt-16 md:ml-2">
+            <div className="border-l border-neutral-800 pl-6 md:pl-10 py-1 md:py-2 mb-10">
               <p className="text-neutral-400 text-sm md:text-xl leading-relaxed font-light">
-                Pioneering digital experiences that merge complex systems with pure aesthetics. Specializing in UI/UX Engineering and behavioral design strategy.
+                Synthesizing architectural precision with digital fluidity. I transform ambitious concepts into high-fidelity experiences that reside at the intersection of logic and pure aesthetic.
               </p>
+            </div>
+
+            <div className="flex flex-col md:flex-row items-center gap-6 md:gap-12 pl-6 md:pl-10">
+              <button
+                onClick={() => onNavigate('work')}
+                className="w-full md:w-auto text-[9px] md:text-[11px] uppercase tracking-[0.4em] font-bold py-4 md:py-5 px-8 md:px-12 border border-white hover:bg-white hover:text-black transition-all duration-500 text-center relative group overflow-hidden"
+              >
+                <span className="relative z-10">VIEW WORK</span>
+                <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+              </button>
+              <button
+                onClick={() => onNavigate('contact')}
+                className="text-[9px] md:text-[11px] uppercase tracking-[0.4em] font-bold text-neutral-500 hover:text-white transition-all duration-500"
+              >
+                CONTACT
+              </button>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Bottom Footer Row */}
+      {/* Bottom Footer Row - Cleaned up */}
       <div className="relative z-10 flex flex-col md:flex-row md:justify-between md:items-end gap-8 md:gap-12 pt-12">
-        <div className="grid grid-cols-2 md:flex items-center gap-4 md:gap-12 w-full md:w-auto">
-          <button
-            onClick={() => onNavigate('work')}
-            className="text-[9px] md:text-[11px] uppercase tracking-[0.3em] md:tracking-[0.4em] font-bold py-4 md:py-5 px-6 md:px-12 border border-white hover:bg-white hover:text-black transition-all duration-500 text-center"
-          >
-            VIEW WORK
-          </button>
-          <button
-            onClick={() => onNavigate('contact')}
-            className="text-[9px] md:text-[11px] uppercase tracking-[0.3em] md:tracking-[0.4em] font-bold py-4 md:py-5 text-neutral-500 hover:text-white transition-all duration-500 text-center"
-          >
-            CONTACT
-          </button>
-        </div>
+        {/* Placeholder or empty div to maintain layout if needed, or just remove if justified */}
       </div>
 
     </main>

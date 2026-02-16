@@ -6,7 +6,7 @@ import Work from './pages/Work';
 import About from './pages/About';
 import Resume from './pages/Resume';
 import Contact from './pages/Contact';
-import Posters from './pages/Posters';
+import Gallery from './pages/Gallery';
 import ProjectDetail from './pages/ProjectDetail';
 
 const App: React.FC = () => {
@@ -51,7 +51,7 @@ const App: React.FC = () => {
         case 'work':
           return <Work onProjectClick={handleProjectClick} layout={workLayout} />;
         case 'posters':
-          return <Posters />;
+          return <Gallery layout={workLayout} />;
         case 'about':
           return <About />;
         case 'resume':

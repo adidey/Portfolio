@@ -12,7 +12,7 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ currentView, onNavigate, workLayout, onToggleLayout }) => {
   const isSelected = (view: string) => typeof currentView === 'string' && currentView === view;
-  const isWorkActive = isSelected('work') || (typeof currentView !== 'string' && currentView.type === 'project');
+  const isToggleVisible = isSelected('work') || isSelected('posters') || (typeof currentView !== 'string' && currentView.type === 'project');
 
   const navRef = useRef<HTMLDivElement>(null);
   const [highlightStyle, setHighlightStyle] = useState<React.CSSProperties>({ opacity: 0 });
@@ -73,7 +73,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, onNavigate, workLayout, on
     <>
       {/* Top Right Layout Toggle - Responsive Positioning */}
       <div className="fixed top-6 right-6 md:top-8 md:right-8 z-[110] flex items-center pointer-events-none">
-        <div className={`flex items-center bg-black/60 backdrop-blur-xl border border-neutral-800 rounded-sm overflow-hidden pointer-events-auto transition-all duration-700 ${isWorkActive ? 'opacity-100' : 'opacity-0 translate-x-12'}`}>
+        <div className={`flex items-center bg-black/60 backdrop-blur-xl border border-neutral-800 rounded-sm overflow-hidden pointer-events-auto transition-all duration-700 ${isToggleVisible ? 'opacity-100' : 'opacity-0 translate-x-12'}`}>
           <button
             onClick={() => onToggleLayout('01')}
             className={`px-4 md:px-5 py-2.5 md:py-3.5 text-[10px] md:text-xs border-r border-neutral-800 font-mono transition-all duration-500 ${workLayout === '01' ? 'bg-neutral-100 text-black' : 'bg-transparent text-neutral-500 hover:text-white'

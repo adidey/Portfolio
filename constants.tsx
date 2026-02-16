@@ -74,10 +74,16 @@ export const PROJECTS: Project[] = [
  * 3. New posters will appear automatically in the Posters gallery.
  */
 export const POSTERS: Poster[] = [
-  { id: 'p1', title: '911 Lake Commo', imageUrl: '/assets/posters/poster1.jpg', year: '2024' },
-  { id: 'p2', title: 'Senna Marlboro', imageUrl: '/assets/posters/poster2.jpg', year: '2024' },
-  { id: 'p3', title: 'Vocal Intensity', imageUrl: '/assets/posters/poster3.jpg', year: '2024' },
-  { id: 'p4', title: 'STFU Vinyl', imageUrl: '/assets/posters/poster4.jpg', year: '2024' },
+  { id: 'p1', title: 'Aditya Dey Poster 1', imageUrl: '/assets/posters/poster_1.png', year: '2024' },
+  { id: 'p2', title: 'A4 Layout 2', imageUrl: '/assets/posters/a4_2.jpg', year: '2024' },
+  { id: 'p3', title: 'Diwari', imageUrl: '/assets/posters/diwari.png', year: '2024' },
+  { id: 'p4', title: 'Fuck it we ball', imageUrl: '/assets/posters/fuck_it_we_ball.png', year: '2024' },
+  { id: 'p5', title: 'Mifflin 3', imageUrl: '/assets/posters/mifflin_3.png', year: '2024' },
+  { id: 'p6', title: 'Dwight', imageUrl: '/assets/posters/dwight.png', year: '2024' },
+  { id: 'p7', title: 'Aditya Dey Poster 3', imageUrl: '/assets/posters/poster_3.png', year: '2024' },
+  { id: 'p8', title: 'Artboard 1', imageUrl: '/assets/posters/artboard_1.png', year: '2024' },
+  { id: 'p9', title: 'Project Screenshot', imageUrl: '/assets/posters/screenshot_5_17.png', year: '2024' },
+  { id: 'p10', title: 'Aditya Dey Poster 2', imageUrl: '/assets/posters/poster_2.png', year: '2024' },
 ];
 
 export const EXPERIENCE: ResumeEntry[] = [
