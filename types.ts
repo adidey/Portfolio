@@ -16,26 +16,7 @@ export interface Project {
   link?: string;
 }
 
-export interface Poster {
-  id: string;
-  title: string;
-  imageUrl: string;
-  year: string;
-  link?: string;
-  source?: 'poster' | 'dribbble';
-}
 
-export interface DribbbleShot {
-  id: number;
-  title: string;
-  html_url: string;
-  images: {
-    hidpi?: string;
-    normal?: string;
-    teaser?: string;
-  };
-  tags?: string[];
-}
 
 export interface CarouselItem {
   id: string;

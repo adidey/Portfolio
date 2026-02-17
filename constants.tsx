@@ -67,14 +67,6 @@ export const PROJECTS: Project[] = [
   }
 ];
 
-/**
- * HOW TO ADD A NEW POSTER:
- * 1. Copy a poster object below.
- * 2. Update the 'id', 'title', 'imageUrl', and 'year'.
- * 3. New posters will appear automatically in the Posters gallery.
- */
-export const POSTERS: Poster[] = [];
-
 export const EXPERIENCE: ResumeEntry[] = [
   {
     title: 'User Experience Intern',

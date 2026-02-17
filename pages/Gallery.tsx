@@ -27,14 +27,18 @@ const Gallery: React.FC<GalleryProps> = ({ layout }) => {
             const width = window.innerWidth;
             const height = window.innerHeight;
             // Responsive radius: scale with width but keep a minimum for 3D depth
-            const dynamicRadius = Math.max(height * 0.8, width * 0.7);
+            // Also scale with number of items to prevent overlap in the circle
+            const baseRadius = Math.max(height * 0.8, width * 0.7);
+            const itemBasedRadius = items.length * 60; // Approx 60px per item circumference allowance
+            const dynamicRadius = Math.max(baseRadius, itemBasedRadius);
+
             setRadius(dynamicRadius);
         };
 
         handleResize();
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
-    }, []);
+    }, [items.length]); // Re-run when items change
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {

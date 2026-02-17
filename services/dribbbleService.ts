@@ -1,4 +1,4 @@
-import { DribbbleShot, CarouselItem } from '../types';
+import { CarouselItem } from '../types';
 
 const CACHE_KEY = 'dribbble_shots_cache_v1';
 const CACHE_TTL_MS = 60 * 60 * 1000; // 1 hour
