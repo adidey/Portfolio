@@ -31,6 +31,60 @@ export default defineConfig(({ mode }) => {
               res.end(JSON.stringify({ projects: [], error: 'Failed to load Behance RSS' }));
             }
           });
+
+          server.middlewares.use('/api/dribbble', async (req, res) => {
+            try {
+              const rssUrl = 'https://dribbble.com/Aditya_Dey/shots.rss';
+              const response = await fetch(rssUrl);
+
+              if (!response.ok) {
+                throw new Error(`Dribbble RSS error: ${response.status}`);
+              }
+
+              const xmlText = await response.text();
+
+              // Simple regex parser for RSS items
+              const items: any[] = [];
+              const itemRegex = /<item>([\s\S]*?)<\/item>/g;
+              const titleRegex = /<title>([\s\S]*?)<\/title>/;
+              const linkRegex = /<link>([\s\S]*?)<\/link>/;
+              const pubDateRegex = /<pubDate>([\s\S]*?)<\/pubDate>/;
+              // Try to find image in description (HTML) or media:content/thumbnail
+              const imgRegex = /<description>[\s\S]*?<img[^>]+src="([^">]+)"[\s\S]*?<\/description>/;
+              const mediaRegex = /<media:content[^>]+url="([^">]+)"/;
+
+              let match;
+              while ((match = itemRegex.exec(xmlText)) !== null) {
+                const itemContent = match[1];
+                const title = titleRegex.exec(itemContent)?.[1] || 'Untitled';
+                const link = linkRegex.exec(itemContent)?.[1] || '';
+                const pubDate = pubDateRegex.exec(itemContent)?.[1] || '';
+
+                let imageUrl = imgRegex.exec(itemContent)?.[1];
+                if (!imageUrl) {
+                  imageUrl = mediaRegex.exec(itemContent)?.[1];
+                }
+
+                if (imageUrl) {
+                  items.push({
+                    title: title.replace(/<!\[CDATA\[|\]\]>/g, ''),
+                    link,
+                    pubDate,
+                    imageUrl
+                  });
+                }
+              }
+
+              res.statusCode = 200;
+              res.setHeader('content-type', 'application/json; charset=utf-8');
+              res.end(JSON.stringify({ shots: items.slice(0, 12) })); // Limit to 12
+            } catch (error) {
+              console.error('RSS Fetch Error:', error);
+              res.statusCode = 200;
+              res.setHeader('content-type', 'application/json; charset=utf-8');
+              res.end(JSON.stringify({ shots: [], error: 'Failed to load Dribbble shots' }));
+            }
+          });
         },
       },
     ],
