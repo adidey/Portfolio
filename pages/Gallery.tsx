@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { CarouselItem } from '../types';
 import { getDribbbleShots } from '../services/dribbbleService';
 
@@ -14,11 +14,9 @@ const Gallery: React.FC<GalleryProps> = ({ layout }) => {
 
     useEffect(() => {
         const fetchItems = async () => {
-            console.log('Gallery: Starting fetch...');
             setIsLoading(true);
             try {
                 const shots = await getDribbbleShots();
-                console.log('Gallery: Fetched shots:', shots);
                 setItems(shots);
             } catch (e) {
                 console.error('Gallery: Fetch failed', e);
@@ -26,8 +24,15 @@ const Gallery: React.FC<GalleryProps> = ({ layout }) => {
                 setIsLoading(false);
             }
         };
+
         fetchItems();
     }, []);
+
+    const rotateByStep = useCallback((direction: 'left' | 'right') => {
+        if (items.length === 0) return;
+        const angleStep = 360 / items.length;
+        setRotation((prev) => prev + (direction === 'left' ? angleStep : -angleStep));
+    }, [items.length]);
 
     useEffect(() => {
         const handleResize = () => {
@@ -50,17 +55,16 @@ const Gallery: React.FC<GalleryProps> = ({ layout }) => {
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
             if (items.length === 0) return;
-            const angleStep = 360 / items.length;
             if (e.key === 'ArrowRight') {
-                setRotation(prev => prev - angleStep);
+                rotateByStep('right');
             } else if (e.key === 'ArrowLeft') {
-                setRotation(prev => prev + angleStep);
+                rotateByStep('left');
             }
         };
 
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [items.length]);
+    }, [items.length, rotateByStep]);
 
     // Generate random stable offsets for a "scattered" spherical look
     // Recalculate only when items change
@@ -80,7 +84,7 @@ const Gallery: React.FC<GalleryProps> = ({ layout }) => {
                 <div className="absolute bottom-[20%] right-[10%] w-[60vw] h-[60vw] bg-purple-600 rounded-full blur-[180px] animate-pulse" style={{ animationDelay: '1s' }} />
             </div>
 
-            <header className="relative w-full z-20 pt-24 md:pt-32 px-6 md:px-12 pointer-events-none mb-64 md:mb-80">
+            <header className="relative w-full z-20 pt-24 md:pt-32 px-6 md:px-12 pointer-events-none mb-80 md:mb-96">
                 <div className="flex flex-col items-center text-center">
                     <h1 className="text-[14vw] md:text-[12vw] font-bold leading-none tracking-tighter text-white uppercase select-none flex flex-col items-center" style={{ fontFamily: 'Satoshi, sans-serif' }}>
                         <span>Posters</span>
@@ -88,12 +92,26 @@ const Gallery: React.FC<GalleryProps> = ({ layout }) => {
                     <div className="w-px h-24 bg-gradient-to-b from-blue-500/0 via-blue-500/50 to-blue-500/0 mt-12" />
 
                     {layout === '01' && (
-                        <div className="mt-12 animate-in fade-in duration-1000">
-                            <p className="text-neutral-500 text-[10px] uppercase tracking-[0.3em] font-light flex items-center gap-4 justify-center pointer-events-auto">
-                                <span className="px-2 py-1 border border-neutral-800 rounded bg-neutral-900/50 cursor-pointer hover:bg-neutral-800/50 transition-colors">←</span>
-                                Navigate
-                                <span className="px-2 py-1 border border-neutral-800 rounded bg-neutral-900/50 cursor-pointer hover:bg-neutral-800/50 transition-colors">→</span>
-                            </p>
+                        <div className="mt-16 md:mt-20 animate-in fade-in duration-1000">
+                            <div className="text-neutral-500 text-[10px] uppercase tracking-[0.3em] font-light flex items-center gap-4 justify-center pointer-events-auto relative z-30" role="group" aria-label="Carousel navigation controls">
+                                <button
+                                    type="button"
+                                    aria-label="Rotate carousel left"
+                                    onClick={() => rotateByStep('left')}
+                                    className="px-2 py-1 border border-neutral-800 rounded bg-neutral-900/50 hover:bg-neutral-800/50 transition-colors text-neutral-400 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/80"
+                                >
+                                    ←
+                                </button>
+                                <span>Navigate</span>
+                                <button
+                                    type="button"
+                                    aria-label="Rotate carousel right"
+                                    onClick={() => rotateByStep('right')}
+                                    className="px-2 py-1 border border-neutral-800 rounded bg-neutral-900/50 hover:bg-neutral-800/50 transition-colors text-neutral-400 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/80"
+                                >
+                                    →
+                                </button>
+                            </div>
                         </div>
                     )}
                 </div>
@@ -111,7 +129,7 @@ const Gallery: React.FC<GalleryProps> = ({ layout }) => {
                     </div>
                 ) : layout === '01' ? (
                     /* layout 01: 3D Scene */
-                    <div className="relative w-full flex items-center justify-center pt-24 md:pt-32" style={{ perspective: '3000px' }}>
+                    <div className="relative w-full flex items-center justify-center pt-32 md:pt-40" style={{ perspective: '3000px' }}>
                         <div
                             className="relative flex items-center justify-center transition-transform duration-1000 cubic-bezier-liquid"
                             style={{
