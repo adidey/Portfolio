@@ -1,6 +1,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { PROJECTS } from '../constants';
+import BehanceSection from '../components/BehanceSection';
 
 interface WorkProps {
   onProjectClick: (id: string) => void;
@@ -201,18 +202,25 @@ const Work: React.FC<WorkProps> = ({ onProjectClick, layout }) => {
   );
 
   return (
-    <main className="min-h-screen bg-[#000000] pt-64 pb-[100vh]" ref={containerRef}>
+    <main className="min-h-screen bg-[#000000] pt-48 pb-[100vh]" ref={containerRef}>
       <div className="max-w-[1800px] mx-auto px-6 md:px-12">
-        <div className="mb-64 flex flex-col items-center">
-          <h1 className="text-[14vw] md:text-[12vw] font-bold leading-none tracking-tighter text-white select-none" style={{ fontFamily: 'Satoshi, sans-serif' }}>
+        <div className="mb-32 flex flex-col items-center">
+          <h1
+            className="text-[14vw] md:text-[12vw] font-bold leading-none tracking-tighter text-white select-none"
+            style={{ fontFamily: 'Satoshi, sans-serif' }}
+          >
             Work
           </h1>
           <div className="w-px h-24 bg-gradient-to-b from-blue-500/0 via-blue-500/50 to-blue-500/0 mt-12" />
         </div>
 
+        {/* Main projects section */}
         <div className="animate-in fade-in slide-in-from-bottom-12 duration-1000 cubic-bezier-liquid">
           {layout === '01' ? renderList() : renderGrid()}
         </div>
+
+        {/* Selected Work from Behance */}
+        <BehanceSection username="adityadey" layout={layout} />
       </div>
     </main>
   );

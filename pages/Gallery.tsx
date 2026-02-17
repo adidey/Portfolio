@@ -12,9 +12,10 @@ const Gallery: React.FC<GalleryProps> = ({ layout }) => {
     useEffect(() => {
         const handleResize = () => {
             const width = window.innerWidth;
-            if (width < 768) setRadius(600);
-            else if (width < 1200) setRadius(900);
-            else setRadius(1200);
+            const height = window.innerHeight;
+            // Responsive radius: scale with width but keep a minimum for 3D depth
+            const dynamicRadius = Math.max(height * 0.8, width * 0.7);
+            setRadius(dynamicRadius);
         };
 
         handleResize();
@@ -46,28 +47,26 @@ const Gallery: React.FC<GalleryProps> = ({ layout }) => {
     }, []);
 
     return (
-        <main className="relative min-h-[160vh] bg-black select-none flex flex-col pt-24">
+        <main className="relative min-h-[220vh] bg-black select-none flex flex-col pt-24">
             {/* Background Gradient Blurs */}
             <div className="absolute inset-0 z-0 opacity-10 pointer-events-none">
                 <div className="absolute top-[20%] left-[10%] w-[60vw] h-[60vw] bg-blue-600 rounded-full blur-[180px] animate-pulse" />
                 <div className="absolute bottom-[20%] right-[10%] w-[60vw] h-[60vw] bg-purple-600 rounded-full blur-[180px] animate-pulse" style={{ animationDelay: '1s' }} />
             </div>
 
-            <header className="relative w-full z-20 pt-32 md:pt-48 px-6 md:px-12 pointer-events-none mb-32 md:mb-64">
+            <header className="relative w-full z-20 pt-24 md:pt-32 px-6 md:px-12 pointer-events-none mb-64 md:mb-80">
                 <div className="flex flex-col items-center text-center">
-                    <p className="text-[10px] uppercase tracking-[0.5em] text-neutral-600 mb-6 font-medium italic">Vol. 01 — Kinetic Gallery</p>
                     <h1 className="text-[14vw] md:text-[12vw] font-bold leading-none tracking-tighter text-white uppercase select-none flex flex-col items-center" style={{ fontFamily: 'Satoshi, sans-serif' }}>
-                        <span>Poster</span>
-                        <span className="md:-mt-10">Gallery</span>
+                        <span>Posters</span>
                     </h1>
                     <div className="w-px h-24 bg-gradient-to-b from-blue-500/0 via-blue-500/50 to-blue-500/0 mt-12" />
 
                     {layout === '01' && (
                         <div className="mt-12 animate-in fade-in duration-1000">
-                            <p className="text-neutral-500 text-[10px] uppercase tracking-[0.3em] font-light flex items-center gap-4 justify-center">
-                                <span className="px-2 py-1 border border-neutral-800 rounded bg-neutral-900/50 pointer-events-auto">←</span>
+                            <p className="text-neutral-500 text-[10px] uppercase tracking-[0.3em] font-light flex items-center gap-4 justify-center pointer-events-auto">
+                                <span className="px-2 py-1 border border-neutral-800 rounded bg-neutral-900/50 cursor-pointer hover:bg-neutral-800/50 transition-colors">←</span>
                                 Navigate
-                                <span className="px-2 py-1 border border-neutral-800 rounded bg-neutral-900/50 pointer-events-auto">→</span>
+                                <span className="px-2 py-1 border border-neutral-800 rounded bg-neutral-900/50 cursor-pointer hover:bg-neutral-800/50 transition-colors">→</span>
                             </p>
                         </div>
                     )}
@@ -78,7 +77,7 @@ const Gallery: React.FC<GalleryProps> = ({ layout }) => {
             <div className="relative w-full flex-grow px-6 md:px-12 pb-64">
                 {layout === '01' ? (
                     /* layout 01: 3D Scene */
-                    <div className="relative w-full flex items-center justify-center pt-40 md:pt-64" style={{ perspective: '3000px' }}>
+                    <div className="relative w-full flex items-center justify-center pt-24 md:pt-32" style={{ perspective: '3000px' }}>
                         <div
                             className="relative flex items-center justify-center transition-transform duration-1000 cubic-bezier-liquid"
                             style={{
@@ -121,7 +120,7 @@ const Gallery: React.FC<GalleryProps> = ({ layout }) => {
                 )}
             </div>
 
-            <footer className="absolute bottom-0 left-0 w-full z-20 pb-12 px-6 md:px-12 pointer-events-none">
+            <footer className="absolute bottom-0 left-0 w-full z-20 pb-16 px-6 md:px-12 pointer-events-none">
                 <div className="flex justify-between items-center opacity-40">
                     <p className="text-[8px] uppercase tracking-[0.6em] text-neutral-400">
                         Aditya Dey Visual Studies — {new Date().getFullYear()}
@@ -172,8 +171,9 @@ const PosterCard: React.FC<PosterCardProps> = ({ poster, index, total, radius, s
             style={{
                 transform: `rotateY(${currentAngle}deg) translateZ(${radius + scatter.z}px) translateY(${displayY}px) rotateZ(${displayTilt}deg)`,
                 transformStyle: 'preserve-3d',
-                width: '380px', // Increased from 320px
-                height: '570px' // Increased from 480px (1.5 aspect ratio)
+                height: 'min(60vh, 480px)',
+                aspectRatio: '2/3',
+                width: 'auto'
             }}
         >
             <div
