@@ -45,10 +45,10 @@ export async function getDribbbleShots(): Promise<CarouselItem[]> {
             carouselItems = data.shots
                 .map((shot: any): CarouselItem => {
                     return {
-                        id: shot.link || `dribbble-${Math.random().toString(36).substr(2, 9)}`,
+                        id: shot.id || `dribbble-${Math.random().toString(36).substr(2, 9)}`,
                         title: shot.title,
                         imageUrl: shot.imageUrl,
-                        year: shot.pubDate ? new Date(shot.pubDate).getFullYear().toString() : new Date().getFullYear().toString(),
+                        year: new Date().getFullYear().toString(),
                         link: shot.link,
                         source: 'dribbble',
                     };
