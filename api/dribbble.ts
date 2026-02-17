@@ -9,8 +9,20 @@ export default async function handler(req: Request): Promise<Response> {
         const uniqueShots = new Set();
 
         // Simulate browser headers to avoid blocking
+        // These headers mimic a real Chrome request on macOS
         const headers = {
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+            'Accept-Language': 'en-US,en;q=0.9',
+            'Sec-Ch-Ua': '"Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"',
+            'Sec-Ch-Ua-Mobile': '?0',
+            'Sec-Ch-Ua-Platform': '"macOS"',
+            'Sec-Fetch-Dest': 'document',
+            'Sec-Fetch-Mode': 'navigate',
+            'Sec-Fetch-Site': 'none',
+            'Sec-Fetch-User': '?1',
+            'Upgrade-Insecure-Requests': '1',
+            'Cache-Control': 'max-age=0',
         };
 
         // Fetch up to 5 pages
@@ -19,9 +31,29 @@ export default async function handler(req: Request): Promise<Response> {
             console.log(`Fetching Dribbble page ${page}...`);
 
             const response = await fetch(profileUrl, { headers });
-            if (!response.ok) break;
+
+            if (!response.ok) {
+                console.error(`Dribbble responded with ${response.status}`);
+                // If first page fails, we might be blocked
+                if (page === 1) {
+                    return new Response(JSON.stringify({
+                        error: `Dribbble blocked request: ${response.status}`,
+                        status: response.status
+                    }), {
+                        status: response.status,
+                        headers: { 'content-type': 'application/json' }
+                    });
+                }
+                break;
+            }
 
             const htmlText = await response.text();
+
+            // Check if we got a CAPTCHA or Login page
+            if (htmlText.includes('SignIn') || htmlText.includes('auth') || htmlText.includes('CAPTCHA')) {
+                console.warn('Likely hit a login/captcha page');
+            }
+
             const fragments = htmlText.split('shot-thumbnail ');
             let foundOnPage = 0;
 
@@ -75,8 +107,24 @@ export default async function handler(req: Request): Promise<Response> {
             }
 
             if (foundOnPage < 5) break;
-            // Small delay not strictly necessary on edge but helps with rate limits if calling sequentially
-            // await new Promise(r => setTimeout(r, 200)); 
+            // Small delay
+            if (page < 5) {
+                // await new Promise(r => setTimeout(r, 200)); 
+            }
+        }
+
+        // If we found nothing but got 200 OK, maybe layout changed or we got a different page
+        if (items.length === 0) {
+            return new Response(JSON.stringify({
+                error: 'No items found. Logic might need update or IP is blocked.',
+                count: 0
+            }), {
+                status: 200, // Return 200 so we can see the JSON in browser
+                headers: {
+                    'content-type': 'application/json; charset=utf-8',
+                    'Access-Control-Allow-Origin': '*',
+                },
+            });
         }
 
         return new Response(JSON.stringify({ shots: items }), {
@@ -84,14 +132,17 @@ export default async function handler(req: Request): Promise<Response> {
             headers: {
                 'content-type': 'application/json; charset=utf-8',
                 'cache-control': 'public, s-maxage=3600, stale-while-revalidate=86400',
-                'Access-Control-Allow-Origin': '*', // Allow CORS for now since it's a GET request
+                'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'GET, OPTIONS',
             },
         });
 
     } catch (error) {
         console.error('Error in Dribbble API handler:', error);
-        return new Response(JSON.stringify({ error: 'Failed to fetch Dribbble shots' }), {
+        return new Response(JSON.stringify({
+            error: 'Failed to fetch Dribbble shots',
+            details: error instanceof Error ? error.message : String(error)
+        }), {
             status: 500,
             headers: {
                 'content-type': 'application/json; charset=utf-8',
