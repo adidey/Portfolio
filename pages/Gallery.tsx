@@ -14,10 +14,17 @@ const Gallery: React.FC<GalleryProps> = ({ layout }) => {
 
     useEffect(() => {
         const fetchItems = async () => {
+            console.log('Gallery: Starting fetch...');
             setIsLoading(true);
-            const shots = await getDribbbleShots();
-            setItems(shots);
-            setIsLoading(false);
+            try {
+                const shots = await getDribbbleShots();
+                console.log('Gallery: Fetched shots:', shots);
+                setItems(shots);
+            } catch (e) {
+                console.error('Gallery: Fetch failed', e);
+            } finally {
+                setIsLoading(false);
+            }
         };
         fetchItems();
     }, []);

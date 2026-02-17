@@ -2,7 +2,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { PROJECTS } from '../constants';
 import BehanceSection from '../components/BehanceSection';
-import DribbbleSection from '../components/DribbbleSection';
 
 interface WorkProps {
   onProjectClick: (id: string) => void;
@@ -222,9 +221,6 @@ const Work: React.FC<WorkProps> = ({ onProjectClick, layout }) => {
 
         {/* Selected Work from Behance */}
         <BehanceSection username="adityadey" layout={layout} />
-
-        {/* Selected Work from Dribbble */}
-        <DribbbleSection layout={layout} />
       </div>
     </main>
   );
