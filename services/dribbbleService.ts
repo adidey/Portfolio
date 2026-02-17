@@ -30,6 +30,7 @@ export async function getDribbbleShots(): Promise<CarouselItem[]> {
     }
 
     let carouselItems: CarouselItem[] = [];
+    let shouldWriteCache = false;
 
     // Fetch from server-side API proxy
     try {
@@ -39,6 +40,10 @@ export async function getDribbbleShots(): Promise<CarouselItem[]> {
             throw new Error(`Dribbble API proxy error: ${res.status}`);
         }
         const data = await res.json();
+
+        if (data?.error) {
+            throw new Error(data.error);
+        }
 
         if (data && Array.isArray(data.shots)) {
             // Map RSS items to CarouselItem format
@@ -53,6 +58,8 @@ export async function getDribbbleShots(): Promise<CarouselItem[]> {
                         source: 'dribbble',
                     };
                 });
+
+            shouldWriteCache = carouselItems.length > 0;
         }
     } catch (error) {
         console.warn('Failed to fetch Dribbble shots:', error);
@@ -60,7 +67,7 @@ export async function getDribbbleShots(): Promise<CarouselItem[]> {
     }
 
     // Persist to cache
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined' && shouldWriteCache) {
         try {
             const payload: CachePayload = {
                 shots: carouselItems,
