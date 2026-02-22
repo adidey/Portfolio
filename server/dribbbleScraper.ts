@@ -6,6 +6,13 @@ export interface ScrapedShot {
   pubDate: string;
 }
 
+export interface ScrapeResponse {
+  shots: ScrapedShot[];
+  error?: string;
+  status?: number;
+  details?: string;
+}
+
 export const SCRAPE_HEADERS = {
   'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
@@ -51,8 +58,12 @@ export function parseShotsFromHtml(htmlText: string, uniqueShots: Set<string>): 
     const srcMatch = block.match(/src="([^"]+)"/);
     const srcSetMatch = block.match(/data-srcset="([^"]+)"/);
 
-    const srcSetFirst = srcSetMatch?.[1]?.split(',')[0]?.trim()?.split(' ')[0] || '';
-    const chosenImage = dataSrcMatch?.[1] || srcSetFirst || srcMatch?.[1] || '';
+    let chosenImage = dataSrcMatch?.[1] || srcMatch?.[1] || '';
+    if (srcSetMatch?.[1]) {
+      const parts = srcSetMatch[1].split(',').map(p => p.trim());
+      const lastPart = parts[parts.length - 1]?.split(' ')[0];
+      if (lastPart) chosenImage = lastPart;
+    }
     const imageUrl = decodeHtmlEntities(chosenImage);
 
     if (!imageUrl || imageUrl.startsWith('data:image') || imageUrl.includes('avatar')) continue;
@@ -97,4 +108,34 @@ export async function scrapeDribbbleShots(fetchImpl: typeof fetch, maxPages = 5)
   }
 
   return items;
+}
+
+/**
+ * Shared wrapper for scraping Dribbble shots with unified error handling
+ */
+export async function getScrapedShots(fetchImpl: typeof fetch): Promise<ScrapeResponse> {
+  try {
+    const items = await scrapeDribbbleShots(fetchImpl);
+
+    if (items.length === 0) {
+      return {
+        shots: [],
+        error: 'No items found. Logic might need update or IP is blocked.',
+        status: 200
+      };
+    }
+
+    return { shots: items };
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    const blockedMatch = message.match(/Dribbble blocked request: (\d+)/);
+    const blockedStatus = blockedMatch ? Number(blockedMatch[1]) : null;
+
+    return {
+      shots: [],
+      error: blockedStatus ? `Dribbble blocked request: ${blockedStatus}` : 'Failed to fetch Dribbble shots',
+      status: blockedStatus || 500,
+      details: message,
+    };
+  }
 }

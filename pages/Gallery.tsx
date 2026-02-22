@@ -98,16 +98,19 @@ const Gallery: React.FC<GalleryProps> = ({ layout }) => {
                                     type="button"
                                     aria-label="Rotate carousel left"
                                     onClick={() => rotateByStep('left')}
-                                    className="px-2 py-1 border border-neutral-800 rounded bg-neutral-900/50 hover:bg-neutral-800/50 transition-colors text-neutral-400 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/80"
+                                    className="px-2 py-1 border border-neutral-800 rounded bg-neutral-900/50 hover:bg-neutral-800/50 transition-all text-neutral-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/80 active:scale-95"
                                 >
                                     ←
                                 </button>
-                                <span>Navigate</span>
+                                <span className="sr-only" aria-live="polite">
+                                    Carousel rotated. Active item is now at the front.
+                                </span>
+                                <span aria-hidden="true">Navigate</span>
                                 <button
                                     type="button"
                                     aria-label="Rotate carousel right"
                                     onClick={() => rotateByStep('right')}
-                                    className="px-2 py-1 border border-neutral-800 rounded bg-neutral-900/50 hover:bg-neutral-800/50 transition-colors text-neutral-400 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/80"
+                                    className="px-2 py-1 border border-neutral-800 rounded bg-neutral-900/50 hover:bg-neutral-800/50 transition-all text-neutral-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/80 active:scale-95"
                                 >
                                     →
                                 </button>
@@ -152,19 +155,19 @@ const Gallery: React.FC<GalleryProps> = ({ layout }) => {
                     </div>
                 ) : (
                     /* layout 02: Grid View */
-                    <div className="max-w-[1400px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 animate-in fade-in slide-in-from-bottom-12 duration-1000 cubic-bezier-liquid">
+                    <div className="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 md:gap-8 animate-in fade-in slide-in-from-bottom-12 duration-1000 cubic-bezier-liquid">
                         {items.map((item, idx) => (
                             <a
                                 key={item.id}
                                 href={item.link}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group relative aspect-[2/3] bg-neutral-900 overflow-hidden rounded-[2px] border border-white/5 shadow-2xl transition-all duration-700 hover:scale-[1.02] hover:border-white/10 block cursor-pointer"
+                                className="group relative aspect-[1/1.414] bg-neutral-900/50 rounded-[2px] border border-white/5 shadow-2xl transition-all duration-700 hover:scale-[1.02] hover:border-white/10 block cursor-pointer"
                             >
                                 <img
                                     src={item.imageUrl}
                                     alt={item.title}
-                                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 grayscale-[0.2] group-hover:grayscale-0 transition-all duration-1000"
+                                    className="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-all duration-1000 p-6 md:p-8"
                                     loading="lazy"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
@@ -234,12 +237,12 @@ const PosterCard: React.FC<PosterCardProps> = ({ poster, index, total, radius, s
                 transformStyle: 'preserve-3d'
             }}
         >
-            {/* Artistic Glass Frame - Removed white border */}
-            <div className="relative w-full h-full bg-neutral-900 shadow-[0_30px_90px_rgba(0,0,0,0.9)] overflow-hidden transition-all duration-700">
+            {/* Artistic Glass Frame - Removed overflow-hidden to allow scaling/shadows */}
+            <div className="relative w-full h-full bg-neutral-900/50 shadow-[0_30px_90px_rgba(0,0,0,0.9)] transition-all duration-700">
                 <img
                     src={poster.imageUrl}
                     alt={poster.title}
-                    className={`w-full h-full object-cover transition-all duration-1000 ${isHovered ? 'scale-110 opacity-100' : 'opacity-80 grayscale-[0.3]'}`}
+                    className={`w-full h-full object-contain transition-all duration-1000 p-6 ${isHovered ? 'scale-110 opacity-100' : 'opacity-80 grayscale-[0.3]'}`}
                     loading="lazy"
                 />
 
@@ -281,8 +284,8 @@ const PosterCard: React.FC<PosterCardProps> = ({ poster, index, total, radius, s
             style={{
                 transform: `rotateY(${currentAngle}deg) translateZ(${radius + scatter.z}px) translateY(${displayY}px) rotateZ(${displayTilt}deg)`,
                 transformStyle: 'preserve-3d',
-                height: 'min(60vh, 480px)',
-                aspectRatio: '2/3',
+                height: 'min(45vh, 320px)',
+                aspectRatio: '1 / 1.414',
                 width: 'auto'
             }}
         >

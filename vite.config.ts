@@ -3,7 +3,7 @@ import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { fetchBehanceRssProjects } from './server/behanceRss';
-import { scrapeDribbbleShots } from './server/dribbbleScraper';
+import { getScrapedShots } from './server/dribbbleScraper';
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '');
@@ -34,24 +34,10 @@ export default defineConfig(({ mode }) => {
           });
 
           server.middlewares.use('/api/dribbble', async (req, res) => {
-            try {
-              const items = await scrapeDribbbleShots(fetch);
-              res.statusCode = 200;
-              res.setHeader('content-type', 'application/json; charset=utf-8');
-              res.end(JSON.stringify({ shots: items }));
-            } catch (error) {
-              const message = error instanceof Error ? error.message : String(error);
-              const blockedMatch = message.match(/Dribbble blocked request: (\d+)/);
-              const blockedStatus = blockedMatch ? Number(blockedMatch[1]) : null;
-
-              res.statusCode = blockedStatus || 500;
-              res.setHeader('content-type', 'application/json; charset=utf-8');
-              res.end(JSON.stringify({
-                error: blockedStatus ? `Dribbble blocked request: ${blockedStatus}` : 'Failed to fetch Dribbble shots',
-                status: blockedStatus ?? undefined,
-                details: message,
-              }));
-            }
+            const result = await getScrapedShots(fetch);
+            res.statusCode = result.status || 200;
+            res.setHeader('content-type', 'application/json; charset=utf-8');
+            res.end(JSON.stringify(result));
           });
         },
       },

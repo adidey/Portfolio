@@ -14,15 +14,20 @@ interface CachePayload {
  * Falls back to empty array on error
  */
 export async function getDribbbleShots(): Promise<CarouselItem[]> {
-    // Check localStorage cache first (client-side only)
+    let cachedShots: CarouselItem[] = [];
+    let isStale = false;
+
+    // Check localStorage cache first
     if (typeof window !== 'undefined') {
         try {
             const cachedRaw = window.localStorage.getItem(CACHE_KEY);
             if (cachedRaw) {
                 const cached: CachePayload = JSON.parse(cachedRaw);
+                cachedShots = cached.shots;
                 if (Date.now() - cached.timestamp < CACHE_TTL_MS) {
-                    return cached.shots;
+                    return cachedShots;
                 }
+                isStale = true;
             }
         } catch {
             // Ignore cache errors
@@ -30,7 +35,6 @@ export async function getDribbbleShots(): Promise<CarouselItem[]> {
     }
 
     let carouselItems: CarouselItem[] = [];
-    let shouldWriteCache = false;
 
     // Fetch from server-side API proxy
     try {
@@ -45,39 +49,33 @@ export async function getDribbbleShots(): Promise<CarouselItem[]> {
             throw new Error(data.error);
         }
 
-        if (data && Array.isArray(data.shots)) {
-            // Map RSS items to CarouselItem format
-            carouselItems = data.shots
-                .map((shot: any): CarouselItem => {
-                    return {
-                        id: shot.id || `dribbble-${Math.random().toString(36).substr(2, 9)}`,
-                        title: shot.title,
-                        imageUrl: shot.imageUrl,
-                        year: new Date().getFullYear().toString(),
-                        link: shot.link,
-                        source: 'dribbble',
-                    };
-                });
+        if (data && Array.isArray(data.shots) && data.shots.length > 0) {
+            // Map items to CarouselItem format
+            carouselItems = data.shots.map((shot: any): CarouselItem => ({
+                id: shot.id || `dribbble-${Math.random().toString(36).substr(2, 9)}`,
+                title: shot.title,
+                imageUrl: shot.imageUrl,
+                year: new Date().getFullYear().toString(),
+                link: shot.link,
+                source: 'dribbble',
+            }));
 
-            shouldWriteCache = carouselItems.length > 0;
+            // Persist to cache (ONLY if we have items)
+            if (typeof window !== 'undefined') {
+                const payload: CachePayload = {
+                    shots: carouselItems,
+                    timestamp: Date.now(),
+                };
+                window.localStorage.setItem(CACHE_KEY, JSON.stringify(payload));
+            }
+            return carouselItems;
         }
     } catch (error) {
-        console.warn('Failed to fetch Dribbble shots:', error);
-        // Return empty array on failure
-    }
-
-    // Persist to cache
-    if (typeof window !== 'undefined' && shouldWriteCache) {
-        try {
-            const payload: CachePayload = {
-                shots: carouselItems,
-                timestamp: Date.now(),
-            };
-            window.localStorage.setItem(CACHE_KEY, JSON.stringify(payload));
-        } catch {
-            // Ignore cache write errors
+        // Return stale data if available on failure
+        if (isStale && cachedShots.length > 0) {
+            return cachedShots;
         }
     }
 
-    return carouselItems;
+    return cachedShots.length > 0 ? cachedShots : [];
 }
