@@ -10,8 +10,9 @@ const Resume: React.FC = () => {
           <h1 className="text-4xl md:text-6xl font-serif italic mb-4">Resume.</h1>
           <p className="text-[10px] uppercase tracking-widest text-neutral-500">Professional Background & Competencies</p>
         </div>
-        <a 
-          href="#" 
+        <a
+          href="/assets/resume.pdf"
+          download
           className="text-[10px] uppercase tracking-[0.3em] border border-neutral-800 px-6 py-3 hover:bg-white hover:text-black transition-all"
         >
           Download PDF ↓

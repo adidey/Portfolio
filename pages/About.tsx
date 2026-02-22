@@ -1,5 +1,5 @@
-
 import React from 'react';
+import { EXPERIENCE, SKILLS } from '../constants';
 
 const About: React.FC = () => {
   return (
@@ -15,28 +15,63 @@ const About: React.FC = () => {
               I am a Bachelor of Science student at The University of Melbourne, majoring in Computing and Software Systems with a minor in Psychology.
             </p>
             <p>
-              My work exists where technical constraints meet human intuition. I combine my understanding of cognitive load and behavioral psychology with modern frontend engineering to build products that are as performant as they are pleasant.
+              My work exists where technical constraints meet human intuition. I combine my understanding of cognitive load and behavioral psychology with modern engineering to build products that are as performant as they are pleasant.
             </p>
+            <div className="pt-4 flex flex-wrap gap-4">
+              <a
+                href="/assets/resume.pdf"
+                download
+                className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.3em] bg-white text-black px-8 py-4 hover:bg-white/90 transition-all font-bold"
+              >
+                Download Resume ↓
+              </a>
+              <a
+                href="mailto:adityad1@student.unimelb.edu.au"
+                className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.3em] border border-white/20 px-8 py-4 hover:border-white transition-all"
+              >
+                Get In Touch
+              </a>
+            </div>
           </div>
 
-          <div className="pt-10 md:pt-12 grid grid-cols-1 sm:grid-cols-2 gap-10 md:gap-12 border-t border-neutral-900">
+          <div className="pt-10 md:pt-12 grid grid-cols-1 gap-12 border-t border-neutral-900">
             <div>
-              <p className="text-[9px] md:text-[10px] uppercase tracking-widest text-neutral-500 mb-4 md:mb-6">Education</p>
-              <div className="space-y-4">
-                <div>
-                  <p className="text-sm font-medium">The University of Melbourne</p>
-                  <p className="text-xs text-neutral-600">BSc. Computing & Software Systems</p>
-                  <p className="text-xs text-neutral-600">Minor in Psychology (2023 — 2026)</p>
-                </div>
+              <p className="text-[9px] md:text-[10px] uppercase tracking-widest text-neutral-500 mb-8 md:mb-10">Professional Path</p>
+              <div className="space-y-12">
+                {EXPERIENCE.slice(0, 3).map((exp, idx) => (
+                  <div key={idx} className="group border-l border-neutral-900 pl-6 hover:border-blue-500/50 transition-colors">
+                    <div className="flex flex-col sm:flex-row justify-between items-start gap-1 mb-2">
+                      <h3 className="text-lg font-bold tracking-tight text-white italic">{exp.title}</h3>
+                      <p className="text-[9px] uppercase tracking-widest text-neutral-600 font-mono mt-1">{exp.period}</p>
+                    </div>
+                    <p className="text-xs text-neutral-500 mb-3">{exp.organization}</p>
+                    <p className="text-xs text-neutral-600 leading-relaxed font-light line-clamp-2 group-hover:line-clamp-none transition-all">
+                      {exp.description[0]}
+                    </p>
+                  </div>
+                ))}
               </div>
             </div>
-            <div>
-              <p className="text-[9px] md:text-[10px] uppercase tracking-widest text-neutral-500 mb-4 md:mb-6">Leadership</p>
-              <ul className="text-xs text-neutral-600 space-y-2">
-                <li>Faculty of Science Ambassador</li>
-                <li>Innovation Lead @ Google Developer Club</li>
-                <li>Graphic Designer @ MUR</li>
-              </ul>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
+              <div>
+                <p className="text-[9px] md:text-[10px] uppercase tracking-widest text-neutral-500 mb-6">Education</p>
+                <div className="space-y-4">
+                  <div>
+                    <p className="text-sm font-medium">The University of Melbourne</p>
+                    <p className="text-xs text-neutral-600">BSc. Computing & Software Systems</p>
+                    <p className="text-xs text-neutral-600">Minor in Psychology (2023 — 2026)</p>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <p className="text-[9px] md:text-[10px] uppercase tracking-widest text-neutral-500 mb-6">Leadership</p>
+                <ul className="text-xs text-neutral-600 space-y-2 font-light">
+                  <li>Faculty of Science Ambassador</li>
+                  <li>Innovation Lead @ Google Developer Club</li>
+                  <li>Graphic Designer @ MUR</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -54,21 +89,21 @@ const About: React.FC = () => {
 
           <div className="grid grid-cols-1 gap-12">
             <section>
-              <h3 className="text-[9px] md:text-[10px] uppercase tracking-widest text-neutral-500 mb-4 md:mb-6">Technical Focus</h3>
-              <ul className="space-y-3 md:space-y-4 text-sm tracking-wide">
-                <li className="flex justify-between border-b border-neutral-900 pb-2">
-                  <span>UI / UX Engineering</span>
-                  <span className="text-neutral-700">Expert</span>
-                </li>
-                <li className="flex justify-between border-b border-neutral-900 pb-2">
-                  <span>IoT & Hardware</span>
-                  <span className="text-neutral-700">Advanced</span>
-                </li>
-                <li className="flex justify-between border-b border-neutral-900 pb-2">
-                  <span>Full-Stack Development</span>
-                  <span className="text-neutral-700">Competent</span>
-                </li>
-              </ul>
+              <h3 className="text-[9px] md:text-[10px] uppercase tracking-widest text-neutral-500 mb-8 md:mb-10">Core Capabilities</h3>
+              <div className="space-y-10">
+                {SKILLS.map((group, idx) => (
+                  <div key={idx}>
+                    <p className="text-[9px] uppercase tracking-[0.3em] text-neutral-700 mb-4">{group.category}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {group.items.map((item, i) => (
+                        <span key={i} className="text-[10px] font-mono text-neutral-400 bg-neutral-900/50 px-3 py-1.5 rounded-sm border border-white/5 uppercase tracking-wider">
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </section>
           </div>
         </div>

@@ -154,8 +154,8 @@ const Gallery: React.FC<GalleryProps> = ({ layout }) => {
                         </div>
                     </div>
                 ) : (
-                    /* layout 02: Grid View */
-                    <div className="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 md:gap-8 animate-in fade-in slide-in-from-bottom-12 duration-1000 cubic-bezier-liquid">
+                    /* layout 02: Grid View — Strictly 3-4 columns on desktop */
+                    <div className="max-w-[1400px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 animate-in fade-in slide-in-from-bottom-12 duration-1000 cubic-bezier-liquid">
                         {items.map((item, idx) => (
                             <a
                                 key={item.id}
@@ -167,7 +167,7 @@ const Gallery: React.FC<GalleryProps> = ({ layout }) => {
                                 <img
                                     src={item.imageUrl}
                                     alt={item.title}
-                                    className="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-all duration-1000 p-6 md:p-8"
+                                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-1000"
                                     loading="lazy"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
@@ -242,7 +242,7 @@ const PosterCard: React.FC<PosterCardProps> = ({ poster, index, total, radius, s
                 <img
                     src={poster.imageUrl}
                     alt={poster.title}
-                    className={`w-full h-full object-contain transition-all duration-1000 p-6 ${isHovered ? 'scale-110 opacity-100' : 'opacity-80 grayscale-[0.3]'}`}
+                    className={`w-full h-full object-cover transition-all duration-1000 ${isHovered ? 'scale-110 opacity-100' : 'opacity-80 grayscale-[0.3]'}`}
                     loading="lazy"
                 />
 
@@ -284,7 +284,7 @@ const PosterCard: React.FC<PosterCardProps> = ({ poster, index, total, radius, s
             style={{
                 transform: `rotateY(${currentAngle}deg) translateZ(${radius + scatter.z}px) translateY(${displayY}px) rotateZ(${displayTilt}deg)`,
                 transformStyle: 'preserve-3d',
-                height: 'min(45vh, 320px)',
+                height: 'min(40vh, 320px)',
                 aspectRatio: '1 / 1.414',
                 width: 'auto'
             }}
