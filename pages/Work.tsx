@@ -1,24 +1,16 @@
 
 import React, { useState, useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { PROJECTS } from '../constants';
 import BehanceSection from '../components/BehanceSection';
 
 interface WorkProps {
-  onProjectClick: (id: string) => void;
+  onProjectClick?: (id: string) => void;
   layout: '01' | '02';
 }
 
-const Work: React.FC<WorkProps> = ({ onProjectClick, layout }) => {
-  const [clickedId, setClickedId] = useState<string | null>(null);
+const Work: React.FC<WorkProps> = ({ layout }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-
-  const handleItemClick = (id: string) => {
-    setClickedId(id);
-    setTimeout(() => {
-      onProjectClick(id);
-      setClickedId(null);
-    }, 400);
-  };
 
   // Layout 01: Refined Sequential Vertical Reveal
   const renderList = () => (
@@ -53,12 +45,10 @@ const Work: React.FC<WorkProps> = ({ onProjectClick, layout }) => {
             observer.observe(itemRef.current);
           }
 
-          // We still need a scroll listener for real-time updates while intersecting
           const handleScroll = () => {
             if (!itemRef.current) return;
             const rect = itemRef.current.getBoundingClientRect();
 
-            // Only calculate if visible
             if (rect.top < window.innerHeight && rect.bottom > 0) {
               const viewportCenter = window.innerHeight / 2;
               const itemCenter = rect.top + rect.height / 2;
@@ -81,19 +71,17 @@ const Work: React.FC<WorkProps> = ({ onProjectClick, layout }) => {
         }, []);
 
         return (
-          <div
+          <Link
             key={project.id}
+            to={`/work/${project.id}`}
             ref={itemRef}
-            className={`group relative flex flex-col w-full border-b border-neutral-900 overflow-hidden cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${clickedId === project.id ? 'bg-white/[0.05]' : 'hover:bg-neutral-900/30'
-              }`}
-            onClick={() => handleItemClick(project.id)}
+            className="group relative flex flex-col w-full border-b border-neutral-900 overflow-hidden cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-neutral-900/30"
             style={{
               height: window.innerWidth < 768
-                ? `${280 + (focus * 150)}px` // More compact on mobile
+                ? `${280 + (focus * 150)}px`
                 : `${160 + (focus * 450)}px`,
             }}
           >
-            {/* Index Label */}
             <div className="absolute top-4 left-6 md:top-5 md:left-8 z-30 pointer-events-none">
               <span
                 className="text-[9px] md:text-[10px] font-bold transition-all duration-500"
@@ -107,10 +95,7 @@ const Work: React.FC<WorkProps> = ({ onProjectClick, layout }) => {
               </span>
             </div>
 
-            {/* Content Flex Container */}
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between w-full h-full px-6 md:px-20 py-12 md:py-0 relative z-20 pointer-events-none">
-
-              {/* Title Section */}
               <div className="w-full md:w-[30%] text-left flex items-center md:h-full">
                 <h2
                   className="text-2xl md:text-5xl font-bold tracking-tighter transition-all duration-700"
@@ -125,7 +110,6 @@ const Work: React.FC<WorkProps> = ({ onProjectClick, layout }) => {
                 </h2>
               </div>
 
-              {/* Image Section */}
               <div
                 className="w-full md:w-[40%] flex items-center justify-center transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] my-6 md:my-0"
                 style={{
@@ -145,12 +129,10 @@ const Work: React.FC<WorkProps> = ({ onProjectClick, layout }) => {
                     loading="lazy"
                     className="w-full h-full object-cover grayscale transition-all duration-1000 md:group-hover:grayscale-0 md:group-hover:scale-105"
                   />
-                  {/* Subtle overlay for mobile focus */}
                   <div className="absolute inset-0 bg-black/20 md:hidden" />
                 </div>
               </div>
 
-              {/* Info Section */}
               <div className="w-full md:w-[30%] text-left md:text-right flex items-center md:justify-end md:h-full">
                 <p
                   className="text-[9px] md:text-[12px] font-medium leading-relaxed max-w-[220px] transition-all duration-700"
@@ -164,10 +146,7 @@ const Work: React.FC<WorkProps> = ({ onProjectClick, layout }) => {
                 </p>
               </div>
             </div>
-
-            {/* Selection Highlight */}
-            <div className={`absolute inset-0 bg-white transition-opacity duration-300 pointer-events-none ${clickedId === project.id ? 'opacity-5' : 'opacity-0'}`} />
-          </div>
+          </Link>
         );
       })}
     </div>
@@ -175,11 +154,11 @@ const Work: React.FC<WorkProps> = ({ onProjectClick, layout }) => {
 
   const renderGrid = () => (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-20 md:gap-y-32">
-      {PROJECTS.map((project, index) => (
-        <div
+      {PROJECTS.map((project) => (
+        <Link
           key={project.id}
-          className={`group cursor-pointer flex flex-col gap-6 md:gap-10 transition-all duration-500 ${clickedId === project.id ? 'scale-[0.98]' : ''}`}
-          onClick={() => handleItemClick(project.id)}
+          to={`/work/${project.id}`}
+          className="group cursor-pointer flex flex-col gap-6 md:gap-10 transition-all duration-500"
         >
           <div className="relative aspect-[16/10] overflow-hidden rounded-[2px] bg-neutral-900 border border-white/5 shadow-lg">
             <img
@@ -188,7 +167,7 @@ const Work: React.FC<WorkProps> = ({ onProjectClick, layout }) => {
               loading="lazy"
               className="w-full h-full object-cover md:grayscale md:brightness-[0.7] transition-all duration-500 md:group-hover:grayscale-0 md:group-hover:brightness-110 md:group-hover:scale-105"
             />
-            <div className={`absolute inset-0 bg-white transition-opacity duration-300 pointer-events-none ${clickedId === project.id ? 'opacity-10' : 'opacity-0'}`} />
+            <div className="absolute inset-0 bg-white opacity-0 transition-opacity duration-300 pointer-events-none group-active:opacity-10" />
           </div>
           <div className="flex justify-between items-baseline px-2">
             <h3 className="text-2xl md:text-5xl font-bold tracking-tighter text-neutral-200 group-hover:text-white transition-all duration-300 md:group-hover:translate-x-2" style={{ fontFamily: 'Satoshi, sans-serif' }}>
@@ -196,7 +175,7 @@ const Work: React.FC<WorkProps> = ({ onProjectClick, layout }) => {
             </h3>
             <span className="text-[9px] md:text-[10px] uppercase tracking-[0.4em] text-neutral-600 group-hover:text-neutral-400 transition-colors duration-300">{project.category}</span>
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   );
@@ -214,12 +193,10 @@ const Work: React.FC<WorkProps> = ({ onProjectClick, layout }) => {
           <div className="w-px h-24 bg-gradient-to-b from-blue-500/0 via-blue-500/50 to-blue-500/0 mt-12" />
         </div>
 
-        {/* Main projects section */}
         <div className="animate-in fade-in slide-in-from-bottom-12 duration-1000 cubic-bezier-liquid">
           {layout === '01' ? renderList() : renderGrid()}
         </div>
 
-        {/* Selected Work from Behance */}
         <BehanceSection username="adityadey" layout={layout} />
       </div>
     </main>

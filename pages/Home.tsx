@@ -1,9 +1,10 @@
 
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 interface HomeProps {
-  onProjectClick: (id: string) => void;
-  onNavigate: (view: any) => void;
+  onProjectClick?: (id: string) => void;
+  onNavigate?: (view: any) => void;
 }
 
 const PROFESSIONS = [
@@ -18,7 +19,7 @@ const TYPING_SPEED = 100;
 const DELETING_SPEED = 50;
 const PAUSE_TIME = 2000;
 
-const Home: React.FC<HomeProps> = ({ onNavigate }) => {
+const Home: React.FC<HomeProps> = () => {
   const [text, setText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const [loopIndex, setLoopIndex] = useState(0);
@@ -87,19 +88,19 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
             </div>
 
             <div className="flex flex-col md:flex-row items-center gap-6 md:gap-12 pl-6 md:pl-10">
-              <button
-                onClick={() => onNavigate('work')}
+              <Link
+                to="/work"
                 className="w-full md:w-auto text-[9px] md:text-[11px] uppercase tracking-[0.4em] font-bold py-4 md:py-5 px-8 md:px-12 border border-white hover:bg-white hover:text-black transition-all duration-500 text-center relative group overflow-hidden"
               >
                 <span className="relative z-10">VIEW WORK</span>
                 <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-              </button>
-              <button
-                onClick={() => onNavigate('contact')}
+              </Link>
+              <Link
+                to="/contact"
                 className="text-[9px] md:text-[11px] uppercase tracking-[0.4em] font-bold text-neutral-500 hover:text-white transition-all duration-500"
               >
                 CONTACT
-              </button>
+              </Link>
             </div>
           </div>
         </div>

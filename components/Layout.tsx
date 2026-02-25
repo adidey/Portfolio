@@ -1,27 +1,24 @@
 import React, { useState, useEffect } from 'react';
+import { Outlet } from 'react-router-dom';
 import Navbar, { PageView } from './Navbar';
 import LoadingScreen from './LoadingScreen';
 import CustomCursor from './CustomCursor';
 import Footer from './Footer';
 
 interface LayoutProps {
-    children: React.ReactNode;
-    currentView: PageView;
+    currentPath: string;
     onNavigate: (view: PageView) => void;
     workLayout: '01' | '02';
     onToggleLayout: (layout: '01' | '02') => void;
     isLoading: boolean;
-    viewKey: string;
 }
 
 const Layout: React.FC<LayoutProps> = ({
-    children,
-    currentView,
+    currentPath,
     onNavigate,
     workLayout,
     onToggleLayout,
-    isLoading,
-    viewKey
+    isLoading
 }) => {
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
@@ -51,20 +48,18 @@ const Layout: React.FC<LayoutProps> = ({
                 />
             </div>
 
-            {/* Whitespace Micro-elements removed per user request */}
-
             <Navbar
-                currentView={currentView}
+                currentPath={currentPath}
                 onNavigate={onNavigate}
                 workLayout={workLayout}
                 onToggleLayout={onToggleLayout}
             />
 
             <main
-                key={`${viewKey}-${workLayout}`}
+                key={currentPath}
                 className="flex-grow page-fade-enter relative z-20"
             >
-                {children}
+                <Outlet />
             </main>
 
             <Footer />

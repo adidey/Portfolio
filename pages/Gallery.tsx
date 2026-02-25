@@ -77,14 +77,14 @@ const Gallery: React.FC<GalleryProps> = ({ layout }) => {
     }, [items]);
 
     return (
-        <main className="relative min-h-[220vh] bg-black select-none flex flex-col pt-24">
+        <main className="relative min-h-[120vh] bg-black select-none flex flex-col pt-24">
             {/* Background Gradient Blurs */}
             <div className="absolute inset-0 z-0 opacity-10 pointer-events-none">
                 <div className="absolute top-[20%] left-[10%] w-[60vw] h-[60vw] bg-blue-600 rounded-full blur-[180px] animate-pulse" />
                 <div className="absolute bottom-[20%] right-[10%] w-[60vw] h-[60vw] bg-purple-600 rounded-full blur-[180px] animate-pulse" style={{ animationDelay: '1s' }} />
             </div>
 
-            <header className="relative w-full z-20 pt-24 md:pt-32 px-6 md:px-12 pointer-events-none mb-80 md:mb-96">
+            <header className="relative w-full z-20 pt-24 md:pt-32 px-6 md:px-12 pointer-events-none mb-32 md:mb-48">
                 <div className="flex flex-col items-center text-center">
                     <h1 className="text-[14vw] md:text-[12vw] font-bold leading-none tracking-tighter text-white uppercase select-none flex flex-col items-center" style={{ fontFamily: 'Satoshi, sans-serif' }}>
                         <span>Posters</span>
@@ -120,8 +120,7 @@ const Gallery: React.FC<GalleryProps> = ({ layout }) => {
                 </div>
             </header>
 
-            {/* 3D Scene / Grid Container */}
-            <div className="relative w-full flex-grow px-6 md:px-12 pb-64">
+            <div className="relative w-full flex-grow px-6 md:px-12 pb-24">
                 {isLoading ? (
                     <div className="absolute inset-0 flex items-center justify-center">
                         <p className="text-white/50 text-sm font-mono tracking-widest animate-pulse">LOADING SHOTS...</p>
@@ -268,7 +267,7 @@ const PosterCard: React.FC<PosterCardProps> = ({ poster, index, total, radius, s
             style={{
                 transform: `rotateY(${currentAngle}deg) translateZ(${radius + scatter.z}px) translateY(${displayY}px) rotateZ(${displayTilt}deg)`,
                 transformStyle: 'preserve-3d',
-                height: 'min(40vh, 320px)',
+                height: 'min(55vh, 480px)',
                 aspectRatio: poster.source === 'dribbble' ? '4 / 3' : '1 / 1.414',
                 width: 'auto'
             }}

@@ -1,18 +1,23 @@
 
 import React, { useState, useRef, useEffect } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 
 export type PageView = 'home' | 'work' | 'about' | 'resume' | 'contact' | 'posters' | { type: 'project'; id: string };
 
 interface NavbarProps {
-  currentView: PageView;
+  currentPath: string;
   onNavigate: (view: PageView) => void;
   workLayout: '01' | '02';
   onToggleLayout: (layout: '01' | '02') => void;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ currentView, onNavigate, workLayout, onToggleLayout }) => {
-  const isSelected = (view: string) => typeof currentView === 'string' && currentView === view;
-  const isToggleVisible = isSelected('work') || isSelected('posters') || (typeof currentView !== 'string' && currentView.type === 'project');
+const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, workLayout, onToggleLayout }) => {
+  const isSelected = (path: string) => {
+    if (path === '/' && currentPath === '/') return true;
+    return path !== '/' && currentPath.startsWith(path);
+  };
+
+  const isToggleVisible = isSelected('/work') || isSelected('/posters');
 
   const navRef = useRef<HTMLDivElement>(null);
   const [highlightStyle, setHighlightStyle] = useState<React.CSSProperties>({ opacity: 0 });
@@ -35,10 +40,14 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, onNavigate, workLayout, on
     setHighlightStyle((prev) => ({ ...prev, opacity: 0 }));
   };
 
-  const menuItems = ['work', 'about', 'posters', 'contact'];
+  const menuItems = [
+    { label: 'work', path: '/work' },
+    { label: 'about', path: '/about' },
+    { label: 'posters', path: '/posters' },
+    { label: 'contact', path: '/contact' }
+  ];
 
-  const handleNavClick = (view: PageView) => {
-    onNavigate(view);
+  const handleLinkClick = () => {
     setIsMobileMenuOpen(false);
   };
 
@@ -104,23 +113,26 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, onNavigate, workLayout, on
             style={highlightStyle}
           />
 
-          <button
-            onClick={() => handleNavClick('home')}
+          <Link
+            to="/"
+            onClick={handleLinkClick}
             className="px-4 md:px-6 py-3 md:py-3.5 text-[11px] md:text-[12px] font-bold tracking-tight border-r border-neutral-800 hover:bg-neutral-900/50 transition-colors whitespace-nowrap"
           >
             Aditya Dey™
-          </button>
+          </Link>
 
           {/* Desktop Links */}
           <div className="hidden md:flex items-center">
-            {menuItems.map((view) => (
-              <button
-                key={view}
-                onClick={() => handleNavClick(view as PageView)}
-                className={`px-5 py-3.5 text-[11px] uppercase tracking-widest transition-colors border-r border-neutral-800 ${isSelected(view) ? 'text-white bg-neutral-900/80' : 'text-neutral-500 hover:text-white hover:bg-neutral-900/40'}`}
+            {menuItems.map((item) => (
+              <NavLink
+                key={item.label}
+                to={item.path}
+                className={({ isActive }) =>
+                  `px-5 py-3.5 text-[11px] uppercase tracking-widest transition-colors border-r border-neutral-800 ${isActive ? 'text-white bg-neutral-900/80' : 'text-neutral-500 hover:text-white hover:bg-neutral-900/40'}`
+                }
               >
-                {view}
-              </button>
+                {item.label}
+              </NavLink>
             ))}
           </div>
 
@@ -163,16 +175,18 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, onNavigate, workLayout, on
         <div className="h-full flex flex-col p-8 pt-32">
           <div className="flex flex-col gap-6">
             <p className="text-[10px] uppercase tracking-[0.5em] text-neutral-600 mb-4">Navigation</p>
-            {menuItems.map((view) => (
-              <button
-                key={view}
-                onClick={() => handleNavClick(view as PageView)}
-                className={`text-left text-5xl font-bold tracking-tighter uppercase transition-all ${isSelected(view) ? 'text-white' : 'text-neutral-700 active:text-white'
-                  }`}
+            {menuItems.map((item) => (
+              <NavLink
+                key={item.label}
+                to={item.path}
+                onClick={handleLinkClick}
+                className={({ isActive }) =>
+                  `text-left text-5xl font-bold tracking-tighter uppercase transition-all ${isActive ? 'text-white' : 'text-neutral-700 active:text-white'}`
+                }
                 style={{ fontFamily: 'Satoshi, sans-serif' }}
               >
-                {view}
-              </button>
+                {item.label}
+              </NavLink>
             ))}
           </div>
 

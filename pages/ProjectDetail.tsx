@@ -1,13 +1,14 @@
 
 import React, { useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom';
 import { PROJECTS } from '../constants';
 
 interface ProjectDetailProps {
-  projectId: string;
-  onBack: () => void;
+  onBack?: () => void;
 }
 
-const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectId, onBack }) => {
+const ProjectDetail: React.FC<ProjectDetailProps> = ({ onBack }) => {
+  const { projectId } = useParams<{ projectId: string }>();
   const project = PROJECTS.find(p => p.id === projectId);
 
   useEffect(() => {
@@ -20,9 +21,9 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectId, onBack }) => {
     <div className="bg-[#0a0a0a] min-h-screen">
       <div className="pt-32 pb-48 px-6 md:px-12 max-w-7xl mx-auto">
         <header className="mb-32">
-          <button onClick={onBack} className="text-[10px] uppercase tracking-[0.5em] mb-16 text-neutral-500 hover:text-white transition-colors">
+          <Link to="/work" className="text-[10px] uppercase tracking-[0.5em] mb-16 text-neutral-500 hover:text-white transition-colors inline-block">
             ← INDEX
-          </button>
+          </Link>
 
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-end mb-24">
             <div className="md:col-span-8">
@@ -103,13 +104,13 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ projectId, onBack }) => {
         </section>
 
         <footer className="mt-32 text-center">
-          <button
-            onClick={onBack}
-            className="text-4xl md:text-8xl font-bold hover:text-blue-500 transition-all duration-500 group"
+          <Link
+            to="/work"
+            className="text-4xl md:text-8xl font-bold hover:text-blue-500 transition-all duration-500 group inline-block"
             style={{ fontFamily: 'Satoshi, sans-serif' }}
           >
             Back to Index <span className="inline-block transition-transform group-hover:translate-x-4">→</span>
-          </button>
+          </Link>
         </footer>
       </div>
     </div>

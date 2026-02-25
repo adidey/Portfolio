@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { PageView } from './components/Navbar';
 import Layout from './components/Layout';
 import Home from './pages/Home';
@@ -10,74 +11,73 @@ import Gallery from './pages/Gallery';
 import ProjectDetail from './pages/ProjectDetail';
 
 const App: React.FC = () => {
-  const [currentView, setCurrentView] = useState<PageView>('home');
   const [isLoading, setIsLoading] = useState(true);
   const [workLayout, setWorkLayout] = useState<'01' | '02'>('01');
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
+    // Initial load timer
     const timer = setTimeout(() => setIsLoading(false), 1200);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    // Scroll to top on route change
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Page load simulation for routes
+    setIsLoading(true);
+    const timer = setTimeout(() => setIsLoading(false), 600);
 
     // Dynamic Title Management
     let title = 'Aditya Dey | Designer & Engineer';
-    if (typeof currentView === 'string') {
-      const viewName = currentView.charAt(0).toUpperCase() + currentView.slice(1);
-      title = `${viewName} | Aditya Dey`;
-    } else if (currentView.type === 'project') {
-      title = `${currentView.id.toUpperCase()} | Aditya Dey`;
+    const path = location.pathname;
+
+    if (path === '/') {
+      title = 'Home | Aditya Dey';
+    } else if (path.startsWith('/work/')) {
+      const slug = path.split('/').pop()?.toUpperCase();
+      title = `${slug} | Aditya Dey`;
+    } else {
+      const viewName = path.slice(1).charAt(0).toUpperCase() + path.slice(2);
+      title = `${viewName || 'Home'} | Aditya Dey`;
     }
     document.title = title;
 
     return () => clearTimeout(timer);
-  }, [currentView]);
-
-  const navigate = (view: PageView) => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setCurrentView(view);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      setTimeout(() => setIsLoading(false), 600);
-    }, 400);
-  };
+  }, [location.pathname]);
 
   const handleProjectClick = (id: string) => {
-    navigate({ type: 'project', id });
+    navigate(`/work/${id}`);
   };
 
-  const renderView = () => {
-    if (typeof currentView === 'string') {
-      switch (currentView) {
-        case 'home':
-          return <Home onProjectClick={handleProjectClick} onNavigate={navigate} />;
-        case 'work':
-          return <Work onProjectClick={handleProjectClick} layout={workLayout} />;
-        case 'posters':
-          return <Gallery layout={workLayout} />;
-        case 'about':
-          return <About />;
-        case 'resume':
-          return <Resume />;
-        case 'contact':
-          return <Contact />;
-        default:
-          return <Home onProjectClick={handleProjectClick} onNavigate={navigate} />;
-      }
-    } else if (currentView.type === 'project') {
-      return <ProjectDetail projectId={currentView.id} onBack={() => navigate('work')} />;
+  const handleNavigate = (view: PageView) => {
+    if (typeof view === 'string') {
+      navigate(view === 'home' ? '/' : `/${view}`);
+    } else {
+      navigate(`/work/${view.id}`);
     }
   };
 
-  const viewKey = typeof currentView === 'string' ? currentView : currentView.id;
-
   return (
     <Layout
-      currentView={currentView}
-      onNavigate={navigate}
+      currentPath={location.pathname}
+      onNavigate={handleNavigate}
       workLayout={workLayout}
       onToggleLayout={(l) => setWorkLayout(l)}
       isLoading={isLoading}
-      viewKey={viewKey}
     >
-      {renderView()}
+      <Routes>
+        <Route path="/" element={<Home onProjectClick={handleProjectClick} onNavigate={handleNavigate} />} />
+        <Route path="/work" element={<Work onProjectClick={handleProjectClick} layout={workLayout} />} />
+        <Route path="/work/:projectId" element={<ProjectDetail onBack={() => navigate('/work')} />} />
+        <Route path="/posters" element={<Gallery layout={workLayout} />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/resume" element={<Resume />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="*" element={<Home onProjectClick={handleProjectClick} onNavigate={handleNavigate} />} />
+      </Routes>
     </Layout>
   );
 };
