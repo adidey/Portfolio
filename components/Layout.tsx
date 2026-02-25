@@ -11,6 +11,7 @@ interface LayoutProps {
     workLayout: '01' | '02';
     onToggleLayout: (layout: '01' | '02') => void;
     isLoading: boolean;
+    children?: React.ReactNode;
 }
 
 const Layout: React.FC<LayoutProps> = ({
@@ -18,7 +19,8 @@ const Layout: React.FC<LayoutProps> = ({
     onNavigate,
     workLayout,
     onToggleLayout,
-    isLoading
+    isLoading,
+    children
 }) => {
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
@@ -59,7 +61,7 @@ const Layout: React.FC<LayoutProps> = ({
                 key={currentPath}
                 className="flex-grow page-fade-enter relative z-20"
             >
-                <Outlet />
+                {children}
             </main>
 
             <Footer />

@@ -68,6 +68,7 @@ const App: React.FC = () => {
       onToggleLayout={(l) => setWorkLayout(l)}
       isLoading={isLoading}
     >
+      <div style={{ color: 'red', fontSize: '100px', zIndex: 9999, position: 'relative' }}>TESTING RENDERING</div>
       <Routes>
         <Route path="/" element={<Home onProjectClick={handleProjectClick} onNavigate={handleNavigate} />} />
         <Route path="/work" element={<Work onProjectClick={handleProjectClick} layout={workLayout} />} />
