@@ -41,7 +41,7 @@ const Gallery: React.FC<GalleryProps> = ({ layout }) => {
             // Responsive radius: scale with width but keep a minimum for 3D depth
             // Also scale with number of items to prevent overlap in the circle
             const baseRadius = Math.max(height * 0.8, width * 0.7);
-            const itemBasedRadius = items.length * 60; // Approx 60px per item circumference allowance
+            const itemBasedRadius = items.length * 110; // Increased from 60 to 110 for more spacing between items
             const dynamicRadius = Math.max(baseRadius, itemBasedRadius);
 
             setRadius(dynamicRadius);
