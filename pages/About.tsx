@@ -7,15 +7,18 @@ const About: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-24 items-start">
         <div className="md:col-span-7 space-y-12 md:space-y-16">
           <h1 className="text-4xl md:text-8xl font-bold leading-tight tracking-tighter" style={{ fontFamily: 'Satoshi, sans-serif' }}>
-            Design through the lens of <span className="text-neutral-600">Cognition</span>.
+            Design through <span className="text-neutral-600">Systems</span> and <span className="text-neutral-600">Cognition</span>.
           </h1>
 
           <div className="space-y-6 md:space-y-8 text-lg md:text-2xl text-neutral-400 font-light leading-relaxed">
             <p>
-              I am a Bachelor of Science student at The University of Melbourne, majoring in Computing and Software Systems with a minor in Psychology.
+              I’m a product and interaction designer based in Melbourne, working at the intersection of software systems and human behavior.
             </p>
             <p>
-              My work exists where technical constraints meet human intuition. I combine my understanding of cognitive load and behavioral psychology with modern engineering to build products that are as performant as they are pleasant.
+              My background in computing shapes how I approach design — structured, scalable, and grounded in real technical constraints. I focus on building interfaces that translate cleanly from concept to production, balancing clarity, performance, and usability.
+            </p>
+            <p>
+              Currently completing a Bachelor of Science in Computing and Software Systems at the University of Melbourne, with a minor in Psychology.
             </p>
             <div className="pt-4 flex flex-wrap gap-4">
               <a
@@ -55,22 +58,20 @@ const About: React.FC = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
               <div>
-                <p className="text-[9px] md:text-[10px] uppercase tracking-widest text-neutral-500 mb-6">Education</p>
-                <div className="space-y-4">
-                  <div>
-                    <p className="text-sm font-medium">The University of Melbourne</p>
-                    <p className="text-xs text-neutral-600">BSc. Computing & Software Systems</p>
-                    <p className="text-xs text-neutral-600">Minor in Psychology (2023 — 2026)</p>
-                  </div>
-                </div>
-              </div>
-              <div>
                 <p className="text-[9px] md:text-[10px] uppercase tracking-widest text-neutral-500 mb-6">Leadership</p>
                 <ul className="text-xs text-neutral-600 space-y-2 font-light">
+                  <li>Innovation Lead — Google Developer Club</li>
                   <li>Faculty of Science Ambassador</li>
-                  <li>Innovation Lead @ Google Developer Club</li>
-                  <li>Graphic Designer @ MUR</li>
+                  <li>Graphic Designer — MUR</li>
                 </ul>
+              </div>
+              <div className="opacity-80">
+                <p className="text-[9px] md:text-[10px] uppercase tracking-widest text-neutral-600 mb-6">Education</p>
+                <div className="space-y-1">
+                  <p className="text-sm font-light text-neutral-400">The University of Melbourne</p>
+                  <p className="text-xs text-neutral-600 font-light">BSc. Computing & Software Systems</p>
+                  <p className="text-xs text-neutral-600 font-light">Minor in Psychology (2023 — 2026)</p>
+                </div>
               </div>
             </div>
           </div>

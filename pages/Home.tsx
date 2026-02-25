@@ -6,7 +6,14 @@ interface HomeProps {
   onNavigate: (view: any) => void;
 }
 
-const PROFESSIONS = ['graphic designer', 'product designer', 'web dev', 'consulting'];
+const PROFESSIONS = [
+  'interaction design',
+  'interface architecture',
+  'product designing',
+  'audio engineering',
+  'graphic design',
+  'tech consulting',
+];
 const TYPING_SPEED = 100;
 const DELETING_SPEED = 50;
 const PAUSE_TIME = 2000;
@@ -54,7 +61,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
 
           {/* Top Label */}
           <p className="text-[9px] md:text-[11px] uppercase tracking-[0.4em] md:tracking-[0.6em] text-neutral-500 mb-4 md:mb-6 font-medium">
-            BASED IN MELBOURNE, AUSTRALIA
+            DESIGNING FROM MELBOURNE, AUSTRALIA
           </p>
 
           {/* Large Title - Fluid scaling */}
@@ -64,7 +71,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
 
           {/* Typing Animation Section */}
           <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-8 pt-6 md:pt-8">
-            <span className="text-[9px] md:text-[12px] uppercase tracking-[0.4em] text-neutral-600 font-medium">CONCEPTUALLY</span>
+            <span className="text-[9px] md:text-[12px] uppercase tracking-[0.4em] text-neutral-600 font-medium">FOCUSED ON</span>
             <span className="text-3xl md:text-7xl text-white font-bold tracking-tighter" style={{ fontFamily: 'Satoshi, sans-serif' }}>
               {text}
               <span className="inline-block w-[2px] md:w-[3px] h-[0.8em] bg-blue-600 ml-1 md:ml-2 animate-pulse align-middle" />
@@ -75,7 +82,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
           <div className="max-w-2xl pt-12 md:pt-16 md:ml-2">
             <div className="border-l border-neutral-800 pl-6 md:pl-10 py-1 md:py-2 mb-10">
               <p className="text-neutral-400 text-sm md:text-xl leading-relaxed font-light">
-                Synthesizing architectural precision with digital fluidity. I transform ambitious concepts into high-fidelity experiences that reside at the intersection of logic and pure aesthetic.
+                I design structured digital experiences where engineering precision meets human intuition. From complex product systems to scalable interfaces, I focus on clarity, performance, and seamless interaction.
               </p>
             </div>
 

@@ -1,5 +1,5 @@
 
-import { Project, ResumeEntry, SkillGroup, Poster } from './types';
+import { Project, ResumeEntry, SkillGroup } from './types';
 
 /**
  * HOW TO ADD A NEW PROJECT:
@@ -73,9 +73,9 @@ export const EXPERIENCE: ResumeEntry[] = [
     organization: 'HARMAN International',
     period: 'Nov 2025 — Jan 2026',
     description: [
-      'Worked on end-to-end UX for in-vehicle infotainment and connected systems.',
-      'Created high-fidelity Figma prototypes and component libraries.',
-      'Improved design consistency across teams and cut handoff time to developers by 30%.'
+      'Contributed to production-facing UX for in-vehicle infotainment systems, building scalable Figma component libraries and reducing developer handoff time by 30%.',
+      'Worked on end-to-end UX for connected systems.',
+      'Improved design consistency across cross-functional teams.'
     ]
   },
   {
@@ -83,8 +83,8 @@ export const EXPERIENCE: ResumeEntry[] = [
     organization: 'Ernst and Young LLP',
     period: 'Nov 2024 — Feb 2025',
     description: [
-      'Developed predictive models using LSTM and XGBoost with 97% accuracy to forecast stock market trends.',
-      'Formulated SOPs for investment firms and automated financial data processing pipelines.'
+      'Engineered predictive financial models achieving 97% accuracy, standardizing operational procedures and automating data pipelines for investment firms.',
+      'Developed forecasting tools using LSTM and XGBoost.'
     ]
   },
   {
@@ -92,9 +92,8 @@ export const EXPERIENCE: ResumeEntry[] = [
     organization: 'Melbourne BioInnovation',
     period: 'June 2024 — May 2025',
     description: [
-      'Helped design and development of a retrofittable wheelchair with Brain-Computer Interface (BCI).',
-      'Significantly improved mobility for individuals with paraplegia through gaze-tracking technology.',
-      'Developed user-centered design and brand identity, resulting in a 37% increase in engagement.'
+      'Led brand identity and user-centered design for a BCI wheelchair, driving a 37% increase in engagement while improving mobility via gaze-tracking technology.',
+      'Supported the development of a retrofittable wheelchair with Brain-Computer Interface (BCI).'
     ]
   },
   {
@@ -102,20 +101,24 @@ export const EXPERIENCE: ResumeEntry[] = [
     organization: 'Matrix Freight Forwarding Systems',
     period: 'May 2023 — Sep 2023',
     description: [
-      'Developed high-fidelity Figma mockups and created a responsive website using HTML5 and CSS.',
-      'Employed SEO Optimization that increased site traffic by 28%.'
+      'Delivered responsive web interfaces and high-fidelity Figma prototypes, implementing SEO strategies that increased site traffic by 28%.',
+      'Built responsive web solutions using HTML5 and CSS for freight forwarding operations.'
     ]
   }
 ];
 
 export const SKILLS: SkillGroup[] = [
   {
-    category: 'Programming',
-    items: ['Java', 'SQL', 'Python', 'JavaScript', 'Ruby', 'C']
+    category: 'Design',
+    items: ['Visual Design', 'Interaction', 'Photoshop', 'Illustrator']
   },
   {
-    category: 'Design',
-    items: ['Figma', 'Photoshop', 'Illustrator', 'Blender', 'Premiere Pro', 'After Effects']
+    category: 'Prototyping',
+    items: ['Figma', 'Blender', 'Premiere Pro', 'After Effects']
+  },
+  {
+    category: 'Programming',
+    items: ['Java', 'SQL', 'Python', 'JavaScript', 'Ruby', 'C']
   },
   {
     category: 'Tools',
