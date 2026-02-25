@@ -23,12 +23,16 @@ const App: React.FC = () => {
   }, []);
 
   useEffect(() => {
+    console.log('App: Current path:', location.pathname);
     // Scroll to top on route change
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
     // Page load simulation for routes
     setIsLoading(true);
-    const timer = setTimeout(() => setIsLoading(false), 600);
+    const timer = setTimeout(() => {
+      console.log('App: Setting isLoading to false');
+      setIsLoading(false);
+    }, 600);
 
     // Dynamic Title Management
     let title = 'Aditya Dey | Designer & Engineer';
@@ -68,7 +72,6 @@ const App: React.FC = () => {
       onToggleLayout={(l) => setWorkLayout(l)}
       isLoading={isLoading}
     >
-      <div style={{ color: 'red', fontSize: '100px', zIndex: 9999, position: 'relative' }}>TESTING RENDERING</div>
       <Routes>
         <Route path="/" element={<Home onProjectClick={handleProjectClick} onNavigate={handleNavigate} />} />
         <Route path="/work" element={<Work onProjectClick={handleProjectClick} layout={workLayout} />} />
