@@ -51,10 +51,7 @@ const Layout: React.FC<LayoutProps> = ({
                 />
             </div>
 
-            {/* Whitespace Micro-elements */}
-            <div className="fixed inset-0 pointer-events-none z-10 select-none overflow-hidden opacity-20">
-                <div className="absolute bottom-1/4 left-24 text-[10px] font-mono tracking-widest animate-float" style={{ animationDelay: '4s' }}>+ + + +</div>
-            </div>
+            {/* Whitespace Micro-elements removed per user request */}
 
             <Navbar
                 currentView={currentView}

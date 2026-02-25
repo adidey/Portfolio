@@ -137,7 +137,7 @@ const Gallery: React.FC<GalleryProps> = ({ layout }) => {
                             className="relative flex items-center justify-center transition-transform duration-1000 cubic-bezier-liquid"
                             style={{
                                 transformStyle: 'preserve-3d',
-                                transform: `rotateY(${rotation}deg)`
+                                transform: `translateZ(${-radius}px) rotateY(${rotation}deg)`
                             }}
                         >
                             {items.map((item, idx) => (
@@ -162,7 +162,7 @@ const Gallery: React.FC<GalleryProps> = ({ layout }) => {
                                 href={item.link}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group relative aspect-[1/1.414] bg-neutral-900/50 rounded-[2px] border border-white/5 shadow-2xl transition-all duration-700 hover:scale-[1.02] hover:border-white/10 block cursor-pointer"
+                                className={`group relative bg-neutral-900/50 rounded-[2px] border border-white/5 shadow-2xl transition-all duration-700 hover:scale-[1.02] hover:border-white/10 block cursor-pointer ${item.source === 'dribbble' ? 'aspect-[4/3]' : 'aspect-[1/1.414]'}`}
                             >
                                 <img
                                     src={item.imageUrl}
@@ -180,22 +180,6 @@ const Gallery: React.FC<GalleryProps> = ({ layout }) => {
                     </div>
                 )}
             </div>
-
-            <footer className="absolute bottom-0 left-0 w-full z-20 pb-16 px-6 md:px-12 pointer-events-none">
-                <div className="flex justify-between items-center opacity-40">
-                    <p className="text-[8px] uppercase tracking-[0.6em] text-neutral-400">
-                        Aditya Dey Visual Studies — {new Date().getFullYear()}
-                    </p>
-                    <div className="flex items-center gap-12">
-                        <p className="text-[8px] uppercase tracking-[0.4em] text-neutral-500 font-mono">
-                            Orbital Gallery v2.4
-                        </p>
-                        <p className="text-[8px] uppercase tracking-[0.4em] text-neutral-500 font-mono">
-                            {items.length} Items Indexed
-                        </p>
-                    </div>
-                </div>
-            </footer>
         </main>
     );
 };
@@ -285,7 +269,7 @@ const PosterCard: React.FC<PosterCardProps> = ({ poster, index, total, radius, s
                 transform: `rotateY(${currentAngle}deg) translateZ(${radius + scatter.z}px) translateY(${displayY}px) rotateZ(${displayTilt}deg)`,
                 transformStyle: 'preserve-3d',
                 height: 'min(40vh, 320px)',
-                aspectRatio: '1 / 1.414',
+                aspectRatio: poster.source === 'dribbble' ? '4 / 3' : '1 / 1.414',
                 width: 'auto'
             }}
         >
