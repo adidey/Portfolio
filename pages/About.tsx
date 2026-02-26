@@ -61,6 +61,9 @@ const About: React.FC = () => {
                 <p className="text-[9px] md:text-[10px] uppercase tracking-widest text-neutral-500 mb-6">Leadership</p>
                 <ul className="text-xs text-neutral-600 space-y-2 font-light">
                   <li>Innovation Lead — Google Developer Club</li>
+                  <li>Competitions Officer— CISSA</li>
+                  <li>Campus Leader- Notion</li>
+                  <li>Melbourne Univeristy Peer Mentor</li>
                   <li>Faculty of Science Ambassador</li>
                   <li>Graphic Designer — MUR</li>
                 </ul>

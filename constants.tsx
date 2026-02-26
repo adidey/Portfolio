@@ -69,16 +69,6 @@ export const PROJECTS: Project[] = [
 
 export const EXPERIENCE: ResumeEntry[] = [
   {
-    title: 'User Experience Intern',
-    organization: 'HARMAN International',
-    period: 'Nov 2025 — Jan 2026',
-    description: [
-      'Contributed to production-facing UX for in-vehicle infotainment systems, building scalable Figma component libraries and reducing developer handoff time by 30%.',
-      'Worked on end-to-end UX for connected systems.',
-      'Improved design consistency across cross-functional teams.'
-    ]
-  },
-  {
     title: 'FAaS Intern',
     organization: 'Ernst and Young LLP',
     period: 'Nov 2024 — Feb 2025',
