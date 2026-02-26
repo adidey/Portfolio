@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 import { PageView } from './components/Navbar';
 import Layout from './components/Layout';
 import Home from './pages/Home';
@@ -82,6 +83,7 @@ const App: React.FC = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="*" element={<Home onProjectClick={handleProjectClick} onNavigate={handleNavigate} />} />
       </Routes>
+      <Analytics />
     </Layout>
   );
 };
