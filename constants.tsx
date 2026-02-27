@@ -12,6 +12,42 @@ import { Project, ResumeEntry, SkillGroup } from './types';
  */
 export const PROJECTS: Project[] = [
   {
+    id: 'spinpod',
+    title: 'Spinpod',
+    category: 'AI & Music',
+    year: '2025',
+    thumbnail: 'https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?auto=format&fit=crop&q=80&w=1200',
+    excerpt: 'An AI-powered music platform featuring a nostalgic pixel-art interface and smart mixing capabilities.',
+    context: 'Created Spinpod to bridge the gap between advanced AI music generation and retro-futuristic UI design. The platform allows users to mix and manipulate AI-generated beats in real-time.',
+    process: 'Developed using React and the Gemini AI API. Focused on creating a tactile digital experience with custom-built audio visualization and a unique 8-bit aesthetic.',
+    outcome: 'Successfully deployed as a high-performance web app with seamless AI integration, receiving positive feedback for its innovative interface.',
+    images: [
+      'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1600'
+    ],
+    tags: ['React', 'Gemini AI', 'Tailwind CSS', 'Web Audio API'],
+    client: 'Self-Initiated',
+    role: 'Full Stack Developer & Designer',
+    link: 'A Retro AI Music Experience'
+  },
+  {
+    id: 'resume-editor',
+    title: 'Resume Editor',
+    category: 'Productivity',
+    year: '2024',
+    thumbnail: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&q=80&w=1200',
+    excerpt: 'A sleek, client-side resume builder designed for professional impact and ease of use.',
+    context: 'Designed to simplify the resume-building process while maintaining high design standards. The tool provides a real-time preview of premium templates.',
+    process: 'Built with Next.js and TypeScript, prioritizing performance and security by keeping all data on the client side. Implemented a robust PDF generation engine.',
+    outcome: 'Used by hundreds of applicants to create clean, ATS-friendly resumes with a 40% faster completion rate than traditional editors.',
+    images: [
+      'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=1600'
+    ],
+    tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'jspdf'],
+    client: 'Personal Project',
+    role: 'Lead Developer',
+    link: 'Simplified Professional Resumes'
+  },
+  {
     id: 'exousia',
     title: 'Exousia',
     category: 'Interaction',

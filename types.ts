@@ -2,7 +2,7 @@
 export interface Project {
   id: string;
   title: string;
-  category: 'Branding' | 'UI Design' | 'Web Development' | 'Interaction';
+  category: 'Branding' | 'UI Design' | 'Web Development' | 'Interaction' | 'AI & Music' | 'Productivity';
   year: string;
   thumbnail: string;
   excerpt: string;
