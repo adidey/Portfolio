@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -18,6 +19,10 @@ const Contact: React.FC = () => {
 
   return (
     <main className="pt-32 md:pt-48 px-6 md:px-12 pb-32 max-w-7xl mx-auto min-h-screen">
+      <Helmet>
+        <title>Contact — Aditya Dey</title>
+        <meta name="description" content="Get in touch for design collaborations, inquiries, or just to say hello." />
+      </Helmet>
       <div className="grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-24">
         {/* Contact Info */}
         <div className="md:col-span-5">

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { CarouselItem } from '../types';
 import { getDribbbleShots } from '../services/dribbbleService';
 
@@ -78,6 +79,10 @@ const Gallery: React.FC<GalleryProps> = ({ layout }) => {
 
     return (
         <main className="relative bg-black select-none flex flex-col pt-24">
+            <Helmet>
+                <title>Gallery — Aditya Dey</title>
+                <meta name="description" content="A gallery of design experiments, posters, and visual studies." />
+            </Helmet>
             {/* Background Gradient Blurs */}
             <div className="absolute inset-0 z-0 opacity-10 pointer-events-none">
                 <div className="absolute top-[20%] left-[10%] w-[60vw] h-[60vw] bg-blue-600 rounded-full blur-[180px] animate-pulse" />

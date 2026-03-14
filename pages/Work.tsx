@@ -1,6 +1,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { PROJECTS } from '../constants';
 import BehanceSection from '../components/BehanceSection';
 
@@ -182,6 +183,13 @@ const Work: React.FC<WorkProps> = ({ layout }) => {
 
   return (
     <main className="min-h-screen bg-[#000000] pt-48 pb-[100vh]" ref={containerRef}>
+      <Helmet>
+        <title>Work — Aditya Dey</title>
+        <meta name="description" content="A selection of product and UX design projects focusing on interaction design, interface architecture, and digital experiences." />
+        <meta property="og:title" content="Work — Aditya Dey" />
+        <meta property="og:description" content="A selection of product and UX design projects focusing on interaction design, interface architecture, and digital experiences." />
+        <meta property="og:image" content="/og-image.png" />
+      </Helmet>
       <div className="max-w-[1800px] mx-auto px-6 md:px-12">
         <div className="mb-32 flex flex-col items-center">
           <h1

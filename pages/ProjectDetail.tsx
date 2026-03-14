@@ -1,6 +1,7 @@
 
 import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { PROJECTS } from '../constants';
 
 interface ProjectDetailProps {
@@ -19,6 +20,13 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ onBack }) => {
 
   return (
     <div className="bg-[#0a0a0a] min-h-screen">
+      <Helmet>
+        <title>{project.title} — Aditya Dey</title>
+        <meta name="description" content={project.excerpt} />
+        <meta property="og:title" content={`${project.title} — Aditya Dey`} />
+        <meta property="og:description" content={project.excerpt} />
+        <meta property="og:image" content={project.thumbnail} />
+      </Helmet>
       <div className="pt-32 pb-48 px-6 md:px-12 max-w-7xl mx-auto">
         <header className="mb-32">
           <Link to="/work" className="text-[10px] uppercase tracking-[0.5em] mb-16 text-neutral-500 hover:text-white transition-colors inline-block">

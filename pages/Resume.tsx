@@ -1,10 +1,15 @@
 
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { EXPERIENCE, SKILLS } from '../constants';
 
 const Resume: React.FC = () => {
   return (
     <main className="pt-32 px-6 md:px-12 pb-32 max-w-7xl mx-auto">
+      <Helmet>
+        <title>Resume — Aditya Dey</title>
+        <meta name="description" content="Professional background, experience, and competencies in product and UX design." />
+      </Helmet>
       <header className="mb-24 flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
         <div>
           <h1 className="text-4xl md:text-6xl font-serif italic mb-4">Resume.</h1>

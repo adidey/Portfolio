@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 interface HomeProps {
   onProjectClick?: (id: string) => void;
@@ -51,6 +52,13 @@ const Home: React.FC<HomeProps> = () => {
 
   return (
     <main className="min-h-screen w-full flex flex-col justify-between bg-[#000000] px-6 md:px-20 py-24 md:py-32 relative overflow-hidden select-none">
+      <Helmet>
+        <title>Aditya Dey | Product & UX Designer</title>
+        <meta name="description" content="Melbourne-based Product & UX Designer specialising in UI/UX engineering and behavioral design strategy. HARMAN International, EY, Melbourne BioInnovation." />
+        <meta property="og:title" content="Aditya Dey | Product & UX Designer" />
+        <meta property="og:description" content="Melbourne-based Product & UX Designer specialising in UI/UX engineering and behavioral design strategy. HARMAN International, EY, Melbourne BioInnovation." />
+        <meta property="og:image" content="/og-image.png" />
+      </Helmet>
 
       {/* Background Micro-elements */}
       <div className="absolute inset-0 pointer-events-none p-12 overflow-hidden z-0 hidden md:block">

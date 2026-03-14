@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 
 const Services: React.FC = () => {
   const serviceList = [
@@ -22,6 +23,10 @@ const Services: React.FC = () => {
 
   return (
     <main className="pt-48 px-6 md:px-12 pb-32 max-w-7xl mx-auto min-h-screen">
+      <Helmet>
+        <title>Services — Aditya Dey</title>
+        <meta name="description" content="Expertise and offerings in Visual Identity, Digital Products, and Technical Implementation." />
+      </Helmet>
       <header className="mb-32">
         <p className="text-[10px] uppercase tracking-[0.5em] text-neutral-600 mb-6">Expertise & Offerings</p>
         <h1 className="text-6xl md:text-9xl font-bold leading-[0.85] tracking-tighter" style={{ fontFamily: 'Satoshi, sans-serif' }}>

@@ -1,9 +1,17 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { EXPERIENCE, SKILLS } from '../constants';
 
 const About: React.FC = () => {
   return (
     <main className="pt-32 md:pt-40 px-6 md:px-12 pb-32 max-w-7xl mx-auto">
+      <Helmet>
+        <title>About — Aditya Dey</title>
+        <meta name="description" content="Product and interaction designer with a background in computing and psychology, designing structured digital experiences." />
+        <meta property="og:title" content="About — Aditya Dey" />
+        <meta property="og:description" content="Product and interaction designer with a background in computing and psychology, designing structured digital experiences." />
+        <meta property="og:image" content="/og-image.png" />
+      </Helmet>
       <div className="grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-24 items-start">
         <div className="md:col-span-7 space-y-12 md:space-y-16">
           <h1 className="text-4xl md:text-8xl font-bold leading-tight tracking-tighter" style={{ fontFamily: 'Satoshi, sans-serif' }}>
