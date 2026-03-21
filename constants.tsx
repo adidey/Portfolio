@@ -12,37 +12,55 @@ import { Project, ResumeEntry, SkillGroup } from './types';
  */
 export const PROJECTS: Project[] = [
   {
+    id: 'notchprompt',
+    title: 'NotchPrompt',
+    category: 'macOS Utility',
+    year: '2026',
+    thumbnail: '/notchprompt.png',
+    excerpt: 'A premium, minimalist macOS teleprompter utility that perfectly integrates with the physical hardware notch.',
+    context: 'Designed for flawless presentations and video calls, acting as a direct native extension of the Mac camera notch. It creates an immersive drop-down container where scripts smoothly scroll directly under the camera lens.',
+    process: 'Built natively using Swift 6.0, AppKit, and SwiftUI. Features global hotkeys and a striking cyan/blue glow on the active reading line to maintain focus and eye-contact.',
+    outcome: 'An unobtrusive menu-bar utility that improves communication professionalism without the clutter of traditional teleprompter UI.',
+    images: [
+      '/notchprompt.png'
+    ],
+    tags: ['Swift', 'SwiftUI', 'AppKit', 'macOS'],
+    client: 'Personal Project',
+    role: 'Creator & Developer',
+    link: 'A Native Teleprompter Experience'
+  },
+  {
     id: 'spinpod',
     title: 'Spinpod',
     category: 'AI & Music',
     year: '2025',
     thumbnail: 'https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?auto=format&fit=crop&q=80&w=1200',
-    excerpt: 'An AI-powered music platform featuring a nostalgic pixel-art interface and smart mixing capabilities.',
-    context: 'Created Spinpod to bridge the gap between advanced AI music generation and retro-futuristic UI design. The platform allows users to mix and manipulate AI-generated beats in real-time.',
-    process: 'Developed using React and the Gemini AI API. Focused on creating a tactile digital experience with custom-built audio visualization and a unique 8-bit aesthetic.',
-    outcome: 'Successfully deployed as a high-performance web app with seamless AI integration, receiving positive feedback for its innovative interface.',
+    excerpt: 'A personal focus tool and music controller featuring a tactile, retro-industrial UI powered by Gemini AI.',
+    context: 'I built this because I was tired of flat, spreadsheet-like music players. I wanted a tool with high-contrast blacks, CRT flickering, and physical-feeling knobs designed strictly for deep work.',
+    process: 'Designed with a Dieter Rams-inspired aesthetic and engineered to decode public Spotify playlist URLs using Gemini AI, bypassing complex OAuth flows to maintain the minimalist focus.',
+    outcome: 'A beautiful, analog-feeling desk interface that prioritizes physicality over convenience to keep the user entirely in the zone.',
     images: [
       'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1600'
     ],
-    tags: ['React', 'Gemini AI', 'Tailwind CSS', 'Web Audio API'],
+    tags: ['React', 'Gemini AI', 'Tailwind CSS', 'Vite'],
     client: 'Self-Initiated',
     role: 'Full Stack Developer & Designer',
     link: 'A Retro AI Music Experience'
   },
   {
     id: 'resume-editor',
-    title: 'Resume Editor',
+    title: 'Client-Side Resume Editor',
     category: 'Productivity',
     year: '2024',
     thumbnail: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&q=80&w=1200',
-    excerpt: 'A sleek, client-side resume builder designed for professional impact and ease of use.',
-    context: 'Designed to simplify the resume-building process while maintaining high design standards. The tool provides a real-time preview of premium templates.',
-    process: 'Built with Next.js and TypeScript, prioritizing performance and security by keeping all data on the client side. Implemented a robust PDF generation engine.',
-    outcome: 'Used by hundreds of applicants to create clean, ATS-friendly resumes with a 40% faster completion rate than traditional editors.',
+    excerpt: 'A privacy-focused, single-page resume builder allowing users to design and export resumes entirely in the browser.',
+    context: 'Designed to offer an intuitive alternative to bloated resume builders. It features zero config, real-time preview, and absolute privacy since no data is saved to a server.',
+    process: 'Built with Next.js App Router and Tailwind CSS. Implemented customizable Google Fonts, togglable sections, and smooth A4 PDF / LaTeX generation all securely on the client-side.',
+    outcome: 'An elegant, highly robust tool enabling users to craft ATS-friendly professional resumes instantly.',
     images: [
       'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=1600'
     ],
-    tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'jspdf'],
+    tags: ['Next.js', 'Tailwind CSS', 'Lucide React'],
     client: 'Personal Project',
     role: 'Lead Developer',
     link: 'Simplified Professional Resumes'

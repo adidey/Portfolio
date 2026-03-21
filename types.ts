@@ -2,7 +2,7 @@
 export interface Project {
   id: string;
   title: string;
-  category: 'Branding' | 'UI Design' | 'Web Development' | 'Interaction' | 'AI & Music' | 'Productivity';
+  category: 'Branding' | 'UI Design' | 'Web Development' | 'Interaction' | 'AI & Music' | 'Productivity' | 'macOS Utility';
   year: string;
   thumbnail: string;
   excerpt: string;
