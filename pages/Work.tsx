@@ -17,7 +17,7 @@ const Work: React.FC<WorkProps> = ({ layout }) => {
   const renderList = () => (
     <div className="relative border-t border-neutral-900 w-full mb-32 md:mb-40">
       {PROJECTS.map((project, index) => {
-        const itemRef = useRef<HTMLDivElement>(null);
+        const itemRef = useRef<HTMLAnchorElement>(null);
         const [focus, setFocus] = useState(0);
 
         useEffect(() => {

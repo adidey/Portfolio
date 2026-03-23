@@ -227,9 +227,8 @@ const BehanceSection: React.FC<BehanceSectionProps> = ({ username, layout = '01'
 
         {/* Selection Highlight */}
         <div
-          className={`absolute inset-0 bg-white transition-opacity duration-300 pointer-events-none ${
-            clicked ? 'opacity-5' : 'opacity-0'
-          }`}
+          className={`absolute inset-0 bg-white transition-opacity duration-300 pointer-events-none ${clicked ? 'opacity-5' : 'opacity-0'
+            }`}
         />
       </a>
     );
