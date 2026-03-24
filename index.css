@@ -34,19 +34,42 @@
 @layer base {
   :root {
     --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+    
+    /* Dark Mode (Default) */
+    --bg: #0d0d0d;
+    --text: #fffff0;
+    --text-muted: #88887a;
+    --border: #1a1a1a;
+    --accent: #2563eb;
+    --surface: #121212;
+    --selection-bg: #fffff0;
+    --selection-text: #0d0d0d;
+  }
+
+  :root.light {
+    --bg: #fffff0;
+    --text: #0d0d0d;
+    --text-muted: #66665c;
+    --border: #e0e0d0;
+    --accent: #2563eb;
+    --surface: #f5f5e6;
+    --selection-bg: #0d0d0d;
+    --selection-text: #fffff0;
   }
 
   html {
     scroll-behavior: smooth;
-    background-color: #000000;
+    background-color: var(--bg);
+    color: var(--text);
   }
 
   body {
     font-family: 'Inter', sans-serif;
-    color: #fafafa;
+    color: var(--text);
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
-    background-color: #000000;
+    background-color: var(--bg);
+    transition: background-color 0.5s ease, color 0.5s ease;
   }
 
   /* Professional Boutique Cursor */
@@ -56,7 +79,7 @@
     left: 0;
     width: 6px;
     height: 6px;
-    background: white;
+    background: var(--text);
     border-radius: 50%;
     pointer-events: none;
     z-index: 10001;
@@ -70,7 +93,8 @@
     left: 0;
     width: 30px;
     height: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid var(--text-muted);
+    opacity: 0.3;
     border-radius: 50%;
     pointer-events: none;
     z-index: 10000;
@@ -97,8 +121,8 @@
   }
 
   ::selection {
-    background: #ffffff;
-    color: #000000;
+    background: var(--selection-bg);
+    color: var(--selection-text);
   }
 }
 
@@ -235,11 +259,11 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #000000;
+  background: var(--bg);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #222222;
+  background: var(--border);
 }
 
 /* Hide scrollbar but keep functionality */

@@ -98,17 +98,32 @@ const Work: React.FC<WorkProps> = ({ layout }) => {
 
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between w-full h-full px-6 md:px-20 py-12 md:py-0 relative z-20 pointer-events-none">
               <div className="w-full md:w-[30%] text-left flex items-center md:h-full">
-                <h2
-                  className="text-2xl md:text-5xl font-bold tracking-tighter transition-all duration-700"
-                  style={{
-                    fontFamily: 'Satoshi, sans-serif',
-                    color: focus > 0.2 ? '#ffffff' : '#333333',
-                    transform: `translateY(${(1 - focus) * 10}px)`,
-                    opacity: 0.3 + (focus * 0.7)
-                  }}
-                >
-                  {project.title}
-                </h2>
+                <div className="flex flex-col">
+                  <h2
+                    className="text-2xl md:text-5xl font-bold tracking-tighter transition-all duration-700"
+                    style={{
+                      fontFamily: 'Satoshi, sans-serif',
+                      color: focus > 0.2 ? 'var(--text)' : 'var(--text-muted)',
+                      transform: `translateY(${(1 - focus) * 10}px)`,
+                      opacity: 0.3 + (focus * 0.7)
+                    }}
+                  >
+                    {project.title}
+                  </h2>
+                  <div 
+                    className="flex flex-wrap gap-2 mt-2 transition-all duration-700"
+                    style={{
+                      opacity: focus,
+                      transform: `translateY(${(1 - focus) * 10}px)`
+                    }}
+                  >
+                    {project.tags.slice(0, 3).map(tag => (
+                      <span key={tag} className="text-[9px] md:text-[10px] uppercase tracking-widest text-[var(--accent)] font-medium">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
 
               <div
@@ -143,7 +158,7 @@ const Work: React.FC<WorkProps> = ({ layout }) => {
                     transform: `translateY(${(1 - focus) * 10}px)`
                   }}
                 >
-                  {project.link}
+                  {project.shortDescription}
                 </p>
               </div>
             </div>
@@ -170,11 +185,23 @@ const Work: React.FC<WorkProps> = ({ layout }) => {
             />
             <div className="absolute inset-0 bg-white opacity-0 transition-opacity duration-300 pointer-events-none group-active:opacity-10" />
           </div>
-          <div className="flex justify-between items-baseline px-2">
-            <h3 className="text-2xl md:text-5xl font-bold tracking-tighter text-neutral-200 group-hover:text-white transition-all duration-300 md:group-hover:translate-x-2" style={{ fontFamily: 'Satoshi, sans-serif' }}>
-              {project.title}
-            </h3>
-            <span className="text-[9px] md:text-[10px] uppercase tracking-[0.4em] text-neutral-600 group-hover:text-neutral-400 transition-colors duration-300">{project.category}</span>
+          <div className="flex flex-col gap-4 px-2">
+            <div className="flex justify-between items-baseline">
+              <h3 className="text-2xl md:text-4xl font-bold tracking-tighter text-[var(--text)] group-hover:translate-x-2 transition-transform" style={{ fontFamily: 'Satoshi, sans-serif' }}>
+                {project.title}
+              </h3>
+              <span className="text-[9px] md:text-[10px] uppercase tracking-[0.4em] text-[var(--text-muted)]">{project.category}</span>
+            </div>
+            <p className="text-xs md:text-sm text-[var(--text-muted)] line-clamp-2 leading-relaxed">
+              {project.shortDescription}
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {project.tags.map(tag => (
+                <span key={tag} className="text-[8px] md:text-[9px] uppercase tracking-widest px-2 py-1 bg-[var(--surface)] border border-[var(--border)] text-[var(--text-muted)]">
+                  {tag}
+                </span>
+              ))}
+            </div>
           </div>
         </Link>
       ))}
@@ -182,7 +209,7 @@ const Work: React.FC<WorkProps> = ({ layout }) => {
   );
 
   return (
-    <main className="min-h-screen bg-[#000000] pt-48 pb-[100vh]" ref={containerRef}>
+    <main className="min-h-screen bg-[var(--bg)] pt-48 pb-[100vh]" ref={containerRef}>
       <Helmet>
         <title>Work — Aditya Dey</title>
         <meta name="description" content="A selection of product and UX design projects focusing on interaction design, interface architecture, and digital experiences." />
@@ -193,7 +220,7 @@ const Work: React.FC<WorkProps> = ({ layout }) => {
       <div className="max-w-[1800px] mx-auto px-6 md:px-12">
         <div className="mb-32 flex flex-col items-center">
           <h1
-            className="text-[14vw] md:text-[12vw] font-bold leading-none tracking-tighter text-white select-none"
+            className="text-[14vw] md:text-[12vw] font-bold leading-none tracking-tighter text-[var(--text)] select-none"
             style={{ fontFamily: 'Satoshi, sans-serif' }}
           >
             Work

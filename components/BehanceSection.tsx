@@ -148,7 +148,7 @@ const BehanceSection: React.FC<BehanceSectionProps> = ({ username, layout = '01'
         target="_blank"
         rel="noopener noreferrer"
         onClick={handleClick}
-        className={`group relative flex flex-col w-full border-b border-neutral-900 overflow-hidden cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-neutral-900/30 ${clicked ? 'bg-white/[0.05]' : ''}`}
+        className={`group relative flex flex-col w-full border-b border-[var(--border)] overflow-hidden cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-[var(--surface)]/30 ${clicked ? 'bg-[var(--text)]/[0.05]' : ''}`}
         style={{ height }}
       >
         {/* Index Label */}
@@ -158,7 +158,7 @@ const BehanceSection: React.FC<BehanceSectionProps> = ({ username, layout = '01'
             style={{
               fontFamily: 'Satoshi, sans-serif',
               opacity: 0.2 + focus * 0.8,
-              color: focus > 0.4 ? '#ffffff' : '#444444',
+              color: focus > 0.4 ? 'var(--text)' : 'var(--text-muted)',
             }}
           >
             0{index + 1}
@@ -173,7 +173,7 @@ const BehanceSection: React.FC<BehanceSectionProps> = ({ username, layout = '01'
               className="text-2xl md:text-5xl font-bold tracking-tighter transition-all duration-700"
               style={{
                 fontFamily: 'Satoshi, sans-serif',
-                color: focus > 0.2 ? '#ffffff' : '#333333',
+                color: focus > 0.2 ? 'var(--text)' : 'var(--text-muted)',
                 transform: `translateY(${(1 - focus) * 10}px)`,
                 opacity: 0.3 + focus * 0.7,
               }}
@@ -215,7 +215,7 @@ const BehanceSection: React.FC<BehanceSectionProps> = ({ username, layout = '01'
             <p
               className="text-[9px] md:text-[12px] font-medium leading-relaxed max-w-[260px] transition-all duration-700"
               style={{
-                color: focus > 0.4 ? '#999999' : '#333333',
+                color: focus > 0.4 ? 'var(--text-muted)' : 'var(--border)',
                 opacity: focus,
                 transform: `translateY(${(1 - focus) * 10}px)`,
               }}
@@ -237,15 +237,15 @@ const BehanceSection: React.FC<BehanceSectionProps> = ({ username, layout = '01'
   return (
     <section
       ref={containerRef}
-      className="mt-32 md:mt-40 border-t border-neutral-900 pt-16 md:pt-24"
+      className="mt-32 md:mt-40 border-t border-[var(--border)] pt-16 md:pt-24"
     >
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12">
         <div>
-          <p className="text-[9px] md:text-[11px] uppercase tracking-[0.4em] text-neutral-500 mb-3">
-            Selected Work from
+          <p className="text-[9px] md:text-[11px] uppercase tracking-[0.4em] text-[var(--text-muted)] mb-3">
+            Archive Work
           </p>
           <h2
-            className="text-3xl md:text-5xl font-bold tracking-tight text-white"
+            className="text-3xl md:text-5xl font-bold tracking-tight text-[var(--text)]"
             style={{ fontFamily: 'Satoshi, sans-serif' }}
           >
             Behance
@@ -255,9 +255,9 @@ const BehanceSection: React.FC<BehanceSectionProps> = ({ username, layout = '01'
           href={`https://www.behance.net/${encodeURIComponent(username)}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-[9px] md:text-[11px] uppercase tracking-[0.4em] text-neutral-500 hover:text-white transition-colors duration-300"
+          className="text-[9px] md:text-[11px] uppercase tracking-[0.4em] text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors duration-300"
         >
-          View full profile
+          → View full archive on Behance
         </a>
       </div>
 
@@ -315,7 +315,7 @@ const BehanceSection: React.FC<BehanceSectionProps> = ({ username, layout = '01'
       {/* Projects grid */}
       {showContent && (
         layout === '01' ? (
-          <div className="relative border-t border-neutral-900 w-full mb-32 md:mb-40">
+          <div className="relative border-t border-[var(--border)] w-full mb-32 md:mb-40">
             {projects.map((project, index) => (
               <BehanceListItem key={project.id} project={project} index={index} />
             ))}
@@ -328,33 +328,32 @@ const BehanceSection: React.FC<BehanceSectionProps> = ({ username, layout = '01'
                 href={project.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group cursor-pointer flex flex-col gap-6 md:gap-10"
+                className="group cursor-pointer flex flex-col gap-6 md:gap-10 opacity-70 hover:opacity-100 transition-opacity duration-500"
               >
-                <div className="relative aspect-[16/10] overflow-hidden rounded-[2px] bg-neutral-900 border border-white/5 shadow-lg">
+                <div className="relative aspect-[16/10] overflow-hidden rounded-[2px] bg-[var(--surface)] border border-[var(--border)] shadow-lg">
                   {project.coverImage ? (
                     <img
                       src={project.coverImage}
                       alt={project.title}
                       loading="lazy"
-                      className="w-full h-full object-cover md:grayscale md:brightness-[0.7] transition-all duration-500 md:group-hover:grayscale-0 md:group-hover:brightness-110 md:group-hover:scale-105"
+                      className="w-full h-full object-cover md:grayscale transition-all duration-500 md:group-hover:grayscale-0 md:group-hover:scale-105"
                     />
                   ) : (
-                    <div className="w-full h-full bg-neutral-800" />
+                    <div className="w-full h-full bg-[var(--surface)]" />
                   )}
-                  <div className="absolute inset-0 bg-white transition-opacity duration-300 pointer-events-none opacity-0 group-hover:opacity-5" />
                 </div>
                 <div className="flex flex-col gap-3 px-2">
-                  <p className="text-[9px] md:text-[10px] uppercase tracking-[0.4em] text-neutral-600 group-hover:text-neutral-400 transition-colors duration-300">
-                    Behance Project
+                  <p className="text-[9px] md:text-[10px] uppercase tracking-[0.4em] text-[var(--text-muted)] group-hover:text-[var(--accent)] transition-colors duration-300">
+                    Behance Archive
                   </p>
                   <h3
-                    className="text-2xl md:text-4xl font-bold tracking-tighter text-neutral-200 group-hover:text-white transition-all duration-300 md:group-hover:translate-x-2"
+                    className="text-2xl md:text-3xl font-bold tracking-tighter text-[var(--text)] group-hover:translate-x-2 transition-transform duration-300"
                     style={{ fontFamily: 'Satoshi, sans-serif' }}
                   >
                     {project.title}
                   </h3>
                   {project.description && (
-                    <p className="text-xs md:text-sm text-neutral-500 line-clamp-3">
+                    <p className="text-xs md:text-sm text-[var(--text-muted)] line-clamp-2 leading-relaxed">
                       {project.description}
                     </p>
                   )}

@@ -9,9 +9,18 @@ interface NavbarProps {
   onNavigate: (view: PageView) => void;
   workLayout: '01' | '02';
   onToggleLayout: (layout: '01' | '02') => void;
+  theme: 'dark' | 'light';
+  onToggleTheme: () => void;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, workLayout, onToggleLayout }) => {
+const Navbar: React.FC<NavbarProps> = ({ 
+  currentPath, 
+  onNavigate, 
+  workLayout, 
+  onToggleLayout,
+  theme,
+  onToggleTheme
+}) => {
   const isSelected = (path: string) => {
     if (path === '/' && currentPath === '/') return true;
     return path !== '/' && currentPath.startsWith(path);
@@ -81,23 +90,34 @@ const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, workLayout, on
   return (
     <>
       {/* Top Right Layout Toggle - Responsive Positioning */}
-      <div className="fixed top-6 right-6 md:top-8 md:right-8 z-[110] flex items-center pointer-events-none">
-        <div className={`flex items-center bg-black/60 backdrop-blur-xl border border-neutral-800 rounded-sm overflow-hidden pointer-events-auto transition-all duration-700 ${isToggleVisible ? 'opacity-100' : 'opacity-0 translate-x-12'}`}>
+      <div className="fixed top-6 right-6 md:top-8 md:right-8 z-[110] flex items-center gap-2 pointer-events-none">
+        <div className={`flex items-center bg-[var(--bg)]/60 backdrop-blur-xl border border-[var(--border)] rounded-sm overflow-hidden pointer-events-auto transition-all duration-700 ${isToggleVisible ? 'opacity-100' : 'opacity-0 translate-x-12'}`}>
           <button
             onClick={() => onToggleLayout('01')}
-            className={`px-4 md:px-5 py-2.5 md:py-3.5 text-[10px] md:text-xs border-r border-neutral-800 font-mono transition-all duration-500 ${workLayout === '01' ? 'bg-neutral-100 text-black' : 'bg-transparent text-neutral-500 hover:text-white'
+            className={`px-4 md:px-5 py-2.5 md:py-3.5 text-[10px] md:text-xs border-r border-[var(--border)] font-mono transition-all duration-500 ${workLayout === '01' ? 'bg-[var(--text)] text-[var(--bg)]' : 'bg-transparent text-[var(--text-muted)] hover:text-[var(--text)]'
               }`}
           >
             01
           </button>
           <button
             onClick={() => onToggleLayout('02')}
-            className={`px-4 md:px-5 py-2.5 md:py-3.5 text-[10px] md:text-xs font-mono transition-all duration-500 ${workLayout === '02' ? 'bg-neutral-100 text-black' : 'bg-transparent text-neutral-500 hover:text-white'
+            className={`px-4 md:px-5 py-2.5 md:py-3.5 text-[10px] md:text-xs font-mono transition-all duration-500 ${workLayout === '02' ? 'bg-[var(--text)] text-[var(--bg)]' : 'bg-transparent text-[var(--text-muted)] hover:text-[var(--text)]'
               }`}
           >
             02
           </button>
         </div>
+
+        <button
+          onClick={onToggleTheme}
+          className="flex items-center justify-center bg-[var(--bg)]/60 backdrop-blur-xl border border-[var(--border)] rounded-sm p-2.5 md:p-3.5 pointer-events-auto transition-all duration-700 hover:bg-[var(--surface)] text-[var(--text)]"
+        >
+          {theme === 'dark' ? (
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+          ) : (
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+          )}
+        </button>
       </div>
 
       {/* Center Navbar */}
@@ -106,7 +126,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, workLayout, on
           ref={navRef}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
-          className="relative flex items-center bg-black/60 backdrop-blur-xl border border-neutral-800 rounded-sm overflow-hidden pointer-events-auto transition-all duration-500 group max-w-full"
+          className="relative flex items-center bg-[var(--bg)]/60 backdrop-blur-xl border border-[var(--border)] rounded-sm overflow-hidden pointer-events-auto transition-all duration-500 group max-w-full"
         >
           <div
             className="absolute inset-[-1px] pointer-events-none z-[-1] hidden md:block"
@@ -116,7 +136,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, workLayout, on
           <Link
             to="/"
             onClick={handleLinkClick}
-            className="px-4 md:px-6 py-3 md:py-3.5 text-[11px] md:text-[12px] font-bold tracking-tight border-r border-neutral-800 hover:bg-neutral-900/50 transition-colors whitespace-nowrap"
+            className="px-4 md:px-6 py-3 md:py-3.5 text-[11px] md:text-[12px] font-bold tracking-tight border-r border-[var(--border)] hover:bg-[var(--surface)] transition-colors whitespace-nowrap"
           >
             Aditya Dey™
           </Link>
@@ -128,7 +148,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, workLayout, on
                 key={item.label}
                 to={item.path}
                 className={({ isActive }) =>
-                  `px-5 py-3.5 text-[11px] uppercase tracking-widest transition-colors border-r border-neutral-800 ${isActive ? 'text-white bg-neutral-900/80' : 'text-neutral-500 hover:text-white hover:bg-neutral-900/40'}`
+                  `px-5 py-3.5 text-[11px] uppercase tracking-widest transition-colors border-r border-[var(--border)] ${isActive ? 'text-[var(--text)] bg-[var(--surface)]' : 'text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--surface)]/50'}`
                 }
               >
                 {item.label}
@@ -139,7 +159,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, workLayout, on
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden px-4 py-3 text-neutral-400 hover:text-white transition-colors flex items-center gap-2 border-r border-neutral-800 last:border-r-0"
+            className="md:hidden px-4 py-3 text-[var(--text-muted)] hover:text-[var(--text)] transition-colors flex items-center gap-2 border-r border-[var(--border)] last:border-r-0"
           >
             <div className="w-5 h-5 relative flex flex-col justify-center gap-1.5 flex-shrink-0">
               <span className={`w-full h-[1.5px] bg-current transition-all ${isMobileMenuOpen ? 'rotate-45 translate-y-[5px]' : ''}`} />
@@ -157,7 +177,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, workLayout, on
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-3.5 text-neutral-500 hover:text-white transition-colors border-r border-neutral-800 last:border-r-0 hover:bg-neutral-900/40 flex items-center justify-center"
+                className="px-4 py-3.5 text-[var(--text-muted)] hover:text-[var(--text)] transition-colors border-r border-[var(--border)] last:border-r-0 hover:bg-[var(--surface)]/50 flex items-center justify-center"
                 title={social.label}
               >
                 {social.icon}
@@ -169,7 +189,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, workLayout, on
 
       {/* Mobile Drawer Overlay */}
       <div
-        className={`fixed inset-0 z-[105] bg-black/95 backdrop-blur-2xl transition-all duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] ${isMobileMenuOpen ? 'opacity-100 pointer-events-auto translate-y-0' : 'opacity-0 pointer-events-none -translate-y-full'
+        className={`fixed inset-0 z-[105] bg-[var(--bg)]/95 backdrop-blur-2xl transition-all duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] ${isMobileMenuOpen ? 'opacity-100 pointer-events-auto translate-y-0' : 'opacity-0 pointer-events-none -translate-y-full'
           } md:hidden`}
       >
         <div className="h-full flex flex-col p-8 pt-32">
@@ -181,7 +201,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, workLayout, on
                 to={item.path}
                 onClick={handleLinkClick}
                 className={({ isActive }) =>
-                  `text-left text-5xl font-bold tracking-tighter uppercase transition-all ${isActive ? 'text-white' : 'text-neutral-700 active:text-white'}`
+                  `text-left text-5xl font-bold tracking-tighter uppercase transition-all ${isActive ? 'text-[var(--text)]' : 'text-[var(--text-muted)] active:text-[var(--text)]'}`
                 }
                 style={{ fontFamily: 'Satoshi, sans-serif' }}
               >

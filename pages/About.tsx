@@ -15,7 +15,7 @@ const About: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-24 items-start">
         <div className="md:col-span-7 space-y-12 md:space-y-16">
           <h1 className="text-4xl md:text-8xl font-bold leading-tight tracking-tighter" style={{ fontFamily: 'Satoshi, sans-serif' }}>
-            Design through <span className="text-neutral-600">Systems</span> and <span className="text-neutral-600">Cognition</span>.
+            Design through <span className="text-[var(--text-muted)]">Systems</span> and <span className="text-[var(--text-muted)]">Cognition</span>.
           </h1>
 
           <div className="space-y-6 md:space-y-8 text-lg md:text-2xl text-neutral-400 font-light leading-relaxed">
@@ -32,31 +32,31 @@ const About: React.FC = () => {
               <a
                 href="/assets/resume.pdf"
                 download
-                className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.3em] bg-white text-black px-8 py-4 hover:bg-white/90 transition-all font-bold"
+                className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.3em] bg-[var(--text)] text-[var(--bg)] px-8 py-4 hover:bg-[var(--text)]/90 transition-all font-bold"
               >
                 Download Resume ↓
               </a>
               <a
                 href="mailto:adityad1@student.unimelb.edu.au"
-                className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.3em] border border-white/20 px-8 py-4 hover:border-white transition-all"
+                className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.3em] border border-[var(--border)] px-8 py-4 hover:border-[var(--text)] transition-all"
               >
                 Get In Touch
               </a>
             </div>
           </div>
 
-          <div className="pt-10 md:pt-12 grid grid-cols-1 gap-12 border-t border-neutral-900">
+          <div className="pt-10 md:pt-12 grid grid-cols-1 gap-12 border-t border-[var(--border)]">
             <div>
               <p className="text-[9px] md:text-[10px] uppercase tracking-widest text-neutral-500 mb-8 md:mb-10">Professional Path</p>
               <div className="space-y-12">
                 {EXPERIENCE.slice(0, 3).map((exp, idx) => (
-                  <div key={idx} className="group border-l border-neutral-900 pl-6 hover:border-blue-500/50 transition-colors">
+                  <div key={idx} className="group border-l border-[var(--border)] pl-6 hover:border-[var(--accent)] transition-colors">
                     <div className="flex flex-col sm:flex-row justify-between items-start gap-1 mb-2">
-                      <h3 className="text-lg font-bold tracking-tight text-white italic">{exp.title}</h3>
-                      <p className="text-[9px] uppercase tracking-widest text-neutral-600 font-mono mt-1">{exp.period}</p>
+                      <h3 className="text-lg font-bold tracking-tight text-[var(--text)] italic">{exp.title}</h3>
+                      <p className="text-[9px] uppercase tracking-widest text-[var(--text-muted)] font-mono mt-1">{exp.period}</p>
                     </div>
-                    <p className="text-xs text-neutral-500 mb-3">{exp.organization}</p>
-                    <p className="text-xs text-neutral-600 leading-relaxed font-light line-clamp-2 group-hover:line-clamp-none transition-all">
+                    <p className="text-xs text-[var(--text-muted)] mb-3">{exp.organization}</p>
+                    <p className="text-xs text-[var(--text-muted)] leading-relaxed font-light line-clamp-2 group-hover:line-clamp-none transition-all">
                       {exp.description[0]}
                     </p>
                   </div>
@@ -105,10 +105,10 @@ const About: React.FC = () => {
               <div className="space-y-10">
                 {SKILLS.map((group, idx) => (
                   <div key={idx}>
-                    <p className="text-[9px] uppercase tracking-[0.3em] text-neutral-700 mb-4">{group.category}</p>
+                    <p className="text-[9px] uppercase tracking-[0.3em] text-[var(--text-muted)] mb-4">{group.category}</p>
                     <div className="flex flex-wrap gap-2">
                       {group.items.map((item, i) => (
-                        <span key={i} className="text-[10px] font-mono text-neutral-400 bg-neutral-900/50 px-3 py-1.5 rounded-sm border border-white/5 uppercase tracking-wider">
+                        <span key={i} className="text-[10px] font-mono text-[var(--text-muted)] bg-[var(--surface)] px-3 py-1.5 rounded-sm border border-[var(--border)] uppercase tracking-wider">
                           {item}
                         </span>
                       ))}

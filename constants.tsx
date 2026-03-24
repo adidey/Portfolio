@@ -17,13 +17,12 @@ export const PROJECTS: Project[] = [
     category: 'macOS Utility',
     year: '2026',
     thumbnail: '/notchprompt.png',
-    excerpt: 'A premium, minimalist macOS teleprompter utility that perfectly integrates with the physical hardware notch.',
-    context: 'Designed for flawless presentations and video calls, acting as a direct native extension of the Mac camera notch. It creates an immersive drop-down container where scripts smoothly scroll directly under the camera lens.',
-    process: 'Built natively using Swift 6.0, AppKit, and SwiftUI. Features global hotkeys and a striking cyan/blue glow on the active reading line to maintain focus and eye-contact.',
-    outcome: 'An unobtrusive menu-bar utility that improves communication professionalism without the clutter of traditional teleprompter UI.',
-    images: [
-      '/notchprompt.png'
-    ],
+    shortDescription: 'A premium macOS teleprompter that integrates with the hardware notch.',
+    context: 'Designed for flawless presentations and video calls, acting as a native extension of the Mac camera notch.',
+    problem: 'Traditional teleprompters are bulky and distract from the camera lens, breaking eye contact during calls.',
+    process: 'Built natively using Swift 6.0 and SwiftUI. Features a striking cyan/blue glow on the active reading line.',
+    outcome: 'An unobtrusive utility that improves communication professionalism without cluttered traditional UI.',
+    images: ['/notchprompt.png'],
     tags: ['Swift', 'SwiftUI', 'AppKit', 'macOS'],
     client: 'Personal Project',
     role: 'Creator & Developer',
@@ -35,13 +34,12 @@ export const PROJECTS: Project[] = [
     category: 'AI & Music',
     year: '2025',
     thumbnail: 'https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?auto=format&fit=crop&q=80&w=1200',
-    excerpt: 'A personal focus tool and music controller featuring a tactile, retro-industrial UI powered by Gemini AI.',
-    context: 'I built this because I was tired of flat, spreadsheet-like music players. I wanted a tool with high-contrast blacks, CRT flickering, and physical-feeling knobs designed strictly for deep work.',
-    process: 'Designed with a Dieter Rams-inspired aesthetic and engineered to decode public Spotify playlist URLs using Gemini AI, bypassing complex OAuth flows to maintain the minimalist focus.',
-    outcome: 'A beautiful, analog-feeling desk interface that prioritizes physicality over convenience to keep the user entirely in the zone.',
-    images: [
-      'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1600'
-    ],
+    shortDescription: 'A retro-industrial music controller powered by Gemini AI.',
+    context: 'A personal focus tool designed strictly for deep work with high-contrast blacks and CRT aesthetics.',
+    problem: 'Modern music players are often flat and spreadsheet-like, failing to provide a tactile focus-oriented experience.',
+    process: 'Designed with Dieter Rams-inspired aesthetics and engineered to decode Spotify playlists using Gemini AI.',
+    outcome: 'A beautiful, analog-feeling desk interface that prioritizes physicality to keep the user entirely in the zone.',
+    images: ['https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1600'],
     tags: ['React', 'Gemini AI', 'Tailwind CSS', 'Vite'],
     client: 'Self-Initiated',
     role: 'Full Stack Developer & Designer',
@@ -49,17 +47,16 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'resume-editor',
-    title: 'Client-Side Resume Editor',
+    title: 'Resume Editor',
     category: 'Productivity',
     year: '2024',
     thumbnail: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&q=80&w=1200',
-    excerpt: 'A privacy-focused, single-page resume builder allowing users to design and export resumes entirely in the browser.',
-    context: 'Designed to offer an intuitive alternative to bloated resume builders. It features zero config, real-time preview, and absolute privacy since no data is saved to a server.',
-    process: 'Built with Next.js App Router and Tailwind CSS. Implemented customizable Google Fonts, togglable sections, and smooth A4 PDF / LaTeX generation all securely on the client-side.',
-    outcome: 'An elegant, highly robust tool enabling users to craft ATS-friendly professional resumes instantly.',
-    images: [
-      'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=1600'
-    ],
+    shortDescription: 'Privacy-focused, single-page resume builder for instant ATS-friendly exports.',
+    context: 'Designed to offer an intuitive alternative to bloated resume builders with zero configuration required.',
+    problem: 'Existing resume tools are often data-heavy, require accounts, and lack privacy for sensitive career data.',
+    process: 'Built with Next.js App Router and Tailwind CSS. Implemented smooth PDF generation entirely on the client-side.',
+    outcome: 'An elegant, robust tool enabling users to craft professional resumes securely in seconds.',
+    images: ['https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=1600'],
     tags: ['Next.js', 'Tailwind CSS', 'Lucide React'],
     client: 'Personal Project',
     role: 'Lead Developer',
@@ -71,13 +68,12 @@ export const PROJECTS: Project[] = [
     category: 'Interaction',
     year: '2023',
     thumbnail: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1200',
-    excerpt: 'Piezoelectric energy-generating floor tiles for sustainable infrastructure.',
-    context: 'Designed and engineered floor tiles with piezoelectric sensors capable of generating electricity under human pressure.',
-    process: 'Prototyped using Arduino and designed the physical structure in Fusion360. Integrated sensors to power classroom lights, testing durability across 25+ high-traffic locations.',
-    outcome: 'Winner of FICCI Arise and TGELF Youth India STEM Product. Successfully demonstrated a self-sustaining energy loop for school environments.',
-    images: [
-      'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=1600'
-    ],
+    shortDescription: 'Piezoelectric energy-generating floor tiles for sustainable infrastructure.',
+    context: 'Energy-harvesting floor tiles that turn human footsteps into electricity for sustainable buildings.',
+    problem: 'Large educational and public spaces consume high energy without leveraging the ambient energy from foot traffic.',
+    process: 'Prototyped using Arduino and Fusion360. Integrated sensors to power lights across high-traffic locations.',
+    outcome: 'Winner of FICCI Arise. Successfully demonstrated a self-sustaining energy loop for school environments.',
+    images: ['https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=1600'],
     tags: ['Arduino', 'Fusion360', 'Sustainable Tech'],
     client: 'Self-Initiated',
     role: 'Lead Designer & Engineer',
@@ -85,21 +81,20 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'joy-assistant',
-    title: 'JOY: Mental Health',
+    title: 'JOY',
     category: 'UI Design',
     year: '2022',
     thumbnail: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=1200',
-    excerpt: 'An AI-powered mental healthcare assistant utilizing music therapy and personalized journaling.',
-    context: 'Created to address the accessibility gap in mental health support through personalized journaling and music-based mood regulation.',
-    process: 'Engineered a user-friendly interface in Swift, aligning with medical design principles. Integrated AI-generated workout and music plans tailored to real-time mood data.',
-    outcome: 'Achieved a 25% reduction in patient onboarding time. Winner of Boston Hackathon 2022 and TGELF Youth India.',
-    images: [
-      'https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?auto=format&fit=crop&q=80&w=1600'
-    ],
+    shortDescription: 'AI-powered mental healthcare assistant using music therapy.',
+    context: 'A digital companion that uses personalized journaling and music-based mood regulation for wellbeing.',
+    problem: 'Mental health support is often inaccessible or lacks real-time personalization for emotional regulation.',
+    process: 'Engineered a Swift interface aligned with medical design principles. Integrated AI-tailored music plans.',
+    outcome: 'Achieved a 25% reduction in onboarding time. Winner of Boston Hackathon 2022.',
+    images: ['https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?auto=format&fit=crop&q=80&w=1600'],
     tags: ['Swift', 'Figma', 'UI/UX'],
     client: 'Healthcare Innovation Lab',
     role: 'Product Designer',
-    link: 'A Digital Companion Reimagined for Wellbeing'
+    link: 'A Digital Companion Reimagined'
   },
   {
     id: 'tracker-360',
@@ -107,17 +102,16 @@ export const PROJECTS: Project[] = [
     category: 'Web Development',
     year: '2023',
     thumbnail: 'https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?auto=format&fit=crop&q=80&w=1200',
-    excerpt: 'All-round COVID-19 protection device with thermal screening and UV-C sanitization.',
-    context: 'Invented during the pandemic to automate sanitation in high-density housing societies.',
-    process: 'Built using Python, Raspberry PI4, and Arduino. Designed a 3D-printed UV-C sanitizer module and integrated RGB thermal feedback systems.',
-    outcome: 'Recognized as UNICEF Top 100 Innovation and Government of India MANAK award winner. Improved sanitation rates in targeted housing societies by 15%.',
-    images: [
-      'https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&q=80&w=1600'
-    ],
+    shortDescription: 'Smart COVID-19 protection device with thermal screening and UV-C sanitization.',
+    context: 'An automated sanitation device invented to improve safety in high-density communal living.',
+    problem: 'Manual screening and sanitation in housing societies were inefficient and high-risk during the pandemic.',
+    process: 'Built using Python and Raspberry PI4. Designed a 3D-printed UV-C module with thermal feedback.',
+    outcome: 'Recognized as UNICEF Top 100 Innovation. Improved sanitation rates in communities by 15%.',
+    images: ['https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&q=80&w=1600'],
     tags: ['Python', 'IoT', 'Raspberry Pi'],
     client: 'Social Innovation Project',
     role: 'Technical Lead',
-    link: 'A Smart Sanitation Device for Communal Safety'
+    link: 'A Smart Sanitation Device'
   }
 ];
 

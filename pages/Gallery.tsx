@@ -78,7 +78,7 @@ const Gallery: React.FC<GalleryProps> = ({ layout }) => {
     }, [items]);
 
     return (
-        <main className="relative bg-black select-none flex flex-col pt-24">
+        <main className="relative bg-[var(--bg)] select-none flex flex-col pt-24 min-h-screen">
             <Helmet>
                 <title>Gallery — Aditya Dey</title>
                 <meta name="description" content="A gallery of design experiments, posters, and visual studies." />
@@ -91,19 +91,19 @@ const Gallery: React.FC<GalleryProps> = ({ layout }) => {
 
             <header className="relative w-full z-20 pt-24 md:pt-32 px-6 md:px-12 pointer-events-none">
                 <div className="flex flex-col items-center text-center">
-                    <h1 className="text-[14vw] md:text-[12vw] font-bold leading-none tracking-tighter text-white uppercase select-none flex flex-col items-center" style={{ fontFamily: 'Satoshi, sans-serif' }}>
+                    <h1 className="text-[14vw] md:text-[12vw] font-bold leading-none tracking-tighter text-[var(--text)] uppercase select-none flex flex-col items-center" style={{ fontFamily: 'Satoshi, sans-serif' }}>
                         <span>Posters</span>
                     </h1>
                     <div className="w-px h-24 bg-gradient-to-b from-blue-500/0 via-blue-500/50 to-blue-500/0 mt-12" />
 
                     {layout === '01' && (
                         <div className="mt-16 md:mt-20 animate-in fade-in duration-1000">
-                            <div className="text-neutral-500 text-[10px] uppercase tracking-[0.3em] font-light flex items-center gap-4 justify-center pointer-events-auto relative z-30" role="group" aria-label="Carousel navigation controls">
+                            <div className="text-[var(--text-muted)] text-[10px] uppercase tracking-[0.3em] font-light flex items-center gap-4 justify-center pointer-events-auto relative z-30" role="group" aria-label="Carousel navigation controls">
                                 <button
                                     type="button"
                                     aria-label="Rotate carousel left"
                                     onClick={() => rotateByStep('left')}
-                                    className="px-2 py-1 border border-neutral-800 rounded bg-neutral-900/50 hover:bg-neutral-800/50 transition-all text-neutral-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/80 active:scale-95"
+                                    className="px-2 py-1 border border-[var(--border)] rounded bg-[var(--surface)] hover:bg-[var(--border)] transition-all text-[var(--text-muted)] hover:text-[var(--text)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] active:scale-95"
                                 >
                                     ←
                                 </button>
@@ -115,7 +115,7 @@ const Gallery: React.FC<GalleryProps> = ({ layout }) => {
                                     type="button"
                                     aria-label="Rotate carousel right"
                                     onClick={() => rotateByStep('right')}
-                                    className="px-2 py-1 border border-neutral-800 rounded bg-neutral-900/50 hover:bg-neutral-800/50 transition-all text-neutral-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/80 active:scale-95"
+                                    className="px-2 py-1 border border-[var(--border)] rounded bg-[var(--surface)] hover:bg-[var(--border)] transition-all text-[var(--text-muted)] hover:text-[var(--text)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] active:scale-95"
                                 >
                                     →
                                 </button>
@@ -166,7 +166,7 @@ const Gallery: React.FC<GalleryProps> = ({ layout }) => {
                                 href={item.link}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className={`group relative bg-neutral-900/50 rounded-[2px] border border-white/5 shadow-2xl transition-all duration-700 hover:scale-[1.02] hover:border-white/10 block cursor-pointer ${item.source === 'dribbble' ? 'aspect-[4/3]' : 'aspect-[1/1.414]'}`}
+                                className={`group relative bg-[var(--surface)] rounded-[2px] border border-[var(--border)] shadow-2xl transition-all duration-700 hover:scale-[1.02] hover:border-[var(--text)]/20 block cursor-pointer ${item.source === 'dribbble' ? 'aspect-[4/3]' : 'aspect-[1/1.414]'}`}
                             >
                                 <img
                                     src={item.imageUrl}
@@ -176,7 +176,7 @@ const Gallery: React.FC<GalleryProps> = ({ layout }) => {
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                                 <div className="absolute bottom-0 left-0 w-full p-8 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700">
-                                    <span className="text-[10px] font-mono text-blue-400 uppercase tracking-widest mb-2 block">Study No. {idx + 1}</span>
+                                    <span className="text-[10px] font-mono text-[var(--accent)] uppercase tracking-widest mb-2 block">Study No. {idx + 1}</span>
                                     <h3 className="text-2xl font-bold uppercase tracking-tighter text-white italic" style={{ fontFamily: 'Satoshi, sans-serif' }}>{item.title}</h3>
                                 </div>
                             </a>
@@ -226,7 +226,7 @@ const PosterCard: React.FC<PosterCardProps> = ({ poster, index, total, radius, s
             }}
         >
             {/* Artistic Glass Frame - Removed overflow-hidden to allow scaling/shadows */}
-            <div className="relative w-full h-full bg-neutral-900/50 shadow-[0_30px_90px_rgba(0,0,0,0.9)] transition-all duration-700">
+            <div className="relative w-full h-full bg-[var(--surface)] shadow-[0_30px_90px_rgba(0,0,0,0.5)] border border-[var(--border)] transition-all duration-700">
                 <img
                     src={poster.imageUrl}
                     alt={poster.title}
@@ -239,22 +239,22 @@ const PosterCard: React.FC<PosterCardProps> = ({ poster, index, total, radius, s
 
                 {/* Subtle Year Tag */}
                 <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
-                    <span className="text-[10px] font-mono text-white bg-black/80 px-2 py-1 backdrop-blur-md rounded border border-white/10">
+                    <span className="text-[10px] font-mono text-[var(--bg)] bg-[var(--text)] px-2 py-1 backdrop-blur-md rounded border border-[var(--border)]">
                         {poster.year}
                     </span>
                 </div>
 
                 {/* Metadata UI */}
-                <div className={`absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent transition-opacity duration-700 flex flex-col justify-end p-8 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
-                    <span className="text-[9px] font-mono text-blue-400 mb-2 uppercase tracking-[0.5em]">
+                <div className={`absolute inset-0 bg-gradient-to-t from-[var(--bg)] via-[var(--bg)]/20 to-transparent transition-opacity duration-700 flex flex-col justify-end p-8 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
+                    <span className="text-[9px] font-mono text-[var(--accent)] mb-2 uppercase tracking-[0.5em]">
                         {poster.source === 'dribbble' ? 'Dribbble Shot' : 'System Gallery'}
                     </span>
-                    <h3 className="text-3xl font-black text-white uppercase tracking-tighter mb-2 italic" style={{ fontFamily: 'Satoshi, sans-serif' }}>
+                    <h3 className="text-3xl font-black text-[var(--text)] uppercase tracking-tighter mb-2 italic" style={{ fontFamily: 'Satoshi, sans-serif' }}>
                         {poster.title}
                     </h3>
                     <div className="flex items-center gap-3">
-                        <div className="w-8 h-[1px] bg-white/20" />
-                        <p className="text-neutral-500 text-[8px] tracking-[0.4em] uppercase font-light">
+                        <div className="w-8 h-[1px] bg-[var(--border)]" />
+                        <p className="text-[var(--text-muted)] text-[8px] tracking-[0.4em] uppercase font-light">
                             Study No. {index + 1}
                         </p>
                     </div>

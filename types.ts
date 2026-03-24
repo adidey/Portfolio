@@ -5,8 +5,9 @@ export interface Project {
   category: 'Branding' | 'UI Design' | 'Web Development' | 'Interaction' | 'AI & Music' | 'Productivity' | 'macOS Utility';
   year: string;
   thumbnail: string;
-  excerpt: string;
+  shortDescription: string;
   context: string;
+  problem: string;
   process: string;
   outcome: string;
   images: string[];

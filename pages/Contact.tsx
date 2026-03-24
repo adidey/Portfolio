@@ -26,32 +26,32 @@ const Contact: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-24">
         {/* Contact Info */}
         <div className="md:col-span-5">
-          <p className="text-[9px] md:text-[10px] uppercase tracking-[0.4em] md:tracking-[0.5em] text-neutral-500 mb-6 md:mb-8">Get in touch</p>
+          <p className="text-[9px] md:text-[10px] uppercase tracking-[0.4em] md:tracking-[0.5em] text-[var(--text-muted)] mb-6 md:mb-8">Get in touch</p>
           <h1 className="text-4xl md:text-7xl font-bold mb-10 md:mb-16 leading-[1.1] tracking-tighter" style={{ fontFamily: 'Satoshi, sans-serif' }}>
-            Ready for the <span className="text-neutral-500">next</span> venture.
+            Ready for the <span className="text-[var(--text-muted)]">next</span> venture.
           </h1>
 
           <div className="space-y-10 md:space-y-12">
             <div>
-              <p className="text-[9px] md:text-[10px] uppercase tracking-widest text-neutral-600 mb-3 md:mb-4">Direct Email</p>
-              <a href="mailto:adidey27@gmail.com" className="text-xl md:text-2xl font-bold hover:text-blue-500 transition-colors" style={{ fontFamily: 'Satoshi, sans-serif' }}>
+              <p className="text-[9px] md:text-[10px] uppercase tracking-widest text-[var(--text-muted)] mb-3 md:mb-4">Direct Email</p>
+              <a href="mailto:adidey27@gmail.com" className="text-xl md:text-2xl font-bold hover:text-[var(--accent)] transition-colors" style={{ fontFamily: 'Satoshi, sans-serif' }}>
                 adidey27@gmail.com
               </a>
             </div>
 
             <div className="grid grid-cols-2 gap-8">
               <div>
-                <p className="text-[9px] md:text-[10px] uppercase tracking-widest text-neutral-600 mb-3 md:mb-4">Social</p>
+                <p className="text-[9px] md:text-[10px] uppercase tracking-widest text-[var(--text-muted)] mb-3 md:mb-4">Social</p>
                 <ul className="space-y-2 text-[9px] md:text-[10px] uppercase tracking-widest font-bold">
-                  <li><a href="https://www.linkedin.com/in/adityadey27/" target="_blank" className="hover:text-blue-500 transition-colors">LinkedIn</a></li>
-                  <li><a href="https://github.com/adidey" target="_blank" className="hover:text-blue-500 transition-colors">GitHub</a></li>
-                  <li><a href="https://dribbble.com/Aditya_Dey" target="_blank" className="hover:text-blue-500 transition-colors">Dribbble</a></li>
-                  <li><a href="https://www.behance.net/adityadey" target="_blank" className="hover:text-blue-500 transition-colors">Behance</a></li>
+                  <li><a href="https://www.linkedin.com/in/adityadey27/" target="_blank" className="hover:text-[var(--accent)] transition-colors">LinkedIn</a></li>
+                  <li><a href="https://github.com/adidey" target="_blank" className="hover:text-[var(--accent)] transition-colors">GitHub</a></li>
+                  <li><a href="https://dribbble.com/Aditya_Dey" target="_blank" className="hover:text-[var(--accent)] transition-colors">Dribbble</a></li>
+                  <li><a href="https://www.behance.net/adityadey" target="_blank" className="hover:text-[var(--accent)] transition-colors">Behance</a></li>
                 </ul>
               </div>
               <div>
-                <p className="text-[9px] md:text-[10px] uppercase tracking-widest text-neutral-600 mb-3 md:mb-4">Location</p>
-                <p className="text-[9px] md:text-[10px] uppercase tracking-widest text-neutral-400 font-bold">Melbourne, AU</p>
+                <p className="text-[9px] md:text-[10px] uppercase tracking-widest text-[var(--text-muted)] mb-3 md:mb-4">Location</p>
+                <p className="text-[9px] md:text-[10px] uppercase tracking-widest text-[var(--text-muted)] font-bold">Melbourne, AU</p>
               </div>
             </div>
           </div>
@@ -59,8 +59,8 @@ const Contact: React.FC = () => {
 
         {/* Contact Form */}
         <div className="md:col-span-7">
-          <form onSubmit={handleSubmit} className="space-y-10 md:space-y-12 border-l-0 md:border-l border-neutral-900 pl-0 md:pl-24">
-            <div className="group border-b border-neutral-900 pb-4 focus-within:border-white transition-colors">
+          <form onSubmit={handleSubmit} className="space-y-10 md:space-y-12 border-l-0 md:border-l border-[var(--border)] pl-0 md:pl-24">
+            <div className="group border-b border-[var(--border)] pb-4 focus-within:border-[var(--text)] transition-colors">
               <label className="text-[9px] md:text-[10px] uppercase tracking-widest text-neutral-600 mb-2 block">Name</label>
               <input
                 type="text"
@@ -73,28 +73,28 @@ const Contact: React.FC = () => {
               />
             </div>
 
-            <div className="group border-b border-neutral-900 pb-4 focus-within:border-white transition-colors">
-              <label className="text-[9px] md:text-[10px] uppercase tracking-widest text-neutral-600 mb-2 block">Email</label>
+            <div className="group border-b border-[var(--border)] pb-4 focus-within:border-[var(--text)] transition-colors">
+              <label className="text-[9px] md:text-[10px] uppercase tracking-widest text-[var(--text-muted)] mb-2 block">Email</label>
               <input
                 type="email"
                 required
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 placeholder="Type your email address"
-                className="w-full bg-transparent text-lg md:text-2xl font-bold outline-none placeholder:text-neutral-800"
+                className="w-full bg-transparent text-lg md:text-2xl font-bold outline-none placeholder:text-[var(--border)]"
                 style={{ fontFamily: 'Satoshi, sans-serif' }}
               />
             </div>
 
-            <div className="group border-b border-neutral-900 pb-4 focus-within:border-white transition-colors">
-              <label className="text-[9px] md:text-[10px] uppercase tracking-widest text-neutral-600 mb-2 block">Message</label>
+            <div className="group border-b border-[var(--border)] pb-4 focus-within:border-[var(--text)] transition-colors">
+              <label className="text-[9px] md:text-[10px] uppercase tracking-widest text-[var(--text-muted)] mb-2 block">Message</label>
               <textarea
                 required
                 rows={4}
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 placeholder="How can I help you?"
-                className="w-full bg-transparent text-lg md:text-2xl font-bold outline-none placeholder:text-neutral-800 resize-none"
+                className="w-full bg-transparent text-lg md:text-2xl font-bold outline-none placeholder:text-[var(--border)] resize-none"
                 style={{ fontFamily: 'Satoshi, sans-serif' }}
               />
             </div>
@@ -102,7 +102,7 @@ const Contact: React.FC = () => {
             <button
               type="submit"
               disabled={isSending}
-              className="group relative w-full md:w-auto px-10 md:px-12 py-5 md:py-6 bg-white text-black text-[9px] md:text-[10px] uppercase tracking-[0.4em] md:tracking-[0.5em] font-bold overflow-hidden transition-all hover:pr-16 disabled:opacity-50"
+              className="group relative w-full md:w-auto px-10 md:px-12 py-5 md:py-6 bg-[var(--text)] text-[var(--bg)] text-[9px] md:text-[10px] uppercase tracking-[0.4em] md:tracking-[0.5em] font-bold overflow-hidden transition-all hover:pr-16 disabled:opacity-50"
             >
               <span className="relative z-10">{isSending ? 'Redirecting...' : 'Send Message'}</span>
               <span className="absolute right-6 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all">→</span>

@@ -22,7 +22,18 @@ const Layout: React.FC<LayoutProps> = ({
     isLoading,
     children
 }) => {
+    const [theme, setTheme] = useState<'dark' | 'light'>(() => {
+        const saved = localStorage.getItem('portfolio-theme');
+        return (saved as 'dark' | 'light') || 'dark';
+    });
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+    useEffect(() => {
+        document.documentElement.classList.toggle('light', theme === 'light');
+        localStorage.setItem('portfolio-theme', theme);
+    }, [theme]);
+
+    const toggleTheme = () => setTheme(prev => prev === 'dark' ? 'light' : 'dark');
 
     useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
@@ -34,7 +45,7 @@ const Layout: React.FC<LayoutProps> = ({
     }, []);
 
     return (
-        <div className="min-h-screen bg-[#000000] text-white selection:bg-white selection:text-black flex flex-col relative overflow-x-hidden">
+        <div className={`min-h-screen bg-[var(--bg)] text-[var(--text)] selection:bg-[var(--selection-bg)] selection:text-[var(--selection-text)] flex flex-col relative overflow-x-hidden ${theme === 'light' ? 'light' : ''}`}>
             <LoadingScreen visible={isLoading} />
             <CustomCursor />
 
@@ -55,6 +66,8 @@ const Layout: React.FC<LayoutProps> = ({
                 onNavigate={onNavigate}
                 workLayout={workLayout}
                 onToggleLayout={onToggleLayout}
+                theme={theme}
+                onToggleTheme={toggleTheme}
             />
 
             <main
