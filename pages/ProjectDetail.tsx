@@ -19,7 +19,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ onBack }) => {
   if (!project) return null;
 
   return (
-    <div className="bg-[var(--bg)] min-h-screen text-[var(--text)]">
+    <div className="min-h-screen text-[var(--text)]">
       <Helmet>
         <title>{project.title} — Aditya Dey</title>
         <meta name="description" content={project.shortDescription} />
@@ -72,7 +72,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ onBack }) => {
               src={project.thumbnail}
               alt={project.title}
               loading="lazy"
-              className="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105"
+              className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105"
             />
           </div>
 
@@ -107,7 +107,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ onBack }) => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {project.images.map((img, i) => (
                   <div key={i} className="aspect-[3/4] overflow-hidden bg-[var(--surface)] border border-[var(--border)]">
-                    <img src={img} alt="Detail" loading="lazy" className="w-full h-full object-cover grayscale transition-all duration-700 hover:grayscale-0" />
+                    <img src={img} alt="Detail" loading="lazy" className="w-full h-full object-cover transition-all duration-700" />
                   </div>
                 ))}
               </div>

@@ -78,7 +78,7 @@ const Gallery: React.FC<GalleryProps> = ({ layout }) => {
     }, [items]);
 
     return (
-        <main className="relative bg-[var(--bg)] select-none flex flex-col pt-24 min-h-screen">
+        <main className="relative select-none flex flex-col pt-24 min-h-screen">
             <Helmet>
                 <title>Gallery — Aditya Dey</title>
                 <meta name="description" content="A gallery of design experiments, posters, and visual studies." />
@@ -230,7 +230,7 @@ const PosterCard: React.FC<PosterCardProps> = ({ poster, index, total, radius, s
                 <img
                     src={poster.imageUrl}
                     alt={poster.title}
-                    className={`w-full h-full object-cover transition-all duration-1000 ${isHovered ? 'scale-110 opacity-100' : 'opacity-80 grayscale-[0.3]'}`}
+                    className={`w-full h-full object-cover transition-all duration-1000 ${isHovered ? 'scale-110 opacity-100' : 'opacity-80'}`}
                     loading="lazy"
                 />
 

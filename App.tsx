@@ -17,23 +17,17 @@ const App: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    // Initial load timer
-    const timer = setTimeout(() => setIsLoading(false), 1200);
-    return () => clearTimeout(timer);
+  useEffect(() => { // Final loading delay
+      const finalTimeout = setTimeout(() => {
+        setIsLoading(false);
+      }, 3500); // 3.5s minimum for the "filling" effect
+    return () => clearTimeout(finalTimeout);
   }, []);
 
   useEffect(() => {
     console.log('App: Current path:', location.pathname);
     // Scroll to top on route change
     window.scrollTo({ top: 0, behavior: 'smooth' });
-
-    // Page load simulation for routes
-    setIsLoading(true);
-    const timer = setTimeout(() => {
-      console.log('App: Setting isLoading to false');
-      setIsLoading(false);
-    }, 600);
 
     // Dynamic Title Management
     let title = 'Aditya Dey | Designer & Engineer';
@@ -49,8 +43,6 @@ const App: React.FC = () => {
       title = `${viewName || 'Home'} | Aditya Dey`;
     }
     document.title = title;
-
-    return () => clearTimeout(timer);
   }, [location.pathname]);
 
   const handleProjectClick = (id: string) => {

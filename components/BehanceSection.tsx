@@ -330,13 +330,13 @@ const BehanceSection: React.FC<BehanceSectionProps> = ({ username, layout = '01'
                 rel="noopener noreferrer"
                 className="group cursor-pointer flex flex-col gap-6 md:gap-10 opacity-70 hover:opacity-100 transition-opacity duration-500"
               >
-                <div className="relative aspect-[16/10] overflow-hidden rounded-[2px] bg-[var(--surface)] border border-[var(--border)] shadow-lg">
+                <div className="relative aspect-[16/10] overflow-hidden rounded-[2px] bg-neutral-900 border border-white/5 shadow-lg group">
                   {project.coverImage ? (
                     <img
                       src={project.coverImage}
                       alt={project.title}
                       loading="lazy"
-                      className="w-full h-full object-cover md:grayscale transition-all duration-500 md:group-hover:grayscale-0 md:group-hover:scale-105"
+                      className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105"
                     />
                   ) : (
                     <div className="w-full h-full bg-[var(--surface)]" />

@@ -15,7 +15,7 @@ const Work: React.FC<WorkProps> = ({ layout }) => {
 
   // Layout 01: Refined Sequential Vertical Reveal
   const renderList = () => (
-    <div className="relative border-t border-neutral-900 w-full mb-32 md:mb-40">
+    <div className="relative border-t border-[var(--border)] w-full mb-32 md:mb-40">
       {PROJECTS.map((project, index) => {
         const itemRef = useRef<HTMLAnchorElement>(null);
         const [focus, setFocus] = useState(0);
@@ -76,7 +76,7 @@ const Work: React.FC<WorkProps> = ({ layout }) => {
             key={project.id}
             to={`/work/${project.id}`}
             ref={itemRef}
-            className="group relative flex flex-col w-full border-b border-neutral-900 overflow-hidden cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-neutral-900/30"
+            className="group relative flex flex-col w-full border-b border-[var(--border)] overflow-hidden cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-[var(--text)]/5"
             style={{
               height: window.innerWidth < 768
                 ? `${280 + (focus * 150)}px`
@@ -89,7 +89,7 @@ const Work: React.FC<WorkProps> = ({ layout }) => {
                 style={{
                   fontFamily: 'Satoshi, sans-serif',
                   opacity: 0.2 + (focus * 0.8),
-                  color: focus > 0.4 ? '#ffffff' : '#444444'
+                  color: focus > 0.4 ? 'var(--bg)' : 'var(--text-muted)'
                 }}
               >
                 0{index + 1}
@@ -134,7 +134,7 @@ const Work: React.FC<WorkProps> = ({ layout }) => {
                 }}
               >
                 <div
-                  className="relative w-full max-w-[420px] aspect-[16/9] overflow-hidden bg-neutral-900/40 rounded-[2px] shadow-2xl border border-white/5"
+                  className="relative w-full max-w-[420px] aspect-[16/9] overflow-hidden bg-[var(--surface)] rounded-[2px] shadow-2xl border border-[var(--border)]"
                   style={{
                     clipPath: window.innerWidth < 768 ? 'none' : `inset(${(1 - focus) * 100}% 0 0 0)`
                   }}
@@ -143,7 +143,7 @@ const Work: React.FC<WorkProps> = ({ layout }) => {
                     src={project.thumbnail}
                     alt={project.title}
                     loading="lazy"
-                    className="w-full h-full object-cover grayscale transition-all duration-1000 md:group-hover:grayscale-0 md:group-hover:scale-105"
+                    className="w-full h-full object-cover transition-all duration-1000 md:group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-black/20 md:hidden" />
                 </div>
@@ -153,7 +153,7 @@ const Work: React.FC<WorkProps> = ({ layout }) => {
                 <p
                   className="text-[9px] md:text-[12px] font-medium leading-relaxed max-w-[220px] transition-all duration-700"
                   style={{
-                    color: focus > 0.4 ? '#999999' : '#333333',
+                    color: focus > 0.4 ? 'var(--text-muted)' : 'var(--text)',
                     opacity: focus,
                     transform: `translateY(${(1 - focus) * 10}px)`
                   }}
@@ -176,12 +176,12 @@ const Work: React.FC<WorkProps> = ({ layout }) => {
           to={`/work/${project.id}`}
           className="group cursor-pointer flex flex-col gap-6 md:gap-10 transition-all duration-500"
         >
-          <div className="relative aspect-[16/10] overflow-hidden rounded-[2px] bg-neutral-900 border border-white/5 shadow-lg">
+          <div className="relative aspect-[16/10] overflow-hidden rounded-[2px] bg-[var(--surface)] border border-[var(--border)] shadow-lg">
             <img
               src={project.thumbnail}
               alt={project.title}
               loading="lazy"
-              className="w-full h-full object-cover md:grayscale md:brightness-[0.7] transition-all duration-500 md:group-hover:grayscale-0 md:group-hover:brightness-110 md:group-hover:scale-105"
+              className="w-full h-full object-cover transition-all duration-500 md:group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-white opacity-0 transition-opacity duration-300 pointer-events-none group-active:opacity-10" />
           </div>
@@ -209,7 +209,7 @@ const Work: React.FC<WorkProps> = ({ layout }) => {
   );
 
   return (
-    <main className="min-h-screen bg-[var(--bg)] pt-48 pb-[100vh]" ref={containerRef}>
+    <main className="min-h-screen pt-48 pb-[100vh]" ref={containerRef}>
       <Helmet>
         <title>Work — Aditya Dey</title>
         <meta name="description" content="A selection of product and UX design projects focusing on interaction design, interface architecture, and digital experiences." />

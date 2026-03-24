@@ -61,14 +61,14 @@ const Contact: React.FC = () => {
         <div className="md:col-span-7">
           <form onSubmit={handleSubmit} className="space-y-10 md:space-y-12 border-l-0 md:border-l border-[var(--border)] pl-0 md:pl-24">
             <div className="group border-b border-[var(--border)] pb-4 focus-within:border-[var(--text)] transition-colors">
-              <label className="text-[9px] md:text-[10px] uppercase tracking-widest text-neutral-600 mb-2 block">Name</label>
+              <label className="text-[9px] md:text-[10px] uppercase tracking-widest text-[var(--text-muted)] mb-2 block font-bold">Name</label>
               <input
                 type="text"
                 required
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 placeholder="Type your name"
-                className="w-full bg-transparent text-lg md:text-2xl font-bold outline-none placeholder:text-neutral-800"
+                className="w-full bg-transparent text-lg md:text-2xl font-bold outline-none placeholder:text-[var(--text-muted)] focus:placeholder:opacity-30"
                 style={{ fontFamily: 'Satoshi, sans-serif' }}
               />
             </div>
@@ -81,7 +81,7 @@ const Contact: React.FC = () => {
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 placeholder="Type your email address"
-                className="w-full bg-transparent text-lg md:text-2xl font-bold outline-none placeholder:text-[var(--border)]"
+                className="w-full bg-transparent text-lg md:text-2xl font-bold outline-none placeholder:text-[var(--text-muted)] focus:placeholder:opacity-30"
                 style={{ fontFamily: 'Satoshi, sans-serif' }}
               />
             </div>
@@ -94,7 +94,7 @@ const Contact: React.FC = () => {
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 placeholder="How can I help you?"
-                className="w-full bg-transparent text-lg md:text-2xl font-bold outline-none placeholder:text-[var(--border)] resize-none"
+                className="w-full bg-transparent text-lg md:text-2xl font-bold outline-none placeholder:text-[var(--text-muted)] focus:placeholder:opacity-30 resize-none"
                 style={{ fontFamily: 'Satoshi, sans-serif' }}
               />
             </div>

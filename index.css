@@ -35,26 +35,27 @@
   :root {
     --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
     
-    /* Dark Mode (Default) */
-    --bg: #0d0d0d;
-    --text: #fffff0;
-    --text-muted: #88887a;
-    --border: #1a1a1a;
-    --accent: #2563eb;
-    --surface: #121212;
-    --selection-bg: #fffff0;
-    --selection-text: #0d0d0d;
+    /* Dark Mode (Default Charcoal) */
+    --bg: #0F0F0F;
+    --text: #D6CDC0;
+    --text-muted: #A09D95;
+    --border: rgba(255, 255, 255, 0.05);
+    --accent: #3B82F6;
+    --surface: #1A1A1A;
+    --selection-bg: #D6CDC0;
+    --selection-text: #0F0F0F;
   }
 
   :root.light {
-    --bg: #fffff0;
-    --text: #0d0d0d;
-    --text-muted: #66665c;
-    --border: #e0e0d0;
-    --accent: #2563eb;
-    --surface: #f5f5e6;
-    --selection-bg: #0d0d0d;
-    --selection-text: #fffff0;
+    /* Light Mode (Warm Cream) */
+    --bg: #D6CDC0;
+    --text: #111111;
+    --text-muted: #6B6B6B;
+    --border: rgba(0, 0, 0, 0.1);
+    --accent: #3B82F6;
+    --surface: #FFFFFF;
+    --selection-bg: #111111;
+    --selection-text: #D6CDC0;
   }
 
   html {
@@ -274,4 +275,33 @@
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+@keyframes flow-blob {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(10%, -10%) scale(1.1); }
+  66% { transform: translate(-5%, 15%) scale(0.9); }
+}
+
+@keyframes ripple-blob {
+  0%, 100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+  33% { border-radius: 60% 40% 30% 70% / 50% 60% 40% 60%; }
+  66% { border-radius: 30% 70% 60% 40% / 60% 40% 50% 40%; }
+}
+
+.animate-flow-blob {
+  animation: flow-blob 20s infinite alternate ease-in-out;
+}
+
+.animate-ripple-blob {
+  animation: ripple-blob 15s infinite alternate ease-in-out;
+}
+
+/* Base style for animated blobs */
+.gradient-blob {
+  position: absolute;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 1s ease-in-out, background-color 1s ease-in-out;
 }

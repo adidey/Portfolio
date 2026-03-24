@@ -18,7 +18,7 @@ const About: React.FC = () => {
             Design through <span className="text-[var(--text-muted)]">Systems</span> and <span className="text-[var(--text-muted)]">Cognition</span>.
           </h1>
 
-          <div className="space-y-6 md:space-y-8 text-lg md:text-2xl text-neutral-400 font-light leading-relaxed">
+          <div className="space-y-6 md:space-y-8 text-lg md:text-2xl text-[var(--text-muted)] font-light leading-relaxed">
             <p>
               I’m a product and interaction designer based in Melbourne, working at the intersection of software systems and human behavior.
             </p>
@@ -67,7 +67,7 @@ const About: React.FC = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
               <div>
                 <p className="text-[9px] md:text-[10px] uppercase tracking-widest text-neutral-500 mb-6">Leadership</p>
-                <ul className="text-xs text-neutral-600 space-y-2 font-light">
+                <ul className="text-xs text-[var(--text-muted)] space-y-2 font-light">
                   <li>Innovation Lead — Google Developer Club</li>
                   <li>Competitions Officer— CISSA</li>
                   <li>Campus Leader- Notion</li>
@@ -77,11 +77,11 @@ const About: React.FC = () => {
                 </ul>
               </div>
               <div className="opacity-80">
-                <p className="text-[9px] md:text-[10px] uppercase tracking-widest text-neutral-600 mb-6">Education</p>
+                <p className="text-[9px] md:text-[10px] uppercase tracking-widest text-[var(--text-muted)] mb-6">Education</p>
                 <div className="space-y-1">
-                  <p className="text-sm font-light text-neutral-400">The University of Melbourne</p>
-                  <p className="text-xs text-neutral-600 font-light">BSc. Computing & Software Systems</p>
-                  <p className="text-xs text-neutral-600 font-light">Minor in Psychology (2023 — 2026)</p>
+                  <p className="text-sm font-light text-[var(--text-muted)]">The University of Melbourne</p>
+                  <p className="text-xs text-[var(--text-muted)] font-light">BSc. Computing & Software Systems</p>
+                  <p className="text-xs text-[var(--text-muted)] font-light">Minor in Psychology (2023 — 2026)</p>
                 </div>
               </div>
             </div>
@@ -94,7 +94,7 @@ const About: React.FC = () => {
               src="/assets/portrait.jpg"
               alt="Portrait"
               loading="lazy"
-              className="w-full h-full object-cover grayscale transition-transform duration-1000 group-hover:scale-105"
+              className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
             />
             <div className="absolute inset-0 border border-white/5" />
           </div>
