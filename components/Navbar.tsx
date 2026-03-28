@@ -136,19 +136,19 @@ const Navbar: React.FC<NavbarProps> = ({
           <Link
             to="/"
             onClick={handleLinkClick}
-            className="px-4 md:px-6 py-3 md:py-3.5 text-[11px] md:text-[12px] font-bold tracking-tight border-r border-[var(--border)] hover:bg-[var(--surface)] transition-colors whitespace-nowrap"
+            className="w-[120px] h-[48px] flex items-center justify-center text-[11px] md:text-[12px] font-bold tracking-tight border-r border-[var(--border)] hover:bg-[var(--surface)] transition-colors whitespace-nowrap"
           >
             Aditya Dey™
           </Link>
 
           {/* Desktop Links */}
-          <div className="hidden md:flex items-center">
-            {menuItems.map((item) => (
+          <div className="hidden md:flex items-center h-full">
+            {menuItems.map((item, i) => (
               <NavLink
                 key={item.label}
                 to={item.path}
                 className={({ isActive }) =>
-                  `px-5 py-3.5 text-[11px] uppercase tracking-widest transition-colors border-r border-[var(--border)] ${isActive ? 'text-[var(--text)] bg-[var(--surface)]' : 'text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--surface)]/50'}`
+                  `w-[120px] h-[48px] flex items-center justify-center text-[10px] uppercase tracking-widest transition-colors ${i === menuItems.length - 1 ? '' : 'border-r border-[var(--border)]'} ${isActive ? 'text-[var(--text)] bg-[var(--surface)]' : 'text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--surface)]/50'}`
                 }
               >
                 {item.label}
@@ -159,31 +159,15 @@ const Navbar: React.FC<NavbarProps> = ({
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden px-4 py-3 text-[var(--text-muted)] hover:text-[var(--text)] transition-colors flex items-center gap-2 border-r border-[var(--border)] last:border-r-0"
+            className="md:hidden w-[120px] h-[48px] text-[var(--text-muted)] hover:text-[var(--text)] transition-colors flex items-center justify-center gap-2"
           >
             <div className="w-5 h-5 relative flex flex-col justify-center gap-1.5 flex-shrink-0">
               <span className={`w-full h-[1.5px] bg-current transition-all ${isMobileMenuOpen ? 'rotate-45 translate-y-[5px]' : ''}`} />
               <span className={`w-full h-[1.5px] bg-current transition-all ${isMobileMenuOpen ? 'opacity-0' : ''}`} />
               <span className={`w-full h-[1.5px] bg-current transition-all ${isMobileMenuOpen ? '-rotate-45 -translate-y-[5px]' : ''}`} />
             </div>
-            <span className="text-[10px] uppercase tracking-widest font-bold whitespace-nowrap">Menu</span>
+            <span className="text-[10px] uppercase tracking-widest font-bold whitespace-nowrap hidden sm:block">Menu</span>
           </button>
-
-          {/* Desktop Socials */}
-          <div className="hidden md:flex items-center">
-            {socialLinks.map((social) => (
-              <a
-                key={social.label}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-4 py-3.5 text-[var(--text-muted)] hover:text-[var(--text)] transition-colors border-r border-[var(--border)] last:border-r-0 hover:bg-[var(--surface)]/50 flex items-center justify-center"
-                title={social.label}
-              >
-                {social.icon}
-              </a>
-            ))}
-          </div>
         </div>
       </nav>
 

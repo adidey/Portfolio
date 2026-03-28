@@ -43,8 +43,8 @@ const FloatingTag = ({
     durationX: 7 + Math.random() * 3,
     durationY: 8 + Math.random() * 4,
     durationR: 12 + Math.random() * 6,
-    driftX: 0.6,
-    driftY: 0.8,
+    driftX: 0.4,
+    driftY: 0.6,
   });
 
   useEffect(() => {
@@ -55,8 +55,8 @@ const FloatingTag = ({
   const edgeTransition = { duration: 0.15, ease: "linear" as any };
   const accentColor = "#8A8072";
 
-  const parallaxX = (mouseX / window.innerWidth - 0.5) * 8;
-  const parallaxY = (mouseY / window.innerHeight - 0.5) * 8;
+  const parallaxX = (mouseX / window.innerWidth - 0.5) * 3;
+  const parallaxY = (mouseY / window.innerHeight - 0.5) * 3;
 
   return (
     <motion.div 
@@ -65,7 +65,7 @@ const FloatingTag = ({
         opacity: 1,
         x: [0, floatConfig.current.driftX, 0],
         y: [0, -floatConfig.current.driftY, 0],
-        rotate: [-0.15, 0.15, -0.15],
+        rotate: [-0.1, 0.1, -0.1],
         translateX: parallaxX,
         translateY: parallaxY,
         scale: isActive ? 1.05 : isHovered ? 1.02 : 1,
@@ -169,12 +169,13 @@ const FloatingTag = ({
             opacity: showContent ? 1 : 0, 
             y: showContent ? 0 : 5,
             scale: isHovered ? 1.02 : 1,
-            backgroundColor: isActive ? 'rgba(138, 128, 114, 0.1)' : undefined
+            backgroundColor: isActive || isHovered ? 'color-mix(in srgb, var(--accent) 10%, var(--card-base))' : 'var(--card-base)',
+            borderColor: isActive || isHovered ? 'var(--accent)' : 'var(--border)'
           }}
-          className="flex items-center gap-2 px-2.5 py-1 bg-[#1C1C1C]/80 backdrop-blur-md border border-[#333333] rounded-sm shadow-sm"
+          className="flex items-center gap-2 px-2.5 py-1 backdrop-blur-md border rounded-sm shadow-sm transition-colors duration-300"
         >
-          <Icon size={12} className="text-[#E8E6E3]" />
-          <span className="text-[10px] font-bold tracking-tight text-[#E8E6E3] whitespace-nowrap uppercase">
+          <Icon size={12} className="text-[var(--ink)]" />
+          <span className="text-[10px] font-bold tracking-tight text-[var(--ink)] whitespace-nowrap uppercase">
             {text}
           </span>
         </motion.div>
@@ -187,10 +188,10 @@ const FloatingTag = ({
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 10, scale: 0.95 }}
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
-              className="absolute top-full left-0 mt-4 w-64 p-5 bg-[#1A1A1A]/80 backdrop-blur-xl border border-[#2F2F2F] rounded-lg shadow-xl z-50 dark"
+              className="absolute top-full left-0 mt-4 w-64 p-5 bg-[var(--card-base)]/90 backdrop-blur-xl border border-[var(--border)] rounded-lg shadow-xl z-50"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="text-[11px] leading-relaxed text-[#E8E6E3] font-medium">
+              <div className="text-[11px] leading-relaxed text-[var(--ink)] font-medium">
                 {panelContent}
               </div>
             </motion.div>
@@ -244,7 +245,7 @@ const HeroText = ({ text }: { text: string }) => {
       transition={{ duration: 1.5, ease: [0.23, 1, 0.32, 1] }}
       className="relative flex items-center justify-center w-full py-6"
     >
-      <h1 className="text-[clamp(3.5rem,12vw,10rem)] font-thunder font-bold text-ink leading-[0.85] tracking-[0.05em] text-center uppercase">
+      <h1 className="text-[clamp(2.5rem,8vw,5.5rem)] font-satoshi font-black text-ink leading-[1.1] tracking-[0.1em] text-center uppercase whitespace-nowrap">
         {text}
       </h1>
     </motion.div>
@@ -264,7 +265,7 @@ export const InteractiveCanvas = () => {
       id: 'philosophy',
       text: 'Philosophy',
       icon: Palette,
-      position: '-translate-x-[500px] -translate-y-[260px]',
+      position: '-translate-x-[480px] -translate-y-[200px]',
       content: (
         <div className="space-y-2 dark">
           <p className="font-bold uppercase tracking-wider text-[10px] text-[#3B82F6] dark:text-[#60A5FA]">Design Philosophy</p>
@@ -276,7 +277,7 @@ export const InteractiveCanvas = () => {
       id: 'music',
       text: 'Music',
       icon: Music,
-      position: 'translate-x-[500px] -translate-y-[260px]',
+      position: 'translate-x-[480px] -translate-y-[200px]',
       content: (
         <div className="space-y-2 dark">
           <p className="font-bold uppercase tracking-wider text-[10px] text-[#3B82F6] dark:text-[#60A5FA]">Rhythm & Design</p>
@@ -288,7 +289,7 @@ export const InteractiveCanvas = () => {
       id: 'experiments',
       text: 'Experiments',
       icon: FlaskConical,
-      position: '-translate-x-[580px] translate-y-[260px]',
+      position: '-translate-x-[500px] translate-y-[200px]',
       content: (
         <div className="space-y-2 dark">
           <p className="font-bold uppercase tracking-wider text-[10px] text-[#3B82F6] dark:text-[#60A5FA]">Current Explorations</p>
@@ -300,7 +301,7 @@ export const InteractiveCanvas = () => {
       id: 'resume',
       text: 'Resume',
       icon: FileText,
-      position: 'translate-x-[580px] translate-y-[260px]',
+      position: 'translate-x-[500px] translate-y-[200px]',
       content: (
         <div className="space-y-3 dark">
           <p className="font-bold uppercase tracking-wider text-[10px] text-[#3B82F6] dark:text-[#60A5FA]">Experience & Projects</p>
@@ -309,7 +310,7 @@ export const InteractiveCanvas = () => {
             href="/resume.pdf" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="inline-block px-4 py-2 bg-[#E8E6E3] text-[#1A1A1A] text-[10px] font-bold uppercase tracking-widest rounded-lg hover:bg-[#E8E6E3]/90 transition-all"
+            className="inline-block px-4 py-2 bg-[var(--ink)] text-[var(--bg)] text-[10px] font-bold uppercase tracking-widest rounded-lg hover:opacity-90 transition-all"
           >
             Download Resume
           </a>
@@ -325,8 +326,29 @@ export const InteractiveCanvas = () => {
       className="relative w-full min-h-screen overflow-hidden bg-bg flex flex-col items-center justify-center pt-20 pb-10 transition-colors duration-500"
     >
       
-      {/* Editorial Background Gradient */}
+      <style>{`
+        .design-grid {
+          --grid-color: rgba(255,255,255,0.04);
+          background-image: linear-gradient(var(--grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+          background-size: 120px 120px;
+          background-position: center top;
+          -webkit-mask-image: radial-gradient(circle at center, black 45%, transparent 100%);
+          mask-image: radial-gradient(circle at center, black 45%, transparent 100%);
+        }
+        @media (min-width: 768px) {
+          .design-grid {
+            background-position: calc(50% - 60px) top;
+          }
+        }
+        .light .design-grid, [data-theme='light'] .design-grid {
+          --grid-color: rgba(0,0,0,0.05);
+        }
+      `}</style>
+      
+      {/* Design Canvas Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Grid Layer */}
+        <div className="absolute inset-0 design-grid z-0" />
         {/* Noise Texture Overlay */}
         <div className="absolute inset-0 opacity-[0.02] mix-blend-overlay z-10" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }}></div>
       </div>
@@ -364,28 +386,16 @@ export const InteractiveCanvas = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.8, ease: [0.23, 1, 0.32, 1] }}
-            className="mt-14 w-full max-w-[340px] md:max-w-lg group shadow-soft rounded-3xl"
+            whileHover={{ y: -5, scale: 1.02 }}
+            className="mt-14 w-full max-w-[340px] md:max-w-lg group shadow-soft hover:shadow-xl hover:shadow-[var(--accent)]/10 rounded-3xl cursor-default transition-shadow duration-500"
           >
             <div className="relative overflow-hidden p-6 md:p-8 rounded-3xl border border-[var(--border)] transition-colors duration-500">
               {/* Base Background Color */}
               <div className="absolute inset-0 bg-[var(--card-base)] transition-colors duration-500" />
               
               {/* Theme-aware Background Gradients */}
-              <div className="absolute inset-[-20%] pointer-events-none">
-                {/* Mesh/Glow Layer */}
-                <div className="absolute inset-0">
-                  {/* Left Side Blob */}
-                  <div className="absolute inset-0 bg-[radial-gradient(at_0%_50%,var(--card-glow-1)_0%,transparent_65%)]" />
-                  <div className="absolute inset-0 bg-[radial-gradient(at_10%_40%,var(--card-glow-2)_0%,transparent_45%)]" />
-                  
-                  {/* Right Side Blob */}
-                  <div className="absolute inset-0 bg-[radial-gradient(at_100%_50%,var(--card-glow-1)_0%,transparent_65%)]" />
-                  <div className="absolute inset-0 bg-[radial-gradient(at_90%_60%,var(--card-glow-3)_0%,transparent_45%)]" />
-                  
-                  {/* Deep Black Middle Column */}
-                  <div className="absolute inset-0 bg-[linear-gradient(to_right,transparent,var(--card-center)_50%,transparent)]" />
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent_10%,var(--card-center)_90%)] opacity-30" />
-                </div>
+              <div className="absolute inset-[-20%] pointer-events-none opacity-50 group-hover:opacity-100 transition-opacity duration-700">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_50%,var(--card-glow),transparent_60%)] group-hover:bg-[radial-gradient(circle_at_50%_50%,var(--card-glow),transparent_70%)] transition-all duration-700" />
               </div>
 
               {/* Status Card Content */}
@@ -400,7 +410,18 @@ export const InteractiveCanvas = () => {
                   </div>
                   <div className="text-right flex flex-col gap-2">
                     <span className="text-[10px] font-bold text-[var(--muted)] uppercase tracking-[0.2em]">Location</span>
-                    <p className="text-sm font-bold text-[var(--ink)]">Melbourne, AU</p>
+                    <div className="flex items-center justify-end gap-2.5">
+                      <p className="text-sm font-bold text-[var(--ink)]">Melbourne, AU</p>
+                      <div className="w-1 h-1 rounded-full bg-[var(--border)]" />
+                      <div className="flex items-center gap-2 text-[var(--muted)]">
+                        <a href="https://www.linkedin.com/in/adityadey27/" target="_blank" rel="noopener noreferrer" className="hover:text-[#0a66c2] transition-colors" title="LinkedIn">
+                          <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" /></svg>
+                        </a>
+                        <a href="https://github.com/adidey" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--ink)] transition-colors" title="GitHub">
+                          <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.235c-3.338.726-4.042-1.416-4.042-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" /></svg>
+                        </a>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 
@@ -441,9 +462,9 @@ export const InteractiveCanvas = () => {
           className="flex md:hidden flex-wrap justify-center gap-1.5 mt-10 px-4 relative z-10"
         >
           {tags.map((tag) => (
-            <div key={tag.id} className="flex items-center gap-1.5 px-2.5 py-1 bg-[#1C1C1C]/80 backdrop-blur-sm border border-[#333333] rounded-sm shadow-sm">
-              <tag.icon size={10} className="text-[#E8E6E3]" />
-              <span className="text-[9px] font-bold uppercase tracking-wider text-[#E8E6E3]">{tag.text}</span>
+            <div key={tag.id} className="flex items-center gap-1.5 px-2.5 py-1 bg-[var(--card-base)]/90 backdrop-blur-sm border border-[var(--border)] rounded-sm shadow-sm transition-colors duration-300">
+              <tag.icon size={10} className="text-[var(--ink)]" />
+              <span className="text-[9px] font-bold uppercase tracking-wider text-[var(--ink)]">{tag.text}</span>
             </div>
           ))}
         </motion.div>
