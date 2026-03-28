@@ -171,10 +171,10 @@ const FloatingTag = ({
             scale: isHovered ? 1.02 : 1,
             backgroundColor: isActive ? 'rgba(138, 128, 114, 0.1)' : undefined
           }}
-          className="flex items-center gap-2 px-2.5 py-1 bg-[#F1EFEA]/80 dark:bg-[#1C1C1C]/80 backdrop-blur-md border border-[#D8D4CE] dark:border-[#333333] rounded-sm shadow-sm"
+          className="flex items-center gap-2 px-2.5 py-1 bg-[#1C1C1C]/80 backdrop-blur-md border border-[#333333] rounded-sm shadow-sm"
         >
-          <Icon size={12} className="text-accent" />
-          <span className="text-[10px] font-bold tracking-tight text-[#2A2A2A] dark:text-[#E8E6E3] whitespace-nowrap uppercase">
+          <Icon size={12} className="text-[#E8E6E3]" />
+          <span className="text-[10px] font-bold tracking-tight text-[#E8E6E3] whitespace-nowrap uppercase">
             {text}
           </span>
         </motion.div>
@@ -187,10 +187,10 @@ const FloatingTag = ({
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 10, scale: 0.95 }}
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
-              className="absolute top-full left-0 mt-4 w-64 p-5 bg-[#F6F4EF]/80 dark:bg-[#1A1A1A]/80 backdrop-blur-xl border border-[#DDD9D3] dark:border-[#2F2F2F] rounded-lg shadow-xl z-50"
+              className="absolute top-full left-0 mt-4 w-64 p-5 bg-[#1A1A1A]/80 backdrop-blur-xl border border-[#2F2F2F] rounded-lg shadow-xl z-50 dark"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="text-[11px] leading-relaxed text-ink font-medium">
+              <div className="text-[11px] leading-relaxed text-[#E8E6E3] font-medium">
                 {panelContent}
               </div>
             </motion.div>
@@ -226,7 +226,7 @@ const RoleFlipper = () => {
           animate={{ y: "0%", opacity: 1 }}
           exit={{ y: "-100%", opacity: 0 }}
           transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
-          className="text-[clamp(1rem,2vw,1.25rem)] font-satoshi font-medium tracking-[0.15em] text-ink uppercase flex gap-2"
+          className="text-[clamp(1rem,2vw,1.25rem)] font-satoshi font-semibold tracking-[0.15em] text-ink uppercase flex gap-2"
         >
           <span>{roles[index].first}</span>
           <span className="text-accent">{roles[index].second}</span>
@@ -244,7 +244,7 @@ const HeroText = ({ text }: { text: string }) => {
       transition={{ duration: 1.5, ease: [0.23, 1, 0.32, 1] }}
       className="relative flex items-center justify-center w-full py-6"
     >
-      <h1 className="text-[clamp(3.5rem,12vw,10rem)] font-thunder font-bold text-ink leading-[0.85] tracking-tight text-center uppercase">
+      <h1 className="text-[clamp(3.5rem,12vw,10rem)] font-thunder font-bold text-ink leading-[0.85] tracking-[0.05em] text-center uppercase">
         {text}
       </h1>
     </motion.div>
@@ -266,9 +266,9 @@ export const InteractiveCanvas = () => {
       icon: Palette,
       position: '-translate-x-[500px] -translate-y-[260px]',
       content: (
-        <div className="space-y-2">
-          <p className="font-bold uppercase tracking-wider text-[10px] text-accent">Design Philosophy</p>
-          <p className="text-muted">I believe in systems thinking and cognitive science as the foundation for intuitive design. Every interface is a conversation between the user and the system.</p>
+        <div className="space-y-2 dark">
+          <p className="font-bold uppercase tracking-wider text-[10px] text-[#3B82F6] dark:text-[#60A5FA]">Design Philosophy</p>
+          <p className="text-[#94A3B8]">I believe in systems thinking and cognitive science as the foundation for intuitive design. Every interface is a conversation between the user and the system.</p>
         </div>
       )
     },
@@ -278,9 +278,9 @@ export const InteractiveCanvas = () => {
       icon: Music,
       position: 'translate-x-[500px] -translate-y-[260px]',
       content: (
-        <div className="space-y-2">
-          <p className="font-bold uppercase tracking-wider text-[10px] text-accent">Rhythm & Design</p>
-          <p className="text-muted">Music influences my design rhythm. From ambient textures to complex polyrhythms, I find parallels in layout balance and interaction timing.</p>
+        <div className="space-y-2 dark">
+          <p className="font-bold uppercase tracking-wider text-[10px] text-[#3B82F6] dark:text-[#60A5FA]">Rhythm & Design</p>
+          <p className="text-[#94A3B8]">Music influences my design rhythm. From ambient textures to complex polyrhythms, I find parallels in layout balance and interaction timing.</p>
         </div>
       )
     },
@@ -290,9 +290,9 @@ export const InteractiveCanvas = () => {
       icon: FlaskConical,
       position: '-translate-x-[580px] translate-y-[260px]',
       content: (
-        <div className="space-y-2">
-          <p className="font-bold uppercase tracking-wider text-[10px] text-accent">Current Explorations</p>
-          <p className="text-muted">Currently deep-diving into generative UI patterns, AI-assisted design workflows, and the intersection of creative coding and functional tools.</p>
+        <div className="space-y-2 dark">
+          <p className="font-bold uppercase tracking-wider text-[10px] text-[#3B82F6] dark:text-[#60A5FA]">Current Explorations</p>
+          <p className="text-[#94A3B8]">Currently deep-diving into generative UI patterns, AI-assisted design workflows, and the intersection of creative coding and functional tools.</p>
         </div>
       )
     },
@@ -302,14 +302,14 @@ export const InteractiveCanvas = () => {
       icon: FileText,
       position: 'translate-x-[580px] translate-y-[260px]',
       content: (
-        <div className="space-y-3">
-          <p className="font-bold uppercase tracking-wider text-[10px] text-accent">Experience & Projects</p>
-          <p className="text-muted">View my full professional journey and technical expertise.</p>
+        <div className="space-y-3 dark">
+          <p className="font-bold uppercase tracking-wider text-[10px] text-[#3B82F6] dark:text-[#60A5FA]">Experience & Projects</p>
+          <p className="text-[#94A3B8]">View my full professional journey and technical expertise.</p>
           <a 
             href="/resume.pdf" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="inline-block px-4 py-2 bg-accent text-white text-[10px] font-bold uppercase tracking-widest rounded-lg hover:bg-accent/90 transition-all"
+            className="inline-block px-4 py-2 bg-[#E8E6E3] text-[#1A1A1A] text-[10px] font-bold uppercase tracking-widest rounded-lg hover:bg-[#E8E6E3]/90 transition-all"
           >
             Download Resume
           </a>
@@ -364,45 +364,69 @@ export const InteractiveCanvas = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.8, ease: [0.23, 1, 0.32, 1] }}
-            className="mt-14 w-full max-w-[340px] md:max-w-lg"
+            className="mt-14 w-full max-w-[340px] md:max-w-lg group shadow-soft rounded-3xl"
           >
-            <div className="bg-card-bg p-6 md:p-8 rounded-2xl border border-card-border shadow-soft group">
-              <div className="flex items-start justify-between mb-10">
-                <div className="flex flex-col gap-2">
-                  <span className="text-[10px] font-bold text-ink uppercase tracking-[0.2em]">Status</span>
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse shadow-[0_0_10px_rgba(34,197,94,0.4)]"></div>
-                    <span className="text-sm font-bold text-ink uppercase tracking-wider">Available</span>
-                  </div>
-                </div>
-                <div className="text-right flex flex-col gap-2">
-                  <span className="text-[10px] font-bold text-ink uppercase tracking-[0.2em]">Location</span>
-                  <p className="text-sm font-bold text-ink">Melbourne, AU</p>
+            <div className="relative overflow-hidden p-6 md:p-8 rounded-3xl border border-[var(--border)] transition-colors duration-500">
+              {/* Base Background Color */}
+              <div className="absolute inset-0 bg-[var(--card-base)] transition-colors duration-500" />
+              
+              {/* Theme-aware Background Gradients */}
+              <div className="absolute inset-[-20%] pointer-events-none">
+                {/* Mesh/Glow Layer */}
+                <div className="absolute inset-0">
+                  {/* Left Side Blob */}
+                  <div className="absolute inset-0 bg-[radial-gradient(at_0%_50%,var(--card-glow-1)_0%,transparent_65%)]" />
+                  <div className="absolute inset-0 bg-[radial-gradient(at_10%_40%,var(--card-glow-2)_0%,transparent_45%)]" />
+                  
+                  {/* Right Side Blob */}
+                  <div className="absolute inset-0 bg-[radial-gradient(at_100%_50%,var(--card-glow-1)_0%,transparent_65%)]" />
+                  <div className="absolute inset-0 bg-[radial-gradient(at_90%_60%,var(--card-glow-3)_0%,transparent_45%)]" />
+                  
+                  {/* Deep Black Middle Column */}
+                  <div className="absolute inset-0 bg-[linear-gradient(to_right,transparent,var(--card-center)_50%,transparent)]" />
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent_10%,var(--card-center)_90%)] opacity-30" />
                 </div>
               </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-10 border-t border-border pt-10">
-                <div className="space-y-5 text-left">
-                  <div>
-                    <span className="text-[9px] font-bold text-ink uppercase tracking-[0.2em]">Currently Shipping</span>
-                    <p className="text-base text-ink font-bold mt-1.5">NotchPrompt v2</p>
+
+              {/* Status Card Content */}
+              <div className="relative z-10 w-full h-full">
+                <div className="flex items-start justify-between mb-10">
+                  <div className="flex flex-col gap-2">
+                    <span className="text-[10px] font-bold text-[var(--muted)] uppercase tracking-[0.2em]">Status</span>
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse shadow-[0_0_10px_rgba(34,197,94,0.4)]"></div>
+                      <span className="text-sm font-bold text-[var(--ink)] uppercase tracking-wider">Available</span>
+                    </div>
                   </div>
-                  <div className="flex gap-3 pt-2">
-                    <button className="px-5 py-2.5 bg-accent text-white text-[10px] font-bold uppercase tracking-widest rounded-lg hover:bg-accent/90 transition-all hover:shadow-lg hover:shadow-accent/20">View Work</button>
-                    <button className="px-5 py-2.5 bg-ink/5 dark:bg-white/5 text-ink text-[10px] font-bold uppercase tracking-widest rounded-lg hover:bg-ink/10 dark:hover:bg-white/10 transition-all">Contact</button>
+                  <div className="text-right flex flex-col gap-2">
+                    <span className="text-[10px] font-bold text-[var(--muted)] uppercase tracking-[0.2em]">Location</span>
+                    <p className="text-sm font-bold text-[var(--ink)]">Melbourne, AU</p>
                   </div>
                 </div>
                 
-                <div className="text-left">
-                  <span className="text-[9px] font-bold text-ink uppercase tracking-[0.2em]">Focus</span>
-                  <ul className="mt-4 space-y-2.5">
-                    {['Design Systems', 'Generative Interfaces', 'Creative Development'].map((item, i) => (
-                      <li key={i} className="text-sm text-ink font-medium flex items-center gap-2.5">
-                        <div className="w-1.5 h-1.5 rounded-full bg-accent/30" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 border-t border-[var(--border)] pt-10">
+                  <div className="space-y-5 text-left">
+                    <div>
+                      <span className="text-[9px] font-bold text-[var(--muted)] uppercase tracking-[0.2em]">Currently Shipping</span>
+                      <p className="text-base text-[var(--ink)] font-bold mt-1.5">NotchPrompt v2</p>
+                    </div>
+                    <div className="flex gap-3 pt-2">
+                      <button className="px-5 py-2.5 bg-[var(--ink)] text-[var(--bg)] text-[10px] font-bold uppercase tracking-widest rounded-lg hover:opacity-90 transition-all hover:shadow-lg hover:shadow-accent/20">View Work</button>
+                      <button className="px-5 py-2.5 bg-[var(--border)] text-[var(--ink)] text-[10px] font-bold uppercase tracking-widest rounded-lg transition-all">Contact</button>
+                    </div>
+                  </div>
+                  
+                  <div className="text-left">
+                    <span className="text-[9px] font-bold text-[var(--muted)] uppercase tracking-[0.2em]">Focus</span>
+                    <ul className="mt-4 space-y-2.5">
+                      {['Design Systems', 'Generative Interfaces', 'Creative Development'].map((item, i) => (
+                        <li key={i} className="text-sm text-[var(--ink)] font-medium flex items-center gap-2.5">
+                          <div className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] opacity-30" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
@@ -417,9 +441,9 @@ export const InteractiveCanvas = () => {
           className="flex md:hidden flex-wrap justify-center gap-1.5 mt-10 px-4 relative z-10"
         >
           {tags.map((tag) => (
-            <div key={tag.id} className="flex items-center gap-1.5 px-2.5 py-1 bg-[#EFEDE8] dark:bg-[#1C1C1C] border border-[#D9D5CF] dark:border-[#333333] rounded-sm shadow-sm">
-              <tag.icon size={10} className="text-accent" />
-              <span className="text-[9px] font-bold uppercase tracking-wider text-[#2A2A2A] dark:text-[#E8E6E3]">{tag.text}</span>
+            <div key={tag.id} className="flex items-center gap-1.5 px-2.5 py-1 bg-[#1C1C1C]/80 backdrop-blur-sm border border-[#333333] rounded-sm shadow-sm">
+              <tag.icon size={10} className="text-[#E8E6E3]" />
+              <span className="text-[9px] font-bold uppercase tracking-wider text-[#E8E6E3]">{tag.text}</span>
             </div>
           ))}
         </motion.div>
