@@ -200,35 +200,6 @@ export const Contact = () => {
           </div>
         </div>
 
-        {/* Footer Info */}
-        <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-12 border-t border-border pt-12 pb-20">
-          <div className="space-y-6">
-            <p className="text-[10px] font-bold uppercase tracking-widest text-muted">Socials</p>
-            <div className="flex flex-col gap-4">
-              <a href="#" className="text-xl font-display font-bold hover:text-muted transition-colors flex items-center gap-2">
-                LinkedIn <ArrowUpRight size={16} />
-              </a>
-              <a href="#" className="text-xl font-display font-bold hover:text-muted transition-colors flex items-center gap-2">
-                Behance <ArrowUpRight size={16} />
-              </a>
-              <a href="#" className="text-xl font-display font-bold hover:text-muted transition-colors flex items-center gap-2">
-                Dribbble <ArrowUpRight size={16} />
-              </a>
-            </div>
-          </div>
-          
-          <div className="space-y-6">
-            <p className="text-[10px] font-bold uppercase tracking-widest text-muted">Location</p>
-            <p className="text-2xl font-display font-bold">Melbourne, Australia<br />Available Worldwide</p>
-          </div>
-
-          <div className="space-y-6 text-right">
-            <p className="text-[10px] font-bold uppercase tracking-widest text-muted">Local Time</p>
-            <p className="text-5xl font-display font-bold">
-              {new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })}
-            </p>
-          </div>
-        </div>
       </div>
     </motion.div>
   );
