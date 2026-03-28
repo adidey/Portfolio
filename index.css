@@ -1,9 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Bebas+Neue&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=general-sans@700,500,300,400,600&f[]=satoshi@700,500,300,400,600&display=swap');
 @import "tailwindcss";
+
+@font-face {
+  font-family: 'Thunder ExtraBoldLC';
+  src: url('/fonts/Thunder-ExtraBoldLC.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
 
 @theme {
   --font-sans: "Inter", sans-serif;
   --font-modern: "Satoshi", sans-serif;
+  --font-display: "General Sans", sans-serif;
+  --font-satoshi: "Satoshi", sans-serif;
+  --font-thunder: "Thunder ExtraBoldLC", "Thunder BoldLC", "Thunder", "Bebas Neue", sans-serif;
   --color-primary: #2563eb;
+  
+  --color-bg: var(--bg);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --shadow-soft: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
 
   --animate-slow-rotate: slow-rotate 25s linear infinite;
   --animate-float: float 6s ease-in-out infinite;
@@ -29,6 +49,23 @@
       transform: translateY(-10px) rotate(5deg);
     }
   }
+
+  @keyframes driftA {
+    0%, 100% { transform: translate(0%, 0%) scale(1); }
+    33%       { transform: translate(12%, 8%) scale(1.1); }
+    66%       { transform: translate(-6%, 12%) scale(0.95); }
+  }
+
+  @keyframes driftB {
+    0%, 100% { transform: translate(0%, 0%) scale(1); }
+    40%       { transform: translate(-14%, -10%) scale(1.08); }
+    70%       { transform: translate(8%, -6%) scale(1.05); }
+  }
+
+  @keyframes driftC {
+    0%, 100% { transform: translate(0%, 0%) scale(1); }
+    50%       { transform: translate(-10%, 15%) scale(1.12); }
+  }
 }
 
 @layer base {
@@ -38,24 +75,42 @@
     /* Dark Mode (Default Charcoal) */
     --bg: #0F0F0F;
     --text: #D6CDC0;
+    --ink: #FAFAFA;
     --text-muted: #A09D95;
+    --muted: #A09D95;
     --border: rgba(255, 255, 255, 0.05);
     --accent: #3B82F6;
     --surface: #1A1A1A;
+    --card-bg: rgba(13, 13, 13, 0.85);
+    --card-border: rgba(250, 250, 250, 0.1);
+    --card-base: #171717;
+    --card-glow-1: rgba(37, 99, 235, 0.35);
+    --card-glow-2: rgba(124, 58, 237, 0.35);
+    --card-glow-3: rgba(219, 39, 119, 0.35);
+    --card-center: #111111;
     --selection-bg: #D6CDC0;
     --selection-text: #0F0F0F;
   }
 
   :root.light {
     /* Light Mode (Warm Cream) */
-    --bg: #D6CDC0;
+    --bg: #FAFAFA;
     --text: #111111;
+    --ink: #0D0D0D;
     --text-muted: #6B6B6B;
+    --muted: #6B6B6B;
     --border: rgba(0, 0, 0, 0.1);
-    --accent: #3B82F6;
+    --accent: #1E466B;
     --surface: #FFFFFF;
+    --card-bg: rgba(255, 255, 255, 0.7);
+    --card-border: rgba(13, 13, 13, 0.08);
+    --card-base: #FFFFFF;
+    --card-glow-1: rgba(59, 130, 246, 0.12);
+    --card-glow-2: rgba(139, 92, 246, 0.12);
+    --card-glow-3: rgba(236, 72, 153, 0.12);
+    --card-center: #FFFFFF;
     --selection-bg: #111111;
-    --selection-text: #D6CDC0;
+    --selection-text: #FAFAFA;
   }
 
   html {

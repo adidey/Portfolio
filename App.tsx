@@ -18,17 +18,23 @@ const App: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  useEffect(() => { // Final loading delay
-      const finalTimeout = setTimeout(() => {
-        setIsLoading(false);
-      }, 3500); // 3.5s minimum for the "filling" effect
-    return () => clearTimeout(finalTimeout);
+  useEffect(() => {
+    // Initial load timer
+    const timer = setTimeout(() => setIsLoading(false), 1200);
+    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
     console.log('App: Current path:', location.pathname);
     // Scroll to top on route change
     window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Page load simulation for routes
+    setIsLoading(true);
+    const timer = setTimeout(() => {
+      console.log('App: Setting isLoading to false');
+      setIsLoading(false);
+    }, 600);
 
     // Dynamic Title Management
     let title = 'Aditya Dey | Designer & Engineer';
@@ -44,6 +50,8 @@ const App: React.FC = () => {
       title = `${viewName || 'Home'} | Aditya Dey`;
     }
     document.title = title;
+
+    return () => clearTimeout(timer);
   }, [location.pathname]);
 
   const handleProjectClick = (id: string) => {
@@ -67,14 +75,14 @@ const App: React.FC = () => {
       isLoading={isLoading}
     >
       <Routes>
-        <Route path="/" element={<Home onProjectClick={handleProjectClick} onNavigate={handleNavigate} />} />
+        <Route path="/" element={<Home />} />
         <Route path="/work" element={<Work onProjectClick={handleProjectClick} layout={workLayout} />} />
         <Route path="/work/:projectId" element={<ProjectDetail onBack={() => navigate('/work')} />} />
         <Route path="/posters" element={<Gallery layout={workLayout} />} />
         <Route path="/about" element={<About />} />
         <Route path="/resume" element={<Resume />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="*" element={<Home onProjectClick={handleProjectClick} onNavigate={handleNavigate} />} />
+        <Route path="*" element={<Home />} />
       </Routes>
       <Analytics />
       <SpeedInsights />
