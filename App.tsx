@@ -4,6 +4,7 @@ import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import { PageView } from './components/Navbar';
 import Layout from './components/Layout';
+import CustomCursor from './components/CustomCursor';
 import Home from './pages/Home';
 import Work from './pages/Work';
 import About from './pages/About';
@@ -17,6 +18,15 @@ const App: React.FC = () => {
   const [workLayout, setWorkLayout] = useState<'01' | '02'>('01');
   const location = useLocation();
   const navigate = useNavigate();
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const effectiveLayout = isMobile ? '02' : workLayout;
 
   useEffect(() => {
     // Initial load timer
@@ -70,15 +80,16 @@ const App: React.FC = () => {
     <Layout
       currentPath={location.pathname}
       onNavigate={handleNavigate}
-      workLayout={workLayout}
+      workLayout={effectiveLayout}
       onToggleLayout={(l) => setWorkLayout(l)}
       isLoading={isLoading}
     >
+      <CustomCursor />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/work" element={<Work onProjectClick={handleProjectClick} layout={workLayout} />} />
+        <Route path="/work" element={<Work onProjectClick={handleProjectClick} layout={effectiveLayout} />} />
         <Route path="/work/:projectId" element={<ProjectDetail onBack={() => navigate('/work')} />} />
-        <Route path="/posters" element={<Gallery layout={workLayout} />} />
+        <Route path="/posters" element={<Gallery layout={effectiveLayout} />} />
         <Route path="/about" element={<About />} />
         <Route path="/resume" element={<Resume />} />
         <Route path="/contact" element={<Contact />} />

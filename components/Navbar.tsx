@@ -121,7 +121,7 @@ const Navbar: React.FC<NavbarProps> = ({
       </div>
 
       {/* Center Navbar */}
-      <nav className="fixed top-0 left-0 w-full z-[100] p-6 md:p-8 flex justify-center pointer-events-none">
+      <nav className="fixed top-0 left-0 w-full z-[110] p-6 md:p-8 flex justify-center pointer-events-none">
         <div
           ref={navRef}
           onMouseMove={handleMouseMove}
@@ -176,7 +176,17 @@ const Navbar: React.FC<NavbarProps> = ({
         className={`fixed inset-0 z-[105] bg-[var(--bg)]/95 backdrop-blur-2xl transition-all duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] ${isMobileMenuOpen ? 'opacity-100 pointer-events-auto translate-y-0' : 'opacity-0 pointer-events-none -translate-y-full'
           } md:hidden`}
       >
-        <div className="h-full flex flex-col p-8 pt-32">
+        <div className="h-full flex flex-col p-8 pt-32 relative">
+          {/* Internal Close Button for Mobile Drawer */}
+          <button 
+            onClick={handleLinkClick}
+            className="absolute top-8 right-8 text-[var(--text-muted)] hover:text-[var(--text)] transition-colors p-2"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          
           <div className="flex flex-col gap-6">
             <p className="text-[10px] uppercase tracking-[0.5em] text-neutral-600 mb-4">Navigation</p>
             {menuItems.map((item) => (

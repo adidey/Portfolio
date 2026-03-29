@@ -4,8 +4,16 @@ import {
   Palette, 
   Music, 
   FlaskConical, 
-  FileText
+  FileText,
+  Wrench,
+  MonitorPlay
 } from 'lucide-react';
+
+const BlueprintLabel = ({ label }: { label: string }) => (
+  <div className="absolute inset-[-4px] border border-blue-500/40 dark:border-blue-400/40 bg-blue-500/5 dark:bg-blue-400/5 pointer-events-none z-50 flex items-start justify-start p-1.5 rounded-sm">
+    <span className="text-[9px] text-blue-600 dark:text-blue-400 font-bold tracking-[0.2em] uppercase bg-[var(--bg)]/80 px-1.5 py-0.5 rounded-sm backdrop-blur-sm shadow-sm">{label}</span>
+  </div>
+);
 
 // Floating Tag Component
 interface FloatingTagProps {
@@ -20,6 +28,7 @@ interface FloatingTagProps {
   isActive: boolean;
   onClick: () => void;
   panelContent: React.ReactNode;
+  showBlueprint?: boolean;
 }
 
 const FloatingTag = ({ 
@@ -32,7 +41,8 @@ const FloatingTag = ({
   mouseY,
   isActive,
   onClick,
-  panelContent
+  panelContent,
+  showBlueprint
 }: FloatingTagProps) => {
   const [isDrawn, setIsDrawn] = useState(false);
   const [startDrawing, setStartDrawing] = useState(false);
@@ -40,11 +50,11 @@ const FloatingTag = ({
   const [isHovered, setIsHovered] = useState(false);
   
   const floatConfig = useRef({
-    durationX: 7 + Math.random() * 3,
-    durationY: 8 + Math.random() * 4,
-    durationR: 12 + Math.random() * 6,
-    driftX: 0.4,
-    driftY: 0.6,
+    durationX: 14 + Math.random() * 4,
+    durationY: 10 + Math.random() * 2,
+    durationR: 16 + Math.random() * 2,
+    driftX: 4,
+    driftY: 10,
   });
 
   useEffect(() => {
@@ -65,7 +75,7 @@ const FloatingTag = ({
         opacity: 1,
         x: [0, floatConfig.current.driftX, 0],
         y: [0, -floatConfig.current.driftY, 0],
-        rotate: [-0.1, 0.1, -0.1],
+        rotate: [-0.2, 0.2, -0.2],
         translateX: parallaxX,
         translateY: parallaxY,
         scale: isActive ? 1.05 : isHovered ? 1.02 : 1,
@@ -88,6 +98,7 @@ const FloatingTag = ({
       className={`absolute z-20 hidden md:flex ${positionClasses} cursor-pointer group transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-85 hover:opacity-100'}`}
     >
       <div className="relative p-1">
+        {showBlueprint && <BlueprintLabel label="TAG" />}
         {/* Figma-style edge-by-edge drawing frame */}
         {startDrawing && (
           <svg className="absolute inset-0 w-full h-full overflow-visible pointer-events-none z-30">
@@ -202,7 +213,7 @@ const FloatingTag = ({
   );
 };
 
-const RoleFlipper = () => {
+const RoleFlipper = ({ showBlueprint }: { showBlueprint?: boolean }) => {
   const roles = [
     { first: "Product", second: "Designer" },
     { first: "Design", second: "Engineer" },
@@ -219,7 +230,8 @@ const RoleFlipper = () => {
   }, []);
 
   return (
-    <div className="h-[1.2em] overflow-hidden relative flex items-center justify-center">
+    <div className="h-[1.2em] overflow-visible relative flex items-center justify-center">
+      {showBlueprint && <BlueprintLabel label="ROLE" />}
       <AnimatePresence mode="wait">
         <motion.div
           key={index}
@@ -227,7 +239,7 @@ const RoleFlipper = () => {
           animate={{ y: "0%", opacity: 1 }}
           exit={{ y: "-100%", opacity: 0 }}
           transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
-          className="text-[clamp(1rem,2vw,1.25rem)] font-satoshi font-semibold tracking-[0.15em] text-ink uppercase flex gap-2"
+          className="text-[clamp(1rem,2vw,1.25rem)] font-satoshi font-semibold tracking-[0.15em] text-[var(--text)] uppercase flex gap-2"
         >
           <span>{roles[index].first}</span>
           <span className="text-accent">{roles[index].second}</span>
@@ -237,24 +249,139 @@ const RoleFlipper = () => {
   );
 };
 
-const HeroText = ({ text }: { text: string }) => {
+const HeroText = ({ text, showBlueprint }: { text: string, showBlueprint?: boolean }) => {
   return (
+    <div className="relative">
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1.5, ease: [0.23, 1, 0.32, 1] }}
       className="relative flex items-center justify-center w-full py-6"
     >
-      <h1 className="text-[clamp(2.5rem,8vw,5.5rem)] font-satoshi font-black text-ink leading-[1.1] tracking-[0.1em] text-center uppercase whitespace-nowrap">
+      {showBlueprint && <BlueprintLabel label="HERO" />}
+      <h1 className="text-[clamp(3.5rem,10vw,8rem)] font-display font-black text-[var(--text)] leading-none tracking-tighter text-center uppercase whitespace-nowrap">
         {text}
       </h1>
     </motion.div>
+    </div>
+  );
+};
+
+const LiveTimeWidget = () => {
+  const [time, setTime] = useState("");
+
+  useEffect(() => {
+    const updateTime = () => {
+      try {
+        const formatter = new Intl.DateTimeFormat('en-US', {
+          timeZone: 'Australia/Melbourne',
+          hour: 'numeric',
+          minute: '2-digit',
+          hour12: true
+        });
+        setTime(formatter.format(new Date()));
+      } catch (e) {
+        setTime("Melbourne, AU");
+      }
+    };
+    updateTime();
+    const interval = setInterval(updateTime, 10000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return <p className="text-sm font-bold text-[var(--ink)]">{time ? `${time} • MEL` : 'Melbourne, AU'}</p>;
+};
+
+const GithubStatusWidget = () => {
+  const [status, setStatus] = useState("NotchPrompt v2");
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('https://api.github.com/users/adidey/events/public')
+      .then(res => res.json())
+      .then(data => {
+        if (Array.isArray(data)) {
+          const pushEvent = data.find((e: any) => e.type === 'PushEvent');
+          if (pushEvent && pushEvent.repo) {
+            const repoName = pushEvent.repo.name.split('/')[1];
+            setStatus(`Building ${repoName}`);
+          }
+        }
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
+
+  return (
+    <div className="flex items-center gap-2 mt-1.5">
+      <div className={`w-1.5 h-1.5 rounded-full ${loading ? 'bg-yellow-500 animate-pulse' : 'bg-green-500'}`} />
+      <p className="text-base text-[var(--ink)] font-bold truncate max-w-[200px]">{status}</p>
+    </div>
+  );
+};
+
+interface MagneticButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  children: React.ReactNode;
+  className?: string;
+  onClick?: () => void;
+}
+
+const MagneticButton = ({ children, className, onClick, ...props }: MagneticButtonProps) => {
+  const ref = useRef<HTMLButtonElement>(null);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+
+  const handleMouse = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (!ref.current) return;
+    const { clientX, clientY } = e;
+    const { height, width, left, top } = ref.current.getBoundingClientRect();
+    const middleX = clientX - (left + width / 2);
+    const middleY = clientY - (top + height / 2);
+    setPosition({ x: middleX * 0.2, y: middleY * 0.2 });
+  };
+
+  const reset = () => setPosition({ x: 0, y: 0 });
+
+  const { x, y } = position;
+  return (
+    <motion.button
+      ref={ref}
+      onMouseMove={handleMouse}
+      onMouseLeave={reset}
+      animate={{ x, y }}
+      transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
+      onClick={onClick}
+      className={className}
+      {...(props as any)}
+    >
+      {children}
+    </motion.button>
   );
 };
 
 export const InteractiveCanvas = () => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [activeTagId, setActiveTagId] = useState<string | null>(null);
+  const [showGrid, setShowGrid] = useState(true);
+  const [showGuides, setShowGuides] = useState(true);
+  const [showNoise, setShowNoise] = useState(true);
+  const [showBlueprint, setShowBlueprint] = useState(false);
+  const [isMeasuring, setIsMeasuring] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Alt') setIsMeasuring(true);
+      if (e.key.toLowerCase() === 'g') setShowBlueprint(p => !p);
+    };
+    const handleKeyUp = (e: KeyboardEvent) => {
+      if (e.key === 'Alt') setIsMeasuring(false);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keyup', handleKeyUp);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keyup', handleKeyUp);
+    };
+  }, []);
 
   const handleGlobalMouseMove = (e: React.MouseEvent) => {
     setMousePos({ x: e.clientX, y: e.clientY });
@@ -265,10 +392,10 @@ export const InteractiveCanvas = () => {
       id: 'philosophy',
       text: 'Philosophy',
       icon: Palette,
-      position: '-translate-x-[480px] -translate-y-[200px]',
+      position: '-translate-x-[520px] -translate-y-[260px]',
       content: (
         <div className="space-y-2 dark">
-          <p className="font-bold uppercase tracking-wider text-[10px] text-[#3B82F6] dark:text-[#60A5FA]">Design Philosophy</p>
+          <p className="font-bold uppercase tracking-wider text-[10px] text-[var(--accent)]">Design Philosophy</p>
           <p className="text-[#94A3B8]">I believe in systems thinking and cognitive science as the foundation for intuitive design. Every interface is a conversation between the user and the system.</p>
         </div>
       )
@@ -277,11 +404,37 @@ export const InteractiveCanvas = () => {
       id: 'music',
       text: 'Music',
       icon: Music,
-      position: 'translate-x-[480px] -translate-y-[200px]',
+      position: 'translate-x-[520px] -translate-y-[260px]',
       content: (
         <div className="space-y-2 dark">
-          <p className="font-bold uppercase tracking-wider text-[10px] text-[#3B82F6] dark:text-[#60A5FA]">Rhythm & Design</p>
+          <p className="font-bold uppercase tracking-wider text-[10px] text-[var(--accent)]">Rhythm & Design</p>
           <p className="text-[#94A3B8]">Music influences my design rhythm. From ambient textures to complex polyrhythms, I find parallels in layout balance and interaction timing.</p>
+        </div>
+      )
+    },
+    {
+      id: 'toolkit',
+      text: 'Toolkit',
+      icon: Wrench,
+      position: '-translate-x-[560px] translate-y-[0px]',
+      content: (
+        <div className="space-y-2 dark">
+          <p className="font-bold uppercase tracking-wider text-[10px] text-[var(--accent)]">Tech Stack</p>
+          <ul className="text-[#94A3B8] font-mono grid grid-cols-2 gap-2 text-[10px] pt-1">
+            <li>• Figma</li><li>• Framer</li><li>• React</li><li>• Tailwind</li><li>• ThreeJS</li>
+          </ul>
+        </div>
+      )
+    },
+    {
+      id: 'playground',
+      text: 'Playground',
+      icon: MonitorPlay,
+      position: 'translate-x-[560px] translate-y-[0px]',
+      content: (
+        <div className="space-y-2 dark">
+          <p className="font-bold uppercase tracking-wider text-[10px] text-[var(--accent)]">Creative Sandbox</p>
+          <p className="text-[#94A3B8]">Experimental interfaces and creative coding explorations.</p>
         </div>
       )
     },
@@ -289,10 +442,10 @@ export const InteractiveCanvas = () => {
       id: 'experiments',
       text: 'Experiments',
       icon: FlaskConical,
-      position: '-translate-x-[500px] translate-y-[200px]',
+      position: '-translate-x-[520px] translate-y-[260px]',
       content: (
         <div className="space-y-2 dark">
-          <p className="font-bold uppercase tracking-wider text-[10px] text-[#3B82F6] dark:text-[#60A5FA]">Current Explorations</p>
+          <p className="font-bold uppercase tracking-wider text-[10px] text-[var(--accent)]">Current Explorations</p>
           <p className="text-[#94A3B8]">Currently deep-diving into generative UI patterns, AI-assisted design workflows, and the intersection of creative coding and functional tools.</p>
         </div>
       )
@@ -301,10 +454,10 @@ export const InteractiveCanvas = () => {
       id: 'resume',
       text: 'Resume',
       icon: FileText,
-      position: 'translate-x-[500px] translate-y-[200px]',
+      position: 'translate-x-[520px] translate-y-[260px]',
       content: (
         <div className="space-y-3 dark">
-          <p className="font-bold uppercase tracking-wider text-[10px] text-[#3B82F6] dark:text-[#60A5FA]">Experience & Projects</p>
+          <p className="font-bold uppercase tracking-wider text-[10px] text-[var(--accent)]">Experience & Projects</p>
           <p className="text-[#94A3B8]">View my full professional journey and technical expertise.</p>
           <a 
             href="/resume.pdf" 
@@ -328,17 +481,19 @@ export const InteractiveCanvas = () => {
       
       <style>{`
         .design-grid {
-          --grid-color: rgba(255,255,255,0.04);
+          --grid-color: rgba(255,255,255,0.06);
           background-image: linear-gradient(var(--grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-          background-size: 120px 120px;
+          background-size: 80px 80px;
           background-position: center top;
-          -webkit-mask-image: radial-gradient(circle at center, black 45%, transparent 100%);
-          mask-image: radial-gradient(circle at center, black 45%, transparent 100%);
+          -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 90%);
+          mask-image: radial-gradient(circle at center, black 40%, transparent 90%);
         }
-        @media (min-width: 768px) {
-          .design-grid {
-            background-position: calc(50% - 60px) top;
-          }
+        .design-guide {
+          background-color: var(--border);
+          opacity: 0.06;
+        }
+        .light .design-guide, [data-theme='light'] .design-guide {
+          opacity: 0.05;
         }
         .light .design-grid, [data-theme='light'] .design-grid {
           --grid-color: rgba(0,0,0,0.05);
@@ -348,9 +503,30 @@ export const InteractiveCanvas = () => {
       {/* Design Canvas Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Grid Layer */}
-        <div className="absolute inset-0 design-grid z-0" />
+        {showGrid && <div className="absolute inset-0 design-grid z-0" />}
         {/* Noise Texture Overlay */}
-        <div className="absolute inset-0 opacity-[0.02] mix-blend-overlay z-10" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }}></div>
+        {showNoise && <div className="absolute inset-0 opacity-[0.02] mix-blend-overlay z-10" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }}></div>}
+        {/* Alignment Guides */}
+        {showGuides && (
+          <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+            <div className="absolute top-0 bottom-0 left-1/2 w-px design-guide" />
+            <div className="absolute left-0 right-0 top-1/2 h-px design-guide" />
+          </div>
+        )}
+        {/* Labels */}
+        <div className="absolute top-6 left-6 z-40 text-[10px] opacity-35 tracking-[0.15em] uppercase text-[var(--muted)] pointer-events-none hidden md:block">
+          CANVAS
+        </div>
+        <div className="absolute bottom-6 right-6 z-40 text-[10px] opacity-35 tracking-[0.15em] uppercase text-[var(--muted)] pointer-events-none hidden md:block">
+          ZOOM 100%
+        </div>
+
+        {/* Global Blueprint Overlay for Navigation - dummy to show over the header bounds */}
+        {showBlueprint && (
+          <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[480px] h-[48px] border border-blue-500/40 bg-blue-500/5 z-[100] mt-8 pointer-events-none rounded-sm hidden md:block">
+            <BlueprintLabel label="NAVIGATION" />
+          </div>
+        )}
       </div>
 
       {/* Main Hero Content */}
@@ -370,26 +546,28 @@ export const InteractiveCanvas = () => {
               isActive={activeTagId === tag.id}
               onClick={() => setActiveTagId(activeTagId === tag.id ? null : tag.id)}
               panelContent={tag.content}
+              showBlueprint={showBlueprint}
             />
           ))}
         </div>
 
         {/* Hero Content Stack */}
         <div className="flex flex-col items-center text-center w-full z-10">
-          <RoleFlipper />
+          <RoleFlipper showBlueprint={showBlueprint} />
           
           <div className="mt-8 w-full flex items-center justify-center">
-            <HeroText text="ADITYA DEY" />
+            <HeroText text="ADITYA DEY" showBlueprint={showBlueprint} />
           </div>
 
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.8, ease: [0.23, 1, 0.32, 1] }}
-            whileHover={{ y: -5, scale: 1.02 }}
-            className="mt-14 w-full max-w-[340px] md:max-w-lg group shadow-soft hover:shadow-xl hover:shadow-[var(--accent)]/10 rounded-3xl cursor-default transition-shadow duration-500"
+            whileHover={{ y: -5, scale: 1.02, transition: { type: "spring", stiffness: 400, damping: 25, duration: 0.2 } }}
+            className="mt-14 w-full max-w-[340px] md:max-w-xl group shadow-soft hover:shadow-xl hover:shadow-[var(--accent)]/10 rounded-3xl cursor-default transition-shadow duration-500 relative"
           >
             <div className="relative overflow-hidden p-6 md:p-8 rounded-3xl border border-[var(--border)] transition-colors duration-500">
+              {showBlueprint && <BlueprintLabel label="STATUS CARD" />}
               {/* Base Background Color */}
               <div className="absolute inset-0 bg-[var(--card-base)] transition-colors duration-500" />
               
@@ -411,7 +589,7 @@ export const InteractiveCanvas = () => {
                   <div className="text-right flex flex-col gap-2">
                     <span className="text-[10px] font-bold text-[var(--muted)] uppercase tracking-[0.2em]">Location</span>
                     <div className="flex items-center justify-end gap-2.5">
-                      <p className="text-sm font-bold text-[var(--ink)]">Melbourne, AU</p>
+                      <LiveTimeWidget />
                       <div className="w-1 h-1 rounded-full bg-[var(--border)]" />
                       <div className="flex items-center gap-2 text-[var(--muted)]">
                         <a href="https://www.linkedin.com/in/adityadey27/" target="_blank" rel="noopener noreferrer" className="hover:text-[#0a66c2] transition-colors" title="LinkedIn">
@@ -429,11 +607,24 @@ export const InteractiveCanvas = () => {
                   <div className="space-y-5 text-left">
                     <div>
                       <span className="text-[9px] font-bold text-[var(--muted)] uppercase tracking-[0.2em]">Currently Shipping</span>
-                      <p className="text-base text-[var(--ink)] font-bold mt-1.5">NotchPrompt v2</p>
+                      <GithubStatusWidget />
                     </div>
                     <div className="flex gap-3 pt-2">
-                      <button className="px-5 py-2.5 bg-[var(--ink)] text-[var(--bg)] text-[10px] font-bold uppercase tracking-widest rounded-lg hover:opacity-90 transition-all hover:shadow-lg hover:shadow-accent/20">View Work</button>
-                      <button className="px-5 py-2.5 bg-[var(--border)] text-[var(--ink)] text-[10px] font-bold uppercase tracking-widest rounded-lg transition-all">Contact</button>
+                      <MagneticButton 
+                        onClick={() => {
+                          const workSection = document.getElementById('work');
+                          if (workSection) workSection.scrollIntoView({ behavior: 'smooth' });
+                        }}
+                        className="px-5 py-2.5 bg-[var(--ink)] text-[var(--bg)] text-[10px] font-bold uppercase tracking-widest rounded-lg hover:opacity-90 transition-all hover:shadow-lg hover:shadow-accent/20"
+                      >
+                        View Work
+                      </MagneticButton>
+                      <MagneticButton 
+                        onClick={() => window.location.href = 'mailto:adidey27@gmail.com'}
+                        className="px-5 py-2.5 bg-[var(--border)] text-[var(--ink)] text-[10px] font-bold uppercase tracking-widest rounded-lg transition-all hover:bg-[var(--surface)] hover:shadow-md"
+                      >
+                        Contact
+                      </MagneticButton>
                     </div>
                   </div>
                   
@@ -441,10 +632,14 @@ export const InteractiveCanvas = () => {
                     <span className="text-[9px] font-bold text-[var(--muted)] uppercase tracking-[0.2em]">Focus</span>
                     <ul className="mt-4 space-y-2.5">
                       {['Design Systems', 'Generative Interfaces', 'Creative Development'].map((item, i) => (
-                        <li key={i} className="text-sm text-[var(--ink)] font-medium flex items-center gap-2.5">
-                          <div className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] opacity-30" />
-                          {item}
-                        </li>
+                        <motion.li 
+                          key={i} 
+                          whileHover={{ x: 4 }}
+                          className="text-sm text-[var(--ink)] font-medium flex items-center gap-2.5 cursor-pointer group"
+                        >
+                          <div className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] opacity-30 group-hover:opacity-100 group-hover:scale-150 transition-all duration-300" />
+                          <span className="transition-colors duration-300">{item}</span>
+                        </motion.li>
                       ))}
                     </ul>
                   </div>
@@ -468,6 +663,52 @@ export const InteractiveCanvas = () => {
             </div>
           ))}
         </motion.div>
+      </div>
+
+      {/* Measurement Tool Layout */}
+      {isMeasuring && (
+        <svg className="fixed inset-0 w-full h-full pointer-events-none z-50">
+          <line
+            x1={mousePos.x} y1={mousePos.y}
+            x2={window.innerWidth / 2} y2={window.innerHeight / 2}
+            stroke="var(--accent)" strokeWidth="1" strokeDasharray="4 4"
+            className="opacity-60"
+          />
+          <line 
+            x1={window.innerWidth / 2} y1={window.innerHeight / 2 - 10}
+            x2={window.innerWidth / 2} y2={window.innerHeight / 2 + 10}
+            stroke="var(--accent)" strokeWidth="1.5"
+          />
+          <line 
+            x1={window.innerWidth / 2 - 10} y1={window.innerHeight / 2}
+            x2={window.innerWidth / 2 + 10} y2={window.innerHeight / 2}
+            stroke="var(--accent)" strokeWidth="1.5"
+          />
+          <text 
+            x={(mousePos.x + window.innerWidth / 2) / 2}
+            y={(mousePos.y + window.innerHeight / 2) / 2 - 8}
+            fill="var(--accent)"
+            className="text-[10px] font-mono shadow-sm bg-black/50"
+            textAnchor="middle"
+          >
+            {Math.round(Math.hypot(window.innerWidth / 2 - mousePos.x, window.innerHeight / 2 - mousePos.y))}px
+          </text>
+          <circle cx={mousePos.x} cy={mousePos.y} r="3" fill="var(--accent)" />
+        </svg>
+      )}
+
+      {/* Workspace Layer Control */}
+      <div className="fixed bottom-6 left-6 z-50 flex-col items-start gap-1 hidden md:flex">
+        <label className="text-[9px] font-bold text-[var(--muted)] uppercase tracking-[0.2em] mb-1.5">LAYER CONTROL</label>
+        <button onClick={() => setShowGrid(!showGrid)} className={`text-[10px] uppercase tracking-widest font-bold transition-colors ${showGrid ? 'text-[var(--ink)]' : 'text-[var(--muted)] opacity-50'}`}>
+          [ GRID {showGrid ? '✓' : ' '} ]
+        </button>
+        <button onClick={() => setShowGuides(!showGuides)} className={`text-[10px] uppercase tracking-widest font-bold transition-colors ${showGuides ? 'text-[var(--ink)]' : 'text-[var(--muted)] opacity-50'}`}>
+          [ GUIDES {showGuides ? '✓' : ' '} ]
+        </button>
+        <button onClick={() => setShowBlueprint(!showBlueprint)} className={`text-[10px] uppercase tracking-widest font-bold transition-colors ${showBlueprint ? 'text-[var(--ink)]' : 'text-[var(--muted)] opacity-50'}`}>
+          [ BLUEPRINT {showBlueprint ? '✓' : ' '} ]
+        </button>
       </div>
     </div>
   );
