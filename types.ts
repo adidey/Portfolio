@@ -15,6 +15,10 @@ export interface Project {
   client: string;
   role: string;
   link?: string;
+  prototypeVideo?: string;
+  annotations?: string[];
+  processImages?: string[];
+  outcomeImages?: string[];
 }
 
 

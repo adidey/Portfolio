@@ -26,7 +26,11 @@ export const PROJECTS: Project[] = [
     tags: ['Swift', 'SwiftUI', 'AppKit', 'macOS'],
     client: 'Personal Project',
     role: 'Creator & Developer',
-    link: 'A Native Teleprompter Experience'
+    link: 'A Native Teleprompter Experience',
+    annotations: ['WIP: Dynamic Reading Line', 'v1.0 Launch', 'System: macOS Native'],
+    processImages: ['/notchprompt_wireframe.png'],
+    outcomeImages: ['/notchprompt_final.png'],
+    prototypeVideo: '/videos/notchprompt_demo.mp4'
   },
   {
     id: 'spinpod',
@@ -43,7 +47,10 @@ export const PROJECTS: Project[] = [
     tags: ['React', 'Gemini AI', 'Tailwind CSS', 'Vite'],
     client: 'Self-Initiated',
     role: 'Full Stack Developer & Designer',
-    link: 'A Retro AI Music Experience'
+    link: 'A Retro AI Music Experience',
+    annotations: ['Concept: Retro-Industrial', 'Gemini AI Integration', 'Prototype: Tactical Dial'],
+    processImages: ['/spinpod_design_process.png'],
+    outcomeImages: ['/spinpod_hero.png']
   },
   {
     id: 'resume-editor',
@@ -60,7 +67,8 @@ export const PROJECTS: Project[] = [
     tags: ['Next.js', 'Tailwind CSS', 'Lucide React'],
     client: 'Personal Project',
     role: 'Lead Developer',
-    link: 'Simplified Professional Resumes'
+    link: 'Simplified Professional Resumes',
+    annotations: ['Focus: ATS Optimization', 'Zero-Config UI', 'Export: Client-side PDF']
   },
   {
     id: 'exousia',

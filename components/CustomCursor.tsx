@@ -4,14 +4,16 @@ const CustomCursor: React.FC = () => {
     useEffect(() => {
         const cursor = document.getElementById('custom-cursor');
         const follower = document.getElementById('cursor-follower');
+        const label = document.getElementById('cursor-label');
 
-        if (!cursor || !follower) return;
+        if (!cursor || !follower || !label) return;
 
         const onMouseMove = (e: MouseEvent) => {
             const { clientX, clientY } = e;
 
             cursor.style.transform = `translate3d(${clientX}px, ${clientY}px, 0)`;
             follower.style.transform = `translate3d(${clientX - 15}px, ${clientY - 15}px, 0)`;
+            label.style.transform = `translate3d(${clientX}px, ${clientY}px, 0)`;
         };
 
         const onMouseDown = () => {
@@ -32,6 +34,11 @@ const CustomCursor: React.FC = () => {
                 target.classList.contains('cursor-pointer')
             ) {
                 follower.classList.add('cursor-hover');
+                const cursorLabel = target.getAttribute('data-cursor-label') || target.closest('[data-cursor-label]')?.getAttribute('data-cursor-label');
+                if (cursorLabel) {
+                    label.textContent = cursorLabel;
+                    label.style.opacity = '1';
+                }
             }
         };
 
@@ -45,6 +52,8 @@ const CustomCursor: React.FC = () => {
                 target.classList.contains('cursor-pointer')
             ) {
                 follower.classList.remove('cursor-hover');
+                label.style.opacity = '0';
+                setTimeout(() => { if (label.style.opacity === '0') label.textContent = ''; }, 300);
             }
         };
 

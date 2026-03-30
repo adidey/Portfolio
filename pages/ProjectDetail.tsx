@@ -3,10 +3,25 @@ import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { PROJECTS } from '../constants';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Play, ExternalLink } from 'lucide-react';
 
 interface ProjectDetailProps {
   onBack?: () => void;
 }
+
+const ProjectSection: React.FC<{ title: string; children: React.ReactNode; sticky?: boolean }> = ({ title, children, sticky = true }) => (
+  <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start py-24 md:py-32 border-b border-[var(--border)] last:border-0">
+    <div className="md:col-span-4">
+      <h2 className={`text-[10px] uppercase tracking-[0.5em] text-[var(--accent)] font-bold mb-8 md:mb-0 ${sticky ? 'md:sticky md:top-40' : ''}`}>
+        {title}
+      </h2>
+    </div>
+    <div className="md:col-span-8 flex flex-col gap-16">
+      {children}
+    </div>
+  </div>
+);
 
 const ProjectDetail: React.FC<ProjectDetailProps> = ({ onBack }) => {
   const { projectId } = useParams<{ projectId: string }>();
@@ -19,120 +34,142 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ onBack }) => {
   if (!project) return null;
 
   return (
-    <div className="min-h-screen text-[var(--text)]">
+    <div className="min-h-screen text-[var(--text)] selection:bg-[var(--accent)] selection:text-white">
       <Helmet>
         <title>{project.title} — Aditya Dey</title>
         <meta name="description" content={project.shortDescription} />
-        <meta property="og:title" content={`${project.title} — Aditya Dey`} />
-        <meta property="og:description" content={project.shortDescription} />
-        <meta property="og:image" content={project.thumbnail} />
       </Helmet>
+
       <div className="pt-32 pb-48 px-6 md:px-12 max-w-7xl mx-auto">
+        {/* Header Section */}
         <header className="mb-32">
-          <Link to="/work" className="text-[10px] uppercase tracking-[0.5em] mb-16 text-[var(--text-muted)] hover:text-[var(--text)] transition-colors inline-block">
+          <Link 
+            to="/work" 
+            data-cursor-label="BACK"
+            className="text-[10px] uppercase tracking-[0.5em] mb-16 text-[var(--text-muted)] hover:text-[var(--text)] transition-colors inline-block"
+          >
             ← INDEX
           </Link>
 
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-end mb-24">
-            <div className="md:col-span-8">
-              <p className="text-xs uppercase tracking-[0.4em] mb-8 text-[var(--accent)] font-medium">Case Study / {project.year}</p>
-              <h1 className="text-6xl md:text-[8vw] font-bold leading-[0.9] tracking-tighter mb-8" style={{ fontFamily: 'Satoshi, sans-serif' }}>{project.title}</h1>
-            </div>
-            <div className="md:col-span-4 md:text-right">
-              <p className="text-[10px] uppercase tracking-[0.3em] text-[var(--text-muted)] mb-1">Role</p>
-              <p className="text-xl font-bold" style={{ fontFamily: 'Satoshi, sans-serif' }}>{project.role}</p>
-            </div>
-          </div>
+          <div className="space-y-12">
+             <div className="flex flex-wrap gap-4 items-center">
+                <span className="text-[10px] font-mono text-[var(--text-muted)] border border-[var(--border)] px-3 py-1 rounded-sm uppercase tracking-widest">
+                  SYS: DESIGN_BOARD
+                </span>
+                <span className="text-[10px] font-mono text-[var(--accent)] uppercase tracking-widest">
+                  {project.category} // {project.year}
+                </span>
+             </div>
+             
+             <h1 className="text-6xl md:text-[10vw] font-bold leading-[0.85] tracking-tighter" style={{ fontFamily: 'Satoshi, sans-serif' }}>
+               {project.title}
+             </h1>
 
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 border-y border-[var(--border)] py-16">
-            <div className="md:col-span-4">
-              <p className="text-[10px] uppercase tracking-widest text-[var(--text-muted)] mb-4">Overview</p>
-              <p className="text-lg text-[var(--text)] font-light leading-relaxed">{project.shortDescription}</p>
-            </div>
-            <div className="md:col-span-8 grid grid-cols-2 md:grid-cols-3 gap-8">
-              <div>
-                <p className="text-[10px] uppercase tracking-widest text-[var(--text-muted)] mb-2">Category</p>
-                <p className="text-sm uppercase tracking-wider">{project.category}</p>
-              </div>
-              <div>
-                <p className="text-[10px] uppercase tracking-widest text-[var(--text-muted)] mb-2">Technology</p>
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map(tag => (
-                    <span key={tag} className="text-[10px] text-[var(--text-muted)]">{tag}</span>
-                  ))}
+             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 pt-12 border-t border-[var(--border)]">
+                <div className="space-y-6">
+                   <p className="text-xl md:text-2xl text-[var(--text)] font-medium leading-relaxed italic" style={{ fontFamily: 'Satoshi, sans-serif' }}>
+                     {project.context}
+                   </p>
                 </div>
-              </div>
-            </div>
+                <div className="flex flex-col justify-end gap-2 md:text-right">
+                   <p className="text-[10px] uppercase tracking-widest text-[var(--text-muted)]">Primary Role</p>
+                   <p className="text-xl font-bold italic">{project.role}</p>
+                </div>
+             </div>
           </div>
         </header>
 
-        <section className="space-y-48">
-          <div className="aspect-video overflow-hidden bg-[var(--surface)] group border border-[var(--border)]">
-            <img
-              src={project.thumbnail}
-              alt={project.title}
-              loading="lazy"
-              className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105"
-            />
-          </div>
+        {/* Hero Asset */}
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: [0.23, 1, 0.32, 1] }}
+          className="aspect-video overflow-hidden bg-[var(--surface)] border border-[var(--border)] shadow-2xl mb-32"
+        >
+          <img src={project.thumbnail} alt={project.title} className="w-full h-full object-cover" />
+        </motion.div>
 
-          {/* Problem Section */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
-            <div className="md:col-span-4">
-              <h2 className="text-[10px] uppercase tracking-[0.5em] text-[var(--text-muted)] sticky top-40 mb-8 md:mb-0">Problem</h2>
-            </div>
-            <div className="md:col-span-8">
-              <p className="text-2xl md:text-3xl text-[var(--text)] font-medium leading-relaxed" style={{ fontFamily: 'Satoshi, sans-serif' }}>{project.problem}</p>
-            </div>
-          </div>
+        {/* Case Study Sections */}
+        <section className="space-y-0">
+          <ProjectSection title="The Problem">
+            <p className="text-2xl md:text-4xl text-[var(--text)] font-semibold leading-tight tracking-tight" style={{ fontFamily: 'Satoshi, sans-serif' }}>
+               {project.problem}
+            </p>
+          </ProjectSection>
 
-          {/* Role Section */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
-            <div className="md:col-span-4">
-              <h2 className="text-[10px] uppercase tracking-[0.5em] text-[var(--text-muted)] sticky top-40 mb-8 md:mb-0">Role</h2>
+          <ProjectSection title="The Process">
+            <div className="space-y-12">
+               <p className="text-xl text-[var(--text-muted)] font-light leading-relaxed max-w-2xl">
+                 {project.process}
+               </p>
+               
+               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                 {(project.processImages || project.images).map((img, i) => (
+                   <figure key={i} className="group">
+                     <div className="aspect-[4/3] overflow-hidden bg-[var(--surface)] border border-[var(--border)] mb-4">
+                       <img src={img} alt={`Process detail ${i+1}`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />
+                     </div>
+                     <figcaption className="text-[9px] uppercase tracking-widest text-[var(--text-muted)] opacity-50">
+                       Fig. 0{i+1} — Technical breakdown / System architecture
+                     </figcaption>
+                   </figure>
+                 ))}
+               </div>
             </div>
-            <div className="md:col-span-8">
-              <p className="text-2xl md:text-3xl text-[var(--text)] font-medium leading-relaxed" style={{ fontFamily: 'Satoshi, sans-serif' }}>{project.role}</p>
-            </div>
-          </div>
+          </ProjectSection>
 
-          {/* Approach / Process Section */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
-            <div className="md:col-span-4">
-              <h2 className="text-[10px] uppercase tracking-[0.5em] text-[var(--text-muted)] sticky top-40 mb-8 md:mb-0">Approach / Process</h2>
-            </div>
-            <div className="md:col-span-8">
-              <p className="text-xl text-[var(--text)] font-medium leading-relaxed mb-6" style={{ fontFamily: 'Satoshi, sans-serif' }}>{project.context}</p>
-              <p className="text-xl text-[var(--text-muted)] font-light leading-relaxed mb-12">{project.process}</p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {project.images.map((img, i) => (
-                  <div key={i} className="aspect-[3/4] overflow-hidden bg-[var(--surface)] border border-[var(--border)]">
-                    <img src={img} alt="Detail" loading="lazy" className="w-full h-full object-cover transition-all duration-700" />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+          {project.prototypeVideo && (
+            <ProjectSection title="Interactive Prototype">
+               <div className="aspect-video bg-[var(--surface)] border border-[var(--border)] flex items-center justify-center p-12">
+                  <Play size={48} className="text-[var(--accent)] opacity-50" />
+                  <p className="ml-4 text-[10px] uppercase tracking-widest text-[var(--text-muted)] font-mono">Loading Interactive Sandbox...</p>
+               </div>
+            </ProjectSection>
+          )}
 
-          {/* Outcome Section */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start pb-24 border-b border-[var(--border)]">
-            <div className="md:col-span-4">
-              <h2 className="text-[10px] uppercase tracking-[0.5em] text-[var(--text-muted)] sticky top-40 mb-8 md:mb-0">Outcome</h2>
+          <ProjectSection title="Outcome">
+            <div className="space-y-16">
+               <p className="text-2xl md:text-4xl text-[var(--accent)] font-semibold leading-tight tracking-tight" style={{ fontFamily: 'Satoshi, sans-serif' }}>
+                  {project.outcome}
+               </p>
+               
+               {project.outcomeImages && (
+                 <div className="grid grid-cols-1 gap-8">
+                    {project.outcomeImages.map((img, i) => (
+                      <div key={i} className="aspect-video overflow-hidden border border-[var(--border)] shadow-xl">
+                        <img src={img} alt="Final outcome" className="w-full h-full object-cover" />
+                      </div>
+                    ))}
+                 </div>
+               )}
+               
+               {project.link && (
+                 <div className="pt-12">
+                    <a 
+                      href={project.link.startsWith('http') ? project.link : '#'}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-cursor-label="OPEN"
+                      className="inline-flex items-center gap-4 text-2xl md:text-4xl font-bold hover:text-[var(--accent)] transition-all group"
+                      style={{ fontFamily: 'Satoshi, sans-serif' }}
+                    >
+                      Explore Project <ExternalLink size={32} className="group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform" />
+                    </a>
+                 </div>
+               )}
             </div>
-            <div className="md:col-span-8">
-              <p className="text-2xl md:text-3xl text-[var(--text)] font-medium leading-relaxed" style={{ fontFamily: 'Satoshi, sans-serif' }}>{project.outcome}</p>
-            </div>
-          </div>
+          </ProjectSection>
         </section>
 
-        <footer className="mt-32 text-center">
-          <Link
-            to="/work"
-            className="text-4xl md:text-8xl font-bold hover:text-[var(--accent)] transition-all duration-500 group inline-block"
-            style={{ fontFamily: 'Satoshi, sans-serif' }}
-          >
-            Back to Index <span className="inline-block transition-transform group-hover:translate-x-4">→</span>
-          </Link>
+        <footer className="mt-48 pt-24 border-t border-[var(--border)] text-center">
+           <Link
+             to="/work"
+             data-cursor-label="BACK"
+             className="text-4xl md:text-8xl font-bold hover:text-[var(--accent)] transition-all duration-500 group inline-block"
+             style={{ fontFamily: 'Satoshi, sans-serif' }}
+           >
+             Next Exploration <span className="inline-block transition-transform group-hover:translate-x-4">→</span>
+           </Link>
         </footer>
       </div>
     </div>
