@@ -91,7 +91,7 @@ const Navbar: React.FC<NavbarProps> = ({
     <>
       {/* Top Right Layout Toggle - Responsive Positioning */}
       <div className="fixed top-6 right-6 md:top-8 md:right-8 z-[110] flex items-center gap-2 pointer-events-none">
-        <div className={`flex items-center bg-[var(--bg)]/60 backdrop-blur-xl border border-[var(--border)] rounded-sm overflow-hidden pointer-events-auto transition-all duration-700 ${isToggleVisible ? 'opacity-100' : 'opacity-0 translate-x-12'}`}>
+        <div className={`hidden md:flex items-center bg-[var(--bg)]/60 backdrop-blur-xl border border-[var(--border)] rounded-sm overflow-hidden pointer-events-auto transition-all duration-700 ${isToggleVisible ? 'opacity-100' : 'opacity-0 translate-x-12'}`}>
           <button
             onClick={() => onToggleLayout('01')}
             className={`px-4 md:px-5 py-2.5 md:py-3.5 text-[10px] md:text-xs border-r border-[var(--border)] font-mono transition-all duration-500 ${workLayout === '01' ? 'bg-[var(--text)] text-[var(--bg)]' : 'bg-transparent text-[var(--text-muted)] hover:text-[var(--text)]'
@@ -161,10 +161,10 @@ const Navbar: React.FC<NavbarProps> = ({
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="md:hidden w-[120px] h-[48px] text-[var(--text-muted)] hover:text-[var(--text)] transition-colors flex items-center justify-center gap-2"
           >
-            <div className="w-5 h-5 relative flex flex-col justify-center gap-1.5 flex-shrink-0">
-              <span className={`w-full h-[1.5px] bg-current transition-all ${isMobileMenuOpen ? 'rotate-45 translate-y-[5px]' : ''}`} />
-              <span className={`w-full h-[1.5px] bg-current transition-all ${isMobileMenuOpen ? 'opacity-0' : ''}`} />
-              <span className={`w-full h-[1.5px] bg-current transition-all ${isMobileMenuOpen ? '-rotate-45 -translate-y-[5px]' : ''}`} />
+            <div className={`relative w-6 h-6 flex flex-col justify-center items-center transition-all duration-300 ${isMobileMenuOpen ? 'gap-0' : 'gap-1.5'}`}>
+              <span className={`w-full h-0.5 bg-current transition-all duration-500 absolute ${isMobileMenuOpen ? 'rotate-45' : '-translate-y-2'}`} />
+              <span className={`w-full h-0.5 bg-current transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : 'opacity-100'}`} />
+              <span className={`w-full h-0.5 bg-current transition-all duration-500 absolute ${isMobileMenuOpen ? '-rotate-45' : 'translate-y-2'}`} />
             </div>
             <span className="text-[10px] uppercase tracking-widest font-bold whitespace-nowrap hidden sm:block">Menu</span>
           </button>

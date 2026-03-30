@@ -8,6 +8,7 @@ import {
   Wrench,
   MonitorPlay
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const BlueprintLabel = ({ label }: { label: string }) => (
   <div className="absolute inset-[-4px] border border-blue-500/40 dark:border-blue-400/40 bg-blue-500/5 dark:bg-blue-400/5 pointer-events-none z-50 flex items-start justify-start p-1.5 rounded-sm">
@@ -610,21 +611,20 @@ export const InteractiveCanvas = () => {
                       <GithubStatusWidget />
                     </div>
                     <div className="flex gap-3 pt-2">
-                      <MagneticButton 
-                        onClick={() => {
-                          const workSection = document.getElementById('work');
-                          if (workSection) workSection.scrollIntoView({ behavior: 'smooth' });
-                        }}
-                        className="px-5 py-2.5 bg-[var(--ink)] text-[var(--bg)] text-[10px] font-bold uppercase tracking-widest rounded-lg hover:opacity-90 transition-all hover:shadow-lg hover:shadow-accent/20"
+                      <Link 
+                        to="/work"
+                        data-cursor-label="VIEW"
+                        className="px-5 py-2.5 bg-[var(--ink)] text-[var(--bg)] text-[10px] font-bold uppercase tracking-widest rounded-lg hover:opacity-90 transition-all hover:shadow-lg hover:shadow-accent/20 flex items-center justify-center"
                       >
                         View Work
-                      </MagneticButton>
-                      <MagneticButton 
-                        onClick={() => window.location.href = 'mailto:adidey27@gmail.com'}
-                        className="px-5 py-2.5 bg-[var(--border)] text-[var(--ink)] text-[10px] font-bold uppercase tracking-widest rounded-lg transition-all hover:bg-[var(--surface)] hover:shadow-md"
+                      </Link>
+                      <Link 
+                        to="/contact"
+                        data-cursor-label="TALK"
+                        className="px-5 py-2.5 bg-[var(--border)] text-[var(--ink)] text-[10px] font-bold uppercase tracking-widest rounded-lg transition-all hover:bg-[var(--surface)] hover:shadow-md flex items-center justify-center"
                       >
                         Contact
-                      </MagneticButton>
+                      </Link>
                     </div>
                   </div>
                   
@@ -649,20 +649,58 @@ export const InteractiveCanvas = () => {
           </motion.div>
         </div>
 
-        {/* Mobile Tags */}
+        {/* Mobile Tags Grid */}
         <motion.div 
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.2, duration: 1.2 }}
-          className="flex md:hidden flex-wrap justify-center gap-1.5 mt-10 px-4 relative z-10"
+          className="md:hidden grid grid-cols-3 gap-2 mt-12 px-6 relative z-10 w-full"
         >
           {tags.map((tag) => (
-            <div key={tag.id} className="flex items-center gap-1.5 px-2.5 py-1 bg-[var(--card-base)]/90 backdrop-blur-sm border border-[var(--border)] rounded-sm shadow-sm transition-colors duration-300">
-              <tag.icon size={10} className="text-[var(--ink)]" />
-              <span className="text-[9px] font-bold uppercase tracking-wider text-[var(--ink)]">{tag.text}</span>
-            </div>
+            <button 
+              key={tag.id} 
+              onClick={() => setActiveTagId(activeTagId === tag.id ? null : tag.id)}
+              className={`flex flex-col items-center justify-center gap-2 p-3 rounded-xl border transition-all duration-300 ${
+                activeTagId === tag.id 
+                ? 'bg-[var(--accent)] border-[var(--accent)] shadow-lg shadow-accent/20' 
+                : 'bg-[var(--card-base)]/80 backdrop-blur-md border-[var(--border)]'
+              }`}
+            >
+              <tag.icon size={16} className={activeTagId === tag.id ? 'text-white' : 'text-[var(--ink)]'} />
+              <span className={`text-[8px] font-bold uppercase tracking-widest transition-colors ${
+                activeTagId === tag.id ? 'text-white' : 'text-[var(--ink)]'
+              }`}>
+                {tag.text}
+              </span>
+            </button>
           ))}
         </motion.div>
+
+        {/* Mobile Info Panel Overlay */}
+        <AnimatePresence>
+          {activeTagId && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              className="md:hidden fixed bottom-24 left-6 right-6 p-6 bg-[var(--card-base)]/95 backdrop-blur-2xl border border-[var(--border)] rounded-2xl shadow-2xl z-50 overflow-hidden"
+              onClick={() => setActiveTagId(null)}
+            >
+              <div className="absolute top-0 left-0 w-1 h-full bg-[var(--accent)]" />
+              <div className="flex flex-col gap-1">
+                <div className="flex items-center justify-between mb-2">
+                   <span className="text-[10px] font-bold text-[var(--accent)] uppercase tracking-[0.2em]">Context</span>
+                   <button className="text-[var(--muted)] hover:text-[var(--ink)] transition-colors">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+                   </button>
+                </div>
+                <div className="text-sm font-medium leading-relaxed text-[var(--ink)]">
+                  {tags.find(t => t.id === activeTagId)?.content}
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
       {/* Measurement Tool Layout */}
