@@ -78,7 +78,7 @@ const Gallery: React.FC<GalleryProps> = ({ layout }) => {
     }, [items]);
 
     return (
-        <main className="relative select-none flex flex-col pt-24 min-h-screen">
+        <main className="relative select-none flex flex-col">
             <Helmet>
                 <title>Gallery — Aditya Dey</title>
                 <meta name="description" content="A gallery of design experiments, posters, and visual studies." />
@@ -86,7 +86,7 @@ const Gallery: React.FC<GalleryProps> = ({ layout }) => {
             {/* Background Gradient Blurs - Removed for theme consistency */}
             <div className="absolute inset-0 z-0 opacity-0 pointer-events-none" />
 
-            <header className="relative w-full z-20 pt-24 md:pt-32 px-6 md:px-12 pointer-events-none">
+            <header className="relative w-full z-20 px-6 md:px-12 pointer-events-none">
                 <div className="flex flex-col items-center text-center">
                     <h1 className="text-[14vw] md:text-[12vw] font-bold leading-none tracking-tighter text-[var(--text)] uppercase select-none flex flex-col items-center" style={{ fontFamily: 'Satoshi, sans-serif' }}>
                         <span>Posters</span>
@@ -122,7 +122,7 @@ const Gallery: React.FC<GalleryProps> = ({ layout }) => {
                 </div>
             </header>
 
-            <div className="relative w-full flex-grow px-6 md:px-12 pb-48 md:pb-80">
+            <div className="relative w-full flex-grow px-6 md:px-12 pb-32">
                 {isLoading ? (
                     <div className="min-h-[40vh] flex items-center justify-center">
                         <p className="text-white/50 text-sm font-mono tracking-widest animate-pulse">LOADING SHOTS...</p>

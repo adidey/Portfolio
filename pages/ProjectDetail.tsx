@@ -34,13 +34,13 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ onBack }) => {
   if (!project) return null;
 
   return (
-    <div className="min-h-screen text-[var(--text)] selection:bg-[var(--accent)] selection:text-white">
+    <div className="text-[var(--text)] selection:bg-[var(--accent)] selection:text-white">
       <Helmet>
         <title>{project.title} — Aditya Dey</title>
         <meta name="description" content={project.shortDescription} />
       </Helmet>
 
-      <div className="pt-32 pb-48 px-6 md:px-12 max-w-7xl mx-auto">
+      <div className="pb-32 px-6 md:px-12 max-w-7xl mx-auto">
         {/* Header Section */}
         <header className="mb-32">
           <Link 
@@ -71,13 +71,56 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ onBack }) => {
                      {project.context}
                    </p>
                 </div>
-                <div className="flex flex-col justify-end gap-2 md:text-right">
-                   <p className="text-[10px] uppercase tracking-widest text-[var(--text-muted)]">Primary Role</p>
-                   <p className="text-xl font-bold italic">{project.role}</p>
+                <div className="flex flex-col justify-end gap-6 md:text-right">
+                   <div className="space-y-1">
+                      <p className="text-[10px] uppercase tracking-widest text-[var(--text-muted)] font-mono">Primary Role</p>
+                      <p className="text-xl font-bold italic">{project.role}</p>
+                   </div>
+                   {project.roleDetail && (
+                     <p className="text-xs text-[var(--text-muted)] max-w-sm md:ml-auto leading-relaxed">
+                        {project.roleDetail}
+                     </p>
+                   )}
                 </div>
              </div>
           </div>
         </header>
+
+        {/* Technical Summary / Metrics Bar */}
+        {(project.metrics || project.technologies) && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-32 p-8 border border-[var(--border)] bg-[var(--surface)]/50 backdrop-blur-md rounded-2xl relative overflow-hidden group">
+             <div className="absolute top-0 right-0 p-4 opacity-5 pointer-events-none group-hover:opacity-10 transition-opacity">
+                <span className="text-6xl font-mono">01</span>
+             </div>
+             
+             {project.technologies && (
+               <div className="space-y-6">
+                  <p className="text-[10px] font-mono text-[var(--accent)] uppercase tracking-widest">Stack.Inventory</p>
+                  <div className="flex flex-wrap gap-2">
+                     {project.technologies.map(tech => (
+                       <span key={tech} className="px-3 py-1 bg-[var(--bg)] border border-[var(--border)] text-[var(--text)] text-[10px] font-bold rounded-full uppercase tracking-tighter">
+                          {tech}
+                       </span>
+                     ))}
+                  </div>
+               </div>
+             )}
+
+             {project.metrics && (
+               <div className="space-y-6">
+                  <p className="text-[10px] font-mono text-[var(--accent)] uppercase tracking-widest text-right">Performance.KPIs</p>
+                  <div className="flex flex-col gap-4 items-end">
+                     {project.metrics.map((metric, i) => (
+                       <div key={i} className="flex items-center gap-3">
+                          <span className="text-[11px] font-bold text-[var(--text)] text-right">{metric}</span>
+                          <div className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-pulse" />
+                       </div>
+                     ))}
+                  </div>
+               </div>
+             )}
+          </div>
+        )}
 
         {/* Hero Asset */}
         <motion.div 

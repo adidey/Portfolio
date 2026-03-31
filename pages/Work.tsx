@@ -1,10 +1,10 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { PROJECTS } from '../constants';
 import { Project } from '../types';
 import BehanceSection from '../components/BehanceSection';
+import MacWindow from '../components/MacWindow';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Play, Eye } from 'lucide-react';
 
@@ -59,35 +59,15 @@ const DesignerArtifact: React.FC<{ project: Project; index: number }> = ({ proje
   );
 };
 
-const BlueprintGrid: React.FC = () => (
-  <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-[0.03] dark:opacity-[0.07]">
-    <div className="absolute inset-0" style={{ 
-      backgroundImage: `linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px)`,
-      backgroundSize: '100px 100px'
-    }} />
-    <div className="absolute inset-0" style={{ 
-      backgroundImage: `linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px)`,
-      backgroundSize: '20px 20px',
-      opacity: 0.3
-    }} />
-  </div>
-);
-
 const ProjectBoardCard: React.FC<{ project: Project; index: number }> = ({ project, index }) => {
   const [isHovered, setIsHovered] = useState(false);
   
-  // More aggressive board layout
-  const isEven = index % 2 === 0;
-  const rotation = isHovered ? 0 : (isEven ? -2.5 : 2.5);
-  const xOffset = isEven ? -100 : 100;
-
   return (
     <motion.div
-      initial={{ opacity: 0, x: isEven ? -100 : 100, y: 50 }}
-      whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 1.2, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
-      className="relative mb-64 last:mb-96"
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+      className="relative mb-32 last:mb-48"
       style={{
         zIndex: isHovered ? 100 : 10 + index,
       }}
@@ -101,26 +81,16 @@ const ProjectBoardCard: React.FC<{ project: Project; index: number }> = ({ proje
       >
         <DesignerArtifact project={project} index={index} />
         
-        <div 
+        <motion.div 
           className="relative transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
-          style={{
-            transform: `translate3d(${isHovered ? 0 : xOffset}px, 0, 0) rotate(${rotation}deg)`,
+          animate={{
+            rotate: isHovered ? 0 : (index % 2 === 0 ? -1 : 1),
+            scale: isHovered ? 1.02 : 1
           }}
         >
-          {/* Card Frame */}
-          <div className="relative aspect-[16/9] bg-[var(--surface)] border border-[var(--border)] overflow-hidden shadow-2xl transition-all duration-700 group-hover:border-[var(--text)]/20">
-            {/* Visual Header (Figma style) */}
-            <div className="absolute top-0 left-0 w-full h-8 px-4 flex items-center justify-between border-b border-[var(--border)] bg-[var(--bg)]/50 backdrop-blur-md z-20">
-              <div className="flex gap-1.5">
-                <div className="w-2 h-2 rounded-full bg-[var(--border)]" />
-                <div className="w-2 h-2 rounded-full bg-[var(--border)]" />
-                <div className="w-2 h-2 rounded-full bg-[var(--border)]" />
-              </div>
-              <span className="text-[8px] font-mono text-[var(--text-muted)] uppercase tracking-widest">{project.category} // {project.year}</span>
-            </div>
-
+          <MacWindow title={project.title} category={project.category} className="aspect-[16/9]">
             {/* Main Image / Preview */}
-            <div className="relative w-full h-full pt-8 h-full">
+            <div className="relative w-full h-full overflow-hidden">
               <img
                 src={project.thumbnail}
                 alt={project.title}
@@ -134,7 +104,7 @@ const ProjectBoardCard: React.FC<{ project: Project; index: number }> = ({ proje
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.95 }}
-                    className="absolute inset-0 pt-8 flex items-center justify-center p-12 z-10"
+                    className="absolute inset-0 flex items-center justify-center p-12 z-10"
                   >
                     <div className="text-center max-w-lg space-y-6">
                       <p className="text-[10px] uppercase tracking-[0.5em] text-[var(--accent)] font-bold">Prototype Insight</p>
@@ -156,7 +126,7 @@ const ProjectBoardCard: React.FC<{ project: Project; index: number }> = ({ proje
                 )}
               </AnimatePresence>
             </div>
-          </div>
+          </MacWindow>
 
           {/* Contextual Annotation Box */}
           <div className="mt-8 flex justify-between items-end">
@@ -172,15 +142,14 @@ const ProjectBoardCard: React.FC<{ project: Project; index: number }> = ({ proje
                <span className="text-[10px] font-mono text-[var(--text-muted)] opacity-50">0{index + 1}</span>
             </div>
           </div>
-        </div>
+        </motion.div>
       </Link>
     </motion.div>
   );
 };
 
 const renderList = () => (
-  <div className="relative w-full py-20 px-8 md:px-32 max-w-[1600px] mx-auto min-h-screen">
-    <BlueprintGrid />
+  <div className="relative w-full py-20 px-8 md:px-32 max-w-[1600px] mx-auto">
     {PROJECTS.map((project, index) => (
       <ProjectBoardCard key={project.id} project={project} index={index} />
     ))}
@@ -188,7 +157,7 @@ const renderList = () => (
 );
 
 const renderGrid = () => (
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-20 md:gap-y-32">
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-20 md:gap-y-32 mb-32">
     {PROJECTS.map((project) => (
       <Link
         key={project.id}
@@ -196,7 +165,7 @@ const renderGrid = () => (
         data-cursor-label="VIEW"
         className="group cursor-pointer flex flex-col gap-6 md:gap-10 transition-all duration-500"
       >
-        <div className="relative aspect-[16/10] overflow-hidden rounded-[2px] bg-[var(--surface)] border border-[var(--border)] shadow-lg">
+        <MacWindow title={project.title} category={project.category} className="aspect-[16/10]">
           <img
             src={project.thumbnail}
             alt={project.title}
@@ -204,7 +173,7 @@ const renderGrid = () => (
             className="w-full h-full object-cover transition-all duration-500 md:group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-white opacity-0 transition-opacity duration-300 pointer-events-none group-active:opacity-10" />
-        </div>
+        </MacWindow>
         <div className="flex flex-col gap-4 px-2">
           <div className="flex justify-between items-baseline">
             <h3 className="text-2xl md:text-4xl font-bold tracking-tighter text-[var(--text)] group-hover:translate-x-2 transition-transform" style={{ fontFamily: 'Satoshi, sans-serif' }}>
@@ -229,7 +198,7 @@ const renderGrid = () => (
 );
 
   return (
-    <main className="min-h-screen pt-48 pb-[100vh]" ref={containerRef}>
+    <main className="relative z-10" ref={containerRef}>
       <Helmet>
         <title>Work — Aditya Dey</title>
         <meta name="description" content="A selection of product and UX design projects focusing on interaction design, interface architecture, and digital experiences." />

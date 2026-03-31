@@ -12,6 +12,11 @@ const BusinessCard = () => {
   const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["17.5deg", "-17.5deg"]);
   const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-17.5deg", "17.5deg"]);
 
+  // 3D Shadow Strats: Shadow moves opposite to the tilt
+  const shadowX = useTransform(mouseXSpring, [-0.5, 0.5], [20, -20]);
+  const shadowY = useTransform(mouseYSpring, [-0.5, 0.5], [20, -20]);
+  const shadowOpacity = useTransform(mouseYSpring, [-0.5, 0.5], [0.1, 0.3]);
+
   // Parallax values for background
   const bgX = useTransform(mouseXSpring, [-0.5, 0.5], ["10%", "-10%"]);
   const bgY = useTransform(mouseYSpring, [-0.5, 0.5], ["10%", "-10%"]);
@@ -35,6 +40,17 @@ const BusinessCard = () => {
 
   return (
     <div className="flex justify-center items-center py-20 perspective-1000 relative">
+      {/* 3D Floating Shadow Strat */}
+      <motion.div
+        style={{
+          x: shadowX,
+          y: shadowY,
+          opacity: shadowOpacity,
+          filter: "blur(40px)",
+        }}
+        className="absolute w-[80%] h-[60%] bg-black rounded-full pointer-events-none"
+      />
+
       <motion.div
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
@@ -147,7 +163,7 @@ export const Contact = () => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen pt-8"
+      className="relative z-10"
     >
       <div className="container mx-auto px-6 h-full relative">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[calc(100vh-12rem)]">

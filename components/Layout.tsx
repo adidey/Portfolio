@@ -34,6 +34,25 @@ const Layout: React.FC<LayoutProps> = ({
 
     return (
         <div className={`min-h-screen bg-[var(--bg)] text-[var(--text)] selection:bg-[var(--selection-bg)] selection:text-[var(--selection-text)] flex flex-col relative overflow-x-hidden ${theme === 'light' ? 'light' : ''}`}>
+            {/* Global Design Grid */}
+            <div className="fixed inset-0 pointer-events-none z-0 opacity-[0.03] dark:opacity-[0.05]">
+                <div 
+                    className="absolute inset-0" 
+                    style={{ 
+                        backgroundImage: `linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px)`,
+                        backgroundSize: '100px 100px'
+                    }} 
+                />
+                <div 
+                    className="absolute inset-0" 
+                    style={{ 
+                        backgroundImage: `linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px)`,
+                        backgroundSize: '20px 20px',
+                        opacity: 0.2
+                    }} 
+                />
+            </div>
+
             <Navbar
                 currentPath={currentPath}
                 onNavigate={onNavigate}

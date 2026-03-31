@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { getBehanceProjects, type BehanceProject } from '../services/behanceService';
+import MacWindow from './MacWindow';
 
 interface BehanceSectionProps {
   username: string;
@@ -182,32 +183,30 @@ const BehanceSection: React.FC<BehanceSectionProps> = ({ username, layout = '01'
             </h3>
           </div>
 
-          {/* Image Section */}
           <div
-            className="w-full md:w-[40%] flex items-center justify-center transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] my-6 md:my-0"
-            style={{
-              opacity: focus,
-              transform: `translateY(${(1 - focus) * 40}px)`,
-            }}
+            className="w-full md:w-[40%] flex items-center justify-center my-6 md:my-0"
           >
-            <div
-              className="relative w-full max-w-[420px] aspect-[16/9] overflow-hidden bg-neutral-900/40 rounded-[2px] shadow-2xl border border-white/5"
-              style={{
-                clipPath: isMobile ? 'none' : `inset(${(1 - focus) * 100}% 0 0 0)`,
-              }}
+            <MacWindow 
+              title={project.title} 
+              category="Behance Archive" 
+              className="w-full max-w-[420px] aspect-[16/9]"
             >
-              {project.coverImage ? (
-                <img
-                  src={project.coverImage}
-                  alt={project.title}
-                  loading="lazy"
-                  className="w-full h-full object-cover grayscale transition-all duration-1000 md:group-hover:grayscale-0 md:group-hover:scale-105"
-                />
-              ) : (
-                <div className="w-full h-full bg-neutral-800" />
-              )}
-              <div className="absolute inset-0 bg-black/20 md:hidden" />
-            </div>
+              <div
+                className="relative w-full h-full overflow-hidden bg-neutral-900/40 shadow-2xl"
+              >
+                {project.coverImage ? (
+                  <img
+                    src={project.coverImage}
+                    alt={project.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover grayscale transition-all duration-1000 md:group-hover:grayscale-0 md:group-hover:scale-105"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-neutral-800" />
+                )}
+                <div className="absolute inset-0 bg-black/20 md:hidden" />
+              </div>
+            </MacWindow>
           </div>
 
           {/* Info Section */}
@@ -330,7 +329,7 @@ const BehanceSection: React.FC<BehanceSectionProps> = ({ username, layout = '01'
                 rel="noopener noreferrer"
                 className="group cursor-pointer flex flex-col gap-6 md:gap-10 opacity-70 hover:opacity-100 transition-opacity duration-500"
               >
-                <div className="relative aspect-[16/10] overflow-hidden rounded-[2px] bg-neutral-900 border border-white/5 shadow-lg group">
+                <MacWindow title={project.title} category="Behance Archive" className="aspect-[16/10]">
                   {project.coverImage ? (
                     <img
                       src={project.coverImage}
@@ -341,7 +340,7 @@ const BehanceSection: React.FC<BehanceSectionProps> = ({ username, layout = '01'
                   ) : (
                     <div className="w-full h-full bg-[var(--surface)]" />
                   )}
-                </div>
+                </MacWindow>
                 <div className="flex flex-col gap-3 px-2">
                   <p className="text-[9px] md:text-[10px] uppercase tracking-[0.4em] text-[var(--text-muted)] group-hover:text-[var(--accent)] transition-colors duration-300">
                     Behance Archive

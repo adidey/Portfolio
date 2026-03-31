@@ -14,6 +14,9 @@ export interface Project {
   tags: string[];
   client: string;
   role: string;
+  roleDetail?: string;
+  metrics?: string[];
+  technologies?: string[];
   link?: string;
   prototypeVideo?: string;
   annotations?: string[];

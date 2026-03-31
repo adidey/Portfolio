@@ -4,7 +4,7 @@ import { EXPERIENCE, SKILLS } from '../constants';
 
 const About: React.FC = () => {
   return (
-    <main className="pt-24 md:pt-32 px-6 md:px-12 pb-32 max-w-7xl mx-auto">
+    <main className="px-6 md:px-12 pb-32 max-w-7xl mx-auto">
       <Helmet>
         <title>About — Aditya Dey</title>
         <meta name="description" content="Product and interaction designer with a background in computing and psychology, designing structured digital experiences." />
