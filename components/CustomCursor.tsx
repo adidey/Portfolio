@@ -11,9 +11,12 @@ const CustomCursor: React.FC = () => {
         const onMouseMove = (e: MouseEvent) => {
             const { clientX, clientY } = e;
 
-            cursor.style.transform = `translate3d(${clientX}px, ${clientY}px, 0)`;
-            follower.style.transform = `translate3d(${clientX - 15}px, ${clientY - 15}px, 0)`;
-            label.style.transform = `translate3d(${clientX}px, ${clientY}px, 0)`;
+            // Using requestAnimationFrame for smoother performance
+            requestAnimationFrame(() => {
+                cursor.style.transform = `translate3d(${clientX}px, ${clientY}px, 0)`;
+                follower.style.transform = `translate3d(${clientX - 15}px, ${clientY - 15}px, 0)`;
+                label.style.transform = `translate3d(${clientX + 24}px, ${clientY}px, 0)`;
+            });
         };
 
         const onMouseDown = () => {
@@ -26,7 +29,16 @@ const CustomCursor: React.FC = () => {
 
         const onMouseOver = (e: MouseEvent) => {
             const target = e.target as HTMLElement;
-            if (
+            const interactive = target.closest('[data-cursor-label]') as HTMLElement;
+            
+            if (interactive) {
+                follower.classList.add('cursor-hover');
+                const cursorLabel = interactive.getAttribute('data-cursor-label');
+                if (cursorLabel) {
+                    label.textContent = cursorLabel;
+                    label.style.opacity = '1';
+                }
+            } else if (
                 target.tagName === 'A' ||
                 target.tagName === 'BUTTON' ||
                 target.closest('button') ||
@@ -34,17 +46,14 @@ const CustomCursor: React.FC = () => {
                 target.classList.contains('cursor-pointer')
             ) {
                 follower.classList.add('cursor-hover');
-                const cursorLabel = target.getAttribute('data-cursor-label') || target.closest('[data-cursor-label]')?.getAttribute('data-cursor-label');
-                if (cursorLabel) {
-                    label.textContent = cursorLabel;
-                    label.style.opacity = '1';
-                }
             }
         };
 
         const onMouseOut = (e: MouseEvent) => {
             const target = e.target as HTMLElement;
-            if (
+            const interactive = target.closest('[data-cursor-label]');
+            
+            if (interactive || 
                 target.tagName === 'A' ||
                 target.tagName === 'BUTTON' ||
                 target.closest('button') ||
@@ -57,11 +66,18 @@ const CustomCursor: React.FC = () => {
             }
         };
 
+        const onClick = () => {
+            follower.classList.remove('cursor-hover', 'scale-75', 'opacity-50');
+            label.style.opacity = '0';
+            setTimeout(() => { if (label.style.opacity === '0') label.textContent = ''; }, 300);
+        };
+
         window.addEventListener('mousemove', onMouseMove);
         window.addEventListener('mousedown', onMouseDown);
         window.addEventListener('mouseup', onMouseUp);
         window.addEventListener('mouseover', onMouseOver);
         window.addEventListener('mouseout', onMouseOut);
+        window.addEventListener('click', onClick);
 
         return () => {
             window.removeEventListener('mousemove', onMouseMove);
@@ -69,6 +85,7 @@ const CustomCursor: React.FC = () => {
             window.removeEventListener('mouseup', onMouseUp);
             window.removeEventListener('mouseover', onMouseOver);
             window.removeEventListener('mouseout', onMouseOut);
+            window.removeEventListener('click', onClick);
         };
     }, []);
 

@@ -166,9 +166,13 @@
   }
 
   #cursor-label {
+    position: fixed;
+    top: 0;
+    left: 0;
     color: var(--text);
     font-family: 'Satoshi', sans-serif;
     text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    will-change: transform;
   }
 
   .light #cursor-label {

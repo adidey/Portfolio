@@ -15,14 +15,7 @@ const BehanceSection: React.FC<BehanceSectionProps> = ({ username, layout = '01'
   const [error, setError] = useState<string | null>(null);
   const [hasIntersected, setHasIntersected] = useState(false);
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const [isMobile, setIsMobile] = useState(false);
 
-  useEffect(() => {
-    const update = () => setIsMobile(window.innerWidth < 768);
-    update();
-    window.addEventListener('resize', update);
-    return () => window.removeEventListener('resize', update);
-  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -84,152 +77,78 @@ const BehanceSection: React.FC<BehanceSectionProps> = ({ username, layout = '01'
 
   const showContent = !isLoading && !error && projects.length > 0;
 
-  const BehanceListItem: React.FC<{ project: BehanceProject; index: number }> = ({ project, index }) => {
-    const itemRef = useRef<HTMLAnchorElement>(null);
-    const [focus, setFocus] = useState(0);
-    const [clicked, setClicked] = useState(false);
-
-    useEffect(() => {
-      const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: Array.from({ length: 101 }, (_, i) => i / 100),
-      };
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const rect = entry.boundingClientRect;
-            const viewportCenter = window.innerHeight / 2;
-            const itemCenter = rect.top + rect.height / 2;
-            const dist = Math.abs(viewportCenter - itemCenter);
-            const focusZone = window.innerHeight * 0.6;
-            const factor = Math.max(0, 1 - dist / focusZone);
-            setFocus(Math.pow(factor, 2));
-          }
-        });
-      }, observerOptions);
-
-      if (itemRef.current) observer.observe(itemRef.current);
-
-      const handleScroll = () => {
-        if (!itemRef.current) return;
-        const rect = itemRef.current.getBoundingClientRect();
-        if (rect.top < window.innerHeight && rect.bottom > 0) {
-          const viewportCenter = window.innerHeight / 2;
-          const itemCenter = rect.top + rect.height / 2;
-          const dist = Math.abs(viewportCenter - itemCenter);
-          const focusZone = window.innerHeight * 0.6;
-          const factor = Math.max(0, 1 - dist / focusZone);
-          setFocus(Math.pow(factor, 2));
-        }
-      };
-
-      window.addEventListener('scroll', handleScroll, { passive: true });
-      window.addEventListener('resize', handleScroll);
-
-      return () => {
-        observer.disconnect();
-        window.removeEventListener('scroll', handleScroll);
-        window.removeEventListener('resize', handleScroll);
-      };
-    }, []);
-
-    const height = isMobile ? `${280 + focus * 150}px` : `${160 + focus * 450}px`;
-
-    const handleClick = () => {
-      setClicked(true);
-      setTimeout(() => setClicked(false), 400);
-    };
+  const BehanceCard: React.FC<{ project: BehanceProject; index: number }> = ({ project, index }) => {
+    const [isHovered, setIsHovered] = useState(false);
+    const isEven = index % 2 === 0;
+    const rotation = isHovered ? 0 : (isEven ? -2.5 : 2.5);
 
     return (
-      <a
-        ref={itemRef}
-        href={project.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        onClick={handleClick}
-        className={`group relative flex flex-col w-full border-b border-[var(--border)] overflow-hidden cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-[var(--surface)]/30 ${clicked ? 'bg-[var(--text)]/[0.05]' : ''}`}
-        style={{ height }}
+      <div
+        className="relative mb-32 last:mb-0"
+        style={{ zIndex: isHovered ? 100 : 10 + index }}
       >
-        {/* Index Label */}
-        <div className="absolute top-4 left-6 md:top-5 md:left-8 z-30 pointer-events-none">
-          <span
-            className="text-[9px] md:text-[10px] font-bold transition-all duration-500"
+        <a
+          href={project.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          data-cursor-label="VIEW"
+          className="group relative block w-full max-w-5xl mx-auto cursor-none h-fit"
+        >
+          <div
+            className="relative transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
             style={{
-              fontFamily: 'Satoshi, sans-serif',
-              opacity: 0.2 + focus * 0.8,
-              color: focus > 0.4 ? 'var(--text)' : 'var(--text-muted)',
+              transform: `rotate(${rotation}deg) scale(${isHovered ? 1.02 : 1})`,
             }}
           >
-            0{index + 1}
-          </span>
-        </div>
-
-        {/* Content Flex Container */}
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between w-full h-full px-6 md:px-20 py-12 md:py-0 relative z-20 pointer-events-none">
-          {/* Title Section */}
-          <div className="w-full md:w-[30%] text-left flex items-center md:h-full">
-            <h3
-              className="text-2xl md:text-5xl font-bold tracking-tighter transition-all duration-700"
-              style={{
-                fontFamily: 'Satoshi, sans-serif',
-                color: focus > 0.2 ? 'var(--text)' : 'var(--text-muted)',
-                transform: `translateY(${(1 - focus) * 10}px)`,
-                opacity: 0.3 + focus * 0.7,
-              }}
-            >
-              {project.title}
-            </h3>
-          </div>
-
-          <div
-            className="w-full md:w-[40%] flex items-center justify-center my-6 md:my-0"
-          >
-            <MacWindow 
-              title={project.title} 
-              category="Behance Archive" 
-              className="w-full max-w-[420px] aspect-[16/9]"
-            >
-              <div
-                className="relative w-full h-full overflow-hidden bg-neutral-900/40 shadow-2xl"
-              >
+            <MacWindow title={project.title} category="Behance Archive" className="aspect-[16/9]">
+              <div className="relative w-full h-full overflow-hidden">
                 {project.coverImage ? (
                   <img
                     src={project.coverImage}
                     alt={project.title}
                     loading="lazy"
-                    className="w-full h-full object-cover grayscale transition-all duration-1000 md:group-hover:grayscale-0 md:group-hover:scale-105"
+                    className={`w-full h-full object-cover transition-all duration-1000 ${isHovered ? 'scale-105 opacity-40 blur-sm' : 'opacity-80'}`}
                   />
                 ) : (
-                  <div className="w-full h-full bg-neutral-800" />
+                  <div className="w-full h-full bg-[var(--surface)]" />
                 )}
-                <div className="absolute inset-0 bg-black/20 md:hidden" />
+                {isHovered && (
+                  <div className="absolute inset-0 flex items-center justify-center p-12 z-10">
+                    <div className="text-center max-w-lg space-y-4">
+                      <p className="text-[10px] uppercase tracking-[0.5em] text-[var(--accent)] font-bold">Behance Archive</p>
+                      <h3 className="text-3xl md:text-5xl font-bold tracking-tighter text-[var(--text)]" style={{ fontFamily: 'Satoshi, sans-serif' }}>
+                        {project.title}
+                      </h3>
+                      {project.description && (
+                        <p className="text-sm md:text-base text-[var(--text-muted)] leading-relaxed font-light italic">
+                          "{project.description}"
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                )}
               </div>
             </MacWindow>
-          </div>
 
-          {/* Info Section */}
-          <div className="w-full md:w-[30%] text-left md:text-right flex items-center md:justify-end md:h-full">
-            <p
-              className="text-[9px] md:text-[12px] font-medium leading-relaxed max-w-[260px] transition-all duration-700"
-              style={{
-                color: focus > 0.4 ? 'var(--text-muted)' : 'var(--border)',
-                opacity: focus,
-                transform: `translateY(${(1 - focus) * 10}px)`,
-              }}
-            >
-              {project.description || 'Behance project'}
-            </p>
+            {/* Annotation row */}
+            <div className="mt-8 flex justify-between items-end">
+              <div className="space-y-1">
+                <div className="flex items-center gap-2">
+                  <span className="text-[10px] font-mono text-[var(--text-muted)]">SYSTEM:</span>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--text)]">{project.title}</span>
+                </div>
+                <p className="text-[9px] uppercase tracking-widest text-[var(--text-muted)]">Archive — Behance</p>
+              </div>
+              <div className="flex gap-6 items-center">
+                <div className="w-16 h-px bg-[var(--border)]" />
+                <span className="text-[10px] font-mono text-[var(--text-muted)] opacity-50">0{index + 1}</span>
+              </div>
+            </div>
           </div>
-        </div>
-
-        {/* Selection Highlight */}
-        <div
-          className={`absolute inset-0 bg-white transition-opacity duration-300 pointer-events-none ${clicked ? 'opacity-5' : 'opacity-0'
-            }`}
-        />
-      </a>
+        </a>
+      </div>
     );
   };
 
@@ -263,24 +182,16 @@ const BehanceSection: React.FC<BehanceSectionProps> = ({ username, layout = '01'
       {/* Skeleton loader */}
       {isLoading && (
         layout === '01' ? (
-          <div className="relative border-t border-neutral-900 w-full mb-8">
+          <div className="relative w-full py-20 px-8 md:px-32 max-w-[1600px] mx-auto space-y-32">
             {Array.from({ length: 3 }).map((_, idx) => (
-              <div
-                key={idx}
-                className="relative flex flex-col w-full border-b border-neutral-900 overflow-hidden transition-all duration-700 bg-neutral-900/10"
-                style={{ height: isMobile ? '320px' : '240px' }}
-              >
-                <div className="absolute inset-0 bg-neutral-900/20 animate-pulse" />
-                <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between w-full h-full px-6 md:px-20 py-12 md:py-0">
-                  <div className="w-full md:w-[30%]">
-                    <div className="h-6 md:h-10 w-2/3 bg-neutral-800 rounded animate-pulse" />
+              <div key={idx} className="w-full max-w-5xl mx-auto">
+                <div className="aspect-[16/9] bg-neutral-900 border border-white/5 rounded-[2px] animate-pulse" />
+                <div className="mt-8 flex justify-between items-end">
+                  <div className="space-y-2">
+                    <div className="h-3 w-32 bg-neutral-800 rounded animate-pulse" />
+                    <div className="h-2 w-48 bg-neutral-900 rounded animate-pulse" />
                   </div>
-                  <div className="w-full md:w-[40%] my-6 md:my-0">
-                    <div className="aspect-[16/9] bg-neutral-800 rounded-[2px] border border-white/5 animate-pulse" />
-                  </div>
-                  <div className="w-full md:w-[30%] md:flex md:justify-end">
-                    <div className="h-4 w-full md:w-2/3 bg-neutral-800 rounded animate-pulse" />
-                  </div>
+                  <div className="h-2 w-8 bg-neutral-800 rounded animate-pulse" />
                 </div>
               </div>
             ))}
@@ -314,43 +225,41 @@ const BehanceSection: React.FC<BehanceSectionProps> = ({ username, layout = '01'
       {/* Projects grid */}
       {showContent && (
         layout === '01' ? (
-          <div className="relative border-t border-[var(--border)] w-full mb-32 md:mb-40">
+          <div className="relative w-full py-20 px-8 md:px-32 max-w-[1600px] mx-auto">
             {projects.map((project, index) => (
-              <BehanceListItem key={project.id} project={project} index={index} />
+              <BehanceCard key={project.id} project={project} index={index} />
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-20 md:gap-y-32">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-20 md:gap-y-32 mb-32">
             {projects.map((project) => (
               <a
                 key={project.id}
                 href={project.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group cursor-pointer flex flex-col gap-6 md:gap-10 opacity-70 hover:opacity-100 transition-opacity duration-500"
+                data-cursor-label="VIEW"
+                className="group cursor-none flex flex-col gap-6 md:gap-10 transition-all duration-500"
               >
                 <MacWindow title={project.title} category="Behance Archive" className="aspect-[16/10]">
-                  {project.coverImage ? (
-                    <img
-                      src={project.coverImage}
-                      alt={project.title}
-                      loading="lazy"
-                      className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105"
-                    />
-                  ) : (
-                    <div className="w-full h-full bg-[var(--surface)]" />
-                  )}
+                  <img
+                    src={project.coverImage || ''}
+                    alt={project.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-all duration-500 md:group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-white opacity-0 transition-opacity duration-300 pointer-events-none group-active:opacity-10" />
                 </MacWindow>
-                <div className="flex flex-col gap-3 px-2">
-                  <p className="text-[9px] md:text-[10px] uppercase tracking-[0.4em] text-[var(--text-muted)] group-hover:text-[var(--accent)] transition-colors duration-300">
-                    Behance Archive
-                  </p>
-                  <h3
-                    className="text-2xl md:text-3xl font-bold tracking-tighter text-[var(--text)] group-hover:translate-x-2 transition-transform duration-300"
-                    style={{ fontFamily: 'Satoshi, sans-serif' }}
-                  >
-                    {project.title}
-                  </h3>
+                <div className="flex flex-col gap-4 px-2">
+                  <div className="flex justify-between items-baseline">
+                    <h3
+                      className="text-2xl md:text-4xl font-bold tracking-tighter text-[var(--text)] group-hover:translate-x-2 transition-transform"
+                      style={{ fontFamily: 'Satoshi, sans-serif' }}
+                    >
+                      {project.title}
+                    </h3>
+                    <span className="text-[9px] md:text-[10px] uppercase tracking-[0.4em] text-[var(--text-muted)]">Behance Archive</span>
+                  </div>
                   {project.description && (
                     <p className="text-xs md:text-sm text-[var(--text-muted)] line-clamp-2 leading-relaxed">
                       {project.description}

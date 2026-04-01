@@ -62,12 +62,18 @@ const DesignerArtifact: React.FC<{ project: Project; index: number }> = ({ proje
 const ProjectBoardCard: React.FC<{ project: Project; index: number }> = ({ project, index }) => {
   const [isHovered, setIsHovered] = useState(false);
   
+  // Staggered side-entry calculations
+  const isEven = index % 2 === 0;
+  const rotation = isHovered ? 0 : (isEven ? -2.5 : 2.5);
+  const xOffset = isEven ? -100 : 100;
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-      className="relative mb-32 last:mb-48"
+      initial={{ opacity: 0, x: isEven ? -100 : 100, y: 50 }}
+      whileInView={{ opacity: 1, x: 0, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 1.2, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+      className="relative mb-64 last:mb-96"
       style={{
         zIndex: isHovered ? 100 : 10 + index,
       }}
@@ -84,7 +90,7 @@ const ProjectBoardCard: React.FC<{ project: Project; index: number }> = ({ proje
         <motion.div 
           className="relative transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
           animate={{
-            rotate: isHovered ? 0 : (index % 2 === 0 ? -1 : 1),
+            rotate: rotation,
             scale: isHovered ? 1.02 : 1
           }}
         >
@@ -114,9 +120,9 @@ const ProjectBoardCard: React.FC<{ project: Project; index: number }> = ({ proje
                       <p className="text-sm md:text-lg text-[var(--text-muted)] leading-relaxed font-light italic">
                         "{project.shortDescription}"
                       </p>
-                      <div className="flex justify-center gap-4 pt-4">
+                      <div className="flex flex-wrap justify-center gap-2 pt-4 max-w-xs mx-auto">
                          {project.tags.slice(0, 3).map(tag => (
-                           <span key={tag} className="text-[8px] uppercase tracking-[0.2em] px-3 py-1 border border-[var(--border)] text-[var(--text-muted)] rounded-full">
+                           <span key={tag} className="text-[8px] uppercase tracking-[0.2em] px-3 py-1 border border-[var(--border)] text-[var(--text-muted)] rounded-full whitespace-nowrap">
                              {tag}
                            </span>
                          ))}

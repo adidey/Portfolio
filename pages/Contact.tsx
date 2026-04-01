@@ -211,7 +211,7 @@ export const Contact = () => {
           </div>
 
           {/* Right Side: Enhanced Business Card */}
-          <div className="flex justify-center lg:justify-end">
+          <div className="flex justify-center lg:justify-end" data-cursor-label="TALK">
             <BusinessCard />
           </div>
         </div>
