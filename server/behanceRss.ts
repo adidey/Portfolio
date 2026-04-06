@@ -25,17 +25,18 @@ function stripHtml(s: string): string {
 }
 
 function extractFirstImageUrl(descriptionHtml: string): string {
-  const img = descriptionHtml.match(/<img[^>]+src=["']([^"']+)["']/i);
-  if (img?.[1]) return img[1];
+  const rawUrl = (
+    descriptionHtml.match(/<img[^>]+src=["']([^"']+)["']/i)?.[1] ||
+    descriptionHtml.match(/<media:thumbnail[^>]+url=["']([^"']+)["']/i)?.[1] ||
+    descriptionHtml.match(/<media:content[^>]+url=["']([^"']+)["']/i)?.[1] ||
+    ''
+  );
 
-  // Common RSS namespaces in some feeds
-  const mediaThumb = descriptionHtml.match(/<media:thumbnail[^>]+url=["']([^"']+)["']/i);
-  if (mediaThumb?.[1]) return mediaThumb[1];
+  if (!rawUrl) return '';
 
-  const mediaContent = descriptionHtml.match(/<media:content[^>]+url=["']([^"']+)["']/i);
-  if (mediaContent?.[1]) return mediaContent[1];
-
-  return '';
+  // Behance RSS usually returns URLs like .../projects/404/... or .../projects/202/...
+  // We swap these small suffixes for 1200 or 808 for better quality.
+  return rawUrl.replace(/\/(115|200|202|404|808)\//, '/1200/');
 }
 
 export function parseBehanceRss(xml: string): BehanceRssProject[] {

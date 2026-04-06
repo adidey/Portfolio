@@ -122,7 +122,7 @@ const Gallery: React.FC<GalleryProps> = ({ layout }) => {
                 </div>
             </header>
 
-            <div className="relative w-full flex-grow px-6 md:px-12 pb-32">
+            <div className="relative w-full flex-grow px-6 md:px-12 pb-64">
                 {isLoading ? (
                     <div className="min-h-[40vh] flex items-center justify-center">
                         <p className="text-white/50 text-sm font-mono tracking-widest animate-pulse">LOADING SHOTS...</p>

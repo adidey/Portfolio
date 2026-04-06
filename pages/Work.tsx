@@ -26,8 +26,8 @@ const DesignerArtifact: React.FC<{ project: Project; index: number }> = ({ proje
       {artifacts.map((text, i) => {
         const isEven = index % 2 === 0;
         const seed = (index * 13) + (i * 7);
-        const top = (seed % 30) + (i * 20);
-        const left = isEven ? (seed % 20) + 70 : (seed % 20) - 10;
+        const top = (seed % 15) + (i * 35);
+        const left = isEven ? (seed % 15) + 75 : (seed % 15) - 5;
         const rotate = (seed % 20) - 10;
 
         return (
