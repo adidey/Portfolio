@@ -5,13 +5,15 @@ import { SpeedInsights } from '@vercel/speed-insights/react';
 import { PageView } from './components/Navbar';
 import Layout from './components/Layout';
 import CustomCursor from './components/CustomCursor';
-import Home from './pages/Home';
-import Work from './pages/Work';
-import About from './pages/About';
-import Resume from './pages/Resume';
-import Contact from './pages/Contact';
-import Gallery from './pages/Gallery';
-import ProjectDetail from './pages/ProjectDetail';
+
+// Lazy load non-critical pages to improve FCP
+const Home = React.lazy(() => import('./pages/Home'));
+const Work = React.lazy(() => import('./pages/Work'));
+const About = React.lazy(() => import('./pages/About'));
+const Resume = React.lazy(() => import('./pages/Resume'));
+const Contact = React.lazy(() => import('./pages/Contact'));
+const Gallery = React.lazy(() => import('./pages/Gallery'));
+const ProjectDetail = React.lazy(() => import('./pages/ProjectDetail'));
 
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -85,16 +87,18 @@ const App: React.FC = () => {
       isLoading={isLoading}
     >
       <CustomCursor />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/work" element={<Work onProjectClick={handleProjectClick} layout={effectiveLayout} />} />
-        <Route path="/work/:projectId" element={<ProjectDetail onBack={() => navigate('/work')} />} />
-        <Route path="/posters" element={<Gallery layout={effectiveLayout} />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/resume" element={<Resume />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="*" element={<Home />} />
-      </Routes>
+      <React.Suspense fallback={<div className="min-h-screen bg-[var(--bg)]" />}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/work" element={<Work onProjectClick={handleProjectClick} layout={effectiveLayout} />} />
+          <Route path="/work/:projectId" element={<ProjectDetail onBack={() => navigate('/work')} />} />
+          <Route path="/posters" element={<Gallery layout={effectiveLayout} />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/resume" element={<Resume />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="*" element={<Home />} />
+        </Routes>
+      </React.Suspense>
       <Analytics />
       <SpeedInsights />
     </Layout>

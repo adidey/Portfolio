@@ -5,7 +5,7 @@ import { PROJECTS } from '../constants';
 import { Project } from '../types';
 import BehanceSection from '../components/BehanceSection';
 import MacWindow from '../components/MacWindow';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence, LazyMotion, domMax } from 'framer-motion';
 import { ExternalLink, Play, Eye } from 'lucide-react';
 
 interface WorkProps {
@@ -31,7 +31,7 @@ const DesignerArtifact: React.FC<{ project: Project; index: number }> = ({ proje
         const rotate = (seed % 20) - 10;
 
         return (
-          <motion.div
+          <m.div
             key={i}
             initial={{ opacity: 0, scale: 0.8, rotate: rotate + 10 }}
             whileInView={{ opacity: 1, scale: 1, rotate: rotate }}
@@ -52,7 +52,7 @@ const DesignerArtifact: React.FC<{ project: Project; index: number }> = ({ proje
             <p className="text-[9px] font-bold uppercase tracking-[0.1em] leading-tight">
               {text}
             </p>
-          </motion.div>
+          </m.div>
         );
       })}
     </div>
@@ -68,7 +68,7 @@ const ProjectBoardCard: React.FC<{ project: Project; index: number }> = ({ proje
   const xOffset = isEven ? -100 : 100;
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, x: isEven ? -100 : 100, y: 50 }}
       whileInView={{ opacity: 1, x: 0, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
@@ -87,7 +87,7 @@ const ProjectBoardCard: React.FC<{ project: Project; index: number }> = ({ proje
       >
         <DesignerArtifact project={project} index={index} />
         
-        <motion.div 
+        <m.div 
           className="relative transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
           animate={{
             rotate: rotation,
@@ -106,7 +106,7 @@ const ProjectBoardCard: React.FC<{ project: Project; index: number }> = ({ proje
               {/* Hover Preview Content */}
               <AnimatePresence>
                 {isHovered && (
-                  <motion.div 
+                  <m.div 
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.95 }}
@@ -128,7 +128,7 @@ const ProjectBoardCard: React.FC<{ project: Project; index: number }> = ({ proje
                          ))}
                       </div>
                     </div>
-                  </motion.div>
+                  </m.div>
                 )}
               </AnimatePresence>
             </div>
@@ -148,9 +148,9 @@ const ProjectBoardCard: React.FC<{ project: Project; index: number }> = ({ proje
                <span className="text-[10px] font-mono text-[var(--text-muted)] opacity-50">0{index + 1}</span>
             </div>
           </div>
-        </motion.div>
+        </m.div>
       </Link>
-    </motion.div>
+    </m.div>
   );
 };
 
@@ -204,32 +204,34 @@ const renderGrid = () => (
 );
 
   return (
-    <main className="relative z-10" ref={containerRef}>
-      <Helmet>
-        <title>Work — Aditya Dey</title>
-        <meta name="description" content="A selection of product and UX design projects focusing on interaction design, interface architecture, and digital experiences." />
-        <meta property="og:title" content="Work — Aditya Dey" />
-        <meta property="og:description" content="A selection of product and UX design projects focusing on interaction design, interface architecture, and digital experiences." />
-        <meta property="og:image" content="/og-image.png" />
-      </Helmet>
-      <div className="max-w-[1800px] mx-auto px-6 md:px-12">
-        <div className="mb-32 flex flex-col items-center">
-          <h1
-            className="text-[14vw] md:text-[12vw] font-bold leading-none tracking-tighter text-[var(--text)] select-none"
-            style={{ fontFamily: 'Satoshi, sans-serif' }}
-          >
-            Work
-          </h1>
-          <div className="w-px h-24 bg-gradient-to-b from-blue-500/0 via-blue-500/50 to-blue-500/0 mt-12" />
-        </div>
+    <LazyMotion features={domMax}>
+      <main className="relative z-10" ref={containerRef}>
+        <Helmet>
+          <title>Work — Aditya Dey</title>
+          <meta name="description" content="A selection of product and UX design projects focusing on interaction design, interface architecture, and digital experiences." />
+          <meta property="og:title" content="Work — Aditya Dey" />
+          <meta property="og:description" content="A selection of product and UX design projects focusing on interaction design, interface architecture, and digital experiences." />
+          <meta property="og:image" content="/og-image.png" />
+        </Helmet>
+        <div className="max-w-[1800px] mx-auto px-6 md:px-12">
+          <div className="mb-32 flex flex-col items-center">
+            <h1
+              className="text-[14vw] md:text-[12vw] font-bold leading-none tracking-tighter text-[var(--text)] select-none"
+              style={{ fontFamily: 'Satoshi, sans-serif' }}
+            >
+              Work
+            </h1>
+            <div className="w-px h-24 bg-gradient-to-b from-blue-500/0 via-blue-500/50 to-blue-500/0 mt-12" />
+          </div>
 
-        <div className="animate-in fade-in slide-in-from-bottom-12 duration-1000 cubic-bezier-liquid">
-          {layout === '01' ? renderList() : renderGrid()}
-        </div>
+          <div className="animate-in fade-in slide-in-from-bottom-12 duration-1000 cubic-bezier-liquid">
+            {layout === '01' ? renderList() : renderGrid()}
+          </div>
 
-        <BehanceSection username="adityadey" layout={layout} />
-      </div>
-    </main>
+          <BehanceSection username="adityadey" layout={layout} />
+        </div>
+      </main>
+    </LazyMotion>
   );
 };
 

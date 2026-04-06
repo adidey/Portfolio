@@ -10,13 +10,9 @@ const CustomCursor: React.FC = () => {
 
         const onMouseMove = (e: MouseEvent) => {
             const { clientX, clientY } = e;
-
-            // Using requestAnimationFrame for smoother performance
-            requestAnimationFrame(() => {
-                cursor.style.transform = `translate3d(${clientX}px, ${clientY}px, 0)`;
-                follower.style.transform = `translate3d(${clientX - 15}px, ${clientY - 15}px, 0)`;
-                label.style.transform = `translate3d(${clientX + 24}px, ${clientY}px, 0)`;
-            });
+            // Using CSS variables instead of JS style updates allows the browser to optimize layout
+            document.documentElement.style.setProperty('--cursor-x', `${clientX}px`);
+            document.documentElement.style.setProperty('--cursor-y', `${clientY}px`);
         };
 
         const onMouseDown = () => {
