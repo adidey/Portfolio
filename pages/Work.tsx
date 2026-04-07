@@ -44,7 +44,7 @@ const Work: React.FC<WorkProps> = ({ onProjectClick }) => {
         <div className="max-w-[1500px] mx-auto px-6 md:px-12 relative z-10">
           <div className="mb-20 flex flex-col items-center">
             <h1
-              className="text-[14vw] md:text-[8vw] font-black leading-none tracking-tighter text-[var(--text)] select-none uppercase"
+              className="text-[14vw] md:text-[10vw] font-black leading-none tracking-tighter text-[var(--text)] select-none uppercase"
               style={{ fontFamily: 'Satoshi, sans-serif' }}
             >
               Work
