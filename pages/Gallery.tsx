@@ -3,11 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { CarouselItem } from '../types';
 import { getDribbbleShots } from '../services/dribbbleService';
 
-interface GalleryProps {
-    layout: '01' | '02';
-}
-
-const Gallery: React.FC<GalleryProps> = ({ layout }) => {
+const Gallery: React.FC = () => {
     const [rotation, setRotation] = useState(0);
     const [radius, setRadius] = useState(1200);
     const [items, setItems] = useState<CarouselItem[]>([]);
@@ -93,7 +89,6 @@ const Gallery: React.FC<GalleryProps> = ({ layout }) => {
                     </h1>
                     <div className="w-px h-24 bg-gradient-to-b from-blue-500/0 via-blue-500/50 to-blue-500/0 mt-12" />
 
-                    {layout === '01' && (
                         <div className="mt-16 md:mt-20 animate-in fade-in duration-1000">
                             <div className="text-[var(--text-muted)] text-[10px] uppercase tracking-[0.3em] font-light flex items-center gap-4 justify-center pointer-events-auto relative z-30" role="group" aria-label="Carousel navigation controls">
                                 <button
@@ -118,7 +113,6 @@ const Gallery: React.FC<GalleryProps> = ({ layout }) => {
                                 </button>
                             </div>
                         </div>
-                    )}
                 </div>
             </header>
 
@@ -131,8 +125,8 @@ const Gallery: React.FC<GalleryProps> = ({ layout }) => {
                     <div className="min-h-[40vh] flex items-center justify-center">
                         <p className="text-white/30 text-sm font-mono tracking-widest">NO SHOTS FOUND</p>
                     </div>
-                ) : layout === '01' ? (
-                    /* layout 01: 3D Scene */
+                ) : (
+                    /* Layout: Primary 3D Scene (formerly 01) */
                     <div className="relative w-full flex items-center justify-center pt-32 md:pt-64" style={{ perspective: '3000px' }}>
                         <div
                             className="relative flex items-center justify-center transition-transform duration-1000 cubic-bezier-liquid"
@@ -153,31 +147,6 @@ const Gallery: React.FC<GalleryProps> = ({ layout }) => {
                                 />
                             ))}
                         </div>
-                    </div>
-                ) : (
-                    /* layout 02: Grid View — Strictly 3-4 columns on desktop */
-                    <div className="max-w-[1400px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 animate-in fade-in slide-in-from-bottom-12 duration-1000 cubic-bezier-liquid">
-                        {items.map((item, idx) => (
-                            <a
-                                key={item.id}
-                                href={item.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className={`group relative bg-[var(--surface)] rounded-[2px] border border-[var(--border)] shadow-2xl transition-all duration-700 hover:scale-[1.02] hover:border-[var(--text)]/20 block cursor-pointer ${item.source === 'dribbble' ? 'aspect-[4/3]' : 'aspect-[1/1.414]'}`}
-                            >
-                                <img
-                                    src={item.imageUrl}
-                                    alt={item.title}
-                                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-1000"
-                                    loading="lazy"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                                <div className="absolute bottom-0 left-0 w-full p-8 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700">
-                                    <span className="text-[10px] font-mono text-[var(--accent)] uppercase tracking-widest mb-2 block">Study No. {idx + 1}</span>
-                                    <h3 className="text-2xl font-bold uppercase tracking-tighter text-white italic" style={{ fontFamily: 'Satoshi, sans-serif' }}>{item.title}</h3>
-                                </div>
-                            </a>
-                        ))}
                     </div>
                 )}
             </div>

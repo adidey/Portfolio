@@ -14,16 +14,10 @@
   --font-sans: "Inter", sans-serif;
   --font-modern: "Satoshi", sans-serif;
   --font-display: "General Sans", sans-serif;
-  --font-satoshi: "Satoshi", sans-serif;
-  --font-thunder: "Thunder ExtraBoldLC", "Thunder BoldLC", "Thunder", "Bebas Neue", sans-serif;
-  --color-primary: #2563eb;
-  
-  --color-bg: var(--bg);
-  --color-ink: var(--ink);
-  --color-muted: var(--muted);
-  --color-border: var(--border);
   --color-accent: var(--accent);
   --shadow-soft: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+  --shadow-realistic: 0 10px 30px -10px rgba(0, 0, 0, 0.4), 0 4px 10px -2px rgba(0, 0, 0, 0.2);
+  --shadow-glow: 0 0 40px -10px var(--card-glow-1);
 
   --animate-slow-rotate: slow-rotate 25s linear infinite;
   --animate-float: float 6s ease-in-out infinite;
@@ -51,27 +45,54 @@
   }
 
   @keyframes driftA {
-    0%, 100% { transform: translate(0%, 0%) scale(1); }
-    33%       { transform: translate(12%, 8%) scale(1.1); }
-    66%       { transform: translate(-6%, 12%) scale(0.95); }
+
+    0%,
+    100% {
+      transform: translate(0%, 0%) scale(1);
+    }
+
+    33% {
+      transform: translate(12%, 8%) scale(1.1);
+    }
+
+    66% {
+      transform: translate(-6%, 12%) scale(0.95);
+    }
   }
 
   @keyframes driftB {
-    0%, 100% { transform: translate(0%, 0%) scale(1); }
-    40%       { transform: translate(-14%, -10%) scale(1.08); }
-    70%       { transform: translate(8%, -6%) scale(1.05); }
+
+    0%,
+    100% {
+      transform: translate(0%, 0%) scale(1);
+    }
+
+    40% {
+      transform: translate(-14%, -10%) scale(1.08);
+    }
+
+    70% {
+      transform: translate(8%, -6%) scale(1.05);
+    }
   }
 
   @keyframes driftC {
-    0%, 100% { transform: translate(0%, 0%) scale(1); }
-    50%       { transform: translate(-10%, 15%) scale(1.12); }
+
+    0%,
+    100% {
+      transform: translate(0%, 0%) scale(1);
+    }
+
+    50% {
+      transform: translate(-10%, 15%) scale(1.12);
+    }
   }
 }
 
 @layer base {
   :root {
     --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
-    
+
     /* Dark Mode (Default Charcoal) */
     --bg: #0C0C0C;
     --text: #D6CDC0;
@@ -111,6 +132,20 @@
     --card-center: #FFFFFF;
     --selection-bg: var(--accent);
     --selection-text: #ffffff;
+
+    /* Theme-Adaptive Folder (User Preference: Inverted) */
+    --folder-bg: #0C0C0C;
+    /* Dark in Light Mode (Matches Dark Primary) */
+    --folder-text: #EAE3D5;
+    --folder-glow: rgba(0, 0, 0, 0.15);
+  }
+
+  :root {
+    /* Default: Dark Mode */
+    --folder-bg: #EAE3D5;
+    /* Light in Dark Mode */
+    --folder-text: #0C0C0C;
+    --folder-glow: rgba(255, 255, 255, 0.1);
   }
 
   html {
@@ -173,7 +208,7 @@
     left: 0;
     color: var(--text);
     font-family: 'Satoshi', sans-serif;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     will-change: transform;
     transform: translate3d(calc(var(--cursor-x, -100px) + 24px), var(--cursor-y, -100px), 0);
   }
@@ -241,6 +276,31 @@
 
   .cubic-bezier-liquid {
     transition-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+  }
+
+  /* Standardized Designer Canvas Grid (Sync with Landing Page) */
+  .designer-grid {
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px),
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 200px 200px, 200px 200px, 50px 50px, 50px 50px;
+    background-position: center center;
+    /* High-impact Designer Canvas Grid: Large scale with dramatic radial falloff */
+    opacity: 0.45;
+    mask-image: radial-gradient(circle at center, black 5%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* Folder Silhouette */
+  .folder-tab-clip {
+    clip-path: polygon(0% 40px,
+        120px 40px,
+        150px 0%,
+        100% 0%,
+        100% 100%,
+        0% 100%);
   }
 }
 
@@ -350,15 +410,35 @@
 }
 
 @keyframes flow-blob {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(10%, -10%) scale(1.1); }
-  66% { transform: translate(-5%, 15%) scale(0.9); }
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  33% {
+    transform: translate(10%, -10%) scale(1.1);
+  }
+
+  66% {
+    transform: translate(-5%, 15%) scale(0.9);
+  }
 }
 
 @keyframes ripple-blob {
-  0%, 100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
-  33% { border-radius: 60% 40% 30% 70% / 50% 60% 40% 60%; }
-  66% { border-radius: 30% 70% 60% 40% / 60% 40% 50% 40%; }
+
+  0%,
+  100% {
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  }
+
+  33% {
+    border-radius: 60% 40% 30% 70% / 50% 60% 40% 60%;
+  }
+
+  66% {
+    border-radius: 30% 70% 60% 40% / 60% 40% 50% 40%;
+  }
 }
 
 .animate-flow-blob {

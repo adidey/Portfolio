@@ -9,7 +9,7 @@ const Home: React.FC = () => {
         <title>Aditya Dey | Product & UX Designer</title>
         <meta name="description" content="Melbourne-based Product & UX Designer specializing in structured digital experiences." />
       </Helmet>
-      
+
       <div className="flex-1 w-full flex flex-col items-center justify-center">
         <InteractiveCanvas />
       </div>

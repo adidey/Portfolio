@@ -17,7 +17,6 @@ const ProjectDetail = React.lazy(() => import('./pages/ProjectDetail'));
 
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [workLayout, setWorkLayout] = useState<'01' | '02'>('01');
   const location = useLocation();
   const navigate = useNavigate();
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
@@ -27,8 +26,6 @@ const App: React.FC = () => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-
-  const effectiveLayout = isMobile ? '02' : workLayout;
 
   useEffect(() => {
     // Initial load timer
@@ -44,7 +41,6 @@ const App: React.FC = () => {
     // Page load simulation for routes
     setIsLoading(true);
     const timer = setTimeout(() => {
-      console.log('App: Setting isLoading to false');
       setIsLoading(false);
     }, 600);
 
@@ -82,17 +78,15 @@ const App: React.FC = () => {
     <Layout
       currentPath={location.pathname}
       onNavigate={handleNavigate}
-      workLayout={effectiveLayout}
-      onToggleLayout={(l) => setWorkLayout(l)}
       isLoading={isLoading}
     >
       <CustomCursor />
       <React.Suspense fallback={<div className="min-h-screen bg-[var(--bg)]" />}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/work" element={<Work onProjectClick={handleProjectClick} layout={effectiveLayout} />} />
+          <Route path="/work" element={<Work onProjectClick={handleProjectClick} />} />
           <Route path="/work/:projectId" element={<ProjectDetail onBack={() => navigate('/work')} />} />
-          <Route path="/posters" element={<Gallery layout={effectiveLayout} />} />
+          <Route path="/posters" element={<Gallery />} />
           <Route path="/about" element={<About />} />
           <Route path="/resume" element={<Resume />} />
           <Route path="/contact" element={<Contact />} />

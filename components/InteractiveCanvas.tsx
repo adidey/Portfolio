@@ -498,8 +498,8 @@ export const InteractiveCanvas = () => {
         
         {/* Design Canvas Background */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {/* Grid Layer */}
-          {showGrid && <div className="absolute inset-0 design-grid z-0" />}
+          {/* Grid Layer (Standardized Designer Canvas) */}
+          {showGrid && <div className="absolute inset-0 designer-grid z-0" />}
           {/* Noise Texture Overlay */}
           {showNoise && <div className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-soft-light z-10 bg-grain"></div>}
           {/* Alignment Guides */}
