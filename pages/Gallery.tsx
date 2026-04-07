@@ -2,10 +2,9 @@ import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { CarouselItem } from '../types';
 import { getDribbbleShots } from '../services/dribbbleService';
+import { m, LazyMotion, domMax } from 'framer-motion';
 
 const Gallery: React.FC = () => {
-    const [rotation, setRotation] = useState(0);
-    const [radius, setRadius] = useState(1200);
     const [items, setItems] = useState<CarouselItem[]>([]);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -25,129 +24,70 @@ const Gallery: React.FC = () => {
         fetchItems();
     }, []);
 
-    const rotateByStep = useCallback((direction: 'left' | 'right') => {
-        if (items.length === 0) return;
-        const angleStep = 360 / items.length;
-        setRotation((prev) => prev + (direction === 'left' ? angleStep : -angleStep));
-    }, [items.length]);
-
-    useEffect(() => {
-        const handleResize = () => {
-            const width = window.innerWidth;
-            const height = window.innerHeight;
-            // Responsive radius: scale with width but keep a minimum for 3D depth
-            // Also scale with number of items to prevent overlap in the circle
-            const baseRadius = Math.max(height * 0.8, width * 0.7);
-            const itemBasedRadius = items.length * 110; // Increased from 60 to 110 for more spacing between items
-            const dynamicRadius = Math.max(baseRadius, itemBasedRadius);
-
-            setRadius(dynamicRadius);
-        };
-
-        handleResize();
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, [items.length]); // Re-run when items change
-
-    useEffect(() => {
-        const handleKeyDown = (e: KeyboardEvent) => {
-            if (items.length === 0) return;
-            if (e.key === 'ArrowRight') {
-                rotateByStep('right');
-            } else if (e.key === 'ArrowLeft') {
-                rotateByStep('left');
+    const containerVariants = {
+        animate: {
+            transition: {
+                staggerChildren: 0.1,
+                delayChildren: 0.3
             }
-        };
+        }
+    };
 
-        window.addEventListener('keydown', handleKeyDown);
-        return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [items.length, rotateByStep]);
-
-    // Generate random stable offsets for a "scattered" spherical look
-    // Recalculate only when items change
-    const scatterOffsets = useMemo(() => {
-        return items.map(() => ({
-            y: (Math.random() - 0.5) * 120, // Vertical scattering
-            z: (Math.random() - 0.5) * 150, // Depth scattering
-            tilt: (Math.random() - 0.5) * 15, // random tilt
-        }));
-    }, [items]);
+    const itemVariants = {
+        initial: { opacity: 0, y: 30, scale: 0.95 },
+        animate: { 
+            opacity: 1, 
+            y: 0, 
+            scale: 1,
+            transition: { duration: 0.8, ease: [0.23, 1, 0.32, 1] } 
+        }
+    };
 
     return (
-        <main className="relative select-none flex flex-col">
+        <main className="relative min-h-screen pt-24 pb-32 flex flex-col items-center">
             <Helmet>
                 <title>Gallery — Aditya Dey</title>
                 <meta name="description" content="A gallery of design experiments, posters, and visual studies." />
             </Helmet>
-            {/* Background Gradient Blurs - Removed for theme consistency */}
-            <div className="absolute inset-0 z-0 opacity-0 pointer-events-none" />
 
-            <header className="relative w-full z-20 px-6 md:px-12 pointer-events-none">
-                <div className="flex flex-col items-center text-center">
-                    <h1 className="text-[14vw] md:text-[12vw] font-bold leading-none tracking-tighter text-[var(--text)] uppercase select-none flex flex-col items-center" style={{ fontFamily: 'Satoshi, sans-serif' }}>
-                        <span>Posters</span>
-                    </h1>
-                    <div className="w-px h-24 bg-gradient-to-b from-blue-500/0 via-blue-500/50 to-blue-500/0 mt-12" />
+            {/* Designer Canvas Decor */}
+            <div className="fixed inset-0 designer-grid opacity-30 pointer-events-none z-0" />
 
-                        <div className="mt-16 md:mt-20 animate-in fade-in duration-1000">
-                            <div className="text-[var(--text-muted)] text-[10px] uppercase tracking-[0.3em] font-light flex items-center gap-4 justify-center pointer-events-auto relative z-30" role="group" aria-label="Carousel navigation controls">
-                                <button
-                                    type="button"
-                                    aria-label="Rotate carousel left"
-                                    onClick={() => rotateByStep('left')}
-                                    className="px-2 py-1 border border-[var(--border)] rounded bg-[var(--surface)] hover:bg-[var(--border)] transition-all text-[var(--text-muted)] hover:text-[var(--text)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] active:scale-95"
-                                >
-                                    ←
-                                </button>
-                                <span className="sr-only" aria-live="polite">
-                                    Carousel rotated. Active item is now at the front.
-                                </span>
-                                <span aria-hidden="true">Navigate</span>
-                                <button
-                                    type="button"
-                                    aria-label="Rotate carousel right"
-                                    onClick={() => rotateByStep('right')}
-                                    className="px-2 py-1 border border-[var(--border)] rounded bg-[var(--surface)] hover:bg-[var(--border)] transition-all text-[var(--text-muted)] hover:text-[var(--text)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] active:scale-95"
-                                >
-                                    →
-                                </button>
-                            </div>
-                        </div>
-                </div>
+            <header className="relative w-full z-10 px-6 md:px-12 flex flex-col items-center text-center">
+                <h1 
+                    className="text-[14vw] md:text-[10vw] font-black leading-none tracking-tighter text-[var(--text)] select-none uppercase"
+                    style={{ fontFamily: 'Satoshi, sans-serif' }}
+                >
+                    Posters
+                </h1>
+                {/* Signature Vertical Blue Divider */}
+                <div className="w-px h-24 bg-gradient-to-b from-blue-500/0 via-blue-500/50 to-blue-500/0 mt-12 mb-20" />
             </header>
 
-            <div className="relative w-full flex-grow px-6 md:px-12 pb-64">
+            <div className="max-w-[1600px] w-full px-6 md:px-12 relative z-10">
                 {isLoading ? (
                     <div className="min-h-[40vh] flex items-center justify-center">
-                        <p className="text-white/50 text-sm font-mono tracking-widest animate-pulse">LOADING SHOTS...</p>
+                        <p className="text-[var(--text-muted)] text-[10px] uppercase tracking-[0.5em] animate-pulse">Loading Studies...</p>
                     </div>
                 ) : items.length === 0 ? (
                     <div className="min-h-[40vh] flex items-center justify-center">
-                        <p className="text-white/30 text-sm font-mono tracking-widest">NO SHOTS FOUND</p>
+                        <p className="text-[var(--text-muted)] text-[10px] uppercase tracking-[0.5em]">No experiments found</p>
                     </div>
                 ) : (
-                    /* Layout: Primary 3D Scene (formerly 01) */
-                    <div className="relative w-full flex items-center justify-center pt-32 md:pt-64" style={{ perspective: '3000px' }}>
-                        <div
-                            className="relative flex items-center justify-center transition-transform duration-1000 cubic-bezier-liquid"
-                            style={{
-                                transformStyle: 'preserve-3d',
-                                transform: `translateZ(${-radius}px) rotateY(${rotation}deg)`
-                            }}
+                    <LazyMotion features={domMax}>
+                        <m.div 
+                            variants={containerVariants}
+                            initial="initial"
+                            animate="animate"
+                            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12"
                         >
                             {items.map((item, idx) => (
-                                <PosterCard
-                                    key={item.id}
-                                    poster={item}
-                                    index={idx}
-                                    total={items.length}
-                                    radius={radius}
-                                    scatter={scatterOffsets[idx]}
-                                    globalRotation={rotation}
-                                />
+                                <m.div key={item.id} variants={itemVariants}>
+                                    <PosterCard poster={item} index={idx} />
+                                </m.div>
                             ))}
-                        </div>
-                    </div>
+                        </m.div>
+                    </LazyMotion>
                 )}
             </div>
         </main>
@@ -157,106 +97,62 @@ const Gallery: React.FC = () => {
 interface PosterCardProps {
     poster: CarouselItem;
     index: number;
-    total: number;
-    radius: number;
-    scatter: { y: number; z: number; tilt: number };
-    globalRotation: number;
 }
 
-const PosterCard: React.FC<PosterCardProps> = ({ poster, index, total, radius, scatter, globalRotation }) => {
+const PosterCard: React.FC<PosterCardProps> = ({ poster, index }) => {
     const [isHovered, setIsHovered] = useState(false);
-    const angleStep = 360 / total;
-    const currentAngle = index * angleStep;
-
-    // Calculate distance from center to flatten tilt/Y offset as it approaches the front
-    const totalRotation = globalRotation + currentAngle;
-    const normalizedRotation = ((totalRotation % 360) + 360) % 360;
-    const distanceFromCenter = Math.min(normalizedRotation, 360 - normalizedRotation); // 0 to 180
-
-    // Factor: 0 at center, 1 at 45 degrees or more
-    const flattenFactor = Math.min(1, distanceFromCenter / 45);
-
-    // Apply flattening to vertical scatter and tilt
-    const displayY = scatter.y * flattenFactor;
-    const displayTilt = scatter.tilt * flattenFactor;
 
     const Content = (
         <div
-            className="relative w-full h-full group"
+            className="group relative aspect-[3/4] overflow-hidden rounded-[40px] transition-all duration-700 hover:shadow-2xl hover:-translate-y-2"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
-            style={{
-                transform: `scale(${isHovered ? 1.05 : 1})`,
-                transition: 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)',
-                transformStyle: 'preserve-3d'
+            style={{ 
+                backgroundColor: 'var(--surface)',
+                boxShadow: isHovered ? '0 40px 80px -15px rgba(0,0,0,0.5)' : '0 20px 40px -10px rgba(0,0,0,0.2)'
             }}
         >
-            {/* Artistic Glass Frame - Removed overflow-hidden to allow scaling/shadows */}
-            <div className="relative w-full h-full bg-[var(--surface)] shadow-[0_30px_90px_rgba(0,0,0,0.5)] border border-[var(--border)] transition-all duration-700">
-                <img
+            {/* Project Image */}
+            <div className="absolute inset-0 overflow-hidden">
+                <m.img
                     src={poster.imageUrl}
                     alt={poster.title}
-                    className={`w-full h-full object-cover transition-all duration-1000 ${isHovered ? 'scale-110 opacity-100' : 'opacity-80'}`}
+                    animate={{ scale: isHovered ? 1.1 : 1 }}
+                    transition={{ duration: 1.2, ease: [0.23, 1, 0.32, 1] }}
+                    className="w-full h-full object-cover"
                     loading="lazy"
                 />
-
-                {/* Glare effect */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
-
-                {/* Subtle Year Tag */}
-                <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
-                    <span className="text-[10px] font-mono text-[var(--bg)] bg-[var(--text)] px-2 py-1 backdrop-blur-md rounded border border-[var(--border)]">
-                        {poster.year}
-                    </span>
-                </div>
-
-                {/* Metadata UI */}
-                <div className={`absolute inset-0 bg-gradient-to-t from-[var(--bg)] via-[var(--bg)]/20 to-transparent transition-opacity duration-700 flex flex-col justify-end p-8 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
-                    <span className="text-[9px] font-mono text-[var(--accent)] mb-2 uppercase tracking-[0.5em]">
-                        {poster.source === 'dribbble' ? 'Dribbble Shot' : 'System Gallery'}
-                    </span>
-                    <h3 className="text-3xl font-black text-[var(--text)] uppercase tracking-tighter mb-2 italic" style={{ fontFamily: 'Satoshi, sans-serif' }}>
-                        {poster.title}
-                    </h3>
-                    <div className="flex items-center gap-3">
-                        <div className="w-8 h-[1px] bg-[var(--border)]" />
-                        <p className="text-[var(--text-muted)] text-[8px] tracking-[0.4em] uppercase font-light">
-                            Study No. {index + 1}
-                        </p>
-                    </div>
-                </div>
             </div>
 
-            {/* Ambient occlusion shadow */}
-            <div className={`absolute -bottom-16 left-1/2 -translate-x-1/2 w-[80%] h-8 bg-blue-500/20 blur-3xl rounded-full transition-all duration-700 ${isHovered ? 'opacity-80 w-[90%]' : 'opacity-20'}`} />
+            {/* Subtle Glare/Elevation Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+
+            {/* Bottom Info Section */}
+            <div className={`absolute inset-x-0 bottom-0 p-8 pt-20 bg-gradient-to-t from-[var(--bg)] via-[var(--bg)]/90 to-transparent transition-opacity duration-500 ${isHovered ? 'opacity-100' : 'opacity-0 md:opacity-0'}`}>
+                <span className="text-[9px] font-mono text-[var(--accent)] mb-2 uppercase tracking-[0.5em] block">
+                    {poster.source === 'dribbble' ? 'Dribbble Study' : 'Experiment'}
+                </span>
+                <h3 
+                    className="text-2xl font-black text-[var(--text)] uppercase tracking-tighter mb-4 italic leading-none"
+                    style={{ fontFamily: 'Satoshi, sans-serif' }}
+                >
+                    {poster.title}
+                </h3>
+                <div className="flex justify-between items-center border-t border-[var(--border)] pt-4">
+                     <p className="text-[var(--text-muted)] text-[8px] tracking-[0.4em] uppercase font-light">
+                        Vol {index + 101}
+                    </p>
+                    <span className="text-[10px] font-mono opacity-40">{poster.year}</span>
+                </div>
+            </div>
         </div>
     );
 
-    return (
-        <div
-            className="absolute transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]"
-            style={{
-                transform: `rotateY(${currentAngle}deg) translateZ(${radius + scatter.z}px) translateY(${displayY}px) rotateZ(${displayTilt}deg)`,
-                transformStyle: 'preserve-3d',
-                height: 'min(55vh, 480px)',
-                aspectRatio: poster.source === 'dribbble' ? '4 / 3' : '1 / 1.414',
-                width: 'auto'
-            }}
-        >
-            {poster.link ? (
-                <a
-                    href={poster.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block w-full h-full cursor-pointer"
-                >
-                    {Content}
-                </a>
-            ) : (
-                Content
-            )}
-        </div>
-    );
+    return poster.link ? (
+        <a href={poster.link} target="_blank" rel="noopener noreferrer" className="block focus:outline-none focus:ring-2 focus:ring-[var(--accent)] rounded-[40px]">
+            {Content}
+        </a>
+    ) : Content;
 };
 
 export default Gallery;

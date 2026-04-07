@@ -65,7 +65,7 @@ const BusinessCard = () => {
         transition={{
           y: { duration: 6, repeat: Infinity, ease: "easeInOut" },
         }}
-        className="relative z-10 w-[350px] h-[220px] md:w-[450px] md:h-[260px] rounded-3xl overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] border border-border/50 group"
+        className="relative z-10 w-[350px] h-[220px] md:w-[450px] md:h-[260px] rounded-3xl overflow-hidden shadow-[0_40px_80px_-15px_rgba(0,0,0,0.4)] group"
       >
         {/* Base Background Color */}
         <div className="absolute inset-0 bg-[var(--card-base)] transition-colors duration-500" />
@@ -113,24 +113,24 @@ const BusinessCard = () => {
                 <span className="text-[9px] font-bold uppercase tracking-widest text-muted">Active Now</span>
               </div>
             </div>
-            <div className="w-12 h-12 rounded-2xl bg-border/10 flex items-center justify-center border border-border/20">
+            <div className="w-12 h-12 rounded-2xl bg-border/5 flex items-center justify-center">
               <Globe size={20} className="text-accent" />
             </div>
           </div>
 
           {/* Middle Section: Integrations/Badges */}
           <div className="flex flex-wrap gap-2">
-            <div className="px-3 py-1.5 bg-border/10 rounded-full border border-border/20 flex items-center gap-2">
+            <div className="px-3 py-1.5 bg-border/5 rounded-full flex items-center gap-2">
               <Palette size={12} className="text-muted" />
-              <span className="text-[9px] font-bold">11k+ Views</span>
+              <span className="text-[9px] font-bold">11k Views</span>
             </div>
-            <div className="px-3 py-1.5 bg-border/10 rounded-full border border-border/20 flex items-center gap-2">
+            <div className="px-3 py-1.5 bg-border/5 rounded-full flex items-center gap-2">
               <Activity size={12} className="text-muted" />
-              <span className="text-[9px] font-bold">5k+</span>
+              <span className="text-[9px] font-bold">5k+ Views</span>
             </div>
-            <div className="px-3 py-1.5 bg-border/10 rounded-full border border-border/20 flex items-center gap-2">
+            <div className="px-3 py-1.5 bg-border/5 rounded-full flex items-center gap-2">
               <Users size={12} className="text-muted" />
-              <span className="text-[9px] font-bold">500+ Conn.</span>
+              <span className="text-[9px] font-bold">900+ Connections</span>
             </div>
           </div>
 
@@ -143,7 +143,7 @@ const BusinessCard = () => {
               </div>
               <p className="text-[8px] font-bold uppercase tracking-[0.2em] text-muted/50">Melbourne • AU</p>
             </div>
-            <div className="w-8 h-8 rounded-full bg-ink text-bg flex items-center justify-center group-hover:scale-110 transition-transform">
+            <div className="w-8 h-8 rounded-full bg-ink text-bg flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
               <ArrowUpRight size={16} />
             </div>
           </div>

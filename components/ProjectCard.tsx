@@ -46,41 +46,30 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
           alt={project.title}
           initial={{ scale: 1, filter: 'grayscale(0.1) brightness(0.8)' }}
           animate={{
-            scale: isHovered ? 1.08 : 1.02,
+            scale: isHovered ? 1.1 : 1.02,
             filter: isHovered ? 'grayscale(0) brightness(1)' : 'grayscale(0.1) brightness(0.8)',
           }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
         />
-
-        {/* Contextual Top-Right Info */}
-        <m.div
-          animate={{ opacity: isHovered ? 1 : 0.4, y: isHovered ? -5 : 0 }}
-          className="absolute top-8 right-8 text-right z-10"
-        >
-          <p className="text-[8px] uppercase tracking-[0.5em] text-white/40 mb-1">Index_Code</p>
-          <h4 className="text-xs font-bold text-white/80 tracking-tighter leading-none">
-            {project.category.replace(/\s/g, '_').toUpperCase()}
-          </h4>
-        </m.div>
       </div>
 
       {/* Layer 1: Foreground Folder Panel */}
       <m.div
         initial={false}
         animate={{
-          y: isHovered ? '32%' : '0%',
+          y: isHovered ? '35%' : '0%',
           rotate: isHovered ? -0.5 : 0
         }}
         transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
         className="absolute inset-0 z-10 flex flex-col justify-end"
       >
         <div
-          className="h-[46%] w-full bg-[var(--folder-bg)] text-[var(--folder-text)] p-7 md:p-9 flex flex-col justify-between relative border-t border-white/10"
+          className="h-[42%] w-full bg-[var(--folder-bg)] text-[var(--folder-text)] p-6 md:p-7 flex flex-col justify-between relative border-t border-white/10"
           style={{
             clipPath: `url(#folder-clip-${project.id})`,
-            boxShadow: 'var(--shadow-realistic)'
+            boxShadow: isHovered ? '0 40px 80px -15px rgba(0,0,0,0.5)' : 'var(--shadow-realistic)'
           }}
         >
           {/* Top Content (Tab Area) */}
@@ -114,10 +103,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
               </p>
             </div>
             <div className="text-right">
-              <span className="text-2xl font-bold tracking-tighter leading-none opacity-90">
-                {project.year?.toString().slice(-2) || '24'}
+              <span className="text-xs md:text-sm font-bold tracking-tight leading-none opacity-80 block mb-1">
+                {project.role}
               </span>
-              <p className="text-[6px] uppercase tracking-widest opacity-30 mt-0.5">Rel_System</p>
+              <p className="text-[6px] uppercase tracking-widest opacity-30">Rel_Role</p>
             </div>
           </div>
         </div>

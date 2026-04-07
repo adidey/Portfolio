@@ -41,10 +41,10 @@ const Work: React.FC<WorkProps> = ({ onProjectClick }) => {
           <meta property="og:image" content="/og-image.png" />
         </Helmet>
         
-        <div className="max-w-[1800px] mx-auto px-6 md:px-12 relative z-10">
-          <div className="mb-16 flex flex-col items-center">
+        <div className="max-w-[1500px] mx-auto px-6 md:px-12 relative z-10">
+          <div className="mb-20 flex flex-col items-center">
             <h1
-              className="text-[14vw] md:text-[10vw] font-bold leading-none tracking-tighter text-[var(--text)] select-none uppercase"
+              className="text-[14vw] md:text-[8vw] font-black leading-none tracking-tighter text-[var(--text)] select-none uppercase"
               style={{ fontFamily: 'Satoshi, sans-serif' }}
             >
               Work
@@ -53,9 +53,39 @@ const Work: React.FC<WorkProps> = ({ onProjectClick }) => {
             <div className="w-px h-24 bg-gradient-to-b from-blue-500/0 via-blue-500/50 to-blue-500/0 mt-12" />
           </div>
 
-          <div className="animate-in fade-in slide-in-from-bottom-12 duration-1000 cubic-bezier-liquid">
-            {renderGrid()}
-          </div>
+          <m.div 
+            initial="initial"
+            animate="animate"
+            variants={{
+              animate: {
+                transition: {
+                  staggerChildren: 0.1,
+                  delayChildren: 0.2
+                }
+              }
+            }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-x-10 md:gap-y-20 mb-32"
+          >
+            {PROJECTS.map((project) => (
+              <m.div
+                key={project.id}
+                variants={{
+                  initial: { opacity: 0, y: 40, scale: 0.98 },
+                  animate: { 
+                    opacity: 1, 
+                    y: 0, 
+                    scale: 1,
+                    transition: { duration: 1.2, ease: [0.23, 1, 0.32, 1] } 
+                  }
+                }}
+              >
+                <ProjectCard 
+                  project={project} 
+                  onClick={() => onProjectClick(project.id)} 
+                />
+              </m.div>
+            ))}
+          </m.div>
 
           {/* Behance Section Hidden (Code Preserved) */}
           {/* <BehanceSection username="adityadey" layout="02" /> */}
