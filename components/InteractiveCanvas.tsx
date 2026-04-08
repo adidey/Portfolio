@@ -217,10 +217,10 @@ const FloatingTag = React.memo(({
 
 const RoleFlipper = React.memo(({ showBlueprint }: { showBlueprint?: boolean }) => {
   const roles = [
+    { first: "Software", second: "Engineer" },
+    { first: "Frontend", second: "Developer" },
     { first: "Product", second: "Designer" },
-    { first: "Design", second: "Engineer" },
-    { first: "Creative", second: "Developer" },
-    { first: "Interaction", second: "Designer" }
+    { first: "Full-Stack", second: "Engineer" }
   ];
   const [index, setIndex] = useState(0);
 
@@ -410,9 +410,8 @@ const BentoSlide = React.memo(({ project }: { project: any }) => {
 
       {/* Featured Work card: col 4, rows 2–3 — matte desaturated, no harsh colour */}
       <Link
-        to={`/work`}
-        state={{ highlightProject: project.id }}
-        className="rounded-xl p-3 flex flex-col justify-between overflow-hidden group/feat"
+        to={`/work/${project.id}`}
+        className="rounded-xl p-3 flex flex-col justify-between overflow-hidden group/feat cursor-pointer hover:ring-2 hover:ring-[var(--accent)] transition-all"
         style={{
           gridColumn: '4', gridRow: '2 / span 2',
           background: '#1C2333',
@@ -693,8 +692,7 @@ export const InteractiveCanvas = () => {
               </div>
 
               <div
-                className="w-full max-w-[380px] mx-auto lg:mx-0 relative perspective-1000 group cursor-pointer mt-auto h-[440px] shrink-0"
-                onClick={() => setIsCardFlipped(!isCardFlipped)}
+                className="w-full max-w-[380px] mx-auto lg:mx-0 relative perspective-1000 group mt-auto h-[440px] shrink-0"
               >
                 {showBlueprint && <BlueprintLabel label="INTERACTIVE CARD" />}
                 <m.div
@@ -735,7 +733,7 @@ export const InteractiveCanvas = () => {
 
                       <div className="space-y-4">
                         <p className="text-[12px] font-medium leading-relaxed" style={{ color: 'var(--muted)' }}>
-                          I build digital experiences that actually mean something — where solid engineering meets thoughtful design.
+                          I specialize in building full-stack applications with React, Node, and Swift, developing clean, highly performant products.
                         </p>
 
                         <div className="grid grid-cols-2 gap-3 pt-3 border-t border-[var(--border)]">
@@ -751,10 +749,13 @@ export const InteractiveCanvas = () => {
                       </div>
 
                       <div className="flex items-center justify-between pt-4 border-t border-[var(--border)]">
-                        <span className="text-[9px] font-bold uppercase tracking-widest flex items-center gap-1.5 text-[var(--muted)] group-hover:text-[var(--ink)] transition-colors">
+                        <button 
+                          onClick={(e) => { e.stopPropagation(); setIsCardFlipped(true); }}
+                          className="text-[9px] font-bold uppercase tracking-widest flex items-center gap-1.5 text-[var(--muted)] hover:text-[var(--ink)] transition-colors cursor-pointer"
+                        >
                           <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
                           Flip for interests
-                        </span>
+                        </button>
                         <Link to="/work" onClick={(e) => e.stopPropagation()} className="px-5 py-2.5 bg-[var(--ink)] text-[var(--bg)] text-[10px] font-black uppercase tracking-[0.25em] rounded-2xl hover:opacity-90 transition-opacity">
                           View Work
                         </Link>
@@ -798,10 +799,13 @@ export const InteractiveCanvas = () => {
                       </div>
 
                        <div className="flex items-center justify-between pt-3 border-t border-[var(--border)]">
-                        <span className="text-[9px] font-bold uppercase tracking-widest flex items-center gap-1.5 text-[var(--muted)] group-hover:text-[var(--ink)] transition-colors">
+                        <button 
+                          onClick={(e) => { e.stopPropagation(); setIsCardFlipped(false); }}
+                          className="text-[9px] font-bold uppercase tracking-widest flex items-center gap-1.5 text-[var(--muted)] hover:text-[var(--ink)] transition-colors cursor-pointer"
+                        >
                           <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" /></svg>
                           Flip back
-                        </span>
+                        </button>
                         <Link to="/about" onClick={(e) => e.stopPropagation()} className="px-5 py-2.5 border border-[var(--border)] bg-[var(--surface)] text-[var(--ink)] text-[10px] font-black uppercase tracking-[0.25em] rounded-2xl hover:bg-[var(--ink)] hover:text-[var(--bg)] transition-colors">
                           More About Me
                         </Link>

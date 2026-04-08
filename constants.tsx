@@ -30,8 +30,8 @@ export const PROJECTS: Project[] = [
     roleDetail: 'Drove the end-to-end product lifecycle from interaction prototyping in Figma to native App Store deployment.',
     metrics: ['0ms Input Latency', '100% Native Integration', 'System-level Overlay Logic'],
     annotations: ['WIP: Dynamic Reading Line', 'v1.0 Launch', 'System: macOS Native'],
-    processImages: ['/notchprompt_wireframe.png'],
-    outcomeImages: ['/notchprompt_final.png'],
+    processImages: ['https://images.unsplash.com/photo-1618761714954-0b8cd0026356?auto=format&fit=crop&q=80&w=1600'],
+    outcomeImages: ['https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&q=80&w=1600'],
     prototypeVideo: '/videos/notchprompt_demo.mp4'
   },
   {
@@ -53,8 +53,8 @@ export const PROJECTS: Project[] = [
     roleDetail: 'Implemented the retro-CRT shader system and the AI playlist generation logic using the Gemini Pro REST API.',
     metrics: ['80% Increase in Deep Work Sessions', 'Instant AI Mood-matching', 'Zero-latency UI response'],
     annotations: ['Concept: Retro-Industrial', 'Gemini AI Integration', 'Prototype: Tactical Dial'],
-    processImages: ['/spinpod_design_process.png'],
-    outcomeImages: ['/spinpod_hero.png']
+    processImages: ['https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&q=80&w=1600'],
+    outcomeImages: ['https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1600']
   },
   {
     id: 'resume-editor',
