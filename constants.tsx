@@ -26,10 +26,10 @@ export const PROJECTS: Project[] = [
     tags: ['Swift', 'SwiftUI', 'macOS SDK'],
     technologies: ['Swift 6.0', 'AppKit', 'Metal Rendering'],
     client: 'Personal Build',
-    role: 'Lead Project Architect',
-    roleDetail: 'Drove the end-to-end product lifecycle from interaction prototyping in Figma to native App Store deployment.',
-    metrics: ['0ms Input Latency', '100% Native Integration', 'System-level Overlay Logic'],
-    annotations: ['WIP: Dynamic Reading Line', 'v1.0 Launch', 'System: macOS Native'],
+    role: 'Designer & Developer',
+    roleDetail: 'Designed the interaction model and developed the native macOS application using SwiftUI.',
+    metrics: ['Native Performance', 'Minimal CPU Footprint', 'Seamless System Integration'],
+    annotations: ['v1.0 Launch', 'macOS Native'],
     processImages: ['https://images.unsplash.com/photo-1618761714954-0b8cd0026356?auto=format&fit=crop&q=80&w=1600'],
     outcomeImages: ['https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&q=80&w=1600'],
     prototypeVideo: '/videos/notchprompt_demo.mp4'
@@ -49,10 +49,10 @@ export const PROJECTS: Project[] = [
     tags: ['React', 'Gemini AI', 'Tailwind CSS'],
     technologies: ['React 19', 'Google Gemini Pro API', 'Framer Motion', 'Vite'],
     client: 'Self-Initiated',
-    role: 'Full Stack Designer',
-    roleDetail: 'Implemented the retro-CRT shader system and the AI playlist generation logic using the Gemini Pro REST API.',
-    metrics: ['80% Increase in Deep Work Sessions', 'Instant AI Mood-matching', 'Zero-latency UI response'],
-    annotations: ['Concept: Retro-Industrial', 'Gemini AI Integration', 'Prototype: Tactical Dial'],
+    role: 'Interaction Designer',
+    roleDetail: 'Designed the tactile UI system and implemented the AI-driven playlist logic.',
+    metrics: ['AI-Driven Exploration', 'Tactile Interface', 'Low-Latency Interaction'],
+    annotations: ['Concept: Industrial Design', 'AI Integration'],
     processImages: ['https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&q=80&w=1600'],
     outcomeImages: ['https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1600']
   },
@@ -71,10 +71,10 @@ export const PROJECTS: Project[] = [
     tags: ['Next.js', 'Typescript', 'Design Systems'],
     technologies: ['Next.js 15', 'Tailwind v4', 'PDF-Lib'],
     client: 'Personal Project',
-    role: 'Principal Developer',
-    roleDetail: 'Designed the typography-first UI and optimized the PDF export layer for maximum parser compatibility.',
-    metrics: ['99% ATS Pass Rate', '0-byte Database Footprint', 'Instant Local Export'],
-    annotations: ['Focus: ATS Optimization', 'Zero-Config UI', 'Export: Client-side PDF']
+    role: 'Product Designer',
+    roleDetail: 'Designed the typography-first interface and optimized the export engine for high readability.',
+    metrics: ['ATS-Friendly Export', 'Privacy-Focused Design', 'Clean Typography'],
+    annotations: ['Focus: ATS Optimization', 'Client-side Processing']
   },
   {
     id: 'exousia',
@@ -91,10 +91,10 @@ export const PROJECTS: Project[] = [
     tags: ['Arduino', 'IoT', 'Physical Computing'],
     technologies: ['C++', 'Fusion360', 'Piezoelectric Sensors'],
     client: 'Educational Innovation',
-    role: 'Hardware Lead',
-    roleDetail: 'Engineered the voltage regulation circuitry and prototyped the physical tile chassis.',
-    metrics: ['1.2W Energy Harvested per step', 'Self-sustaining Local Loop'],
-    link: 'An Energy Harvesting System Built for Education'
+    role: 'Product Designer & Engineer',
+    roleDetail: 'Designed the physical chassis and engineered the sensor-to-light feedback loop.',
+    metrics: ['Kinetic Energy Harvest', 'Localized Feedback System'],
+    link: 'https://aditey.com/work/exousia'
   },
   {
     id: 'joy-assistant',
@@ -111,9 +111,9 @@ export const PROJECTS: Project[] = [
     tags: ['Interaction', 'Figma', 'Behavioral Psych'],
     technologies: ['Swift', 'CoreML', 'Figma'],
     client: 'Healthcare Innovation Lab',
-    role: 'UI Architect',
-    roleDetail: 'Executed the visual strategy and interaction architecture for the emotion tracking interface.',
-    metrics: ['25% Faster User Onboarding', 'Hackathon Winner Out of 100+']
+    role: 'UX/UI Designer',
+    roleDetail: 'Designed the interaction architecture and visual language for the emotion tracking interface.',
+    metrics: ['User-Centered Design', 'Hackathon Finalist']
   },
   {
     id: 'tracker-360',
@@ -130,9 +130,9 @@ export const PROJECTS: Project[] = [
     tags: ['Python', 'Embedded Systems', 'Health-Tech'],
     technologies: ['Python', 'OpenCV', 'Raspberry Pi', 'IR Sensors'],
     client: 'Social Innovation Project',
-    role: 'Lead Technical Architect',
-    roleDetail: 'Engineered the thermal detection logic and the autonomous sanitation trigger system.',
-    metrics: ['15% Improvement in Hygiene Compliance', 'UNICEF Top 100']
+    role: 'Designer & Developer',
+    roleDetail: 'Developed the thermal detection logic and designed the autonomous interaction model.',
+    metrics: ['Hygiene Compliance Improvement', 'UNICEF Recognition']
   }
 ];
 

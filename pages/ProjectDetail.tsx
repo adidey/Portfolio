@@ -62,7 +62,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ onBack }) => {
                 </span>
               </div>
 
-              <h1 className="text-6xl md:text-[10vw] font-bold leading-[0.85] tracking-tighter" style={{ fontFamily: 'Satoshi, sans-serif' }}>
+              <h1 className="text-6xl md:text-[10vw] font-bold leading-[0.85] tracking-tighter uppercase" style={{ fontFamily: 'Satoshi, sans-serif' }}>
                 {project.title}
               </h1>
 
@@ -75,7 +75,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ onBack }) => {
                 <div className="flex flex-col justify-end gap-6 md:text-right">
                   <div className="space-y-1">
                     <p className="text-[10px] uppercase tracking-widest text-[var(--text-muted)] font-mono">Primary Role</p>
-                    <p className="text-xl font-bold italic">{project.role}</p>
+                    <p className="text-xl font-bold italic text-[var(--text)] uppercase">{project.role}</p>
                   </div>
                   {project.roleDetail && (
                     <p className="text-xs text-[var(--text-muted)] max-w-sm md:ml-auto leading-relaxed">
@@ -113,7 +113,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ onBack }) => {
                   <div className="flex flex-col gap-4 items-end">
                     {project.metrics.map((metric, i) => (
                       <div key={i} className="flex items-center gap-3">
-                        <span className="text-[11px] font-bold text-[var(--text)] text-right">{metric}</span>
+                        <span className="text-[11px] font-bold text-[var(--text)] text-right uppercase">{metric}</span>
                         <div className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-pulse" />
                       </div>
                     ))}

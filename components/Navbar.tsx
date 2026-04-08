@@ -44,10 +44,10 @@ const Navbar: React.FC<NavbarProps> = ({
   };
 
   const menuItems = [
-    { label: 'work', path: '/work' },
-    { label: 'about', path: '/about' },
-    { label: 'posters', path: '/posters' },
-    { label: 'contact', path: '/contact' }
+    { label: 'WORK', path: '/work' },
+    { label: 'ABOUT', path: '/about' },
+    { label: 'POSTERS', path: '/posters' },
+    { label: 'CONTACT', path: '/contact' }
   ];
 
   const handleLinkClick = () => {
@@ -113,7 +113,7 @@ const Navbar: React.FC<NavbarProps> = ({
           <Link
             to="/"
             onClick={handleLinkClick}
-            className="w-[120px] h-[48px] flex items-center justify-center text-[11px] md:text-[12px] font-bold tracking-tight border-r border-[var(--border)] hover:bg-[var(--surface)] transition-colors whitespace-nowrap"
+            className="w-[120px] h-[48px] flex items-center justify-center text-[13px] font-black tracking-tight border-r border-[var(--border)] hover:bg-[var(--surface)] transition-colors whitespace-nowrap"
           >
             Aditya Dey™
           </Link>
@@ -125,7 +125,7 @@ const Navbar: React.FC<NavbarProps> = ({
                 key={item.label}
                 to={item.path}
                 className={({ isActive }) =>
-                  `w-[120px] h-[48px] flex items-center justify-center text-[10px] uppercase tracking-widest transition-colors ${i === menuItems.length - 1 ? '' : 'border-r border-[var(--border)]'} ${isActive ? 'text-[var(--text)] bg-[var(--surface)]' : 'text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--surface)]/50'}`
+                  `w-[110px] h-[48px] flex items-center justify-center text-[10px] font-black uppercase tracking-widest transition-colors ${i === menuItems.length - 1 ? '' : 'border-r border-[var(--border)]'} ${isActive ? 'text-[var(--text)] bg-[var(--surface)]' : 'text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--surface)]/50'}`
                 }
               >
                 {item.label}

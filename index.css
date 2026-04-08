@@ -92,63 +92,61 @@
   :root {
     --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
 
-    /* Dark Mode - Matte Asphalt/Coffee Brown Aesthetic */
-    --bg: #141312;
-    --surface: #1C1B1A;
-    --card-base: #1C1B1A;
-    --card-bg: rgba(28, 27, 26, 0.85);
-    --border: rgba(230, 225, 220, 0.08);
-    --card-border: rgba(230, 225, 220, 0.1);
+    /* Dark Mode - Deep Ink & Cobalt Blue */
+    --bg: #0a0a0a;
+    --surface: #141414;
+    --card-base: #141414;
+    --card-bg: rgba(20, 20, 20, 0.85);
+    --border: rgba(255, 255, 255, 0.08);
+    --card-border: rgba(255, 255, 255, 0.1);
     
-    --text: #DFDBD5;
-    --ink: #F2EFEA;
-    --text-muted: #9E9A96;
-    --muted: #9E9A96;
+    --text: #efede3;
+    --ink: #f3e6d8;
+    --text-muted: #888888;
+    --muted: #888888;
     
-    --accent: #5A7EAB;
-    --role-accent: #8FA596;
+    --accent: #3b82f6;
+    --role-accent: #3b82f6;
     
-    --card-glow-1: rgba(90, 126, 171, 0.15);
-    --card-glow-2: rgba(143, 165, 150, 0.15);
-    --card-glow-3: rgba(189, 137, 126, 0.15);
-    --card-center: #161514;
+    --card-glow-1: rgba(59, 130, 246, 0.15);
+    --card-glow-2: rgba(30, 64, 175, 0.15);
+    --card-glow-3: rgba(255, 255, 255, 0.05);
+    --card-center: #0d0d0d;
     --selection-bg: var(--accent);
     --selection-text: #ffffff;
   }
 
   :root.light {
-    /* Light Mode (Warm Cream) */
-    --bg: #FDFBF7;
-    --text: #1A1A1A;
-    --ink: #0D0D0D;
-    --text-muted: #6B6B61;
-    --muted: #6B6B61;
+    /* Light Mode - Paper & Cobalt */
+    --bg: #efede3;
+    --text: #0a0a0a;
+    --ink: #141414;
+    --text-muted: #666666;
+    --muted: #888888;
     --border: rgba(0, 0, 0, 0.1);
-    --accent: #1E466B;
-    --role-accent: #6B7280;
-    --surface: #FFFFFF;
-    --card-bg: rgba(255, 255, 255, 0.7);
-    --card-border: rgba(13, 13, 13, 0.08);
-    --card-base: #FFFFFF;
-    --card-glow-1: rgba(59, 130, 246, 0.12);
-    --card-glow-2: rgba(139, 92, 246, 0.12);
-    --card-glow-3: rgba(236, 72, 153, 0.12);
-    --card-center: #FFFFFF;
+    --accent: #2563eb;
+    --role-accent: #3b82f6;
+    --surface: #f7f5f0;
+    --card-bg: rgba(247, 245, 240, 0.7);
+    --card-border: rgba(0, 0, 0, 0.08);
+    --card-base: #f7f5f0;
+    --card-glow-1: rgba(59, 130, 246, 0.1);
+    --card-glow-2: rgba(30, 64, 175, 0.1);
+    --card-glow-3: rgba(0, 0, 0, 0.05);
+    --card-center: #fcfbf9;
     --selection-bg: var(--accent);
     --selection-text: #ffffff;
 
-    /* Theme-Adaptive Folder (User Preference: Inverted) */
-    --folder-bg: #0C0C0C;
-    /* Dark in Light Mode (Matches Dark Primary) */
-    --folder-text: #EAE3D5;
-    --folder-glow: rgba(0, 0, 0, 0.15);
+    /* Theme-Adaptive Folder */
+    --folder-bg: #141414;
+    --folder-text: #efede3;
+    --folder-glow: rgba(0, 0, 0, 0.2);
   }
 
   :root {
     /* Default: Dark Mode */
-    --folder-bg: #EAE3D5;
-    /* Light in Dark Mode */
-    --folder-text: #0C0C0C;
+    --folder-bg: #efede3;
+    --folder-text: #0a0a0a;
     --folder-glow: rgba(255, 255, 255, 0.1);
   }
 
@@ -165,6 +163,8 @@
     -webkit-font-smoothing: antialiased;
     background-color: var(--bg);
     transition: background-color 0.5s ease, color 0.5s ease;
+    line-height: 1.5;
+    font-weight: 400;
   }
 
   /* Professional Boutique Cursor */
@@ -258,7 +258,32 @@
 @layer utilities {
   .font-modern {
     font-family: 'Satoshi', sans-serif;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.01em;
+  }
+
+  /* Opacity-based separation */
+  .text-separator {
+    opacity: 0.65;
+    font-weight: 400;
+  }
+
+  .text-subtle {
+    opacity: 0.45;
+    font-weight: 400;
+  }
+
+  /* Mobile Alignment Fixes */
+  @media (max-width: 768px) {
+    .mobile-align-start {
+      align-items: flex-start !important;
+      text-align: left !important;
+    }
+    
+    .stack-mobile {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
   }
 
   /* Fluid Typography Utils */
