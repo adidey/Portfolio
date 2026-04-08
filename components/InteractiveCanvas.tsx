@@ -624,7 +624,7 @@ export const InteractiveCanvas = () => {
       <div
         onMouseMove={handleGlobalMouseMove}
         onClick={() => setActiveTagId(null)}
-        className="relative w-full min-h-screen overflow-hidden bg-bg flex flex-col items-center justify-center pt-20 pb-10 transition-colors duration-500"
+        className="relative w-full min-h-screen overflow-x-hidden md:overflow-hidden bg-bg flex flex-col items-center justify-center pt-24 md:pt-20 pb-20 md:pb-10 transition-colors duration-500"
       >
         <style>{`
           .design-grid {
@@ -684,7 +684,7 @@ export const InteractiveCanvas = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start w-full z-10">
 
             {/* Left Column: Identity */}
-            <div className="lg:col-span-5 flex flex-col items-start justify-between text-left w-full h-[680px] lg:pt-0">
+            <div className="lg:col-span-5 flex flex-col items-start justify-between text-left w-full h-auto md:h-[680px] lg:pt-0 gap-8 md:gap-0">
               <div className="w-full">
                 <RoleFlipper showBlueprint={showBlueprint} />
                 <div className="mt-6 w-full">
@@ -693,7 +693,7 @@ export const InteractiveCanvas = () => {
               </div>
 
               <div
-                className="w-full max-w-[380px] mx-auto lg:mx-0 relative perspective-1000 group cursor-pointer mt-auto h-[440px]"
+                className="w-full max-w-[380px] mx-auto lg:mx-0 relative perspective-1000 group cursor-pointer mt-auto h-[440px] shrink-0"
                 onClick={() => setIsCardFlipped(!isCardFlipped)}
               >
                 {showBlueprint && <BlueprintLabel label="INTERACTIVE CARD" />}
@@ -785,7 +785,7 @@ export const InteractiveCanvas = () => {
                       
                       <div className="flex-1 flex flex-col justify-center gap-3">
                         {tags.map((tag) => (
-                           <div key={tag.id} className="flex items-center gap-3 p-2 rounded-xl border border-transparent hover:border-[var(--border)] hover:bg-[var(--surface)] transition-colors">
+                           <div key={tag.id} className={`items-center gap-3 p-2 rounded-xl border border-transparent hover:border-[var(--border)] hover:bg-[var(--surface)] transition-colors ${tag.id === 'gaming' ? 'hidden md:flex' : 'flex'}`}>
                               <div className="w-8 h-8 rounded-full bg-[var(--surface)] border border-[var(--border)] flex items-center justify-center flex-shrink-0 text-[var(--ink)]">
                                 <tag.icon size={12} strokeWidth={2.5} />
                               </div>
@@ -825,9 +825,9 @@ export const InteractiveCanvas = () => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.2, duration: 1.2 }}
-            className="md:hidden grid grid-cols-3 gap-2 mt-12 px-6 relative z-10 w-full"
+            className="md:hidden grid grid-cols-3 gap-2 mt-8 md:mt-12 px-6 relative z-10 w-full mb-12"
           >
-            {tags.map((tag) => (
+            {tags.filter(tag => tag.id !== 'gaming').map((tag) => (
               <button
                 key={tag.id}
                 onClick={() => setActiveTagId(activeTagId === tag.id ? null : tag.id)}
