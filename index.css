@@ -92,26 +92,26 @@
   :root {
     --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
 
-    /* Dark Mode - Deep Ink & Cobalt Blue */
-    --bg: #0a0a0a;
-    --surface: #141414;
-    --card-base: #141414;
-    --card-bg: rgba(20, 20, 20, 0.85);
-    --border: rgba(255, 255, 255, 0.08);
-    --card-border: rgba(255, 255, 255, 0.1);
+    /* Matte UI Palette */
+    --bg: #0f1419;
+    --surface: #161c22;
+    --card-base: #161c22;
+    --card-bg: rgba(22, 28, 34, 0.85); /* derived closely from #161c22 */
+    --border: rgba(255, 255, 255, 0.05);
+    --card-border: rgba(255, 255, 255, 0.03); /* softened */
     
-    --text: #efede3;
-    --ink: #f3e6d8;
-    --text-muted: #888888;
-    --muted: #888888;
+    --text: #f1f2f4;
+    --ink: #f1f2f4;
+    --text-muted: #9aa4af;
+    --muted: #9aa4af;
     
-    --accent: #3b82f6;
-    --role-accent: #3b82f6;
+    --accent: #5c8dff;
+    --role-accent: #5c8dff;
     
-    --card-glow-1: rgba(59, 130, 246, 0.15);
-    --card-glow-2: rgba(30, 64, 175, 0.15);
-    --card-glow-3: rgba(255, 255, 255, 0.05);
-    --card-center: #0d0d0d;
+    --card-glow-1: rgba(92, 141, 255, 0.1);
+    --card-glow-2: rgba(92, 141, 255, 0.05);
+    --card-glow-3: rgba(255, 255, 255, 0.02);
+    --card-center: #161c22;
     --selection-bg: var(--accent);
     --selection-text: #ffffff;
   }
@@ -167,71 +167,7 @@
     font-weight: 400;
   }
 
-  /* Professional Boutique Cursor */
-  #custom-cursor {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 4px;
-    background: var(--ink);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 10001;
-    will-change: transform;
-    transform: translate3d(calc(var(--cursor-x, -100px) - 2px), calc(var(--cursor-y, -100px) - 2px), 0);
-  }
 
-  #cursor-follower {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 24px;
-    height: 24px;
-    border: 1px solid var(--ink);
-    opacity: 0.35;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 10000;
-    transition: transform 0.15s cubic-bezier(0.23, 1, 0.32, 1), background-color 0.2s cubic-bezier(0.23, 1, 0.32, 1), border-color 0.2s, opacity 0.2s, width 0.2s, height 0.2s;
-    will-change: transform;
-    transform: translate3d(calc(var(--cursor-x, -100px) - 12px), calc(var(--cursor-y, -100px) - 12px), 0);
-  }
-
-  .cursor-hover {
-    width: 24px !important;
-    height: 24px !important;
-    background: var(--ink);
-    border-color: transparent !important;
-    opacity: 0.12 !important;
-    transform: translate3d(calc(var(--cursor-x, -100px) - 12px), calc(var(--cursor-y, -100px) - 12px), 0) scale(1.6) !important;
-  }
-
-  #cursor-label {
-    position: fixed;
-    top: 0;
-    left: 0;
-    color: var(--text);
-    font-family: 'Satoshi', sans-serif;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    will-change: transform;
-    transform: translate3d(calc(var(--cursor-x, -100px) + 24px), var(--cursor-y, -100px), 0);
-  }
-
-  .light #cursor-label {
-    text-shadow: none;
-  }
-
-  @media (max-width: 1024px) {
-    body {
-      cursor: auto;
-    }
-
-    #custom-cursor,
-    #cursor-follower {
-      display: none;
-    }
-  }
 
   ::selection {
     background: var(--selection-bg);
@@ -318,7 +254,7 @@
     background-size: 200px 200px, 200px 200px, 50px 50px, 50px 50px;
     background-position: center center;
     /* High-impact Designer Canvas Grid: Large scale with expansive radial falloff */
-    opacity: 0.45;
+    opacity: 0.05;
     mask-image: radial-gradient(circle at center, black 5%, transparent 85%);
     pointer-events: none;
   }

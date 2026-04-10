@@ -11,12 +11,6 @@ import {
 import { Link } from 'react-router-dom';
 import { PROJECTS } from '../constants';
 
-const BlueprintLabel = ({ label }: { label: string }) => (
-  <div className="absolute inset-[-4px] border border-blue-500/40 dark:border-blue-400/40 bg-blue-500/5 dark:bg-blue-400/5 pointer-events-none z-50 flex items-start justify-start p-1.5 rounded-sm">
-    <span className="text-[9px] text-blue-600 dark:text-blue-400 font-bold tracking-[0.2em] uppercase bg-[var(--bg)]/80 px-1.5 py-0.5 rounded-sm backdrop-blur-sm shadow-sm">{label}</span>
-  </div>
-);
-
 // Floating Tag Component
 interface FloatingTagProps {
   key?: string | number;
@@ -30,7 +24,6 @@ interface FloatingTagProps {
   isActive: boolean;
   onClick: () => void;
   panelContent: React.ReactNode;
-  showBlueprint?: boolean;
 }
 
 const FloatingTag = React.memo(({
@@ -43,8 +36,7 @@ const FloatingTag = React.memo(({
   mouseY,
   isActive,
   onClick,
-  panelContent,
-  showBlueprint
+  panelContent
 }: FloatingTagProps) => {
   const [isDrawn, setIsDrawn] = useState(false);
   const [startDrawing, setStartDrawing] = useState(false);
@@ -100,7 +92,6 @@ const FloatingTag = React.memo(({
       className={`absolute z-20 hidden md:flex ${positionClasses} cursor-pointer group transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-85 hover:opacity-100'}`}
     >
       <div className="relative p-1">
-        {showBlueprint && <BlueprintLabel label="TAG" />}
         {/* Figma-style edge-by-edge drawing frame */}
         {startDrawing && (
           <svg className="absolute inset-0 w-full h-full overflow-visible pointer-events-none z-30">
@@ -215,7 +206,7 @@ const FloatingTag = React.memo(({
   );
 });
 
-const RoleFlipper = React.memo(({ showBlueprint }: { showBlueprint?: boolean }) => {
+const RoleFlipper = React.memo(() => {
   const roles = [
     { first: "Software", second: "Engineer" },
     { first: "Frontend", second: "Developer" },
@@ -233,7 +224,6 @@ const RoleFlipper = React.memo(({ showBlueprint }: { showBlueprint?: boolean }) 
 
   return (
     <div className="h-[1.2em] overflow-visible relative flex items-center justify-start">
-      {showBlueprint && <BlueprintLabel label="ROLE" />}
       <AnimatePresence mode="wait">
         <m.div
           key={index}
@@ -251,13 +241,12 @@ const RoleFlipper = React.memo(({ showBlueprint }: { showBlueprint?: boolean }) 
   );
 });
 
-const HeroText = ({ text, showBlueprint }: { text: string, showBlueprint?: boolean }) => {
+const HeroText = ({ text }: { text: string }) => {
   return (
     <div className="relative">
       <div className="relative w-full py-3">
-        {showBlueprint && <BlueprintLabel label="HERO" />}
         <h1 className="font-display font-black text-[var(--text)] leading-none tracking-[-0.04em] text-left uppercase w-full"
-          style={{ fontSize: 'clamp(2.5rem, 5.5vw, 6rem)' }}>
+          style={{ fontSize: 'clamp(2rem, 5vw, 5rem)' }}>
           {text}
         </h1>
       </div>
@@ -394,8 +383,8 @@ const BentoSlide = React.memo(({ project }: { project: any }) => {
   return (
     // Always dark gap — matte cutout effect regardless of light/dark theme
     <div
-      className="w-full aspect-[4/3] grid gap-[4px] rounded-2xl overflow-hidden"
-      style={{ gridTemplateColumns: 'repeat(4,1fr)', gridTemplateRows: 'repeat(3,1fr)', background: '#0D0D0D' }}
+      className="w-full aspect-[4/3] grid gap-[8px] rounded-2xl overflow-hidden"
+      style={{ gridTemplateColumns: 'repeat(4,1fr)', gridTemplateRows: 'repeat(3,1fr)', background: 'transparent' }}
     >
       {/* Big 2×2 image: top-left quadrant */}
       <ImgSlice src={src} startCol={0} startRow={0} spanCols={2} spanRows={2}
@@ -507,11 +496,11 @@ const BentoGallery = React.memo(() => {
     <div className="relative flex items-center pr-8 w-full group">
       <div
         ref={containerRef}
-        className="relative w-full h-[680px] overflow-hidden cursor-pointer rounded-2xl"
+        className="relative w-full h-[645px] overflow-hidden cursor-pointer rounded-2xl"
         onMouseEnter={() => { isHoveredRef.current = true; }}
         onMouseLeave={() => { isHoveredRef.current = false; }}
       >
-        <div ref={innerRef} className="flex flex-col gap-4" style={{ willChange: 'transform' }}>
+        <div ref={innerRef} className="flex flex-col gap-6" style={{ willChange: 'transform' }}>
           {displayProjects.map((project, i) => (
             <BentoSlide key={`${project.id}-${i}`} project={project} />
           ))}
@@ -543,14 +532,12 @@ export const InteractiveCanvas = () => {
   const [showGrid, setShowGrid] = useState(true);
   const [showGuides, setShowGuides] = useState(true);
   const [showNoise, setShowNoise] = useState(true);
-  const [showBlueprint, setShowBlueprint] = useState(false);
   const [isMeasuring, setIsMeasuring] = useState(false);
   const [isCardFlipped, setIsCardFlipped] = useState(false);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Alt') setIsMeasuring(true);
-      if (e.key.toLowerCase() === 'g') setShowBlueprint(p => !p);
     };
     const handleKeyUp = (e: KeyboardEvent) => {
       if (e.key === 'Alt') setIsMeasuring(false);
@@ -657,44 +644,25 @@ export const InteractiveCanvas = () => {
               <div className="absolute left-0 right-0 top-1/2 h-px design-guide" />
             </div>
           )}
-          {/* Labels */}
-          <div className="absolute top-6 left-6 z-40 text-[10px] opacity-35 tracking-[0.15em] uppercase text-[var(--muted)] pointer-events-none hidden md:block">
-            CANVAS
-          </div>
-          <div className="absolute bottom-6 right-6 z-40 text-[10px] opacity-35 tracking-[0.15em] uppercase text-[var(--muted)] pointer-events-none hidden md:flex items-center">
-            <svg className="w-3 h-3 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-            </svg>
-            VIEWS: 1,402
-          </div>
 
-          {/* Global Blueprint Overlay for Navigation */}
-          {showBlueprint && (
-            <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[480px] h-[48px] border border-blue-500/40 bg-blue-500/5 z-[100] mt-8 pointer-events-none rounded-sm hidden md:block">
-              <BlueprintLabel label="NAVIGATION" />
-            </div>
-          )}
         </div>
 
         {/* Main Hero Content */}
-        <div className="relative z-10 w-full max-w-7xl px-6 lg:px-16">
+        <div className="relative z-10 w-full max-w-[1300px] mx-auto px-6 lg:px-16">
           {/* Hero Content Stack - Two Column Split */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start w-full z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-[100px] items-center w-full z-10">
 
             {/* Left Column: Identity */}
-            <div className="lg:col-span-5 flex flex-col items-start justify-between text-left w-full h-auto md:h-[680px] lg:pt-0 gap-8 md:gap-0">
+            <div className="lg:col-span-5 flex flex-col items-start justify-center text-left w-full gap-8">
+              <RoleFlipper />
+              
               <div className="w-full">
-                <RoleFlipper showBlueprint={showBlueprint} />
-                <div className="mt-6 w-full">
-                  <HeroText text="ADITYA DEY" showBlueprint={showBlueprint} />
-                </div>
+                <HeroText text="ADITYA DEY" />
               </div>
 
               <div
-                className="w-full max-w-[380px] mx-auto lg:mx-0 relative perspective-1000 group mt-auto h-[440px] shrink-0"
+                className="w-full max-w-[380px] mx-auto lg:mx-0 relative perspective-1000 group h-[440px] shrink-0"
               >
-                {showBlueprint && <BlueprintLabel label="INTERACTIVE CARD" />}
                 <m.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0, rotateY: isCardFlipped ? 180 : 0 }}
@@ -704,18 +672,18 @@ export const InteractiveCanvas = () => {
                 >
                   {/* FRONT SIDE */}
                   <div
-                    className="absolute inset-0 p-6 rounded-[28px] shadow-2xl border"
+                    className="absolute inset-0 p-5 rounded-[28px] shadow-2xl border"
                     style={{
                       background: 'var(--card-base)',
-                      borderColor: 'var(--border)',
+                      borderColor: 'rgba(255, 255, 255, 0.02)',
                       backfaceVisibility: 'hidden',
                     }}
                   >
                     {/* Gradients */}
                     <div className="absolute inset-0 overflow-hidden rounded-[28px] pointer-events-none">
-                      <div className="absolute inset-0 bg-[radial-gradient(at_0%_50%,var(--card-glow-1)_0%,transparent_65%)] opacity-20" />
-                      <div className="absolute inset-0 bg-[radial-gradient(at_10%_40%,var(--card-glow-2)_0%,transparent_45%)] opacity-20" />
-                      <div className="absolute inset-0 bg-[radial-gradient(at_100%_50%,var(--card-glow-1)_0%,transparent_65%)] opacity-20" />
+                      <div className="absolute inset-0 bg-[radial-gradient(at_0%_50%,var(--card-glow-1)_0%,transparent_65%)] opacity-10" />
+                      <div className="absolute inset-0 bg-[radial-gradient(at_10%_40%,var(--card-glow-2)_0%,transparent_45%)] opacity-10" />
+                      <div className="absolute inset-0 bg-[radial-gradient(at_100%_50%,var(--card-glow-1)_0%,transparent_65%)] opacity-10" />
                       <div className="absolute inset-0 bg-[linear-gradient(to_right,transparent,var(--card-center)_50%,transparent)] opacity-[0.03]" />
                       <div className="absolute inset-0 opacity-15 mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')] scale-150" />
                     </div>
@@ -765,16 +733,16 @@ export const InteractiveCanvas = () => {
 
                   {/* BACK SIDE */}
                   <div
-                    className="absolute inset-0 p-6 rounded-[28px] shadow-2xl border"
+                    className="absolute inset-0 p-5 rounded-[28px] shadow-2xl border"
                     style={{
                       background: 'var(--card-base)',
-                      borderColor: 'var(--border)',
+                      borderColor: 'rgba(255, 255, 255, 0.02)',
                       backfaceVisibility: 'hidden',
                       transform: 'rotateY(180deg)'
                     }}
                   >
                     <div className="absolute inset-0 overflow-hidden rounded-[28px] pointer-events-none">
-                      <div className="absolute inset-0 bg-[radial-gradient(at_50%_50%,var(--card-glow-2)_0%,transparent_70%)] opacity-20" />
+                      <div className="absolute inset-0 bg-[radial-gradient(at_50%_50%,var(--card-glow-2)_0%,transparent_70%)] opacity-10" />
                       <div className="absolute inset-0 opacity-20 mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')] scale-150" />
                     </div>
 
@@ -915,9 +883,6 @@ export const InteractiveCanvas = () => {
           </button>
           <button onClick={() => setShowGuides(!showGuides)} className={`text-[10px] uppercase tracking-widest font-bold transition-colors ${showGuides ? 'text-[var(--ink)]' : 'text-[var(--muted)] opacity-50'}`}>
             [ GUIDES {showGuides ? '✓' : ' '} ]
-          </button>
-          <button onClick={() => setShowBlueprint(!showBlueprint)} className={`text-[10px] uppercase tracking-widest font-bold transition-colors ${showBlueprint ? 'text-[var(--ink)]' : 'text-[var(--muted)] opacity-50'}`}>
-            [ BLUEPRINT {showBlueprint ? '✓' : ' '} ]
           </button>
         </div>
       </div>

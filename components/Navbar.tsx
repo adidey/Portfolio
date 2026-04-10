@@ -103,7 +103,7 @@ const Navbar: React.FC<NavbarProps> = ({
           ref={navRef}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
-          className="relative flex items-center bg-[var(--bg)]/60 backdrop-blur-xl border border-[var(--border)] rounded-sm overflow-hidden pointer-events-auto transition-all duration-500 group max-w-full"
+          className="relative flex items-center justify-between bg-[rgba(18,18,18,0.6)] backdrop-blur-[12px] border border-[rgba(255,255,255,0.08)] rounded-sm overflow-hidden pointer-events-auto transition-all duration-500 group w-full max-w-[1300px] mx-auto"
         >
           <div
             className="absolute inset-[-1px] pointer-events-none z-[-1] hidden md:block"

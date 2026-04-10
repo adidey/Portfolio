@@ -4,7 +4,6 @@ import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import { PageView } from './components/Navbar';
 import Layout from './components/Layout';
-import CustomCursor from './components/CustomCursor';
 
 // Lazy load non-critical pages to improve FCP
 const Home = React.lazy(() => import('./pages/Home'));
@@ -80,7 +79,6 @@ const App: React.FC = () => {
       onNavigate={handleNavigate}
       isLoading={isLoading}
     >
-      <CustomCursor />
       <React.Suspense fallback={<div className="min-h-screen bg-[var(--bg)]" />}>
         <Routes>
           <Route path="/" element={<Home />} />
