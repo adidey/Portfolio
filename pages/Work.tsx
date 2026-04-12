@@ -23,7 +23,7 @@ const Work: React.FC<WorkProps> = ({ onProjectClick }) => {
             <p className="text-[10px] uppercase tracking-[0.4em] text-[var(--muted)] font-bold">Index</p>
             <h1
               className="font-black text-[var(--ink)] uppercase tracking-tight leading-[0.85]"
-              style={{ fontSize: 'clamp(2.5rem, 7vw, 4.5rem)' }}
+              style={{ fontSize: 'clamp(2rem, 6vw, 4rem)' }}
             >
               Project<br />Archive
             </h1>

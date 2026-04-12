@@ -109,7 +109,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
         <div className="max-w-[1400px] mx-auto px-6 md:px-10 flex items-center justify-between">
           <Link
             to="/"
-            className="pointer-events-auto"
+            className="pointer-events-auto block w-[110px]"
             aria-label="Aditya Dey — Home"
           >
             <AnimatedIdentity 

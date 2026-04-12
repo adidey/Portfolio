@@ -116,9 +116,6 @@ const About: React.FC = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-8">
               {LEADERSHIP_DATA.map((item, idx) => (
                 <div key={idx} className="flex items-start gap-3 group">
-                  <div className="w-8 h-8 shrink-0 border border-[var(--border)] bg-white flex items-center justify-center overflow-hidden rounded-md grayscale group-hover:grayscale-0 transition-all duration-500">
-                    <img src={item.logo} alt={item.org} className="w-5 h-5 object-contain" />
-                  </div>
                   <div>
                     <p className="text-[11px] font-black uppercase tracking-tight text-[var(--ink)] leading-tight">{item.role}</p>
                     <p className="text-[9px] font-bold uppercase tracking-widest text-[var(--muted)] mt-1">{item.org}</p>

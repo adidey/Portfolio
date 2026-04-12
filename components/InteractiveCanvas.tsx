@@ -20,7 +20,6 @@ const HorizontalMarquee = () => {
             className="w-[220px] lg:w-[300px] aspect-[4/3] rounded-lg overflow-hidden relative group shrink-0 bg-[#e5e5e5]"
           >
             <m.img
-              layoutId={`project-img-${p.id}`}
               src={p.thumbnail}
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               alt={p.title}
@@ -61,9 +60,9 @@ export const InteractiveCanvas = () => {
               </m.div>
 
               {/* Right — Manifesto (Narrower) */}
-              <m.div className="md:col-span-5 flex flex-col text-left md:text-right pt-2 md:items-end">
+              <m.div className="md:col-span-5 flex flex-col text-left md:text-right mt-4 md:mt-0 md:items-end">
                 <p className="text-[15px] md:text-[17px] leading-relaxed text-[var(--muted)] max-w-sm font-medium">
-                  I believe creativity isn't just a skill, it's a mindset. Born from a passion for bold ideas and beautifully crafted systems, I collaborate to shape identities at the intersection of art and innovation.
+                  I design product systems that translate complex technical workflows into clear interfaces.
                 </p>
               </m.div>
             </div>

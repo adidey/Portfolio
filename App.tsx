@@ -15,22 +15,40 @@ const Contact = React.lazy(() => import('./pages/Contact'));
 const Gallery = React.lazy(() => import('./pages/Gallery'));
 const ProjectDetail = React.lazy(() => import('./pages/ProjectDetail'));
 
-const Loader = () => (
-  <m.div
-    initial={{ opacity: 1 }}
-    exit={{ opacity: 0 }}
-    transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
-    className="fixed inset-0 z-[1000] bg-[var(--bg)] flex items-center justify-center"
-  >
-    <m.p
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="text-[10px] uppercase tracking-[0.5em] font-black text-[var(--ink)]"
+const Loader = () => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    const duration = 1000;
+    const intervalTime = 20;
+    const steps = duration / intervalTime;
+    let current = 0;
+    
+    const interval = setInterval(() => {
+      current++;
+      setCount(Math.min(100, Math.floor((current / steps) * 100)));
+      if (current >= steps) clearInterval(interval);
+    }, intervalTime);
+    
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <m.div
+      initial={{ y: '0%' }}
+      exit={{ y: '-100%' }}
+      transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
+      className="fixed inset-0 z-[2000] bg-[var(--ink)] flex items-center justify-center overflow-hidden"
     >
-      Loading
-    </m.p>
-  </m.div>
-);
+      <div className="absolute bottom-10 right-10 flex">
+        <span className="text-[100px] md:text-[140px] leading-none font-black text-[var(--bg)] tabular-nums tracking-tighter">
+          {count}
+        </span>
+        <span className="text-xl md:text-2xl font-bold text-[var(--bg)]/50 mt-4 md:mt-6">%</span>
+      </div>
+    </m.div>
+  );
+};
 
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -97,10 +115,10 @@ const App: React.FC = () => {
         <AnimatePresence mode="wait">
           <m.div
             key={location.pathname}
-            initial={{ opacity: 0, y: 15, filter: 'blur(10px)' }}
-            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-            exit={{ opacity: 0, y: -10, filter: 'blur(10px)' }}
-            transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
           >
             <React.Suspense fallback={<div className="min-h-screen bg-[var(--bg)]" />}>
               <Routes location={location}>
