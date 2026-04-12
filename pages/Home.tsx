@@ -4,16 +4,16 @@ import { InteractiveCanvas } from '../components/InteractiveCanvas';
 
 const Home: React.FC = () => {
   return (
-    <main className="w-full min-h-screen bg-[var(--bg)] flex flex-col select-none transition-colors duration-500">
+    <div className="w-full bg-[var(--bg)] flex flex-col select-none transition-colors duration-500">
       <Helmet>
         <title>Aditya Dey | Product & UX Designer</title>
         <meta name="description" content="Melbourne-based Product & UX Designer specializing in structured digital experiences." />
       </Helmet>
 
-      <div className="flex-1 w-full flex flex-col items-center justify-center">
+      <div className="w-full flex flex-col items-center justify-start">
         <InteractiveCanvas />
       </div>
-    </main>
+    </div>
   );
 };
 

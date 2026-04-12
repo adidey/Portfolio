@@ -1,14 +1,6 @@
 @import url('https://api.fontshare.com/v2/css?f[]=satoshi@900,800,700,500,300,400,600&display=swap');
 @import "tailwindcss";
 
-@font-face {
-  font-family: 'Thunder ExtraBoldLC';
-  src: url('/fonts/Thunder-ExtraBoldLC.ttf') format('truetype');
-  font-weight: 800;
-  font-style: normal;
-  font-display: swap;
-}
-
 @theme {
   --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
   --font-modern: "Satoshi", -apple-system, BlinkMacSystemFont, sans-serif;
@@ -92,63 +84,36 @@
   :root {
     --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
 
-    /* Matte UI Palette */
-    --bg: #0f1419;
-    --surface: #161c22;
-    --card-base: #161c22;
-    --card-bg: rgba(22, 28, 34, 0.85); /* derived closely from #161c22 */
-    --border: rgba(255, 255, 255, 0.05);
-    --card-border: rgba(255, 255, 255, 0.03); /* softened */
-    
-    --text: #f1f2f4;
-    --ink: #f1f2f4;
-    --text-muted: #9aa4af;
-    --muted: #9aa4af;
-    
-    --accent: #5c8dff;
-    --role-accent: #5c8dff;
-    
-    --card-glow-1: rgba(92, 141, 255, 0.1);
-    --card-glow-2: rgba(92, 141, 255, 0.05);
-    --card-glow-3: rgba(255, 255, 255, 0.02);
-    --card-center: #161c22;
-    --selection-bg: var(--accent);
-    --selection-text: #ffffff;
-  }
-
-  :root.light {
-    /* Light Mode - Paper & Cobalt */
-    --bg: #efede3;
-    --text: #0a0a0a;
-    --ink: #141414;
-    --text-muted: #666666;
-    --muted: #888888;
+    /* Light Exclusive Stark Palette */
+    --bg: #f9f8f4;
+    --surface: #ffffff;
+    --card-base: #ffffff;
+    --card-bg: rgba(255, 255, 255, 0.85);
     --border: rgba(0, 0, 0, 0.1);
-    --accent: #2563eb;
-    --role-accent: #3b82f6;
-    --surface: #f7f5f0;
-    --card-bg: rgba(247, 245, 240, 0.7);
-    --card-border: rgba(0, 0, 0, 0.08);
-    --card-base: #f7f5f0;
-    --card-glow-1: rgba(59, 130, 246, 0.1);
-    --card-glow-2: rgba(30, 64, 175, 0.1);
-    --card-glow-3: rgba(0, 0, 0, 0.05);
-    --card-center: #fcfbf9;
+    --card-border: rgba(0, 0, 0, 0.05);
+
+    --text: #181818;
+    --ink: #111111;
+    --text-muted: #737373;
+    --muted: #737373;
+
+    --accent: #ea4d2c;
+    --role-accent: #ea4d2c;
+
+    --card-glow-1: rgba(0, 0, 0, 0.03);
+    --card-glow-2: rgba(0, 0, 0, 0.02);
+    --card-glow-3: rgba(0, 0, 0, 0.01);
+    --card-center: #ffffff;
     --selection-bg: var(--accent);
     --selection-text: #ffffff;
 
-    /* Theme-Adaptive Folder */
-    --folder-bg: #141414;
-    --folder-text: #efede3;
-    --folder-glow: rgba(0, 0, 0, 0.2);
+    /* Folder tokens */
+    --folder-bg: #111111;
+    --folder-text: #f9f8f4;
+    --folder-glow: rgba(0, 0, 0, 0.15);
   }
 
-  :root {
-    /* Default: Dark Mode */
-    --folder-bg: #efede3;
-    --folder-text: #0a0a0a;
-    --folder-glow: rgba(255, 255, 255, 0.1);
-  }
+
 
   html {
     scroll-behavior: smooth;
@@ -162,7 +127,6 @@
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     background-color: var(--bg);
-    transition: background-color 0.5s ease, color 0.5s ease;
     line-height: 1.5;
     font-weight: 400;
   }
@@ -176,6 +140,10 @@
 }
 
 @layer components {
+  .bg-grain {
+    position: relative;
+  }
+
   .bg-grain::after {
     content: "";
     position: fixed;
@@ -184,11 +152,12 @@
     width: 300%;
     height: 300%;
     background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-    opacity: 0.04;
+    opacity: 0.06;
     pointer-events: none;
     z-index: 999;
     animation: grain 8s steps(10) infinite;
   }
+
 }
 
 @layer utilities {
@@ -214,7 +183,7 @@
       align-items: flex-start !important;
       text-align: left !important;
     }
-    
+
     .stack-mobile {
       display: flex;
       flex-direction: column;
@@ -254,7 +223,7 @@
     background-size: 200px 200px, 200px 200px, 50px 50px, 50px 50px;
     background-position: center center;
     /* High-impact Designer Canvas Grid: Large scale with expansive radial falloff */
-    opacity: 0.05;
+    opacity: 0.08;
     mask-image: radial-gradient(circle at center, black 5%, transparent 85%);
     pointer-events: none;
   }
@@ -347,6 +316,7 @@
     transform: translate(-10%, 10%)
   }
 }
+
 
 .page-fade-enter {
   animation: fade-in 1.2s var(--ease-out-expo) forwards;

@@ -40,18 +40,18 @@ const routes = [
 
   let browser;
   try {
-    let executablePath = await chromium.executablePath();
-    
-    // Fallback for local development on macOS
-    if (!executablePath && process.platform === 'darwin') {
+    let executablePath;
+    if (process.platform === 'darwin') {
       executablePath = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
+    } else {
+      executablePath = await chromium.executablePath();
     }
 
     browser = await puppeteer.launch({
-      args: chromium.args,
+      args: process.platform === 'darwin' ? [] : chromium.args,
       defaultViewport: chromium.defaultViewport,
       executablePath: executablePath,
-      headless: chromium.headless,
+      headless: process.platform === 'darwin' ? 'new' : chromium.headless,
     });
 
     for (const route of routes) {

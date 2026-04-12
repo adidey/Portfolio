@@ -18,8 +18,8 @@ const SocialLink = ({ href, label }: { href: string; label: string }) => (
 
 const Footer: React.FC = () => {
     return (
-        <footer className="px-6 md:px-20 py-16 md:py-24 border-t border-[var(--border)] bg-[var(--bg)] mt-auto relative z-30 group/footer transition-colors duration-500">
-            <div className="max-w-[1800px] mx-auto">
+        <footer className="px-6 md:px-10 py-12 md:py-16 border-t border-[var(--border)] bg-[var(--bg)] mt-auto relative z-30 group/footer transition-colors duration-500">
+            <div className="max-w-[1400px] mx-auto">
                 {/* Main Footer Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-24 items-start md:opacity-75 md:hover:opacity-100 transition-opacity duration-700">
 
@@ -40,7 +40,7 @@ const Footer: React.FC = () => {
                         <div className="grid grid-cols-2 gap-x-8 md:gap-x-12 gap-y-4 md:gap-y-6 text-[11px] md:text-xs uppercase tracking-[0.3em] md:tracking-[0.4em] font-medium text-[var(--ink)]">
                             <SocialLink href="https://www.linkedin.com/in/adityadey27/" label="LinkedIn" />
                             <SocialLink href="https://github.com/adidey" label="GitHub" />
-                            <SocialLink href="https://www.behance.net/adityadey" label="Behance" />
+                            <SocialLink href="https://www.behance.net/adityadey27" label="Behance" />
                             <SocialLink href="https://dribbble.com/Aditya_Dey" label="Dribbble" />
                             <SocialLink href="https://www.instagram.com/_adityadey/" label="Instagram" />
                         </div>
@@ -50,7 +50,7 @@ const Footer: React.FC = () => {
                     <div className="md:col-span-4 md:text-right space-y-4 md:space-y-6 mt-8 md:mt-0">
                         <div>
                             <p className="text-[10px] uppercase tracking-[0.6em] text-[var(--muted)] mb-2">AVAILABILITY</p>
-                            <p className="text-xl md:text-3xl font-bold font-mono tracking-tighter tabular-nums uppercase max-w-[280px] md:ml-auto text-[var(--ink)]">
+                            <p className="text-xl md:text-3xl font-bold tracking-tighter tabular-nums uppercase max-w-[280px] md:ml-auto text-[var(--ink)]">
                                 Open for Collaborations
                             </p>
                         </div>

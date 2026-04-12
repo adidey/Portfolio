@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
+import { AnimatePresence, m, LazyMotion, domMax } from 'framer-motion';
 import { PageView } from './components/Navbar';
 import Layout from './components/Layout';
 
@@ -13,6 +14,23 @@ const Resume = React.lazy(() => import('./pages/Resume'));
 const Contact = React.lazy(() => import('./pages/Contact'));
 const Gallery = React.lazy(() => import('./pages/Gallery'));
 const ProjectDetail = React.lazy(() => import('./pages/ProjectDetail'));
+
+const Loader = () => (
+  <m.div
+    initial={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
+    className="fixed inset-0 z-[1000] bg-[var(--bg)] flex items-center justify-center"
+  >
+    <m.p
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="text-[10px] uppercase tracking-[0.5em] font-black text-[var(--ink)]"
+    >
+      Loading
+    </m.p>
+  </m.div>
+);
 
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -37,12 +55,6 @@ const App: React.FC = () => {
     // Scroll to top on route change
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    // Page load simulation for routes
-    setIsLoading(true);
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 600);
-
     // Dynamic Title Management
     let title = 'Aditya Dey | Designer & Engineer';
     const path = location.pathname;
@@ -57,8 +69,6 @@ const App: React.FC = () => {
       title = `${viewName || 'Home'} | Aditya Dey`;
     }
     document.title = title;
-
-    return () => clearTimeout(timer);
   }, [location.pathname]);
 
   const handleProjectClick = (id: string) => {
@@ -74,26 +84,42 @@ const App: React.FC = () => {
   };
 
   return (
-    <Layout
-      currentPath={location.pathname}
-      onNavigate={handleNavigate}
-      isLoading={isLoading}
-    >
-      <React.Suspense fallback={<div className="min-h-screen bg-[var(--bg)]" />}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/work" element={<Work onProjectClick={handleProjectClick} />} />
-          <Route path="/work/:projectId" element={<ProjectDetail onBack={() => navigate('/work')} />} />
-          <Route path="/posters" element={<Gallery />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/resume" element={<Resume />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="*" element={<Home />} />
-        </Routes>
-      </React.Suspense>
-      <Analytics />
-      <SpeedInsights />
-    </Layout>
+    <LazyMotion features={domMax}>
+      <AnimatePresence mode="wait">
+        {isLoading && <Loader key="loader" />}
+      </AnimatePresence>
+
+      <Layout
+        currentPath={location.pathname}
+        onNavigate={handleNavigate}
+        isLoading={isLoading}
+      >
+        <AnimatePresence mode="wait">
+          <m.div
+            key={location.pathname}
+            initial={{ opacity: 0, y: 15, filter: 'blur(10px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            exit={{ opacity: 0, y: -10, filter: 'blur(10px)' }}
+            transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
+          >
+            <React.Suspense fallback={<div className="min-h-screen bg-[var(--bg)]" />}>
+              <Routes location={location}>
+                <Route path="/" element={<Home />} />
+                <Route path="/work" element={<Work onProjectClick={handleProjectClick} />} />
+                <Route path="/work/:projectId" element={<ProjectDetail onBack={() => navigate('/work')} />} />
+                <Route path="/posters" element={<Gallery />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/resume" element={<Resume />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="*" element={<Home />} />
+              </Routes>
+            </React.Suspense>
+          </m.div>
+        </AnimatePresence>
+        <Analytics />
+        <SpeedInsights />
+      </Layout>
+    </LazyMotion>
   );
 };
 

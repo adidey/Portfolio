@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { LazyMotion, domMax } from 'framer-motion';
 import Navbar, { PageView } from './Navbar';
 import Footer from './Footer';
 
@@ -14,42 +15,35 @@ const Layout: React.FC<LayoutProps> = ({
     onNavigate,
     children
 }) => {
-    const [theme, setTheme] = useState<'dark' | 'light'>(() => {
-        const saved = localStorage.getItem('portfolio-theme');
-        return (saved as 'dark' | 'light') || 'dark';
-    });
-
-    useEffect(() => {
-        document.documentElement.classList.toggle('light', theme === 'light');
-        localStorage.setItem('portfolio-theme', theme);
-    }, [theme]);
-
-    const toggleTheme = () => setTheme(prev => prev === 'dark' ? 'light' : 'dark');
-
     const isHome = currentPath === '/';
 
     return (
-        <div className={`min-h-screen bg-[var(--bg)] text-[var(--text)] selection:bg-[var(--selection-bg)] selection:text-[var(--selection-text)] flex flex-col relative overflow-x-hidden ${theme === 'light' ? 'light' : ''}`}>
-            {/* Global Design Grid (Simplified for Designer Canvas) */}
-            <div className="fixed inset-0 pointer-events-none z-0 designer-grid opacity-20" />
+        <LazyMotion features={domMax}>
+            <div className="min-h-screen bg-[var(--bg)] text-[var(--text)] selection:bg-[var(--selection-bg)] selection:text-[var(--selection-text)] flex flex-col relative overflow-x-hidden bg-grain">
 
-            <Navbar
-                currentPath={currentPath}
-                onNavigate={onNavigate}
-                theme={theme}
-                onToggleTheme={toggleTheme}
-            />
+                {/* ── Global Background Effects ─────────────────────────────────── */}
+                <div className="fixed inset-0 pointer-events-none z-0">
+                    <div className="absolute inset-0 designer-grid" />
+                </div>
 
-            {/* Add top padding on non-home pages for navbar clearance */}
-            <main
-                key={currentPath}
-                className={`flex-grow relative z-20 ${isHome ? '' : 'pt-24 md:pt-32'}`}
-            >
-                {children}
-            </main>
+                <Navbar
+                    currentPath={currentPath}
+                    onNavigate={onNavigate}
+                    theme="light"
+                    onToggleTheme={() => { }}
+                />
 
-            <Footer />
-        </div>
+                {/* Standardized navbar clearance and container for all routes */}
+                <main
+                    key={currentPath}
+                    className="relative z-10 pt-28 md:pt-40 pb-28 md:pb-40 max-w-[1400px] mx-auto px-6 md:px-10 w-full"
+                >
+                    {children}
+                </main>
+
+                <Footer />
+            </div>
+        </LazyMotion>
     );
 };
 

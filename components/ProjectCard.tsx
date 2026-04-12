@@ -42,6 +42,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
 
         {/* Project Image */}
         <m.img
+          layoutId={`project-img-${project.id}`}
           src={project.thumbnail}
           alt={project.title}
           initial={{ scale: 1, filter: 'grayscale(0.1) brightness(0.8)' }}
@@ -119,7 +120,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="absolute inset-0 pointer-events-none z-20 border-[0.5px] border-white/20 rounded-[32px] shadow-[inset_0_0_100px_rgba(37,99,235,0.05)]"
+            className="absolute inset-0 pointer-events-none z-20 border-[0.5px] border-white/20 rounded-[32px]"
           />
         )}
       </AnimatePresence>
