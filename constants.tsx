@@ -133,6 +133,28 @@ export const PROJECTS: Project[] = [
     role: 'Designer & Developer',
     roleDetail: 'Developed the thermal detection logic and designed the autonomous interaction model.',
     metrics: ['Hygiene Compliance Improvement', 'UNICEF Recognition']
+  },
+  {
+    id: 'portfolio',
+    title: 'Digital Identity',
+    category: 'Product & UX',
+    year: '2026',
+    thumbnail: '/assets/portfolio-home.jpg',
+    shortDescription: 'A systematic architectural overhaul of my digital identity and portfolio, engineered for speed and editorial aesthetics.',
+    context: 'The previous iteration of my portfolio lacked a cohesive grid system and relied heavily on unstructured spacing, resulting in layout tension and a visually generic feel. The goal of this overhaul was to commercialize the architecture and establish a strict 12-column editorial design language.',
+    problem: 'Minimalism without structural rigidity often looks broken rather than intentional. I needed to shift my platform from a simple grid of images to a sophisticated product case study that respects deep UX methodologies.',
+    process: 'Employed a strict Z-pattern layout methodology across all routes to control visual hierarchy. Designed a mathematically locked vertical pacing system governed globally. Migrated to Framer Motion for cross-route DOM transitions removing Gaussian blur bottlenecks.',
+    outcome: 'A highly performant, accessible digital product. Improved recruiter scan-ability significantly through unified container metrics and aggressive typographic scaling parameters.',
+    images: ['/assets/portfolio-home.jpg'],
+    tags: ['UX Architecture', 'Framer Motion', 'React 19'],
+    technologies: ['Vite', 'Tailwind', 'Motion UI'],
+    client: 'Personal Branding',
+    role: 'Product Engineer',
+    roleDetail: 'Designed the mathematical layout grid and engineered the fluid navigation architecture.',
+    metrics: ['Sub-second FCP', 'Mathematical Grid Alignment', 'Reduced TTI Layout Shift'],
+    annotations: ['Z-Pattern Execution', 'Fluid Typography'],
+    processImages: ['/assets/portfolio-about.jpg'],
+    outcomeImages: ['/assets/portfolio-work.jpg']
   }
 ];
 
