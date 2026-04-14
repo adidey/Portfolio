@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body, html { margin: 0; padding: 0; background: #000; overflow-x: hidden; }
+        img { width: 100%; display: block; }
+    </style>
+</head>
+<body>
+    <img src="/assets/sidemen/chunk_0.jpg" />
+    <img src="/assets/sidemen/chunk_1.jpg" />
+    <img src="/assets/sidemen/chunk_2.jpg" />
+    <img src="/assets/sidemen/chunk_3.jpg" />
+    <script>
+        window.scrollTo(0, 0);
+        let pos = 0;
+        const scrollStep = 10;
+        const scrollInterval = 20; // ms
+        setInterval(() => {
+            pos += scrollStep;
+            window.scrollTo(0, pos);
+            if (pos > document.body.scrollHeight) {
+                pos = 0; // simple loop or stop
+            }
+        }, scrollInterval);
+    </script>
+</body>
+</html>

@@ -155,6 +155,38 @@ export const PROJECTS: Project[] = [
     annotations: ['Z-Pattern Execution', 'Fluid Typography'],
     processImages: ['/assets/portfolio-about.jpg'],
     outcomeImages: ['/assets/portfolio-work.jpg']
+  },
+  {
+    id: 'horizon-zoom',
+    title: 'Horizon Zoom',
+    category: 'Brand Strategy',
+    year: '2023',
+    thumbnail: '/assets/horizon-zoom/Slide 16_9 - 1.jpg',
+    shortDescription: 'Brand identity and business case study for a retro-inspired 32-bit arcade racing game.',
+    context: 'Horizon Zoom bridges the gap between nostalgic 32-bit graphics and modern multiplayer dynamics, targeting adolescent racing enthusiasts.',
+    problem: 'Modern racing games like Asphalt dominate the market but are prone to crashing and monotonous gameplay. Classic retro racers, conversely, lack community features.',
+    process: 'Developed a comprehensive pitch deck covering business planning, monetization strategies (in-game currency, subscriptions, merch), and unique incentive models including charitable profit allocation.',
+    outcome: 'A complete brand system and strategic presentation that positions Horizon Zoom as an emerging leader in community-driven, stable arcade racing.',
+    images: [
+      '/assets/horizon-zoom/Frame 1.jpg', 
+      '/assets/horizon-zoom/Slide 16_9 - 1.jpg', 
+      '/assets/horizon-zoom/Slide 16_9 - 8.jpg'
+    ],
+    tags: ['Brand Identity', 'Strategy', 'Game Design Pitch'],
+    technologies: ['Presentation Design', 'Business Modeling', 'Brand Positioning'],
+    client: 'Horizon Games',
+    role: 'Strategist & Designer',
+    roleDetail: 'Designed the visual pitch deck and formulated the core business, retention, and incentive models.',
+    metrics: ['Subscription Strategy', 'Charitable Incentive Model (15%)'],
+    annotations: ['Retro 32-bit Aesthetic', 'Community Focus'],
+    processImages: [
+      '/assets/horizon-zoom/Slide 16_9 - 4.jpg', 
+      '/assets/horizon-zoom/Slide 16_9 - 5.jpg'
+    ],
+    outcomeImages: [
+      '/assets/horizon-zoom/Slide 16_9 - 6.jpg', 
+      '/assets/horizon-zoom/Slide 16_9 - 12.jpg'
+    ]
   }
 ];
 
