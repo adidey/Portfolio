@@ -187,6 +187,39 @@ export const PROJECTS: Project[] = [
       '/assets/horizon-zoom/Slide 16_9 - 6.jpg', 
       '/assets/horizon-zoom/Slide 16_9 - 12.jpg'
     ]
+  },
+  {
+    id: 'sidemen-app',
+    title: 'Sidemen App',
+    category: 'UI/UX Design',
+    year: '2022',
+    thumbnail: '/assets/sidemen/sidemen_scroll.gif',
+    shortDescription: 'A centralized all-in-one app concept gathering Sidemen content, merch, and community.',
+    context: 'The Sidemen have a vast ecosystem spanning YouTube channels, merchandise (Sidemen Clothing), and exclusive content. This project conceptualized a single hub to unify these experiences.',
+    problem: 'Fans currently have to navigate across multiple disparate platforms (YouTube, independent merch sites, social media) to engage with the complete Sidemen brand ecosystem.',
+    process: 'Designed a comprehensive user flow encompassing content consumption (Watchlist), e-commerce (Shopping), and account management. Mapped wireframes into a dark-themed, high-fidelity UI.',
+    outcome: 'A modern, clean, and interactive prototype that consolidates media playback, browsing, and community features into one cohesive mobile experience.',
+    images: [
+      '/assets/sidemen/chunk_0.jpg', 
+      '/assets/sidemen/chunk_1.jpg', 
+      '/assets/sidemen/chunk_2.jpg',
+      '/assets/sidemen/chunk_3.jpg'
+    ],
+    tags: ['UI Design', 'Wireframing', 'User Flow'],
+    technologies: ['Figma', 'Prototyping', 'Mobile UI'],
+    client: 'Concept Project',
+    role: 'Product Designer',
+    roleDetail: 'Designed the complete information architecture, wireframes, and final high-fidelity mobile screens.',
+    metrics: ['Unified User Flow', 'Dark Mode Interface'],
+    annotations: ['All-in-one Platform', 'Modern Aesthetics'],
+    processImages: [
+      '/assets/sidemen/chunk_1.jpg'
+    ],
+    outcomeImages: [
+      '/assets/sidemen/chunk_2.jpg',
+      '/assets/sidemen/chunk_3.jpg'
+    ],
+    prototypeVideo: '/assets/sidemen/sidemen_scroll.gif'
   }
 ];
 
