@@ -73,16 +73,23 @@ const ProjectDetail: React.FC = () => {
           </header>
 
           {/* Hero Asset */}
-          <div className="w-full aspect-video md:aspect-[21/9] overflow-hidden bg-[#e5e5e5] border-b border-[var(--border)]">
-            <m.img 
-              layoutId={`project-img-${project.id}`}
-              initial={{ scale: 1.1 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 1.5, ease: [0.19, 1, 0.22, 1] }}
-              src={project.thumbnail} 
-              alt={project.title} 
-              className="w-full h-full object-cover" 
-            />
+          <div className="w-full aspect-video md:aspect-[21/9] overflow-hidden bg-[#e5e5e5] border-b border-[var(--border)] relative">
+            {project.figmaEmbed ? (
+              <div 
+                dangerouslySetInnerHTML={{ __html: project.figmaEmbed }} 
+                className="w-full h-full [&>iframe]:w-full [&>iframe]:h-full [&>iframe]:border-none" 
+              />
+            ) : (
+              <m.img 
+                layoutId={`project-img-${project.id}`}
+                initial={{ scale: 1.1 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 1.5, ease: [0.19, 1, 0.22, 1] }}
+                src={project.thumbnail} 
+                alt={project.title} 
+                className="w-full h-full object-cover" 
+              />
+            )}
           </div>
 
           <div>

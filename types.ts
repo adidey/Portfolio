@@ -22,6 +22,7 @@ export interface Project {
   annotations?: string[];
   processImages?: string[];
   outcomeImages?: string[];
+  figmaEmbed?: string;
 }
 
 

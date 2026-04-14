@@ -220,6 +220,27 @@ export const PROJECTS: Project[] = [
       '/assets/sidemen/chunk_3.jpg'
     ],
     prototypeVideo: '/assets/sidemen/sidemen_scroll.gif'
+  },
+  {
+    id: 'client-work',
+    title: 'Client Work: Portfolio',
+    category: 'UI Design',
+    year: '2024',
+    thumbnail: '/assets/portfolio-home.jpg',
+    shortDescription: 'Interactive Figma prototype for a personal client portfolio showcasing sleek design and seamless navigation.',
+    context: 'A comprehensive interactive prototype built centrally in Figma to establish design language, layout architecture, and user flows for a personal client portfolio.',
+    problem: 'The client needed a responsive, visually distinct digital identity emphasizing typography and spacing to highlight their creative work without overwhelming interactions.',
+    process: 'Structured a rigid editorial Z-pattern layout directly in Figma, incorporating high-fidelity interactive prototyping to closely simulate full browser mechanics.',
+    outcome: 'A production-ready prototype that allowed the client to fully test edge interactions, content padding, and navigational pacing before transitioning to codebase execution.',
+    images: ['/assets/portfolio-home.jpg'],
+    tags: ['Figma', 'Prototyping', 'Web Design'],
+    technologies: ['Figma Prototype', 'UI Architecture'],
+    client: 'Private Client',
+    role: 'Lead Designer',
+    roleDetail: 'Architected the structure and executed the fully functional Figma prototype.',
+    metrics: ['Interactive Prototype Validation', 'Z-Pattern Design'],
+    annotations: ['Client Collaboration', 'High-Fidelity Wireframes'],
+    figmaEmbed: `<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/proto/mK3RFKq5p6rB6BxhIgxD93/client-work--AYUSH?node-id=5-2&p=f&viewport=121%2C258%2C0.1&scaling=contain&content-scaling=fixed&starting-point-node-id=5%3A2&show-proto-sidebar=1&page-id=0%3A1&embed-host=share" allowfullscreen></iframe>`
   }
 ];
 
