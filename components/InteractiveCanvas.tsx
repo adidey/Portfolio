@@ -26,7 +26,7 @@ const HorizontalMarquee = () => {
             </span>
           </Link>
         ))}
-      </m.div>
+      </div>
     </div>
   );
 };
