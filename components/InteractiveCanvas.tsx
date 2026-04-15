@@ -7,12 +7,8 @@ import { PROJECTS } from '../constants';
 const HorizontalMarquee = () => {
   const items = [...PROJECTS, ...PROJECTS, ...PROJECTS].slice(0, 18);
   return (
-    <div className="w-full flex items-center overflow-hidden h-full [mask-image:linear-gradient(to_right,transparent_0%,black_5%,black_95%,transparent_100%)]">
-      <m.div
-        animate={{ x: ['0%', '-50%'] }}
-        transition={{ duration: 55, repeat: Infinity, ease: 'linear' }}
-        className="flex gap-8 w-max h-full items-center"
-      >
+    <div className="w-full flex items-center overflow-hidden h-full [mask-image:linear-gradient(to_right,transparent_0%,black_5%,black_95%,transparent_100%)] group/marquee">
+      <div className="flex gap-8 w-max h-full items-center animate-marquee group-hover/marquee:[animation-play-state:paused]">
         {items.map((p, i) => (
           <Link
             to={`/work/${p.id}`}

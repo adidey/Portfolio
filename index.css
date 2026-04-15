@@ -12,6 +12,13 @@
 
   --animate-slow-rotate: slow-rotate 25s linear infinite;
   --animate-float: float 6s ease-in-out infinite;
+  --animate-marquee: marquee 55s linear infinite;
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
 
   @keyframes slow-rotate {
     from {

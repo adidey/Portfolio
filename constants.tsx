@@ -193,7 +193,7 @@ export const PROJECTS: Project[] = [
     title: 'Sidemen App',
     category: 'UI/UX Design',
     year: '2022',
-    thumbnail: '/assets/sidemen/sidemen_scroll.gif',
+    thumbnail: '/assets/sidemen/chunk_0.jpg',
     shortDescription: 'A centralized all-in-one app concept gathering Sidemen content, merch, and community.',
     context: 'The Sidemen have a vast ecosystem spanning YouTube channels, merchandise (Sidemen Clothing), and exclusive content. This project conceptualized a single hub to unify these experiences.',
     problem: 'Fans currently have to navigate across multiple disparate platforms (YouTube, independent merch sites, social media) to engage with the complete Sidemen brand ecosystem.',
@@ -218,8 +218,7 @@ export const PROJECTS: Project[] = [
     outcomeImages: [
       '/assets/sidemen/chunk_2.jpg',
       '/assets/sidemen/chunk_3.jpg'
-    ],
-    prototypeVideo: '/assets/sidemen/sidemen_scroll.gif'
+    ]
   },
   {
     id: 'client-work',
@@ -254,6 +253,40 @@ export const PROJECTS: Project[] = [
       '/assets/client-portfolio/Slide 16_9 - 15.png'
     ],
     figmaEmbed: `<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/proto/mK3RFKq5p6rB6BxhIgxD93/client-work--AYUSH?node-id=5-2&p=f&viewport=121%2C258%2C0.1&scaling=contain&content-scaling=fixed&starting-point-node-id=5%3A2&show-proto-sidebar=1&page-id=0%3A1&embed-host=share" allowfullscreen></iframe>`
+  },
+  {
+    id: 'sneakin',
+    title: 'Sneakin',
+    category: 'UI Design',
+    year: '2023',
+    thumbnail: '/assets/sneakin/Slide 16_9 - 4.png',
+    shortDescription: 'Comprehensive crypto and fintech application design focused on seamless portfolio building.',
+    context: 'A digital wealth platform aimed at simplifying crypto investments through an energetic, minimalist dark-mode aesthetic.',
+    problem: 'Crypto trading platforms are notoriously cluttered. Novice traders need a frictionless, guided experience to accumulate and build wealth without feeling overwhelmed by complex charts.',
+    process: 'Structured a highly visual, neon-accented dark mode UI. Designed key flows including portfolio tracking, instant crypto transfers, and AI-driven staking metrics.',
+    outcome: 'A vibrant, recruiter-ready case study showcasing responsive mobile interfaces, crisp component design, and trusted fintech branding.',
+    images: [
+      '/assets/sneakin/Slide 16_9 - 1.png',
+      '/assets/sneakin/Slide 16_9 - 2.png',
+      '/assets/sneakin/Slide 16_9 - 3.png',
+      '/assets/sneakin/Slide 16_9 - 4.png',
+      '/assets/sneakin/Slide 16_9 - 5.png'
+    ],
+    tags: ['Fintech', 'App Design', 'Dark Mode'],
+    technologies: ['Figma', 'Prototyping', 'UI/UX'],
+    client: 'Concept Project',
+    role: 'Product Designer',
+    roleDetail: 'Designed end-to-end mobile app interfaces and marketing assets.',
+    metrics: ['Crypto Portfolio Simplification', 'Trust-first Visuals'],
+    annotations: ['Fintech App', 'Vibrant Gradients'],
+    processImages: [
+      '/assets/sneakin/Slide 16_9 - 6.png',
+      '/assets/sneakin/Slide 16_9 - 8.png'
+    ],
+    outcomeImages: [
+      '/assets/sneakin/Slide 16_9 - 9.png',
+      '/assets/sneakin/Slide 16_9 - 10.png'
+    ]
   }
 ];
 
