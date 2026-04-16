@@ -94,6 +94,24 @@ const ProjectDetail: React.FC = () => {
 
           <div>
             {/* Case Study Content */}
+            {project.brief && (
+              <ProjectSection title="Objective">
+                <div className="space-y-10">
+                  <p className="text-[22px] md:text-[32px] font-medium leading-tight tracking-tight max-w-4xl text-[var(--ink)]">
+                    {project.brief}
+                  </p>
+                  {project.goal && (
+                    <div className="pt-10 border-t border-[var(--border)]/60">
+                      <p className="text-[9px] uppercase tracking-widest text-[var(--muted)] mb-4 font-black">Strategic Goal</p>
+                      <p className="text-[18px] md:text-[26px] font-bold leading-tight tracking-tight max-w-3xl italic text-[var(--muted)]">
+                        "{project.goal}"
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </ProjectSection>
+            )}
+
             <ProjectSection title="Problem">
               <p className="text-[22px] md:text-[32px] font-black leading-tight tracking-tight max-w-4xl">
                 {project.problem}

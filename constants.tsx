@@ -81,20 +81,22 @@ export const PROJECTS: Project[] = [
     title: 'Exousia',
     category: 'Interaction',
     year: '2023',
-    thumbnail: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1200',
+    thumbnail: 'https://mir-s3-cdn-cf.behance.net/projects/404/853627975.632d43e0e0a5a.png',
     shortDescription: 'Piezoelectric energy-generating floor tiles for sustainable infrastructure.',
-    context: 'Converting latent physical energy into usable electricity through urban walking patterns.',
-    problem: 'Public infrastructure ignores the massive untapped energy potential from high-traffic environments.',
-    process: 'Prototyped structural flooring using Fusion360. Integrated an array of PZT sensors with custom Arduino circuitry.',
-    outcome: 'Awarded FICCI Arise for Innovation. Successfully powered a localized lighting loop using solely kinetic input.',
-    images: ['https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=1600'],
+    context: 'Developing household sustainability research and brand identity for self-sufficient power harvesting.',
+    brief: 'Establish a comprehensive brand identity, 3D prototypes, and mobile interfaces for a new venture focused on household energy self-sustainability.',
+    goal: 'To enable households to become self-sustainable by harnessing latent kinetic energy from daily physical activity—such as walking or moving furniture—using piezoelectric floor tiles.',
+    problem: 'Modern households rely entirely on centralized power grids. There is an urgent need for localized, human-powered energy solutions to power essential needs like lighting and fans.',
+    process: 'Prototyped structural flooring using Fusion360. Integrated an array of PZT sensors with custom Arduino circuitry for real-time power conversion testing.',
+    outcome: 'Awarded FICCI Arise for Innovation. Successfully powered a localized lighting loop and established a cohesive brand language for future sustainable infrastructure.',
+    images: ['https://mir-s3-cdn-cf.behance.net/projects/404/853627975.632d43e0e0a5a.png'],
     tags: ['Arduino', 'IoT', 'Physical Computing'],
     technologies: ['C++', 'Fusion360', 'Piezoelectric Sensors'],
     client: 'Educational Innovation',
     role: 'Product Designer & Engineer',
-    roleDetail: 'Designed the physical chassis and engineered the sensor-to-light feedback loop.',
+    roleDetail: 'Designed the physical chassis, engineered the sensor feedback loop, and architected the brand identity.',
     metrics: ['Kinetic Energy Harvest', 'Localized Feedback System'],
-    link: 'https://aditey.com/work/exousia'
+    figmaEmbed: '<iframe src="https://www.behance.net/embed/project/151193447?ilo0=1" height="316" width="404" allowfullscreen lazyload frameborder="0" allow="clipboard-write" refererPolicy="strict-origin-when-cross-origin"></iframe>'
   },
   {
     id: 'joy-assistant',
@@ -159,14 +161,16 @@ export const PROJECTS: Project[] = [
   {
     id: 'horizon-zoom',
     title: 'Horizon Zoom',
-    category: 'Brand Strategy',
+    category: 'Branding',
     year: '2023',
     thumbnail: '/assets/horizon-zoom/Slide 16_9 - 1.jpg',
     shortDescription: 'Brand identity and business case study for a retro-inspired 32-bit arcade racing game.',
-    context: 'Horizon Zoom bridges the gap between nostalgic 32-bit graphics and modern multiplayer dynamics, targeting adolescent racing enthusiasts.',
-    problem: 'Modern racing games like Asphalt dominate the market but are prone to crashing and monotonous gameplay. Classic retro racers, conversely, lack community features.',
-    process: 'Developed a comprehensive pitch deck covering business planning, monetization strategies (in-game currency, subscriptions, merch), and unique incentive models including charitable profit allocation.',
-    outcome: 'A complete brand system and strategic presentation that positions Horizon Zoom as an emerging leader in community-driven, stable arcade racing.',
+    context: 'Revisiting the golden era of arcade racers to build a modern community-driven brand.',
+    brief: 'Design the brand identity for "Horizon Zoom," a 32-bit style arcade racing game that bridges the gap between nostalgic aesthetics and modern multiplayer dynamics.',
+    goal: 'To "inculcate nostalgia into the modern world" by blending 90s racing visual cues with contemporary UI/UX standards and business models.',
+    problem: 'Modern racing games often lack the specific "retro touch" and soul of classic arcade racers, despite a growing demand for nostalgic experiences among enthusiasts.',
+    process: 'Developed a comprehensive pitch deck covering business planning, monetization strategies, and a cohesive visual language utilizing pixelated signatures.',
+    outcome: 'A complete brand system and strategic presentation that positions Horizon Zoom as a leader in community-driven, stable arcade racing.',
     images: [
       '/assets/horizon-zoom/Frame 1.jpg', 
       '/assets/horizon-zoom/Slide 16_9 - 1.jpg', 
@@ -186,19 +190,22 @@ export const PROJECTS: Project[] = [
     outcomeImages: [
       '/assets/horizon-zoom/Slide 16_9 - 6.jpg', 
       '/assets/horizon-zoom/Slide 16_9 - 12.jpg'
-    ]
+    ],
+    figmaEmbed: '<iframe src="https://www.behance.net/embed/project/156706847?ilo0=1" height="316" width="404" allowfullscreen lazyload frameborder="0" allow="clipboard-write" refererPolicy="strict-origin-when-cross-origin"></iframe>'
   },
   {
     id: 'sidemen-app',
     title: 'Sidemen App',
-    category: 'UI/UX Design',
+    category: 'UI Design',
     year: '2022',
     thumbnail: '/assets/sidemen/chunk_0.jpg',
     shortDescription: 'A centralized all-in-one app concept gathering Sidemen content, merch, and community.',
-    context: 'The Sidemen have a vast ecosystem spanning YouTube channels, merchandise (Sidemen Clothing), and exclusive content. This project conceptualized a single hub to unify these experiences.',
-    problem: 'Fans currently have to navigate across multiple disparate platforms (YouTube, independent merch sites, social media) to engage with the complete Sidemen brand ecosystem.',
-    process: 'Designed a comprehensive user flow encompassing content consumption (Watchlist), e-commerce (Shopping), and account management. Mapped wireframes into a dark-themed, high-fidelity UI.',
-    outcome: 'A modern, clean, and interactive prototype that consolidates media playback, browsing, and community features into one cohesive mobile experience.',
+    context: 'Unifying a massive creator ecosystem into a single, high-performance digital hub.',
+    brief: 'Design a unified mobile application concept for "The Sidemen," gathering all business ventures—including clothing, media, and restaurants—into a single point of interaction.',
+    goal: 'To create a centralized "hub" that streamlines fan engagement, content consumption, and e-commerce across the entire Sidemen brand ecosystem.',
+    problem: 'Fans are currently forced to navigate a fragmented landscape across multiple platforms and independent sites to engage with different Sidemen businesses.',
+    process: 'Designed a comprehensive user flow encompassing content consumption, e-commerce, and community management, mapped into a signature dark-themed UI.',
+    outcome: 'A production-ready prototype that consolidates media playback and shopping into one cohesive mobile experience for a global audience.',
     images: [
       '/assets/sidemen/chunk_0.jpg', 
       '/assets/sidemen/chunk_1.jpg', 
@@ -218,7 +225,8 @@ export const PROJECTS: Project[] = [
     outcomeImages: [
       '/assets/sidemen/chunk_2.jpg',
       '/assets/sidemen/chunk_3.jpg'
-    ]
+    ],
+    figmaEmbed: '<iframe src="https://www.behance.net/embed/project/153505365?ilo0=1" height="316" width="404" allowfullscreen lazyload frameborder="0" allow="clipboard-write" refererPolicy="strict-origin-when-cross-origin"></iframe>'
   },
   {
     id: 'client-work',
@@ -287,6 +295,28 @@ export const PROJECTS: Project[] = [
       '/assets/sneakin/Slide 16_9 - 9.png',
       '/assets/sneakin/Slide 16_9 - 10.png'
     ]
+  },
+  {
+    id: 'creo',
+    title: 'CREO',
+    category: 'Branding',
+    year: '2023',
+    thumbnail: 'https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/5e0e0a162449841.63d6b7b2b6e5b.png',
+    shortDescription: 'Founding brand identity and design language for CREO Design Agency.',
+    context: 'Establishing a premium design agency that delivers fresh perspectives on 3D and branding.',
+    brief: 'Founded by Samarth Saluja and Aditya Dey, CREO was conceived to bring a unique perspective to the global design landscape, specializing in high-end branding and 3D visualization.',
+    goal: 'To help brands bring their ideas to life through a blend of innovation and premium aesthetics, ensuring they stand out in a saturated market.',
+    problem: 'Brands often struggle to communicate their stories through high-fidelity visuals that balance modernity with technical precision.',
+    process: 'Structured a diverse service offering including 3D product visualization, walkthroughs, and UI/UX design. Developed a signature visual language that emphasizes clarity and impact.',
+    outcome: 'A thriving design practice that bridge the gap between abstract concepts and production-ready visual solutions.',
+    images: ['https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/5e0e0a162449841.63d6b7b2b6e5b.png'],
+    tags: ['Branding', '3D Design', 'Agency Strategy'],
+    technologies: ['Adobe XD', 'Blender', 'Photoshop'],
+    client: 'Self-Founded',
+    role: 'Co-Founder & Lead Designer',
+    roleDetail: 'Co-founded the agency and lead the creative direction for branding and 3D visualization projects.',
+    metrics: ['Brand Distinctiveness', '3D Innovation'],
+    figmaEmbed: '<iframe src="https://www.behance.net/embed/project/162449841?ilo0=1" height="316" width="404" allowfullscreen lazyload frameborder="0" allow="clipboard-write" refererPolicy="strict-origin-when-cross-origin"></iframe>'
   }
 ];
 

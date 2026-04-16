@@ -17,6 +17,8 @@ export interface Project {
   roleDetail?: string;
   metrics?: string[];
   technologies?: string[];
+  brief?: string;
+  goal?: string;
   link?: string;
   prototypeVideo?: string;
   annotations?: string[];
