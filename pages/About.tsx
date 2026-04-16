@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { EXPERIENCE, SKILLS } from '../constants';
-import { m, LazyMotion, domMax } from 'framer-motion';
+import { m, LazyMotion, domMax } from 'motion/react';
 
 const LEADERSHIP_DATA = [
   { role: 'Innovation Lead', org: 'Google Developer Club', logo: '/assets/logos/gdsc.png' },

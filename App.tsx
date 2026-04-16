@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
-import { AnimatePresence, m, LazyMotion, domMax } from 'framer-motion';
+import { AnimatePresence, m, LazyMotion, domMax } from 'motion/react';
 import { PageView } from './components/Navbar';
 import Layout from './components/Layout';
 
@@ -17,35 +17,75 @@ const ProjectDetail = React.lazy(() => import('./pages/ProjectDetail'));
 
 const Loader = () => {
   const [count, setCount] = useState(0);
+  const [isComplete, setIsComplete] = useState(false);
 
   useEffect(() => {
-    const duration = 1000;
-    const intervalTime = 20;
+    const duration = 800;
+    const intervalTime = 30;
     const steps = duration / intervalTime;
     let current = 0;
     
     const interval = setInterval(() => {
       current++;
-      setCount(Math.min(100, Math.floor((current / steps) * 100)));
-      if (current >= steps) clearInterval(interval);
+      const progress = Math.min(100, Math.floor((current / steps) * 100));
+      setCount(progress);
+      if (current >= steps) {
+        clearInterval(interval);
+        setTimeout(() => setIsComplete(true), 200);
+      }
     }, intervalTime);
     
     return () => clearInterval(interval);
   }, []);
 
+  const barVariants = {
+    initial: { scaleY: 1 },
+    exit: (i: number) => ({
+      scaleY: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.76, 0, 0.24, 1],
+        delay: 0.05 * i
+      }
+    })
+  };
+
   return (
     <m.div
-      initial={{ y: '0%' }}
-      exit={{ y: '-100%' }}
-      transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
-      className="fixed inset-0 z-[2000] bg-[var(--ink)] flex items-center justify-center overflow-hidden"
+      className="fixed inset-0 z-[2000] flex overflow-hidden pointer-events-none"
     >
-      <div className="absolute bottom-10 right-10 flex">
-        <span className="text-[100px] md:text-[140px] leading-none font-black text-[var(--bg)] tabular-nums tracking-tighter">
-          {count}
-        </span>
-        <span className="text-xl md:text-2xl font-bold text-[var(--bg)]/50 mt-4 md:mt-6">%</span>
-      </div>
+      {/* Staircase Background Bars */}
+      {[...Array(5)].map((_, i) => (
+        <m.div
+          key={i}
+          variants={barVariants}
+          custom={i}
+          initial="initial"
+          exit="exit"
+          className="h-full w-full bg-[var(--ink)] origin-top"
+        />
+      ))}
+
+      {/* Counter Overlay */}
+      <AnimatePresence>
+        {!isComplete && (
+          <m.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="absolute inset-0 flex items-center justify-center pointer-events-none"
+          >
+            <div className="flex flex-col items-center">
+              <span className="text-[120px] md:text-[200px] leading-none font-black text-[var(--bg)] tabular-nums tracking-tighter">
+                {count}
+              </span>
+              <p className="text-[10px] uppercase tracking-[0.5em] text-[var(--bg)]/40 font-bold -mt-4">
+                System Initializing
+              </p>
+            </div>
+          </m.div>
+        )}
+      </AnimatePresence>
     </m.div>
   );
 };
@@ -63,15 +103,15 @@ const App: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    // Initial load timer
-    const timer = setTimeout(() => setIsLoading(false), 1200);
+    // Initial load timer matches Loader duration + transition buffer
+    const timer = setTimeout(() => setIsLoading(false), 1100);
     return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
     console.log('App: Current path:', location.pathname);
     // Scroll to top on route change
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'instant' });
 
     // Dynamic Title Management
     let title = 'Aditya Dey | Designer & Engineer';
@@ -101,6 +141,36 @@ const App: React.FC = () => {
     }
   };
 
+  const pageVariants = {
+    initial: {
+      opacity: 0,
+      x: 20,
+      scale: 0.98,
+      filter: 'blur(10px)'
+    },
+    animate: {
+      opacity: 1,
+      x: 0,
+      scale: 1,
+      filter: 'blur(0px)',
+      transition: {
+        duration: 0.8,
+        ease: [0.33, 1, 0.68, 1],
+        staggerChildren: 0.1
+      }
+    },
+    exit: {
+      opacity: 0,
+      x: -20,
+      scale: 1.02,
+      filter: 'blur(10px)',
+      transition: {
+        duration: 0.4,
+        ease: [0.33, 1, 0.68, 1]
+      }
+    }
+  };
+
   return (
     <LazyMotion features={domMax}>
       <AnimatePresence mode="wait">
@@ -112,13 +182,14 @@ const App: React.FC = () => {
         onNavigate={handleNavigate}
         isLoading={isLoading}
       >
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="wait" initial={false}>
           <m.div
             key={location.pathname}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
+            variants={pageVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            className="w-full"
           >
             <React.Suspense fallback={<div className="min-h-screen bg-[var(--bg)]" />}>
               <Routes location={location}>

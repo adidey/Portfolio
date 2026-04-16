@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { PROJECTS } from '../constants';
-import { m, LazyMotion, domMax } from 'framer-motion';
+import { m, LazyMotion, domMax } from 'motion/react';
 import { ExternalLink } from 'lucide-react';
 
 const ProjectSection: React.FC<{ title: string; children: React.ReactNode }> = ({ title, children }) => (

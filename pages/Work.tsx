@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { PROJECTS } from '../constants';
 import ProjectCard from '../components/ProjectCard';
-import { m, LazyMotion, domMax } from 'framer-motion';
+import { m, LazyMotion, domMax } from 'motion/react';
 
 interface WorkProps {
   onProjectClick: (id: string) => void;
@@ -46,11 +46,12 @@ const Work: React.FC<WorkProps> = ({ onProjectClick }) => {
             transition={{ duration: 0.8 }}
             className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10"
           >
-            {PROJECTS.map((project) => (
+            {PROJECTS.map((project, idx) => (
               <ProjectCard 
                 key={project.id} 
                 project={project} 
                 onClick={onProjectClick} 
+                priority={idx < 2}
               />
             ))}
           </m.div>

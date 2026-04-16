@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { CarouselItem } from '../types';
 import { getDribbbleShots } from '../services/dribbbleService';
-import { m, LazyMotion, domMax } from 'framer-motion';
+import { m, LazyMotion, domMax } from 'motion/react';
 
 const Gallery: React.FC = () => {
     const [items, setItems] = useState<CarouselItem[]>([]);
@@ -23,6 +23,14 @@ const Gallery: React.FC = () => {
 
         fetchItems();
     }, []);
+
+    const containerVariants = {
+        animate: {
+            transition: {
+                staggerChildren: 0.1
+            }
+        }
+    };
 
     return (
         <LazyMotion features={domMax}>
@@ -64,6 +72,7 @@ const Gallery: React.FC = () => {
                         </div>
                     ) : (
                         <m.div 
+                            variants={containerVariants}
                             initial="initial"
                             animate="animate"
                             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10"
@@ -80,8 +89,20 @@ const Gallery: React.FC = () => {
 };
 
 const PosterCard: React.FC<{ poster: CarouselItem; index: number }> = ({ poster, index }) => {
+    const cardVariants = {
+        initial: { opacity: 0, y: 30 },
+        animate: { 
+            opacity: 1, 
+            y: 0,
+            transition: {
+                duration: 0.8,
+                ease: [0.33, 1, 0.68, 1]
+            }
+        }
+    };
+
     return (
-        <div className="group flex flex-col gap-4">
+        <m.div variants={cardVariants} className="group flex flex-col gap-4">
             <a 
                 href={poster.link || '#'} 
                 target="_blank" 
@@ -107,7 +128,7 @@ const PosterCard: React.FC<{ poster: CarouselItem; index: number }> = ({ poster,
                     Study
                 </span>
             </div>
-        </div>
+        </m.div>
     );
 };
 

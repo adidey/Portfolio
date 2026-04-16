@@ -1,7 +1,8 @@
-import React from 'react';
-import { m, LazyMotion, domMax } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { m, LazyMotion, domMax, useAnimationFrame, useMotionValue, useTransform, AnimatePresence } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { PROJECTS } from '../constants';
+
 
 // ─── Horizontal auto-scrolling marquee of project thumbnails ───────────────
 const HorizontalMarquee = () => {
@@ -39,7 +40,7 @@ export const InteractiveCanvas = () => {
 
         {/* ── HERO SECTION ─────────────────────────────────────────────── */}
         <section className="relative w-full flex flex-col justify-start pt-4 pb-12">
-          {/* 2. Structured Hero Content */}
+          {/* 1. Structured Hero Content */}
           <m.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -78,3 +79,4 @@ export const InteractiveCanvas = () => {
     </LazyMotion>
   );
 };
+

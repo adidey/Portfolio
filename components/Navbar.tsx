@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { AnimatePresence, m, LazyMotion, domMax } from 'framer-motion';
+import { AnimatePresence, m, LazyMotion, domMax } from 'motion/react';
 
 export type PageView = 'home' | 'work' | 'about' | 'resume' | 'contact' | 'posters' | { type: 'project'; id: string };
 

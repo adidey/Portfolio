@@ -1,5 +1,5 @@
 import React from 'react';
-import { LazyMotion, domMax } from 'framer-motion';
+import { LazyMotion, domMax } from 'motion/react';
 import Navbar, { PageView } from './Navbar';
 import Footer from './Footer';
 
@@ -35,7 +35,6 @@ const Layout: React.FC<LayoutProps> = ({
 
                 {/* Standardized navbar clearance and container for all routes */}
                 <main
-                    key={currentPath}
                     className="relative z-10 pt-28 md:pt-40 pb-28 md:pb-40 max-w-[1400px] mx-auto px-6 md:px-10 w-full"
                 >
                     {children}
