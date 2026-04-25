@@ -13,7 +13,7 @@ interface NavbarProps {
 
 const AnimatedIdentity = ({ isScrolled, isExpanded, hovered, onHoverChange }: { isScrolled: boolean; isExpanded: boolean; hovered: boolean; onHoverChange: (hovered: boolean) => void }) => {
   return (
-    <m.div 
+    <m.div
       layout
       transition={{ layout: { duration: 0.3, ease: [0.19, 1, 0.22, 1] } }}
       className="pointer-events-auto select-none flex items-center group relative h-8"
@@ -72,6 +72,8 @@ const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
     { label: 'CONTACT', path: '/contact' },
   ];
 
+
+
   useEffect(() => {
     // Initial identity reveal sequence
     const timer = setTimeout(() => {
@@ -101,22 +103,30 @@ const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
 
   return (
     <>
-      <header className={`fixed top-0 left-0 w-full z-[100] transition-all duration-300 pointer-events-none ${
-        isScrolled 
-          ? 'bg-[var(--bg)]/70 backdrop-blur-md border-b-[0.5px] border-[var(--ink)]/5 py-4' 
-          : 'bg-transparent py-6 md:py-8'
-      }`}>
+      <m.header
+        key={currentPath}
+        initial={{ x: 40, opacity: 0, rotateY: 5 }}
+        animate={{ x: 0, opacity: 1, rotateY: 0 }}
+        exit={{ x: -40, opacity: 0, rotateY: -5 }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        style={{ perspective: "1000px", transformStyle: "preserve-3d" }}
+        className={`fixed top-0 left-0 w-full z-[100] transition-all duration-300 pointer-events-none ${isScrolled
+          ? 'bg-[var(--bg)]/70 backdrop-blur-md border-b-[0.5px] border-[var(--ink)]/5 py-4'
+          : 'bg-transparent py-8 md:py-12'
+        }`}>
+
+
         <div className="max-w-[1400px] mx-auto px-6 md:px-10 flex items-center justify-between">
           <Link
             to="/"
             className="pointer-events-auto block w-[110px]"
             aria-label="Aditya Dey — Home"
           >
-            <AnimatedIdentity 
+            <AnimatedIdentity
               isScrolled={isScrolled}
-              isExpanded={isLogoExpanded} 
-              hovered={logoHovered} 
-              onHoverChange={setLogoHovered} 
+              isExpanded={isLogoExpanded}
+              hovered={logoHovered}
+              onHoverChange={setLogoHovered}
             />
           </Link>
 
@@ -127,9 +137,8 @@ const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
                 <NavLink
                   key={item.label}
                   to={item.path}
-                  className={`text-[12px] font-bold tracking-[0.18em] uppercase transition-all duration-300 ${
-                    isActive ? 'text-[var(--ink)] opacity-100' : 'text-[var(--muted)] hover:text-[var(--ink)] hover:opacity-100'
-                  }`}
+                  className={`text-[12px] font-bold tracking-[0.18em] uppercase transition-all duration-300 ${isActive ? 'text-[var(--ink)] opacity-100' : 'text-[var(--muted)] hover:text-[var(--ink)] hover:opacity-100'
+                    }`}
                 >
                   {item.label}
                 </NavLink>
@@ -149,11 +158,11 @@ const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
             </svg>
           </button>
         </div>
-      </header>
+      </m.header>
 
-      <div className={`fixed inset-0 z-[200] bg-[var(--bg)] flex flex-col px-8 pt-14 pb-12 transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] ${
-        isMobileOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-      }`}>
+
+      <div className={`fixed inset-0 z-[200] bg-[var(--bg)] flex flex-col px-8 pt-14 pb-12 transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] ${isMobileOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}>
         <button
           onClick={() => setIsMobileOpen(false)}
           className="absolute top-6 right-6 text-[var(--muted)] p-2 hover:text-[var(--ink)] transition-colors"
@@ -166,8 +175,8 @@ const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
         </button>
 
         <Link to="/" onClick={() => setIsMobileOpen(false)} className="mb-14">
-           {/* Simple static version for mobile menu */}
-           <div className="text-[12px] font-bold tracking-[0.18em] uppercase text-[var(--ink)]">Aditya Dey</div>
+          {/* Simple static version for mobile menu */}
+          <div className="text-[12px] font-bold tracking-[0.18em] uppercase text-[var(--ink)]">Aditya Dey</div>
         </Link>
 
         <nav className="flex flex-col gap-2">

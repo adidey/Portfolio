@@ -24,18 +24,18 @@ const About: React.FC = () => {
 
         {/* Standardized Z-Pattern Header */}
         <header className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-0 pt-8 md:pt-12 pb-16 md:pb-24 border-b border-[var(--border)] items-start">
-          <div className="md:col-span-8 flex flex-col gap-4">
-            <p className="text-[10px] uppercase tracking-[0.4em] text-[var(--muted)] font-bold">About</p>
+              <div className="md:col-span-8 flex flex-col gap-4">
+            <p className="text-[10px] uppercase tracking-[0.4em] text-[var(--muted)] font-bold">The Human Behind the Screen</p>
             <h1
               className="font-black text-[var(--ink)] uppercase tracking-tight leading-[0.85]"
               style={{ fontSize: 'clamp(2.5rem, 7vw, 4.5rem)' }}
             >
-              Systems<br />& Humans
+              I build<br />for people.
             </h1>
           </div>
           <div className="md:col-span-4 md:text-right flex flex-col items-start md:items-end pt-1">
              <p className="text-[13px] md:text-[15px] leading-relaxed text-[var(--muted)] max-w-xs font-medium">
-                Product and interaction designer based in Melbourne, working at the intersection of software systems and human behavior.
+                I'm Aditya. I spend my time at the intersection of design, code, and how we actually think.
              </p>
              <div className="mt-8 flex items-center gap-2 px-3 py-1.5 border border-[var(--border)] rounded-full">
                <span className="text-[9px] font-black uppercase tracking-widest text-[var(--ink)]">Melbourne, AU</span>
@@ -53,13 +53,13 @@ const About: React.FC = () => {
                 transition={{ duration: 0.8 }}
                 className="text-[18px] md:text-[22px] font-medium leading-snug text-[var(--ink)] tracking-tight"
               >
-                Design through Systems and Cognition.
+                I'm a designer who actually enjoys the technical side of things.
               </m.p>
               <p className="text-[14px] md:text-[16px] leading-relaxed text-[var(--muted)]">
-                I'm a product and interaction designer based in Melbourne, working at the intersection of software systems and human behavior.
+                Most people see design and engineering as two different worlds. To me, they're the same thing: solving problems for real humans. 
               </p>
               <p className="text-[14px] md:text-[16px] leading-relaxed text-[var(--muted)]">
-                My background in computing shapes how I approach design — structured, scalable, and grounded in real technical constraints. I focus on building interfaces that translate cleanly from concept to production.
+                With a background in Computing and a minor in Psychology, I don't just care about how a button looks—I care about how it works, how it's built, and why a user would even want to click it in the first place.
               </p>
             </div>
 
@@ -84,9 +84,8 @@ const About: React.FC = () => {
           </div>
         </div>
 
-        {/* Section 1: EXPERIENCE (VERTICAL TIMELINE) */}
         <div className="border-b border-[var(--border)] pb-12">
-          <p className="text-[9px] uppercase tracking-widest text-[var(--muted)] pt-12 mb-12">Experience</p>
+          <p className="text-[9px] uppercase tracking-widest text-[var(--muted)] pt-12 mb-12">Where I've been</p>
           <div className="flex flex-col space-y-12">
             {EXPERIENCE.map((exp, i) => (
               <div key={i} className="group grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-10 items-start">
@@ -109,10 +108,9 @@ const About: React.FC = () => {
           </div>
         </div>
 
-        {/* Section 2: LEADERSHIP + EDUCATION (DENSE 2-COLUMN GRID) */}
         <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-[var(--border)] border-b border-[var(--border)]">
           <div className="py-12 md:pr-10 h-full flex flex-col justify-center">
-            <p className="text-[9px] uppercase tracking-widest text-[var(--muted)] mb-8">Leadership</p>
+            <p className="text-[9px] uppercase tracking-widest text-[var(--muted)] mb-8">Stepping up</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-8">
               {LEADERSHIP_DATA.map((item, idx) => (
                 <div key={idx} className="flex items-start gap-3 group">
@@ -125,7 +123,7 @@ const About: React.FC = () => {
             </div>
           </div>
           <div className="py-12 md:pl-10 h-full flex flex-col justify-center text-left md:text-right md:items-end">
-            <p className="text-[9px] uppercase tracking-widest text-[var(--muted)] mb-8 w-full">Education</p>
+            <p className="text-[9px] uppercase tracking-widest text-[var(--muted)] mb-8 w-full">How I learned</p>
             <div className="space-y-1 w-full">
                 <p className="text-[18px] font-black text-[var(--ink)] uppercase tracking-tight">The University of Melbourne</p>
                 <p className="text-[13px] font-bold uppercase tracking-widest text-[var(--muted)]">BSc. Computing & Software Systems</p>
@@ -134,11 +132,10 @@ const About: React.FC = () => {
           </div>
         </div>
 
-        {/* Section 3: WHAT I DO (SKILLS) */}
         <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[var(--border)]">
           {SKILLS.slice(0, 3).map((group, index) => (
             <div key={group.category} className={`py-12 h-full flex flex-col justify-center ${index === 0 ? 'md:pr-10' : index === 1 ? 'md:px-10' : 'md:pl-10 text-left md:text-right md:items-end'}`}>
-              <p className={`text-[9px] uppercase tracking-widest text-[var(--muted)] mb-8 w-full ${index === 2 ? 'md:text-right' : ''}`}>{group.category}</p>
+              <p className={`text-[9px] uppercase tracking-widest text-[var(--muted)] mb-8 w-full ${index === 2 ? 'md:text-right' : ''}`}>{group.category === 'Programming' ? 'Tools I use to build' : group.category === 'Design' ? 'How I see things' : 'The Toolkit'}</p>
               <div className={`flex flex-wrap gap-2 ${index === 2 ? 'md:justify-end' : ''}`}>
                 {group.items.map((item) => (
                   <span

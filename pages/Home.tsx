@@ -10,7 +10,7 @@ const Home: React.FC = () => {
         <meta name="description" content="Melbourne-based Product & UX Designer specializing in structured digital experiences." />
       </Helmet>
 
-      <div className="w-full flex flex-col items-center justify-start">
+      <div className="w-full flex flex-col items-center justify-start relative">
         <InteractiveCanvas />
       </div>
     </div>

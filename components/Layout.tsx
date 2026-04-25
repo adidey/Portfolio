@@ -33,14 +33,23 @@ const Layout: React.FC<LayoutProps> = ({
                     onToggleTheme={() => { }}
                 />
 
-                {/* Standardized navbar clearance and container for all routes */}
+
+
+                {/* Standardized container for all routes */}
                 <main
-                    className="relative z-10 pt-28 md:pt-40 pb-28 md:pb-40 max-w-[1400px] mx-auto px-6 md:px-10 w-full"
+                    className={`relative z-10 w-full ${
+                        isHome 
+                            ? 'flex-1 flex flex-col pt-24 md:pt-32 pb-16 md:pb-24' 
+                            : 'pt-28 md:pt-40 pb-28 md:pb-40 max-w-[1400px] mx-auto px-6 md:px-10'
+                    }`}
                 >
                     {children}
                 </main>
 
                 <Footer />
+
+
+
             </div>
         </LazyMotion>
     );

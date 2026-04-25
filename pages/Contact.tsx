@@ -84,22 +84,31 @@ const BusinessCard = () => {
           </div>
 
           {/* Bottom row */}
-          <div className="flex justify-between items-end">
-            <div className="space-y-1">
-              <div className="flex items-center gap-1.5 text-white/50">
-                <Mail size={10} />
-                <span className="text-[10px] font-medium">adidey27@gmail.com</span>
+            <div className="flex justify-between items-end">
+              <div className="space-y-1">
+                <button 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigator.clipboard.writeText('adidey27@gmail.com');
+                    alert('Email copied to clipboard!');
+                  }}
+                  className="flex items-center gap-1.5 text-white/50 hover:text-white transition-colors group/email"
+                >
+                  <Mail size={10} />
+                  <span className="text-[10px] font-medium">adidey27@gmail.com</span>
+                  <span className="text-[8px] opacity-0 group-hover/email:opacity-100 transition-opacity ml-1">(Copy)</span>
+                </button>
+                <p className="text-[8px] font-bold uppercase tracking-widest text-white/30">Melbourne · AU</p>
               </div>
-              <p className="text-[8px] font-bold uppercase tracking-widest text-white/30">Melbourne · AU</p>
+              <a
+                href="mailto:adidey27@gmail.com"
+                className="w-8 h-8 rounded-full bg-[var(--accent)] flex items-center justify-center hover:scale-110 transition-transform shadow-lg"
+                style={{ transform: 'translateZ(40px)' }}
+              >
+                <ArrowUpRight size={14} className="text-white" />
+              </a>
             </div>
-            <a
-              href="mailto:adidey27@gmail.com"
-              className="w-8 h-8 rounded-full bg-[var(--accent)] flex items-center justify-center hover:scale-110 transition-transform shadow-lg"
-              style={{ transform: 'translateZ(40px)' }}
-            >
-              <ArrowUpRight size={14} className="text-white" />
-            </a>
-          </div>
+
         </div>
 
         {/* Shine sweep */}

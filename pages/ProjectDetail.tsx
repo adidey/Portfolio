@@ -118,6 +118,24 @@ const ProjectDetail: React.FC = () => {
               </p>
             </ProjectSection>
 
+            {project.challenges && (
+              <ProjectSection title="Challenges">
+                <p className="text-[15px] md:text-[17px] leading-relaxed text-[var(--muted)] max-w-2xl">
+                  {project.challenges}
+                </p>
+              </ProjectSection>
+            )}
+
+            {project.tradeoffs && (
+              <ProjectSection title="Trade-offs">
+                <div className="bg-[var(--border)]/30 border border-[var(--border)] p-8 md:p-12 rounded-2xl max-w-3xl">
+                  <p className="text-[18px] md:text-[22px] font-bold leading-tight tracking-tight text-[var(--ink)]">
+                    {project.tradeoffs}
+                  </p>
+                </div>
+              </ProjectSection>
+            )}
+
             <ProjectSection title="Stack & Impact">
                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                  <div>
@@ -161,11 +179,20 @@ const ProjectDetail: React.FC = () => {
                </div>
             </ProjectSection>
 
+            {project.learnings && (
+              <ProjectSection title="Learnings">
+                <p className="text-[15px] md:text-[17px] leading-relaxed text-[var(--muted)] max-w-2xl italic">
+                  {project.learnings}
+                </p>
+              </ProjectSection>
+            )}
+
             <ProjectSection title="Outcome">
                <div className="space-y-12">
                   <p className="text-[22px] md:text-[32px] font-black leading-tight tracking-tight text-[var(--accent)] max-w-4xl">
                     {project.outcome}
                   </p>
+
                   {project.outcomeImages && (
                     <div className="grid grid-cols-1 gap-8">
                        {project.outcomeImages.map((img, i) => (

@@ -1,4 +1,3 @@
-
 export interface Project {
   id: string;
   title: string;
@@ -10,6 +9,9 @@ export interface Project {
   problem: string;
   process: string;
   outcome: string;
+  challenges?: string;
+  tradeoffs?: string;
+  learnings?: string;
   images: string[];
   tags: string[];
   client: string;
