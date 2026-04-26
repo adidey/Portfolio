@@ -3,6 +3,43 @@ import { m, LazyMotion, domMax, AnimatePresence } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { PROJECTS } from '../constants';
 
+// ─── Component: Word Flipper ─────────────────────────────────────────────
+const WordFlipper = () => {
+  const words = [
+    "Engineering Predictive Models",
+    "Designing BCI Interfaces",
+    "Architecting Design Systems",
+    "Founding Design Agencies",
+    "Developing Native macOS Tools"
+  ];
+
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % words.length);
+    }, 2500);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div className="h-[20px] relative flex items-center">
+      <AnimatePresence mode="wait">
+        <m.span
+          key={index}
+          initial={{ y: 10, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: -10, opacity: 0 }}
+          transition={{ duration: 0.4, ease: [0.19, 1, 0.22, 1] }}
+          className="text-[10px] font-black uppercase tracking-[0.3em] text-[var(--ink)] whitespace-nowrap"
+        >
+          {words[index]}
+        </m.span>
+      </AnimatePresence>
+    </div>
+  );
+};
+
 // ─── Component: Project Grid Item ────────────────────────────────────────
 const ProjectGridItem = ({ project, delay = 0 }: { project: any; delay?: number }) => (
   <m.div 
@@ -62,21 +99,14 @@ const FocusFrame = () => (
           opacity: { duration: 3, repeat: Infinity, ease: "easeInOut" }
         }}
         className={`absolute w-4 h-4 border-[var(--ink)]/20 ${pos}`}
-    />
-  ))}
-</m.div>
-
+      />
+    ))}
+  </m.div>
 );
 
 export const InteractiveCanvas = () => {
   // Selecting higher-impact projects: Sonora, Aurorae, and Exousia
   const featured = PROJECTS.filter(p => ['sonora', 'aurorae', 'exousia'].includes(p.id)).slice(0, 3);
-  const [showFocus, setShowFocus] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setShowFocus(true), 1500);
-    return () => clearTimeout(timer);
-  }, []);
 
   return (
     <LazyMotion features={domMax}>
@@ -92,14 +122,14 @@ export const InteractiveCanvas = () => {
         <section className="w-full pt-12 md:pt-20 pb-16 md:pb-24">
           <div className="max-w-[1400px] mx-auto px-6 md:px-10">
             <div className="flex flex-col gap-8 md:gap-12">
-              {/* Subtle Tag */}
+              {/* Word Flipper Tag */}
               <m.div 
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 className="flex items-center gap-4"
               >
                 <div className="w-8 h-[1px] bg-[var(--border)]" />
-                <span className="text-[9px] font-black uppercase tracking-[0.4em] text-[var(--muted)]">Focusing Architecture</span>
+                <WordFlipper />
               </m.div>
 
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-start">
@@ -108,10 +138,10 @@ export const InteractiveCanvas = () => {
                     initial={{ opacity: 0, filter: 'blur(10px)' }}
                     animate={{ opacity: 1, filter: 'blur(0px)' }}
                     transition={{ duration: 1, delay: 0.5 }}
-                    className="text-[40px] md:text-[56px] lg:text-[72px] font-black tracking-tight uppercase leading-[0.9] text-[var(--ink)]"
+                    className="text-[40px] md:text-[56px] lg:text-[72px] font-black tracking-tighter uppercase leading-[0.9] text-[var(--ink)]"
                   >
                     Building products <br />
-                    <span className="text-[var(--muted)]">with structure</span> <br />
+                    <span className="opacity-40">with structure</span> <br />
                     and intent.
                   </m.h1>
                 </div>
