@@ -73,7 +73,7 @@ const ProjectDetail: React.FC = () => {
           </header>
 
           {/* Hero Asset */}
-          <div className="w-full aspect-video md:aspect-[21/9] overflow-hidden bg-[#e5e5e5] border-b border-[var(--border)] relative">
+          <div className="w-full h-[60vh] md:h-[80vh] overflow-hidden bg-[#e5e5e5] border-b border-[var(--border)] relative">
             {project.figmaEmbed ? (
               <div 
                 dangerouslySetInnerHTML={{ __html: project.figmaEmbed }} 

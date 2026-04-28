@@ -16,50 +16,77 @@ export const PROJECTS: Project[] = [
     title: 'Sonora',
     category: 'Interaction Design',
     year: '2023',
-    thumbnail: '/assets/sonora.png',
-    shortDescription: 'A specialized social hub for musicians to network and discover local talent.',
-    context: 'Designed to bridge the gap between music composition and social networking, providing a niche community for aspiring artists.',
-    brief: 'Create a tailored platform that makes it easy for musicians to network, discover local talent, and share their creative process.',
-    goal: 'Create a tailored platform that makes it easy for musicians to network, discover local talent, and share their creative process.',
-    problem: 'Broad social platforms lack the niche community needed for artists to reach their target audience and find specialized collaborators.',
-    process: 'Designing a high-fidelity prototype using Figma and Photoshop, with a focus on intuitive user flow and layout refinement.',
-    outcome: 'Successfully developed a high-fidelity prototype that bridges the gap between music composition and social networking.',
-    challenges: 'Niche community accessibility and industry study.',
-    tradeoffs: 'Prioritized "User Flow" over complex features to ensure the app remains intuitive for artists who need to navigate quickly.',
-    learnings: 'Successfully developed a high-fidelity prototype that bridges the gap between music composition and social networking.',
-    images: ['https://mir-s3-cdn-cf.behance.net/projects/original/03831a173945869.Y3JvcCw4OTksNzAzLDEwOCww.png'],
-    tags: ['Interaction', 'Figma', 'UI Design'],
-    technologies: ['Figma', 'Photoshop', 'Prototyping'],
+    thumbnail: 'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/1bff64173945869.64996929bbc71.png',
+    shortDescription: 'A specialized social hub for musicians to network, collaborate, and discover local talent through a tactile, mobile-first experience.',
+    context: 'Sonora was born from the need to bridge the fragmented gap between music composition and professional networking. Aspiring artists often struggle to find specialized collaborators in a landscape dominated by broad, non-specific social platforms.',
+    brief: 'Design a high-fidelity mobile ecosystem that empowers musicians to showcase their creative process, network with peers, and discover local opportunities in real-time.',
+    goal: 'Establish a resilient digital infrastructure that prioritizes creative utility over algorithmic noise, allowing for seamless portfolio sharing and local talent discovery.',
+    problem: 'Mainstream social networks prioritize "content" over "craft," making it difficult for serious musicians to reach their target audience or find high-quality collaborators without significant marketing friction.',
+    process: 'The design process involved deep ethnographic research into musician workflows. I mapped the journey from initial composition to final networking, resulting in a tactile UI system built in Figma and Photoshop that emphasizes visual clarity and audio-first interactions.',
+    outcome: 'Successfully architected a high-fidelity mobile prototype that received positive feedback for its intuitive information architecture and specialized feature set tailored for the independent music community.',
+    challenges: 'Designing a platform that balances the high-density information needs of professionals with the low-friction expectations of modern mobile users.',
+    tradeoffs: 'Prioritized "Interaction Velocity" and tactile feedback over experimental navigation patterns to ensure the app remains an efficient tool for busy creatives.',
+    learnings: 'Refined the understanding that niche communities require bespoke UI patterns that respect the specific vocabulary and physical workflows of their industry.',
+    images: [
+      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/1bff64173945869.64996929bbc71.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/10cbf7173945869.64996929ae819.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/1bf2ea173945869.64996929b209b.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/3156c6173945869.64996929b04c5.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/a1715b173945869.64996929bd635.png'
+    ],
+    tags: ['Interaction', 'Figma', 'UI Design', 'Mobile Architecture'],
+    technologies: ['Figma', 'Photoshop', 'MySQL', 'UI Systems'],
     client: 'Self-Initiated',
     role: 'Interaction Designer',
-    roleDetail: 'Designed the interaction model and high-fidelity mobile prototypes.',
-    metrics: ['Better environment for music composers', 'Increase visibility of local talent'],
-    figmaEmbed: '<iframe src="https://www.behance.net/embed/project/173945869?ilo0=1" height="316" width="404" allowfullscreen lazyload frameborder="0" allow="clipboard-write" refererPolicy="strict-origin-when-cross-origin"></iframe>'
+    roleDetail: 'Designed the complete interaction model, information architecture, and high-fidelity mobile prototypes.',
+    metrics: ['Increased Visibility of Local Talent', 'Frictionless Collaboration Workflows'],
+    processImages: [
+      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/1de6f2173945869.64996929b94b2.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/6602ed173945869.64996929b2cb0.png'
+    ],
+    outcomeImages: [
+      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/2e0c74173945869.64996929baf3d.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/4ec2cd173945869.64996929b7862.png'
+    ],
+    figmaEmbed: '<iframe src="https://www.behance.net/embed/project/173945869?ilo0=1" allowfullscreen lazyload frameborder="0" allow="clipboard-write" refererPolicy="strict-origin-when-cross-origin"></iframe>'
   },
   {
     id: 'aurorae',
     title: 'Aurorae',
     category: 'Visual Identity',
     year: '2022',
-    thumbnail: '/assets/aurorae.png',
-    shortDescription: 'Minimalist, high-contrast visual identity and brand study exploring grain and form.',
-    context: 'A comprehensive visual identity project focusing on the brand AURORAE.',
-    brief: 'Develop a minimalist and high-contrast visual identity using grain textures and bold typography.',
-    goal: 'Establish a unique, high-contrast brand language that emphasizes clarity through texture and form.',
-    problem: 'Modern brands often lack the tactile "soul" found in analog-inspired digital design.',
-    process: 'Utilized Photoshop and Illustrator to create a series of high-contrast assets, focusing on grain-heavy textures and architectural typography.',
-    outcome: 'A production-grade brand system that balances minimalist digital standards with analog-inspired textures.',
-    challenges: 'Translating complex textures into scalable digital assets without losing fidelity.',
-    tradeoffs: 'Prioritized "Visual Impact" and texture over ultra-safe minimalist norms to differentiate the identity.',
-    learnings: 'Refined the application of grain-textures as a primary branding element.',
-    images: ['https://mir-s3-cdn-cf.behance.net/projects/original/d0a0d5155839991.Y3JvcCwxNTAwLDExNzMsMCww.png'],
-    tags: ['Branding', 'Visual Identity', 'Graphic Design'],
-    technologies: ['Photoshop', 'Illustrator', 'Design Systems'],
+    thumbnail: 'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/9bf751155839991.636f3ca8730f0.jpg',
+    shortDescription: 'A minimalist, high-contrast visual identity and brand study exploring the intersection of grain, form, and analog-inspired digital design.',
+    context: 'AURORAE is a comprehensive visual identity project focusing on establishing a premium, tactile design language for a futuristic lifestyle brand.',
+    brief: 'Develop a minimalist and high-contrast brand system using grain textures, architectural typography, and a restricted monochromatic palette.',
+    goal: 'Establish a unique, high-fidelity brand language that emphasizes structural clarity through heavy texture and brutalist form.',
+    problem: 'Modern digital branding often feels sterile and lacks the tactile "soul" found in analog-inspired design, leading to a loss of brand personality.',
+    process: 'The project involved an intensive study of grain-textures and their application across digital assets. Using Photoshop and Illustrator, I created a series of high-contrast compositions focusing on typographic scale and textural depth.',
+    outcome: 'A production-grade brand system that balances minimalist digital standards with the warmth of analog-inspired textures. The identity successfully differentiates the brand through its aggressive yet refined aesthetic.',
+    challenges: 'Translating complex, high-roughness textures into scalable digital assets without losing visual fidelity or performance.',
+    tradeoffs: 'Prioritized "Visual Impact" and textural depth over ultra-safe minimalist norms to ensure the brand stands out in a saturated market.',
+    learnings: 'Refined the application of procedural grain-textures as a primary branding element, discovering that "imperfection" can be a powerful tool for building trust.',
+    images: [
+      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/9bf751155839991.636f3ca8730f0.jpg',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/a8a880155839991.635be8ee3cd76.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/7e8edb155839991.635be8ee3e7aa.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/0ab619155839991.635be8ee411d9.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/b27eeb155839991.635bfaec34816.png'
+    ],
+    tags: ['Branding', 'Visual Identity', 'Graphic Design', 'Editorial'],
+    technologies: ['Photoshop', 'Illustrator', 'Figma', 'Blender'],
     client: 'Identity Study',
-    role: 'UI Designer & Audio Engineer',
-    roleDetail: 'Architected the visual brand language and designed the core assets.',
-    metrics: ['Brand Distinctiveness', 'Minimalist Precision'],
-    figmaEmbed: '<iframe src="https://www.behance.net/embed/project/155839991?ilo0=1" height="316" width="404" allowfullscreen lazyload frameborder="0" allow="clipboard-write" refererPolicy="strict-origin-when-cross-origin"></iframe>'
+    role: 'UI Designer & Brand Strategist',
+    roleDetail: 'Architected the visual brand language and designed the core textural assets.',
+    metrics: ['Brand Distinctiveness', 'Minimalist Precision', 'Textural Depth'],
+    processImages: [
+      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/ec97b3155839991.635c05e215e26.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/9b6767155839991.635bf63ae32bf.png'
+    ],
+    outcomeImages: [
+      'https://mir-s3-cdn-cf.behance.net/project_modules/1400/99e32d155839991.635bf63ae2493.png'
+    ],
+    figmaEmbed: '<iframe src="https://www.behance.net/embed/project/155839991?ilo0=1" allowfullscreen lazyload frameborder="0" allow="clipboard-write" refererPolicy="strict-origin-when-cross-origin"></iframe>'
   },
   {
     id: 'notchprompt',
@@ -199,7 +226,7 @@ export const PROJECTS: Project[] = [
       '/assets/client-portfolio/CONTACT.png',
       '/assets/client-portfolio/Slide 16_9 - 15.png'
     ],
-    figmaEmbed: `<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/proto/mK3RFKq5p6rB6BxhIgxD93/client-work--AYUSH?node-id=5-2&p=f&viewport=121%2C258%2C0.1&scaling=contain&content-scaling=fixed&starting-point-node-id=5%3A2&show-proto-sidebar=1&page-id=0%3A1&embed-host=share" allowfullscreen></iframe>`
+    figmaEmbed: `<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" src="https://embed.figma.com/proto/mK3RFKq5p6rB6BxhIgxD93/client-work--AYUSH?node-id=5-2&p=f&viewport=121%2C258%2C0.1&scaling=contain&content-scaling=fixed&starting-point-node-id=5%3A2&show-proto-sidebar=1&page-id=0%3A1&embed-host=share" allowfullscreen></iframe>`
   },
   {
     id: 'sneakin',
@@ -263,7 +290,7 @@ export const PROJECTS: Project[] = [
     role: 'Co-Founder & Lead Designer',
     roleDetail: 'Co-founded the agency and lead the creative direction for branding and 3D visualization projects.',
     metrics: ['Brand Distinctiveness', '3D Innovation'],
-    figmaEmbed: '<iframe src="https://www.behance.net/embed/project/162449841?ilo0=1" height="316" width="404" allowfullscreen lazyload frameborder="0" allow="clipboard-write" refererPolicy="strict-origin-when-cross-origin"></iframe>'
+    figmaEmbed: '<iframe src="https://www.behance.net/embed/project/162449841?ilo0=1" allowfullscreen lazyload frameborder="0" allow="clipboard-write" refererPolicy="strict-origin-when-cross-origin"></iframe>'
   },
   {
     id: 'exousia',
@@ -288,7 +315,7 @@ export const PROJECTS: Project[] = [
     role: 'Product Designer & Engineer',
     roleDetail: 'Designed the physical chassis and engineered the sensor-to-light feedback loop.',
     metrics: ['Kinetic Energy Harvest', 'Localized Feedback System'],
-    figmaEmbed: '<iframe src="https://www.behance.net/embed/project/151193447?ilo0=1" height="316" width="404" allowfullscreen lazyload frameborder="0" allow="clipboard-write" refererPolicy="strict-origin-when-cross-origin"></iframe>'
+    figmaEmbed: '<iframe src="https://www.behance.net/embed/project/151193447?ilo0=1" allowfullscreen lazyload frameborder="0" allow="clipboard-write" refererPolicy="strict-origin-when-cross-origin"></iframe>'
   },
   {
     id: 'horizon-zoom',
@@ -326,7 +353,7 @@ export const PROJECTS: Project[] = [
       '/assets/horizon-zoom/Slide 16_9 - 6.jpg', 
       '/assets/horizon-zoom/Slide 16_9 - 12.jpg'
     ],
-    figmaEmbed: '<iframe src="https://www.behance.net/embed/project/156706847?ilo0=1" height="316" width="404" allowfullscreen lazyload frameborder="0" allow="clipboard-write" refererPolicy="strict-origin-when-cross-origin"></iframe>'
+    figmaEmbed: '<iframe src="https://www.behance.net/embed/project/156706847?ilo0=1" allowfullscreen lazyload frameborder="0" allow="clipboard-write" refererPolicy="strict-origin-when-cross-origin"></iframe>'
   },
   {
     id: 'sidemen-app',
@@ -361,7 +388,7 @@ export const PROJECTS: Project[] = [
       '/assets/sidemen/chunk_2.jpg',
       '/assets/sidemen/chunk_3.jpg'
     ],
-    figmaEmbed: '<iframe src="https://www.behance.net/embed/project/153505365?ilo0=1" height="316" width="404" allowfullscreen lazyload frameborder="0" allow="clipboard-write" refererPolicy="strict-origin-when-cross-origin"></iframe>'
+    figmaEmbed: '<iframe src="https://www.behance.net/embed/project/153505365?ilo0=1" allowfullscreen lazyload frameborder="0" allow="clipboard-write" refererPolicy="strict-origin-when-cross-origin"></iframe>'
   },
   /* 
   {
