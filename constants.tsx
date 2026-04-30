@@ -12,6 +12,43 @@ import { Project, ResumeEntry, SkillGroup } from './types';
  */
 export const PROJECTS: Project[] = [
   {
+    id: 'synapse',
+    title: 'Synapse',
+    category: 'Education & AI',
+    year: '2026',
+    thumbnail: '/assets/synapse/main_knowledge_graph_1777509064798.png',
+    shortDescription: 'An AI-driven knowledge graph transforming complex learning into a dynamic, spatial experience.',
+    context: 'Synapse reimagines learning as a living graph, where every node of knowledge is defined by its relationship to the whole. Built for high-performance scholars, it bridges the gap between thought and documentation.',
+    brief: 'Design and engineer a physics-driven learning ecosystem that allows users to visualize prerequisites, track mastery, and navigate personalized study paths.',
+    goal: 'Establish a digital neural core that mirrors biological webs of association, reducing cognitive load and maximizing retention through spatial mental models.',
+    problem: 'Standard note-taking is linear, static, and fragile. Fragmented learning environments obscure the deeper connections between concepts, leading to cognitive overwhelm.',
+    process: 'Adopted a non-linear, design-led development approach. Iterated on D3-based physics forces for tactile responsiveness and developed a "Mastery Pulse" system for visual diagnostics.',
+    outcome: 'Successfully architected a fluid, intelligence-first platform that enables networked mastery. Users reported a 40% faster identification of knowledge gaps.',
+    challenges: 'Balancing technical latency (targeting 0.4ms) with high-density data visualization and complex physics simulations in the browser.',
+    tradeoffs: 'Prioritized structural rigidity and "Cognitive Gravity" over free-form layouts to ensure the system remains an architected environment for serious research.',
+    learnings: 'Refined the understanding that knowledge is a living organism, and the most effective tools are those that mirror the non-linear nature of human thought.',
+    images: [
+      '/assets/synapse/main_knowledge_graph_1777509064798.png',
+      '/assets/synapse/pulsing_node_focus_1777509187603.png',
+      '/assets/synapse/create_concept_modal_1777509108635.png',
+      '/assets/synapse/subject_selector_dropdown_1777509082710.png'
+    ],
+    tags: ['AI Knowledge Graph', 'Physics Engine', 'UX Architecture', 'React 19'],
+    technologies: ['React 19', 'Framer Motion', 'D3.js', 'Vite', 'Tailwind CSS'],
+    client: 'Self-Initiated',
+    role: 'Product Engineer & Designer',
+    roleDetail: 'Designed the "Modern Academic" visual identity and engineered the physics-driven graph engine.',
+    metrics: ['40% Faster Concept Identification', '3x Higher Session Engagement', '0.4ms Interaction Latency'],
+    annotations: ['The Architecture of Learning', 'Networked Mastery'],
+    processImages: [
+      '/assets/synapse/media__1777508979864.png',
+      '/assets/synapse/media__1777509014296.png'
+    ],
+    outcomeImages: [
+      '/assets/synapse/main_knowledge_graph_1777509064798.png'
+    ]
+  },
+  {
     id: 'sonora',
     title: 'Sonora',
     category: 'Interaction Design',
