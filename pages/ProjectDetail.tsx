@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { PROJECTS } from '../constants';
+import { FULL_PROJECTS } from '../projectData';
 import { m, LazyMotion, domMax } from 'motion/react';
 import { ExternalLink } from 'lucide-react';
 
@@ -20,7 +21,7 @@ const ProjectSection: React.FC<{ title: string; children: React.ReactNode }> = (
 
 const ProjectDetail: React.FC = () => {
   const { projectId } = useParams<{ projectId: string }>();
-  const project = PROJECTS.find(p => p.id === projectId);
+  const project = FULL_PROJECTS.find(p => p.id === projectId);
 
   useEffect(() => {
     window.scrollTo(0, 0);

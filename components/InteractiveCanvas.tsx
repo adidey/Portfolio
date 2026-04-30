@@ -53,6 +53,8 @@ const ProjectGridItem = ({ project, delay = 0 }: { project: any; delay?: number 
         <img 
           src={project.thumbnail} 
           alt={project.title}
+          fetchPriority="high"
+          loading="eager"
           className="absolute inset-0 w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-[var(--ink)]/5 group-hover:bg-transparent transition-colors duration-700" />
@@ -105,6 +107,12 @@ const FocusFrame = () => (
 );
 
 export const InteractiveCanvas = () => {
+  const [isHydrated, setIsHydrated] = useState(false);
+
+  useEffect(() => {
+    setIsHydrated(true);
+  }, []);
+
   // Selecting higher-impact projects: Sonora, Aurorae, and Exousia
   const featured = PROJECTS.filter(p => ['sonora', 'aurorae', 'exousia'].includes(p.id)).slice(0, 3);
 
@@ -124,7 +132,7 @@ export const InteractiveCanvas = () => {
             <div className="flex flex-col gap-8 md:gap-12">
               {/* Word Flipper Tag */}
               <m.div 
-                initial={{ opacity: 0, x: -10 }}
+                initial={isHydrated ? { opacity: 0, x: -10 } : { opacity: 1, x: 0 }}
                 animate={{ opacity: 1, x: 0 }}
                 className="flex items-center gap-4"
               >
@@ -135,7 +143,7 @@ export const InteractiveCanvas = () => {
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-start">
                 <div className="lg:col-span-8">
                   <m.h1 
-                    initial={{ opacity: 0, filter: 'blur(10px)' }}
+                    initial={isHydrated ? { opacity: 0, filter: 'blur(10px)' } : { opacity: 1, filter: 'blur(0px)' }}
                     animate={{ opacity: 1, filter: 'blur(0px)' }}
                     transition={{ duration: 1, delay: 0.5 }}
                     className="text-[40px] md:text-[56px] lg:text-[72px] font-black tracking-tighter uppercase leading-[0.9] text-[var(--ink)]"
@@ -147,7 +155,7 @@ export const InteractiveCanvas = () => {
                 </div>
                 <div className="lg:col-span-4 pt-4">
                   <m.div 
-                    initial={{ opacity: 0 }}
+                    initial={isHydrated ? { opacity: 0 } : { opacity: 1 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 1, delay: 0.8 }}
                     className="flex flex-col gap-6"
@@ -176,7 +184,7 @@ export const InteractiveCanvas = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 lg:gap-16">
               {featured.map((p, i) => (
-                <ProjectGridItem key={p.id} project={p} delay={0.4 + (0.1 * i)} />
+                <ProjectGridItem key={p.id} project={p} delay={isHydrated ? 0.4 + (0.1 * i) : 0} />
               ))}
             </div>
           </div>
