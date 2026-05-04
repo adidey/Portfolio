@@ -19,11 +19,10 @@ const Layout: React.FC<LayoutProps> = ({
 
     return (
         <LazyMotion features={domMax}>
-            <div className="min-h-screen bg-[var(--bg)] text-[var(--text)] selection:bg-[var(--selection-bg)] selection:text-[var(--selection-text)] flex flex-col relative overflow-x-hidden bg-grain">
+            <div className="min-h-screen bg-[var(--bg)] text-[var(--text)] selection:bg-[var(--selection-bg)] selection:text-[var(--selection-text)] flex flex-col relative overflow-x-hidden">
 
                 {/* ── Global Background Effects ─────────────────────────────────── */}
                 <div className="fixed inset-0 pointer-events-none z-0">
-                    <div className="absolute inset-0 designer-grid" />
                 </div>
 
                 <Navbar
@@ -37,11 +36,10 @@ const Layout: React.FC<LayoutProps> = ({
 
                 {/* Standardized container for all routes */}
                 <main
-                    className={`relative z-10 w-full ${
-                        isHome 
-                            ? 'flex-1 flex flex-col pt-24 md:pt-32 pb-16 md:pb-24' 
+                    className={`relative z-10 w-full ${isHome
+                            ? 'flex-1 flex flex-col pt-24 md:pt-32 pb-16 md:pb-24'
                             : 'pt-28 md:pt-40 pb-28 md:pb-40 max-w-[1400px] mx-auto px-6 md:px-10'
-                    }`}
+                        }`}
                 >
                     {children}
                 </main>

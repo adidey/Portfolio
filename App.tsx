@@ -87,32 +87,18 @@ const App: React.FC = () => {
         onNavigate={handleNavigate}
         isLoading={false}
       >
-        <AnimatePresence mode="wait" initial={false}>
-          <m.div
-            key={location.pathname}
-            variants={pageVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            style={{ perspective: "2000px", transformStyle: "preserve-3d" }}
-            className="w-full origin-center"
-          >
-            <React.Suspense fallback={<div className="min-h-screen bg-[var(--bg)]" />}>
-              <Routes location={location}>
-
-
-                <Route path="/" element={<Home />} />
-                <Route path="/work" element={<Work onProjectClick={handleProjectClick} />} />
-                <Route path="/work/:projectId" element={<ProjectDetail onBack={() => navigate('/work')} />} />
-                <Route path="/posters" element={<Gallery />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/resume" element={<Resume />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="*" element={<Home />} />
-              </Routes>
-            </React.Suspense>
-          </m.div>
-        </AnimatePresence>
+        <React.Suspense fallback={<div className="min-h-screen bg-[var(--bg)]" />}>
+          <Routes location={location}>
+            <Route path="/" element={<Home />} />
+            <Route path="/work" element={<Work onProjectClick={handleProjectClick} />} />
+            <Route path="/work/:projectId" element={<ProjectDetail onBack={() => navigate('/work')} />} />
+            <Route path="/posters" element={<Gallery />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/resume" element={<Resume />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="*" element={<Home />} />
+          </Routes>
+        </React.Suspense>
         <Analytics />
         <SpeedInsights />
       </Layout>

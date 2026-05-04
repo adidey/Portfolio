@@ -38,18 +38,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick, priority = 
 
       {/* Layer 0: Background Canvas */}
       <div className="absolute inset-0 z-0 bg-[var(--bg)] overflow-hidden">
-        {/* Designer Grid Motif */}
-        <div className="absolute inset-0 designer-grid opacity-15 pointer-events-none" />
-
         {/* Project Image */}
         <m.img
           layoutId={`project-img-${project.id}`}
           src={project.thumbnail}
           alt={project.title}
-          initial={{ scale: 1, filter: 'grayscale(0.1) brightness(0.8)' }}
+          initial={{ scale: 1 }}
           animate={{
             scale: isHovered ? 1.1 : 1.02,
-            filter: isHovered ? 'grayscale(0) brightness(1)' : 'grayscale(0.1) brightness(0.8)',
           }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="absolute inset-0 w-full h-full object-cover"
@@ -114,31 +110,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick, priority = 
         </div>
       </m.div>
 
-      {/* Immersive Outer Glow & View Action on Hover */}
       <AnimatePresence>
-        {isHovered && (
-          <>
-            <m.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="absolute inset-0 pointer-events-none z-20 border-[0.5px] border-white/20 rounded-[32px] bg-black/10 backdrop-blur-[2px]"
-            />
-            <m.div
-              initial={{ opacity: 0, scale: 0.9, y: 10 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 10 }}
-              transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-              className="absolute inset-0 z-30 flex items-center justify-center pointer-events-none"
-            >
-              <div className="px-6 py-2.5 bg-white text-black rounded-full shadow-2xl">
-                <span className="text-[10px] font-black uppercase tracking-[0.2em] whitespace-nowrap">
-                  View Case Study
-                </span>
-              </div>
-            </m.div>
-          </>
-        )}
       </AnimatePresence>
     </div>
   );

@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { PROJECTS } from '../constants';
 import { FULL_PROJECTS } from '../projectData';
-import { m, LazyMotion, domMax } from 'motion/react';
-import { ExternalLink } from 'lucide-react';
+import { m, LazyMotion, domMax, AnimatePresence } from 'motion/react';
+import { ExternalLink, X } from 'lucide-react';
 
 const ProjectSection: React.FC<{ title: string; children: React.ReactNode }> = ({ title, children }) => (
   <div className="grid grid-cols-1 md:grid-cols-12 gap-10 py-20 md:py-28 border-b border-[var(--border)] last:border-0">
@@ -21,6 +21,7 @@ const ProjectSection: React.FC<{ title: string; children: React.ReactNode }> = (
 
 const ProjectDetail: React.FC = () => {
   const { projectId } = useParams<{ projectId: string }>();
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const project = FULL_PROJECTS.find(p => p.id === projectId);
 
   useEffect(() => {
@@ -31,11 +32,40 @@ const ProjectDetail: React.FC = () => {
 
   return (
     <LazyMotion features={domMax}>
-      <div className="bg-[var(--bg)] text-[var(--ink)]">
+      <div className="bg-[var(--bg)] text-[var(--ink)] relative">
         <Helmet>
           <title>{project.title} — Aditya Dey</title>
           <meta name="description" content={project.shortDescription} />
         </Helmet>
+
+        {/* Image Lightbox */}
+        <AnimatePresence>
+          {selectedImage && (
+            <m.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedImage(null)}
+              className="fixed inset-0 z-[1000] bg-black/95 flex items-center justify-center p-4 md:p-10 cursor-zoom-out"
+            >
+              <m.button
+                className="absolute top-10 right-10 text-white/50 hover:text-white p-2 transition-colors"
+                onClick={() => setSelectedImage(null)}
+              >
+                <X size={32} />
+              </m.button>
+              <m.img
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+                src={selectedImage}
+                alt="Enlarged view"
+                className="max-w-full max-h-full object-contain shadow-2xl"
+              />
+            </m.div>
+          )}
+        </AnimatePresence>
 
         <div className="relative">
           {/* Standardized Z-Pattern Header */}
@@ -88,7 +118,8 @@ const ProjectDetail: React.FC = () => {
                 transition={{ duration: 1.5, ease: [0.19, 1, 0.22, 1] }}
                 src={project.thumbnail} 
                 alt={project.title} 
-                className="w-full h-full object-cover" 
+                className="w-full h-full object-cover cursor-zoom-in" 
+                onClick={() => setSelectedImage(project.thumbnail)}
               />
             )}
           </div>
@@ -170,7 +201,7 @@ const ProjectDetail: React.FC = () => {
                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {(project.processImages || project.images).map((img, i) => (
                       <div key={i} className="group">
-                        <div className="aspect-[4/3] overflow-hidden bg-[var(--border)] mb-4">
+                        <div className="aspect-[4/3] overflow-hidden bg-[var(--border)] mb-4 cursor-zoom-in" onClick={() => setSelectedImage(img)}>
                           <img src={img} alt={`Process ${i+1}`} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                         </div>
                         <p className="text-[9px] uppercase tracking-widest text-[var(--muted)]">Fig. {String(i+1).padStart(2, '0')}</p>
@@ -197,7 +228,7 @@ const ProjectDetail: React.FC = () => {
                   {project.outcomeImages && (
                     <div className="grid grid-cols-1 gap-8">
                        {project.outcomeImages.map((img, i) => (
-                         <div key={i} className="aspect-video overflow-hidden border border-[var(--border)] shadow-sm">
+                         <div key={i} className="aspect-video overflow-hidden border border-[var(--border)] shadow-sm cursor-zoom-in" onClick={() => setSelectedImage(img)}>
                            <img src={img} alt="Final result" className="w-full h-full object-cover" />
                          </div>
                        ))}
