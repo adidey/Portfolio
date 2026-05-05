@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { PROJECTS } from '../constants';
 import { FULL_PROJECTS } from '../projectData';
+import { CaseSection } from '../types';
 import { m, LazyMotion, domMax, AnimatePresence } from 'motion/react';
 import { ExternalLink, X } from 'lucide-react';
 
@@ -19,6 +20,112 @@ const ProjectSection: React.FC<{ title: string; children: React.ReactNode }> = (
   </div>
 );
 
+const ImageLightboxContext = React.createContext<(src: string) => void>(() => {});
+
+const CaseSectionBlock: React.FC<{ section: CaseSection; index: number }> = ({ section, index }) => {
+  const openLightbox = React.useContext(ImageLightboxContext);
+  const num = String(index + 1).padStart(2, '0');
+
+  const renderImages = () => {
+    const { images, layout } = section;
+    if (!images || images.length === 0) return null;
+
+    if (layout === 'full' || images.length === 1) {
+      return (
+        <div
+          className="w-full overflow-hidden cursor-zoom-in border border-[var(--border)] group"
+          onClick={() => openLightbox(images[0])}
+        >
+          <img
+            src={images[0]}
+            alt={section.title}
+            className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+          />
+        </div>
+      );
+    }
+
+    if (layout === 'wide') {
+      return (
+        <div className="w-full overflow-hidden cursor-zoom-in border border-[var(--border)] group" onClick={() => openLightbox(images[0])}>
+          <img src={images[0]} alt={section.title} className="w-full aspect-[21/9] object-cover transition-transform duration-700 group-hover:scale-[1.02]" />
+        </div>
+      );
+    }
+
+    if (layout === 'grid-3' || images.length === 3) {
+      return (
+        <div className="grid grid-cols-3 gap-3">
+          {images.map((img, i) => (
+            <div key={i} className="overflow-hidden border border-[var(--border)] cursor-zoom-in group" onClick={() => openLightbox(img)}>
+              <img src={img} alt={`${section.title} ${i + 1}`} className="w-full aspect-[4/3] object-cover transition-transform duration-700 group-hover:scale-105" />
+            </div>
+          ))}
+        </div>
+      );
+    }
+
+    if (images.length === 2) {
+      return (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {images.map((img, i) => (
+            <div key={i} className="overflow-hidden border border-[var(--border)] cursor-zoom-in group" onClick={() => openLightbox(img)}>
+              <img src={img} alt={`${section.title} ${i + 1}`} className="w-full aspect-[4/3] object-cover transition-transform duration-700 group-hover:scale-105" />
+            </div>
+          ))}
+        </div>
+      );
+    }
+
+    // 4+ images — 2-col grid
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {images.map((img, i) => (
+          <div key={i} className="overflow-hidden border border-[var(--border)] cursor-zoom-in group" onClick={() => openLightbox(img)}>
+            <img src={img} alt={`${section.title} ${i + 1}`} className="w-full aspect-[4/3] object-cover transition-transform duration-700 group-hover:scale-105" />
+          </div>
+        ))}
+      </div>
+    );
+  };
+
+  return (
+    <div className="border-b border-[var(--border)] py-20 md:py-28 last:border-0">
+      {/* Section label row */}
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mb-12 md:mb-16 items-start">
+        <div className="md:col-span-1">
+          <span className="text-[10px] font-black tracking-[0.5em] uppercase text-[var(--muted)] block pt-1">{num}</span>
+        </div>
+        <div className="md:col-span-11">
+          <h3
+            className="text-[clamp(1.4rem,3.5vw,2.5rem)] font-black leading-tight tracking-tight uppercase text-[var(--ink)] mb-6"
+            style={{ fontFamily: "'Satoshi', sans-serif" }}
+          >
+            {section.title}
+          </h3>
+          {section.body && (
+            <p className="text-[15px] md:text-[17px] leading-relaxed text-[var(--muted)] max-w-3xl">
+              {section.body}
+            </p>
+          )}
+        </div>
+      </div>
+
+      {/* Images */}
+      {renderImages()}
+
+      {/* Fig caption */}
+      {section.images && section.images.length > 0 && (
+        <div className="flex items-center gap-4 mt-5">
+          <span className="text-[9px] uppercase tracking-[0.45em] text-[var(--muted)] font-bold">Fig. {num}</span>
+          <div className="h-px flex-1 bg-[var(--border)] max-w-[60px]" />
+          <span className="text-[9px] uppercase tracking-[0.3em] text-[var(--muted)]">{section.title}</span>
+        </div>
+      )}
+    </div>
+  );
+};
+
 const ProjectDetail: React.FC = () => {
   const { projectId } = useParams<{ projectId: string }>();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -31,146 +138,184 @@ const ProjectDetail: React.FC = () => {
   if (!project) return null;
 
   return (
-    <LazyMotion features={domMax}>
-      <div className="bg-[var(--bg)] text-[var(--ink)] relative">
-        <Helmet>
-          <title>{project.title} — Aditya Dey</title>
-          <meta name="description" content={project.shortDescription} />
-        </Helmet>
+    <ImageLightboxContext.Provider value={setSelectedImage}>
+      <LazyMotion features={domMax}>
+        <div className="bg-[var(--bg)] text-[var(--ink)] relative">
+          <Helmet>
+            <title>{project.title} — Aditya Dey</title>
+            <meta name="description" content={project.shortDescription} />
+          </Helmet>
 
-        {/* Image Lightbox */}
-        <AnimatePresence>
-          {selectedImage && (
-            <m.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setSelectedImage(null)}
-              className="fixed inset-0 z-[1000] bg-black/95 flex items-center justify-center p-4 md:p-10 cursor-zoom-out"
-            >
-              <m.button
-                className="absolute top-10 right-10 text-white/50 hover:text-white p-2 transition-colors"
+          {/* Image Lightbox */}
+          <AnimatePresence>
+            {selectedImage && (
+              <m.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
                 onClick={() => setSelectedImage(null)}
+                className="fixed inset-0 z-[1000] bg-black/95 flex items-center justify-center p-4 md:p-10 cursor-zoom-out"
               >
-                <X size={32} />
-              </m.button>
-              <m.img
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.9, opacity: 0 }}
-                transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                src={selectedImage}
-                alt="Enlarged view"
-                className="max-w-full max-h-full object-contain shadow-2xl"
-              />
-            </m.div>
-          )}
-        </AnimatePresence>
-
-        <div className="relative">
-          {/* Standardized Z-Pattern Header */}
-          <header className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-0 pt-8 md:pt-12 pb-16 md:pb-24 border-b border-[var(--border)] items-start">
-            <div className="md:col-span-8 flex flex-col gap-4">
-              <div className="mb-2">
-                <Link
-                  to="/work"
-                  className="text-[10px] uppercase tracking-[0.4em] text-[var(--muted)] hover:text-[var(--ink)] transition-colors inline-flex items-center gap-2 group font-bold"
+                <m.button
+                  className="absolute top-10 right-10 text-white/50 hover:text-white p-2 transition-colors"
+                  onClick={() => setSelectedImage(null)}
                 >
-                  <span className="transition-transform group-hover:-translate-x-1">←</span> Index
-                </Link>
-              </div>
-              <h1 
+                  <X size={32} />
+                </m.button>
+                <m.img
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.9, opacity: 0 }}
+                  transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+                  src={selectedImage}
+                  alt="Enlarged view"
+                  className="max-w-full max-h-full object-contain shadow-2xl"
+                />
+              </m.div>
+            )}
+          </AnimatePresence>
+
+          <div className="relative">
+            {/* Header */}
+            <header className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-0 pt-8 md:pt-12 pb-16 md:pb-24 border-b border-[var(--border)] items-start">
+              <div className="md:col-span-8 flex flex-col gap-4">
+                <div className="mb-2">
+                  <Link
+                    to="/work"
+                    className="text-[10px] uppercase tracking-[0.4em] text-[var(--muted)] hover:text-[var(--ink)] transition-colors inline-flex items-center gap-2 group font-bold"
+                  >
+                    <span className="transition-transform group-hover:-translate-x-1">←</span> Index
+                  </Link>
+                </div>
+                <h1
                   className="text-[clamp(2.5rem,7vw,4.5rem)] font-black leading-[0.85] tracking-tight uppercase"
                   style={{ fontFamily: "'Satoshi', sans-serif" }}
-              >
-                {project.title}
-              </h1>
-            </div>
-            <div className="md:col-span-4 md:text-right flex flex-col items-start md:items-end pt-5">
-              <div className="grid grid-cols-2 gap-8 text-left md:text-right">
-                <div>
-                  <p className="text-[9px] uppercase tracking-widest text-[var(--muted)] mb-2">Category</p>
-                  <p className="text-[14px] font-bold uppercase tracking-tight">{project.category}</p>
-                </div>
-                <div>
-                  <p className="text-[9px] uppercase tracking-widest text-[var(--muted)] mb-2">Year</p>
-                  <p className="text-[14px] font-bold uppercase tracking-tight">{project.year}</p>
-                </div>
+                >
+                  {project.title}
+                </h1>
               </div>
-              <p className="text-[14px] md:text-[16px] leading-snug font-medium mt-8 max-w-xs">
-                {project.context}
-              </p>
+              <div className="md:col-span-4 md:text-right flex flex-col items-start md:items-end pt-5">
+                <div className="grid grid-cols-2 gap-8 text-left md:text-right">
+                  <div>
+                    <p className="text-[9px] uppercase tracking-widest text-[var(--muted)] mb-2">Category</p>
+                    <p className="text-[14px] font-bold uppercase tracking-tight">{project.category}</p>
+                  </div>
+                  <div>
+                    <p className="text-[9px] uppercase tracking-widest text-[var(--muted)] mb-2">Year</p>
+                    <p className="text-[14px] font-bold uppercase tracking-tight">{project.year}</p>
+                  </div>
+                </div>
+                <p className="text-[14px] md:text-[16px] leading-snug font-medium mt-8 max-w-xs">
+                  {project.context}
+                </p>
+              </div>
+            </header>
+
+            {/* Hero Asset */}
+            <div className="w-full h-[60vh] md:h-[80vh] overflow-hidden bg-[#e5e5e5] border-b border-[var(--border)] relative">
+              {project.figmaEmbed ? (
+                <div
+                  dangerouslySetInnerHTML={{ __html: project.figmaEmbed }}
+                  className="w-full h-full [&>iframe]:w-full [&>iframe]:h-full [&>iframe]:border-none"
+                />
+              ) : (
+                <m.img
+                  layoutId={`project-img-${project.id}`}
+                  initial={{ scale: 1.1 }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: 1.5, ease: [0.19, 1, 0.22, 1] }}
+                  src={project.thumbnail}
+                  alt={project.title}
+                  className="w-full h-full object-cover cursor-zoom-in"
+                  onClick={() => setSelectedImage(project.thumbnail)}
+                />
+              )}
             </div>
-          </header>
 
-          {/* Hero Asset */}
-          <div className="w-full h-[60vh] md:h-[80vh] overflow-hidden bg-[#e5e5e5] border-b border-[var(--border)] relative">
-            {project.figmaEmbed ? (
-              <div 
-                dangerouslySetInnerHTML={{ __html: project.figmaEmbed }} 
-                className="w-full h-full [&>iframe]:w-full [&>iframe]:h-full [&>iframe]:border-none" 
-              />
-            ) : (
-              <m.img 
-                layoutId={`project-img-${project.id}`}
-                initial={{ scale: 1.1 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 1.5, ease: [0.19, 1, 0.22, 1] }}
-                src={project.thumbnail} 
-                alt={project.title} 
-                className="w-full h-full object-cover cursor-zoom-in" 
-                onClick={() => setSelectedImage(project.thumbnail)}
-              />
-            )}
-          </div>
+            <div>
+              {/* Objective */}
+              {project.brief && (
+                <ProjectSection title="Objective">
+                  <div className="space-y-10">
+                    <p className="text-[22px] md:text-[32px] font-medium leading-tight tracking-tight max-w-4xl text-[var(--ink)]">
+                      {project.brief}
+                    </p>
+                    {project.goal && (
+                      <div className="pt-10 border-t border-[var(--border)]/60">
+                        <p className="text-[9px] uppercase tracking-widest text-[var(--muted)] mb-4 font-black">Strategic Goal</p>
+                        <p className="text-[18px] md:text-[26px] font-bold leading-tight tracking-tight max-w-3xl italic text-[var(--muted)]">
+                          "{project.goal}"
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                </ProjectSection>
+              )}
 
-          <div>
-            {/* Case Study Content */}
-            {project.brief && (
-              <ProjectSection title="Objective">
-                <div className="space-y-10">
-                  <p className="text-[22px] md:text-[32px] font-medium leading-tight tracking-tight max-w-4xl text-[var(--ink)]">
-                    {project.brief}
+              {/* Problem */}
+              <ProjectSection title="Problem">
+                <p className="text-[22px] md:text-[32px] font-black leading-tight tracking-tight max-w-4xl">
+                  {project.problem}
+                </p>
+              </ProjectSection>
+
+              {/* Process */}
+              <ProjectSection title="Process">
+                <div className="space-y-12">
+                  <p className="text-[15px] md:text-[17px] leading-relaxed text-[var(--muted)] max-w-2xl">
+                    {project.process}
                   </p>
-                  {project.goal && (
-                    <div className="pt-10 border-t border-[var(--border)]/60">
-                      <p className="text-[9px] uppercase tracking-widest text-[var(--muted)] mb-4 font-black">Strategic Goal</p>
-                      <p className="text-[18px] md:text-[26px] font-bold leading-tight tracking-tight max-w-3xl italic text-[var(--muted)]">
-                        "{project.goal}"
-                      </p>
+                  {project.processImages && project.processImages.length > 0 && (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      {project.processImages.map((img, i) => (
+                        <div key={i} className="group">
+                          <div className="aspect-[4/3] overflow-hidden bg-[var(--border)] mb-4 cursor-zoom-in border border-[var(--border)]" onClick={() => setSelectedImage(img)}>
+                            <img src={img} alt={`Process ${i + 1}`} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                          </div>
+                          <p className="text-[9px] uppercase tracking-widest text-[var(--muted)]">Fig. {String(i + 1).padStart(2, '0')}</p>
+                        </div>
+                      ))}
                     </div>
                   )}
                 </div>
               </ProjectSection>
-            )}
 
-            <ProjectSection title="Problem">
-              <p className="text-[22px] md:text-[32px] font-black leading-tight tracking-tight max-w-4xl">
-                {project.problem}
-              </p>
-            </ProjectSection>
-
-            {project.challenges && (
-              <ProjectSection title="Challenges">
-                <p className="text-[15px] md:text-[17px] leading-relaxed text-[var(--muted)] max-w-2xl">
-                  {project.challenges}
-                </p>
-              </ProjectSection>
-            )}
-
-            {project.tradeoffs && (
-              <ProjectSection title="Trade-offs">
-                <div className="bg-[var(--border)]/30 border border-[var(--border)] p-8 md:p-12 rounded-2xl max-w-3xl">
-                  <p className="text-[18px] md:text-[22px] font-bold leading-tight tracking-tight text-[var(--ink)]">
-                    {project.tradeoffs}
-                  </p>
+              {/* ── CASE STUDY SECTIONS (Behance-style) ── */}
+              {project.sections && project.sections.length > 0 && (
+                <div className="py-4">
+                  <div className="py-10 md:py-16 border-b border-[var(--border)]">
+                    <p className="text-[10px] uppercase tracking-[0.5em] text-[var(--muted)] font-black">Case Study</p>
+                  </div>
+                  {project.sections.map((section, i) => (
+                    <CaseSectionBlock key={i} section={section} index={i} />
+                  ))}
                 </div>
-              </ProjectSection>
-            )}
+              )}
 
-            <ProjectSection title="Stack & Impact">
-               <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                 <div>
+              {/* Challenges */}
+              {project.challenges && (
+                <ProjectSection title="Challenges">
+                  <p className="text-[15px] md:text-[17px] leading-relaxed text-[var(--muted)] max-w-2xl">
+                    {project.challenges}
+                  </p>
+                </ProjectSection>
+              )}
+
+              {/* Trade-offs */}
+              {project.tradeoffs && (
+                <ProjectSection title="Trade-offs">
+                  <div className="bg-[var(--border)]/30 border border-[var(--border)] p-8 md:p-12 rounded-2xl max-w-3xl">
+                    <p className="text-[18px] md:text-[22px] font-bold leading-tight tracking-tight text-[var(--ink)]">
+                      {project.tradeoffs}
+                    </p>
+                  </div>
+                </ProjectSection>
+              )}
+
+              {/* Stack & Impact */}
+              <ProjectSection title="Stack & Impact">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                  <div>
                     <p className="text-[9px] uppercase tracking-widest text-[var(--muted)] mb-4">Core Stack</p>
                     <div className="flex flex-wrap gap-2">
                       {project.technologies?.map(tech => (
@@ -179,92 +324,73 @@ const ProjectDetail: React.FC = () => {
                         </span>
                       ))}
                     </div>
-                 </div>
-                 <div className="md:text-left">
+                  </div>
+                  <div>
                     <p className="text-[9px] uppercase tracking-widest text-[var(--muted)] mb-4">Key Metrics</p>
                     <ul className="space-y-2">
-                       {project.metrics?.map((metric, i) => (
-                         <li key={i} className="flex items-center gap-3 text-[14px] font-bold uppercase tracking-tight">
-                           <span className="text-[var(--accent)] text-[10px]">●</span> {metric}
-                         </li>
-                       ))}
+                      {project.metrics?.map((metric, i) => (
+                        <li key={i} className="flex items-center gap-3 text-[14px] font-bold uppercase tracking-tight">
+                          <span className="text-[var(--accent)] text-[10px]">●</span> {metric}
+                        </li>
+                      ))}
                     </ul>
-                 </div>
-               </div>
-            </ProjectSection>
-
-            <ProjectSection title="Process">
-               <div className="space-y-12">
-                 <p className="text-[15px] md:text-[17px] leading-relaxed text-[var(--muted)] max-w-2xl">
-                    {project.process}
-                 </p>
-                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {(project.processImages || project.images).map((img, i) => (
-                      <div key={i} className="group">
-                        <div className="aspect-[4/3] overflow-hidden bg-[var(--border)] mb-4 cursor-zoom-in" onClick={() => setSelectedImage(img)}>
-                          <img src={img} alt={`Process ${i+1}`} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                        </div>
-                        <p className="text-[9px] uppercase tracking-widest text-[var(--muted)]">Fig. {String(i+1).padStart(2, '0')}</p>
-                      </div>
-                    ))}
-                 </div>
-               </div>
-            </ProjectSection>
-
-            {project.learnings && (
-              <ProjectSection title="Learnings">
-                <p className="text-[15px] md:text-[17px] leading-relaxed text-[var(--muted)] max-w-2xl italic">
-                  {project.learnings}
-                </p>
+                  </div>
+                </div>
               </ProjectSection>
-            )}
 
-            <ProjectSection title="Outcome">
-               <div className="space-y-12">
+              {/* Learnings */}
+              {project.learnings && (
+                <ProjectSection title="Learnings">
+                  <p className="text-[15px] md:text-[17px] leading-relaxed text-[var(--muted)] max-w-2xl italic">
+                    {project.learnings}
+                  </p>
+                </ProjectSection>
+              )}
+
+              {/* Outcome */}
+              <ProjectSection title="Outcome">
+                <div className="space-y-12">
                   <p className="text-[22px] md:text-[32px] font-black leading-tight tracking-tight text-[var(--accent)] max-w-4xl">
                     {project.outcome}
                   </p>
-
                   {project.outcomeImages && (
                     <div className="grid grid-cols-1 gap-8">
-                       {project.outcomeImages.map((img, i) => (
-                         <div key={i} className="aspect-video overflow-hidden border border-[var(--border)] shadow-sm cursor-zoom-in" onClick={() => setSelectedImage(img)}>
-                           <img src={img} alt="Final result" className="w-full h-full object-cover" />
-                         </div>
-                       ))}
+                      {project.outcomeImages.map((img, i) => (
+                        <div key={i} className="aspect-video overflow-hidden border border-[var(--border)] shadow-sm cursor-zoom-in" onClick={() => setSelectedImage(img)}>
+                          <img src={img} alt="Final result" className="w-full h-full object-cover" />
+                        </div>
+                      ))}
                     </div>
                   )}
                   {project.link && (
                     <div className="pt-8">
-                       <a
-                          href={project.link.startsWith('http') ? project.link : '#'}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex items-center gap-4 text-[20px] md:text-[32px] font-black uppercase tracking-tight hover:text-[var(--accent)] transition-all group"
-                       >
-                         Explore live project <ExternalLink size={28} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                       </a>
+                      <a
+                        href={project.link.startsWith('http') ? project.link : '#'}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-4 text-[20px] md:text-[32px] font-black uppercase tracking-tight hover:text-[var(--accent)] transition-all group"
+                      >
+                        Explore live project <ExternalLink size={28} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                      </a>
                     </div>
                   )}
-               </div>
-            </ProjectSection>
-          </div>
+                </div>
+              </ProjectSection>
+            </div>
 
-          {/* Next Project Footer */}
-          <footer className="border-t border-[var(--border)] py-20 text-center">
-            <p className="text-[10px] uppercase tracking-widest text-[var(--muted)] mb-8">Next Up</p>
-            <Link
-              to="/work"
-              className="group block"
-            >
-              <h3 className="text-[clamp(2.5rem,8vw,8rem)] font-black uppercase tracking-tight text-[var(--ink)] leading-none transition-transform group-hover:scale-[0.98]">
-                Index <span className="inline-block transition-transform group-hover:translate-x-4">→</span>
-              </h3>
-            </Link>
-          </footer>
+            {/* Next Project Footer */}
+            <footer className="border-t border-[var(--border)] py-20 text-center">
+              <p className="text-[10px] uppercase tracking-widest text-[var(--muted)] mb-8">Next Up</p>
+              <Link to="/work" className="group block">
+                <h3 className="text-[clamp(2.5rem,8vw,8rem)] font-black uppercase tracking-tight text-[var(--ink)] leading-none transition-transform group-hover:scale-[0.98]">
+                  Index <span className="inline-block transition-transform group-hover:translate-x-4">→</span>
+                </h3>
+              </Link>
+            </footer>
+          </div>
         </div>
-      </div>
-    </LazyMotion>
+      </LazyMotion>
+    </ImageLightboxContext.Provider>
   );
 };
 

@@ -1,3 +1,10 @@
+export interface CaseSection {
+  title: string;
+  body?: string;
+  images: string[];
+  layout?: 'full' | 'grid-2' | 'grid-3' | 'wide';
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -27,6 +34,7 @@ export interface Project {
   processImages?: string[];
   outcomeImages?: string[];
   figmaEmbed?: string;
+  sections?: CaseSection[];
 }
 
 
