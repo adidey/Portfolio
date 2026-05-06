@@ -77,7 +77,7 @@ export const FULL_PROJECTS: Project[] = [
     title: 'Sonora',
     category: 'Interaction',
     year: '2023',
-    thumbnail: 'https://mir-s3-cdn-cf.behance.net/project_modules/disp/1bff64173945869.64996929bbc71.png',
+    thumbnail: 'https://mir-s3-cdn-cf.behance.net/project_modules/fs/1bff64173945869.64996929bbc71.png',
     shortDescription: 'A specialized social hub for musicians to network, collaborate, and discover local talent through a tactile, mobile-first experience.',
     context: 'Sonora was built because musicians are scattered across too many platforms and none of them actually understand the creative process. Instagram is for lifestyle. LinkedIn is for corporate networking. Discord is for gamers. There is no dedicated space where a bassist in Bangalore can find a producer in Mumbai based on shared genre, gear, or sound. Sonora is that space — a mobile-first social network designed specifically for the music community, using the tagline Let the wave form to set the tone immediately.',
     brief: 'The brief was to design a high-fidelity mobile ecosystem where discoverability is based on craft rather than follower count. Key screens included a music detection state with a circular radial waveform animation, detailed artist profile cards showing mastery tags and gear lists, a local networking feed, a festival updates editorial grid, and a full settings menu. The UI had to feel like professional studio hardware — dark, tactile, and built for people who work late.',
@@ -89,29 +89,29 @@ export const FULL_PROJECTS: Project[] = [
     tradeoffs: 'I prioritized audio-centric features and deep professional networking over casual social features like reels or stories. Sonora is not a content platform — it is a tool for working musicians. That means I traded scrollable entertainment for high-utility professional features. The dark-only theme was also a firm call: late-night studio sessions are the primary use context, and a light mode would have been a distraction. Every decision was made to respect the physical workflow of someone who actually makes music for a living.',
     learnings: 'Sonora taught me that niche communities require a specific visual vocabulary. You cannot just reskin a generic social template and expect it to resonate — you have to understand the subculture deeply enough to design its language. Working with Samarth on the profile prototypes showed me how much trust users place in platforms that accurately represent their professional identity. The detail in a profile card — the specific gear, the exact mastery level — communicates respect for the user as a serious professional.',
     images: [
-      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/1bff64173945869.64996929bbc71.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/a1715b173945869.64996929bd635.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/b5f03e173945869.64996929b5f9d.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/e01c6f173945869.64996929be668.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/935fe7173945869.64996929b44c7.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/6acf73173945869.64996929b1362.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/d46760173945869.64996929b8533.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/1de6f2173945869.64996929b94b2.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/606c37173945869.64996929b51be.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/6602ed173945869.64996929b2cb0.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/a57728173945869.64996929b6b08.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/65e06b173945869.64996929af603.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/3156c6173945869.64996929b04c5.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/74b9cc173945869.64996929b38e6.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/2e0c74173945869.64996929baf3d.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/10cbf7173945869.64996929ae819.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/05ab92173945869.64996929bc91f.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/7c44d7173945869.64996929ada43.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/1bf2ea173945869.64996929b209b.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/e76c50173945869.64996929ba138.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/1541d1173945869.64996929bf641.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/4ec2cd173945869.64996929b7862.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/fd3c1d173945869.64996929acc54.png'
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/1bff64173945869.64996929bbc71.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/a1715b173945869.64996929bd635.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/b5f03e173945869.64996929b5f9d.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/e01c6f173945869.64996929be668.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/935fe7173945869.64996929b44c7.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/6acf73173945869.64996929b1362.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/d46760173945869.64996929b8533.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/1de6f2173945869.64996929b94b2.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/606c37173945869.64996929b51be.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/6602ed173945869.64996929b2cb0.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/a57728173945869.64996929b6b08.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/65e06b173945869.64996929af603.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/3156c6173945869.64996929b04c5.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/74b9cc173945869.64996929b38e6.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/2e0c74173945869.64996929baf3d.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/10cbf7173945869.64996929ae819.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/05ab92173945869.64996929bc91f.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/7c44d7173945869.64996929ada43.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/1bf2ea173945869.64996929b209b.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/e76c50173945869.64996929ba138.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/1541d1173945869.64996929bf641.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/4ec2cd173945869.64996929b7862.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/fd3c1d173945869.64996929acc54.png'
     ],
     tags: ['Interaction', 'Figma', 'UI Design', 'Mobile Architecture'],
     technologies: ['Figma', 'Photoshop', 'MySQL', 'UI Systems'],
@@ -120,12 +120,12 @@ export const FULL_PROJECTS: Project[] = [
     roleDetail: 'Designed the complete interaction model, information architecture, and high-fidelity mobile prototypes.',
     metrics: ['Increased Visibility of Local Talent', 'Frictionless Collaboration Workflows'],
     processImages: [
-      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/d46760173945869.64996929b8533.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/1de6f2173945869.64996929b94b2.png'
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/d46760173945869.64996929b8533.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/1de6f2173945869.64996929b94b2.png'
     ],
     outcomeImages: [
-      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/2e0c74173945869.64996929baf3d.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/1541d1173945869.64996929bf641.png'
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/2e0c74173945869.64996929baf3d.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/1541d1173945869.64996929bf641.png'
     ],
     figmaEmbed: '<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FEl90BV6exDKrLEsWZbjzI7%2FSonora%3Fpage-id%3D0%253A1%26type%3Ddesign%26node-id%3D6-1014%26viewport%3D964%252C180%252C0.12%26scaling%3Dscale-down%26starting-point-node-id%3D3%253A127%26mode%3Ddesign" allowfullscreen></iframe>',
     sections: [
@@ -133,9 +133,9 @@ export const FULL_PROJECTS: Project[] = [
         title: 'Hero & Visual Identity',
         body: 'The sonora visual system is anchored by a deep obsidian background and a high-energy Electric Blue accent palette. The identity is designed to feel like high-end studio hardware — professional, tactile, and authoritative. "Let the wave form" is the primary brand promise, communicating that this is a space for serious craft.',
         images: [
-          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/1bff64173945869.64996929bbc71.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/a1715b173945869.64996929bd635.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/b5f03e173945869.64996929b5f9d.png'
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/1bff64173945869.64996929bbc71.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/a1715b173945869.64996929bd635.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/b5f03e173945869.64996929b5f9d.png'
         ],
         layout: 'grid-3'
       },
@@ -143,9 +143,9 @@ export const FULL_PROJECTS: Project[] = [
         title: 'The Mobile Ecosystem',
         body: 'Sonora is a specialized social hub designed to bridge the gap between musicians. The mobile-first architecture prioritizes speed and discoverability. Key interactions are built around the Z-pattern scan path, ensuring that core features like search, profile, and collab requests are always within reach.',
         images: [
-          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/e01c6f173945869.64996929be668.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/935fe7173945869.64996929b44c7.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/6acf73173945869.64996929b1362.png'
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/e01c6f173945869.64996929be668.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/935fe7173945869.64996929b44c7.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/6acf73173945869.64996929b1362.png'
         ],
         layout: 'grid-3'
       },
@@ -153,10 +153,10 @@ export const FULL_PROJECTS: Project[] = [
         title: 'Music Detection & UI Motion',
         body: 'The music detection feature uses a radial waveform animation that pulses in real-time. This interaction was engineered to make the technology feel alive. The circular movement mimics the organic flow of sound waves, creating a tactile feedback loop that confirms the app is "listening" to the environment.',
         images: [
-          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/d46760173945869.64996929b8533.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/1de6f2173945869.64996929b94b2.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/606c37173945869.64996929b51be.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/6602ed173945869.64996929b2cb0.png'
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/d46760173945869.64996929b8533.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/1de6f2173945869.64996929b94b2.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/606c37173945869.64996929b51be.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/6602ed173945869.64996929b2cb0.png'
         ],
         layout: 'grid-2'
       },
@@ -164,10 +164,10 @@ export const FULL_PROJECTS: Project[] = [
         title: 'Artist Profile Architecture',
         body: 'The Artist Profile is the most data-rich screen in the ecosystem. It consolidates genre tags, mastery levels, gear lists, and collaboration history into a single, high-density card. This architecture respects the complexity of a musician\'s professional identity, providing more depth than a standard social media bio.',
         images: [
-          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/a57728173945869.64996929b6b08.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/65e06b173945869.64996929af603.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/3156c6173945869.64996929b04c5.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/74b9cc173945869.64996929b38e6.png'
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/a57728173945869.64996929b6b08.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/65e06b173945869.64996929af603.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/3156c6173945869.64996929b04c5.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/74b9cc173945869.64996929b38e6.png'
         ],
         layout: 'grid-2'
       },
@@ -175,10 +175,10 @@ export const FULL_PROJECTS: Project[] = [
         title: 'Networking & Feed Discovery',
         body: 'The discovery feed is designed to surface local talent based on proximity and skill. The interface uses a clean, grid-based layout for festival updates and artist highlights, ensuring that the visual content — photography and poster art — remains the focus of the experience.',
         images: [
-          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/2e0c74173945869.64996929baf3d.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/10cbf7173945869.64996929ae819.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/05ab92173945869.64996929bc91f.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/7c44d7173945869.64996929ada43.png'
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/2e0c74173945869.64996929baf3d.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/10cbf7173945869.64996929ae819.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/05ab92173945869.64996929bc91f.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/7c44d7173945869.64996929ada43.png'
         ],
         layout: 'grid-2'
       },
@@ -186,11 +186,11 @@ export const FULL_PROJECTS: Project[] = [
         title: 'Final Product & Integration',
         body: 'From onboarding to deep settings, the Sonora experience remains cohesive. The integration of Dynamic Island support and high-fidelity transitions makes the app feel natively woven into the iOS environment. Every screen is a testament to the specialized needs of the music community.',
         images: [
-          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/1bf2ea173945869.64996929b209b.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/e76c50173945869.64996929ba138.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/1541d1173945869.64996929bf641.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/4ec2cd173945869.64996929b7862.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/fd3c1d173945869.64996929acc54.png'
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/1bf2ea173945869.64996929b209b.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/e76c50173945869.64996929ba138.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/1541d1173945869.64996929bf641.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/4ec2cd173945869.64996929b7862.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/fd3c1d173945869.64996929acc54.png'
         ],
         layout: 'grid-3'
       }
@@ -201,7 +201,7 @@ export const FULL_PROJECTS: Project[] = [
     title: 'Aurorae',
     category: 'Branding',
     year: '2022',
-    thumbnail: 'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/7e8edb155839991.635be8ee3e7aa.png',
+    thumbnail: 'https://mir-s3-cdn-cf.behance.net/project_modules/fs/9bf751155839991.636f3ca8730f0.jpg',
     shortDescription: 'A minimalist, high-contrast visual identity and brand study exploring the intersection of grain, form, and analog-inspired digital design.',
     context: 'Aurorae is a brand identity study exploring one specific idea: what happens when you use imperfection as a design material? Modern digital design has a sterility problem — everything is too clean, too flat, too interchangeable. Aurorae pushes in the opposite direction, using high-grain textures, aggressive monochromatic contrast, and architectural scale to make a digital identity feel physically heavy. The brand is built for a premium lifestyle platform positioned at the intersection of fine art and NFT culture.',
     brief: 'The brief was to develop a brutalist, monochromatic brand system that works across the full range of touchpoints — from a 35mm business card to a building-scale billboard. No colour except black, white, and procedural grain. The logomark had to be geometric: four vertical pillars centered around a circle, representing stability and growth. Every asset had to pass one test: does it still read as intentional and premium when stripped of all colour and decoration?',
@@ -213,14 +213,14 @@ export const FULL_PROJECTS: Project[] = [
     tradeoffs: 'I chose visual distinctiveness over broad appeal. Aurorae has a very specific mood — it is not for everyone, and that is by design. A brand with a clearly defined target audience is more valuable than one trying to appeal to everyone simultaneously. I also traded decorative colour entirely for the raw power of form and texture, which means the brand depends on its structural integrity to carry all the expressive weight. There is no colour safety net.',
     learnings: 'Aurorae taught me that imperfection is a trust-building tool when deployed with precision. The grain has to look intentional — which means understanding the technical parameters of your output medium well enough to control the noise rather than just adding a filter. I also learned how to use typography as a primary structural element. When the LOGO TYPE is scaled to 400pt, it stops being text and becomes architecture. That shift in register is something I now look for in every brand project.',
     images: [
-      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/9bf751155839991.636f3ca8730f0.jpg',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/a8a880155839991.635be8ee3cd76.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/7e8edb155839991.635be8ee3e7aa.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/0ab619155839991.635be8ee411d9.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/b27eeb155839991.635bfaec34816.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/ec97b3155839991.635c05e215e26.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/9b6767155839991.635bf63ae32bf.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/1400/99e32d155839991.635bf63ae2493.png'
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/9bf751155839991.636f3ca8730f0.jpg',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/a8a880155839991.635be8ee3cd76.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/7e8edb155839991.635be8ee3e7aa.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/0ab619155839991.635be8ee411d9.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/b27eeb155839991.635bfaec34816.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/ec97b3155839991.635c05e215e26.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/9b6767155839991.635bf63ae32bf.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/99e32d155839991.635bf63ae2493.png'
     ],
     tags: ['Branding', 'Visual Identity', 'Graphic Design', 'Editorial'],
     technologies: ['Photoshop', 'Illustrator', 'Figma', 'Blender'],
@@ -229,11 +229,11 @@ export const FULL_PROJECTS: Project[] = [
     roleDetail: 'Architected the visual brand language and designed the core textural assets.',
     metrics: ['Brand Distinctiveness', 'Minimalist Precision', 'Textural Depth'],
     processImages: [
-      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/ec97b3155839991.635c05e215e26.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/9b6767155839991.635bf63ae32bf.png'
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/ec97b3155839991.635c05e215e26.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/9b6767155839991.635bf63ae32bf.png'
     ],
     outcomeImages: [
-      'https://mir-s3-cdn-cf.behance.net/project_modules/1400/99e32d155839991.635bf63ae2493.png'
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/99e32d155839991.635bf63ae2493.png'
     ],
     figmaEmbed: '<iframe src="https://www.behance.net/embed/project/155839991?ilo0=1" allowfullscreen lazyload frameborder="0" allow="clipboard-write" refererPolicy="strict-origin-when-cross-origin"></iframe>',
     sections: [
@@ -241,8 +241,8 @@ export const FULL_PROJECTS: Project[] = [
         title: 'Digital Interfaces & Mobile',
         body: 'The brand translates into a digital Art Space UI with no loss of physical weight. NFT grid screens, authentication flows, and collection browsing all inherit the monochromatic system. The grain reads correctly on-screen because the density was calculated for a 72dpi context rather than simply scaled down from print assets.',
         images: [
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400/b27eeb155839991.635bfaec34816.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/ec97b3155839991.635c05e215e26.png'
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/b27eeb155839991.635bfaec34816.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/ec97b3155839991.635c05e215e26.png'
         ],
         layout: 'grid-2'
       },
@@ -250,8 +250,8 @@ export const FULL_PROJECTS: Project[] = [
         title: 'Brand Mark Exploration',
         body: 'The final mark came from analogue exploration — thick marker sketches on paper, testing the geometric A and pillar composition before touching Illustrator. Digitizing a hand-drawn form forces precision: every vector point is justified because every stroke was drawn with intention first. The sketch process is part of the case study because it proves the final mark was earned, not generated.',
         images: [
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/7e8edb155839991.635be8ee3e7aa.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/a8a880155839991.635be8ee3cd76.png'
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/7e8edb155839991.635be8ee3e7aa.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/a8a880155839991.635be8ee3cd76.png'
         ],
         layout: 'grid-2'
       },
@@ -259,8 +259,8 @@ export const FULL_PROJECTS: Project[] = [
         title: 'Logo System & Identity',
         body: 'The logomark is four vertical pillars centered around a circle — geometric, load-bearing, and readable at any scale. Every surface carries a 12% roughness grain overlay that was calibrated separately for screen and print output. The grain is not a Photoshop filter applied at the end; it is a structural element baked into the system from the start.',
         images: [
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/0ab619155839991.635be8ee411d9.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400/99e32d155839991.635bf63ae2493.png'
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/0ab619155839991.635be8ee411d9.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/99e32d155839991.635bf63ae2493.png'
         ],
         layout: 'grid-2'
       },
@@ -268,8 +268,8 @@ export const FULL_PROJECTS: Project[] = [
         title: 'Applied Identity & Print',
         body: 'The system holds from a 55mm business card to a four-metre billboard. Business cards use the debossed logomark on a heavy cotton stock — tactile, permanent, impossible to fake. The billboard placement shows how the architectural scale of the LOGO TYPE takes over at large format: at 4 metres wide, the type stops being text and becomes structure.',
         images: [
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/9b6767155839991.635bf63ae32bf.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/9bf751155839991.636f3ca8730f0.jpg'
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/9b6767155839991.635bf63ae32bf.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/9bf751155839991.636f3ca8730f0.jpg'
         ],
         layout: 'grid-2'
       }
@@ -332,16 +332,16 @@ export const FULL_PROJECTS: Project[] = [
     category: 'UI Design',
     year: '2026',
     thumbnail: '/assets/portfolio_hero_section_1777819291389.png',
-    shortDescription: 'A systematic architectural overhaul of my digital identity, engineered for speed and editorial aesthetics.',
-    context: 'This portfolio is a systematic architectural overhaul of my digital identity. I wanted to move away from the "tool-first" playground and towards a high-end editorial archive that establishes a professional design philosophy. The redesign is built on a mathematically locked 12-column grid system, aiming to commercialize my personal brand and provide a space that feels intellectually rigorous. It’s designed to function as an "Archival Folder," where every project is documented with the same technical depth and visual precision found in a professional design studio’s internal records.',
-    brief: 'The brief was to engineer a resilient digital infrastructure that communicates founder-level methodology and technical prowess. Key requirements included sub-second First Contentful Paint (FCP), a unified container metric system, and aggressive typographic scaling. I needed to resolve the visual tension common in responsive portfolios by standardizing margin sets and vertical pacing. The goal was to build a system that remains structurally sound regardless of content volume, proving my ability to architect scalable, high-performance web products.',
-    goal: 'My primary goal was to establish a rigid Z-pattern layout methodology that controls visual hierarchy across all routes. I wanted to implement a "Performance Index" for every project, holding my own work to a rigorous engineering standard. By using a unified 16mm margin set and a mathematically derived typographic rhythm, I aimed to create a sense of "Commercial Credibility." The ultimate objective was to build a digital platform that recruiters can scan in seconds to understand my methodology, while providing the depth required for a multi-hour deep dive into my process.',
-    problem: 'Minimalist design often fails when it lacks a strict structural foundation; white space without a grid looks like an error rather than a choice. Most portfolios suffer from inconsistent hierarchy and layout shifts, which reduces the user’s trust in the designer’s technical ability. I saw a need for a site that feels as solid and permanent as brutalist architecture. The problem wasn’t just "showing work," but establishing a cohesive visual system that demonstrates an understanding of both design aesthetics and high-performance engineering.',
-    process: 'The process involved a total reconstruction of the site’s underlying math. I designed a custom 12-column grid system using Tailwind v4 and React 19, ensuring that every pixel is anchored to a global container metric. I spent weeks refining the Z-pattern layout to guide the eye toward key "Recruiter-Ready" data points like roles, metrics, and technologies. I standardized the "Archival Folder" aesthetic, using high-contrast borders and structured metadata blocks to create a feeling of professional documentation. Performance was optimized through Vite, targeting a sub-second TTI and zero layout shift during asset loading.',
-    outcome: 'The result is a highly performant, accessible digital product that functions as a definitive archive of my work. The sub-second FCP ensures an instant first impression, while the rigid grid system provides a premium editorial feel. The Z-pattern execution successfully highlights my technical methodology, making the transition from "Designer" to "Product Engineer" clear. The final site successfully balances aggressive typography with technical precision, establishing a professional identity that is both memorable and intellectually deep.',
-    challenges: 'The biggest challenge was the "Responsive Rigidity" problem—maintaining the 12-column grid and aggressive typographic scale on mobile viewports without breaking the archival aesthetic. I had to develop a custom fluid-typography system that scales mathematically between breakpoints. Another hurdle was optimizing high-resolution project imagery for a sub-second FCP; I had to implement a custom lazy-loading and image-optimization pipeline to ensure that visual depth didn’t regress my performance metrics.',
-    tradeoffs: 'I prioritized "Structural Rigidity" and grid-locking over experimental, free-form navigation to ensure maximum commercial credibility. This means the site is more opinionated about its layout, trading off casual "playfulness" for professional authority. I also chose a strictly monochromatic "Stark" theme to highlight the structural clarity of my work, sacrificing a more colorful palette to ensure that the content and the grid remained the primary focus. Every choice was made to lean into a high-performance, archival design philosophy.',
-    learnings: 'This project taught me that "less is more" only works when the math is perfect. I learned that a rigid structural foundation is the most powerful tool for building user trust. Working on the intersection of Tailwind and React reinforced my belief that design and engineering are inseparable. Moving forward, I am obsessed with "Mathematical Layouts," building systems where every visual decision is backed by a rigorous grid. It’s made me a more disciplined designer and a much more strategic engineer, focusing on the long-term resilience of the systems I build.',
+    shortDescription: 'A definitive architectural overhaul of my digital identity, evolving from our experimental v1 into a refined, commercial-grade archive.',
+    context: 'This portfolio is the definitive architectural overhaul of my digital identity. The journey started with a "tool-first" conceptual playground—a v1 that was heavy on experimentation, fluid physics, and testing the limits of interaction. While that iteration proved technical capability, this new version is completely refined. It moves away from the playground aesthetic and establishes a permanent, professional design philosophy built on a mathematically locked 12-column grid system. It functions as a high-end "Archival Folder," where every project is documented with the exact precision found in a professional studio’s records.',
+    brief: 'The brief was to engineer a resilient digital infrastructure that communicates founder-level methodology without relying on superfluous animations. Key requirements included sub-second First Contentful Paint (FCP), a unified container metric system, and aggressive typographic scaling. I needed to resolve the visual tension of the first version by standardizing margin sets and stripping away distractions. The goal was to build a permanent, structurally sound system that proves my ability to architect scalable, high-performance web products.',
+    goal: 'My primary goal was to establish a rigid Z-pattern layout methodology that controls visual hierarchy across all routes. I wanted to implement a "Performance Index" for every project, holding my own work to a rigorous engineering standard. By using a unified 16mm margin set and a mathematically derived typographic rhythm, I achieved the "Commercial Credibility" that v1 lacked. The ultimate objective was to build a mature platform that recruiters can scan in seconds, while providing immense depth for a multi-hour deep dive.',
+    problem: 'Our very first iteration was highly interactive, but it lacked the strict structural foundation required to present dense case studies effectively. Minimalist design often fails without a grid—white space looks like an error rather than a choice. I saw a need for a site that feels as solid and permanent as brutalist architecture. The problem wasn’t just "showing work," but establishing a cohesive, grown-up visual system that demonstrates an understanding of both design aesthetics and high-performance engineering.',
+    process: 'The process involved a total reconstruction of the site’s underlying math, starting completely fresh from the v1 concepts. I designed a custom 12-column grid system using Tailwind v4 and React 19, ensuring that every pixel is anchored to a global container metric. I spent weeks refining the Z-pattern layout to guide the eye toward key "Recruiter-Ready" data points. Performance was heavily optimized through Vite, deliberately stripping back the heavy physics engines of the past to target a sub-second TTI and zero layout shift.',
+    outcome: 'The result is a highly performant, accessible digital product that functions as a definitive archive of my work. The sub-second FCP ensures an instant first impression, while the rigid grid system provides a premium editorial feel. The transition from our experimental first version to this refined, architectural system makes the evolution from "Designer" to "Product Engineer" crystal clear. It balances aggressive typography with technical precision, establishing a professional identity that is deeply mature.',
+    challenges: 'The biggest challenge was the "Responsive Rigidity" problem—maintaining the 12-column grid and aggressive typographic scale on mobile viewports without breaking the archival aesthetic. I had to develop a custom fluid-typography system that scales mathematically between breakpoints. Another hurdle was optimizing high-resolution project imagery for a sub-second FCP, ensuring that the visual depth we achieved didn’t compromise performance.',
+    tradeoffs: 'I heavily prioritized "Structural Rigidity" and grid-locking over the experimental, free-form navigation we explored in v1. This means the site is far more opinionated about its layout, trading off casual "playfulness" for professional authority. I chose a strictly monochromatic "Stark" theme to highlight the structural clarity of the work, sacrificing color to ensure that the content and the grid remained the primary focus.',
+    learnings: 'This evolution taught me that "less is more" only works when the math is perfect. I learned that a rigid structural foundation is the most powerful tool for building user trust, far outweighing flashy interactions. Working on the intersection of Tailwind and React reinforced my belief that design and engineering are inseparable. Moving forward, I am obsessed with "Mathematical Layouts," building systems where every visual decision is backed by a rigorous grid.',
     images: ['/assets/portfolio_hero_section_1777819291389.png'],
     tags: ['UX Architecture', 'Framer Motion', 'React 19'],
     technologies: ['Vite', 'Tailwind', 'Motion UI'],
@@ -619,8 +619,8 @@ export const FULL_PROJECTS: Project[] = [
     learnings: 'Building your own brand is both the hardest and the most useful design project you can do. There is no brief, no client guardrails, and nowhere to hide — every choice reflects directly on your judgment. I learned that the most powerful brand asset is a clear point of view: knowing what you stand for and what you refuse to do. Working with Samarth also reinforced how important it is to have a collaborator who challenges your assumptions rather than just agreeing with them.',
     images: [
       'https://mir-s3-cdn-cf.behance.net/projects/original/0e92c6162449841.Y3JvcCwxNjE2LDEyNjQsMCww.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/0e92c6162449841.63d6b384666f2.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/711202162449841.63d6b3846759c.png'
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/0e92c6162449841.63d6b384666f2.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/711202162449841.63d6b3846759c.png'
     ],
     tags: ['Branding', '3D Design', 'Agency Strategy'],
     technologies: ['Adobe XD', 'Blender', 'Photoshop'],
@@ -634,10 +634,10 @@ export const FULL_PROJECTS: Project[] = [
         title: 'Logo & 3D Mark',
         body: 'The CREO logo is a 2x2 geometric block with a thick offset drop shadow rendered in Blender — it looks like a physical object sitting on a surface, not a flat vector. That three-dimensionality is the founding statement: this is a studio that understands form as well as graphic design. The Brans-DemiBold typeface carries the same weight. Every letterform is heavy, structured, and impossible to mistake for a generic agency.',
         images: [
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400/e68bad162449841.63d62a98eccb6.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/67d725162449841.63d6965078f9b.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/50a658162449841.63d6bfd6266b0.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/779c99162449841.63d6bee25c966.png'
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/e68bad162449841.63d62a98eccb6.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/67d725162449841.63d6965078f9b.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/50a658162449841.63d6bfd6266b0.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/779c99162449841.63d6bee25c966.png'
         ],
         layout: 'grid-2'
       },
@@ -645,10 +645,10 @@ export const FULL_PROJECTS: Project[] = [
         title: 'Brand System & Palette',
         body: 'Purple (#B66CFF), Yellow (#FFE973), and Mint Green are not chosen at random — each colour has a defined role. Purple leads on primary brand surfaces. Yellow is the accent that signals energy and creativity. Mint anchors supporting elements. The palette is loud enough to own a space but internally logical enough to stay cohesive across wildly different applications.',
         images: [
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/22559c162449841.63d62a98ebaa4.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/0f5b39162449841.63d6bfd6254a8.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/d7bebd162449841.63d695786798e.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/8a8e51162449841.63dcc097d478b.png'
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/22559c162449841.63d62a98ebaa4.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/0f5b39162449841.63d6bfd6254a8.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/d7bebd162449841.63d695786798e.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/8a8e51162449841.63dcc097d478b.png'
         ],
         layout: 'grid-2'
       },
@@ -656,10 +656,10 @@ export const FULL_PROJECTS: Project[] = [
         title: 'Print & Stationary',
         body: 'The brand identity extends seamlessly to physical touchpoints. Business cards feature a dense, repeating logo pattern that feels tactile and substantial. The bold yellow accents make the cards highly distinctive.',
         images: [
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/b17b69162449841.63d693177d365.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/c4e3a7162449841.63d693177e0ce.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/0f0f40162449841.63d6931779a18.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/5e1f6d162449841.63d6931780c1b.png'
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/b17b69162449841.63d693177d365.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/c4e3a7162449841.63d693177e0ce.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/0f0f40162449841.63d6931779a18.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/5e1f6d162449841.63d6931780c1b.png'
         ],
         layout: 'grid-2'
       },
@@ -667,9 +667,9 @@ export const FULL_PROJECTS: Project[] = [
         title: 'Editorial & Collateral',
         body: 'Tri-fold brochures leverage the core brand palette to organize content sharply without sacrificing visual impact. Merch and apparel mockups show the flexibility of the logomark in real-world contexts.',
         images: [
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/414ffd162449841.63d693177a854.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/3d0805162449841.63d693177b65a.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/4a8698162449841.63d693177c5ad.png'
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/414ffd162449841.63d693177a854.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/3d0805162449841.63d693177b65a.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/4a8698162449841.63d693177c5ad.png'
         ],
         layout: 'grid-3'
       },
@@ -677,8 +677,8 @@ export const FULL_PROJECTS: Project[] = [
         title: 'Digital & OOH Mockups',
         body: 'From massive urban billboards to clean digital interfaces, the identity was designed to scale. High-contrast typography paired with the 3D mark ensures CREO remains highly legible and recognizable whether viewed on a 6-inch phone screen or a 6-meter outdoor placement.',
         images: [
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/24d12b162449841.63d693177fd32.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/dc9d6b162449841.63d693177ef9d.png'
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/24d12b162449841.63d693177fd32.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/dc9d6b162449841.63d693177ef9d.png'
         ],
         layout: 'grid-2'
       }
@@ -702,8 +702,8 @@ export const FULL_PROJECTS: Project[] = [
     learnings: 'Exousia taught me that design is the bridge that makes complex technology usable and worth caring about. The engineering was impressive but invisible until the brand and the UI gave it a language. I also learned that hardware and software design require fundamentally different thinking: hardware decisions are permanent in a way that software decisions are not, which changes your tolerance for uncertainty at every stage of the process. The intersection of C++ and UI design is a space I want to keep exploring.',
     images: [
       'https://mir-s3-cdn-cf.behance.net/projects/original/f36c99151193447.Y3JvcCwxODQxLDE0NDAsNDEsMA.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/65c87a151193447.6309886470f1a.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/268574151193447.6309886472479.png'
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/65c87a151193447.6309886470f1a.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/268574151193447.6309886472479.png'
     ],
     tags: ['Arduino', 'IoT', 'Physical Computing'],
     technologies: ['C++', 'Fusion360', 'Piezoelectric Sensors'],
@@ -717,21 +717,18 @@ export const FULL_PROJECTS: Project[] = [
         title: 'Brand Identity & Visuals',
         body: 'The Exousia logo is a human-lightning bolt hybrid — a silhouette mid-stride with an energy bolt replacing the spine. It communicates the core concept in a single mark without any supporting text. The circular emblem frames it with industrial precision. Brans-DemiBold carries the wordmark at the same weight as the mark itself, so neither dominates.',
         images: [
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/4c931f151193447.63077404eb0f7.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/77c423151193447.63077404f3727.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/982078151193447.63077404ec3b5.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/4b9537151193447.63077404efe00.png'
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/4c931f151193447.63077404eb0f7.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/77c423151193447.63077404f3727.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/4b9537151193447.63077404efe00.png'
         ],
-        layout: 'grid-2'
+        layout: 'grid-3'
       },
       {
         title: 'Hardware & Engineering',
         body: 'The physical hardware design features PZT sensors mapped to an Arduino-driven feedback loop. The floor tile cross-section was designed in Fusion360 to ensure high-impact loading durability while maintaining a clean, architectural finish for premium commercial spaces.',
         images: [
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/cd420c151193447.63077404ee73a.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/c65b41151193447.63077404ef662.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/2eb8c5151193447.63077404f05c8.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/3a5893151193447.63077404f14cd.png'
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/c65b41151193447.63077404ef662.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/3a5893151193447.63077404f14cd.png'
         ],
         layout: 'grid-2'
       },
@@ -739,10 +736,8 @@ export const FULL_PROJECTS: Project[] = [
         title: 'System Integration',
         body: 'Physical collaterals carry the energy of the brand into the real world. Distinctive typographics and vibrant lime green elements help communicate the scale of energy generation directly to end-users.',
         images: [
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/58e1b2151193447.63077404f3f26.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/388b62151193447.63077404f2f03.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/6059b6151193447.63077404f1d0d.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/5676d6151193447.63077404ed590.png'
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/388b62151193447.63077404f2f03.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/5676d6151193447.63077404ed590.png'
         ],
         layout: 'grid-2'
       },
@@ -750,10 +745,8 @@ export const FULL_PROJECTS: Project[] = [
         title: 'Mobile Application',
         body: 'The mobile UI tracks Total Power Generated in kWh with lime green indicators on a dark background — energy data that feels alive rather than clinical. It makes the invisible visible instantly.',
         images: [
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/97d9b6151193447.63077404ecd10.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/5eb18e151193447.630779e950ebb.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/c04d0e151193447.630774050050e.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/3d31bd151193447.6307740500e25.png'
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/5eb18e151193447.630779e950ebb.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/3d31bd151193447.6307740500e25.png'
         ],
         layout: 'grid-2'
       },
@@ -761,11 +754,9 @@ export const FULL_PROJECTS: Project[] = [
         title: 'Marketing & OOH',
         body: 'The "POWER YOUR HOME" marketing campaign scales the brand from individual tiles to massive urban infrastructure. High-contrast billboard mockups demonstrate how the identity cuts through visual noise in environments like train stations and stadiums.',
         images: [
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/9952c7151193447.63077404eba11.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/ae1450151193447.63077404eeee8.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/95403d151193447.63077404f2646.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/357321151193447.63077404edeb0.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400/cac9bf151193447.636f40b79d08e.jpg'
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/ae1450151193447.63077404eeee8.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/357321151193447.63077404edeb0.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/cac9bf151193447.636f40b79d08e.jpg'
         ],
         layout: 'grid-3'
       }
@@ -776,7 +767,7 @@ export const FULL_PROJECTS: Project[] = [
     title: 'Horizon Zoom',
     category: 'Branding',
     year: '2023',
-    thumbnail: 'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/8de913156706847.636f3b772881b.jpg',
+    thumbnail: 'https://mir-s3-cdn-cf.behance.net/project_modules/fs/8de913156706847.636f3b772881b.jpg',
     shortDescription: 'Brand identity and business case study for a retro-inspired 32-bit arcade racing game.',
     context: 'Horizon Zoom is a full brand and business pitch for a 32-bit arcade bike-racing game — think Asphalt meets classic Nintendo, built for a modern community-first audience. The deck opens with a sleek 3D render of the HORIZON ZOOM wordmark embossed on a pill-shaped badge sitting on a glossy red platform. Minimal, confident, instantly recognizable. The whole project started from one idea: inculcating retro spirit into something modern, targeting the 10-25 age group who grew up on Asphalt but are bored of its monotony.',
     brief: 'Two things needed to happen simultaneously: design the brand identity and write a credible business case. The brand side covered the game HUD design, select-screen UI, logo system, and marketing posters. The business side covered target audience research, competitor analysis (Asphalt/Gameloft, Nintendo Turbo Racer), revenue streams, subscription tiers, retention mechanics, and a charitable incentive model. This was not just a visual brief — it had to be defensible as an actual product pitch.',
@@ -788,15 +779,15 @@ export const FULL_PROJECTS: Project[] = [
     tradeoffs: 'I leaned into the retro aesthetic as a feature, not a compromise — the HUD uses pixelated counters and minimaps which some would call dated, but within this brand it reads as character. I also kept the subscription economy broad (four tiers plus cosmetic currency) which is a lot for a pitch, but I wanted to demonstrate that we had thought through the full player economy rather than just the launch price point.',
     learnings: 'Horizon Zoom taught me that a design pitch without a business case behind it is just decoration. The slides that land hardest are not the brand ones — they are the competition analysis and the incentive model. Understanding your market and being honest about why someone should care is the real design work. I also learned a lot about gaming industry mechanics: retention loops, streamer monetisation, and the psychology of in-game currency. That knowledge has been useful in every product project since.',
     images: [
-      'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/8de913156706847.636f3b772881b.jpg',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/1400/11b173156706847.636bc57463412.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/8463e1156706847.636d401e76332.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/f984c0156706847.636d401e77201.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/e16d31156706847.636d401e74e37.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/ab8d2b156706847.636d401e78ef8.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/0c61a7156706847.636d401e7a967.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/d117a8156706847.636d419468267.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/d7d163156706847.636d491ba636b.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/8de913156706847.636f3b772881b.jpg',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/11b173156706847.636bc57463412.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/8463e1156706847.636d401e76332.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/f984c0156706847.636d401e77201.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/e16d31156706847.636d401e74e37.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/ab8d2b156706847.636d401e78ef8.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/0c61a7156706847.636d401e7a967.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/d117a8156706847.636d419468267.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/d7d163156706847.636d491ba636b.png',
       'https://mir-s3-cdn-cf.behance.net/project_modules/source/1f1be0156706847.636cfb528cc67.gif',
       'https://mir-s3-cdn-cf.behance.net/project_modules/source/316b15156706847.636cd6e9c264c.gif',
       'https://mir-s3-cdn-cf.behance.net/project_modules/source/44cea9156706847.636cfb528dbca.gif',
@@ -811,12 +802,12 @@ export const FULL_PROJECTS: Project[] = [
     metrics: ['Subscription Strategy', 'Charitable Incentive Model (15%)'],
     annotations: ['Retro 32-bit Aesthetic', 'Community Focus'],
     processImages: [
-      'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/f984c0156706847.636d401e77201.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/e16d31156706847.636d401e74e37.png'
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/f984c0156706847.636d401e77201.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/e16d31156706847.636d401e74e37.png'
     ],
     outcomeImages: [
-      'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/ab8d2b156706847.636d401e78ef8.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/0c61a7156706847.636d401e7a967.png'
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/ab8d2b156706847.636d401e78ef8.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/0c61a7156706847.636d401e7a967.png'
     ],
     figmaEmbed: '<iframe src="https://www.behance.net/embed/project/156706847?ilo0=1" allowfullscreen lazyload frameborder="0" allow="clipboard-write" refererPolicy="strict-origin-when-cross-origin"></iframe>',
     sections: [
@@ -824,10 +815,10 @@ export const FULL_PROJECTS: Project[] = [
         title: 'Brand Identity & Visuals',
         body: 'The HORIZON ZOOM wordmark is embossed on a pill-shaped badge rendered in 3D — glossy red platform, clean white letterforms, Chrome finish on the badge edge. It sets the register: this is not a student game concept, it is a product pitch. The Racing Red and white palette runs through every subsequent screen without exception.',
         images: [
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400/11b173156706847.636bc57463412.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/ab8d2b156706847.636d401e78ef8.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/11b173156706847.636bc57463412.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/ab8d2b156706847.636d401e78ef8.png',
           'https://mir-s3-cdn-cf.behance.net/project_modules/source/560c9b156706847.636bc57467a0b.gif',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/0c61a7156706847.636d401e7a967.png'
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/0c61a7156706847.636d401e7a967.png'
         ],
         layout: 'grid-2'
       },
@@ -836,9 +827,9 @@ export const FULL_PROJECTS: Project[] = [
         body: 'A core part of the Horizon Zoom identity relies on dynamic motion. Animated elements loop continuously, demonstrating gameplay sequences, menu transitions, and environmental lighting. These short snippets capture the fast-paced, arcade energy that static screens cannot convey.',
         images: [
           'https://mir-s3-cdn-cf.behance.net/project_modules/source/316b15156706847.636cd6e9c264c.gif',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/8463e1156706847.636d401e76332.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/d7d163156706847.636d491ba636b.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/e16d31156706847.636d401e74e37.png'
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/8463e1156706847.636d401e76332.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/d7d163156706847.636d491ba636b.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/e16d31156706847.636d401e74e37.png'
         ],
         layout: 'grid-2'
       },
@@ -856,10 +847,10 @@ export const FULL_PROJECTS: Project[] = [
         title: 'Business Model & Marketing',
         body: 'Five revenue streams: ads, in-game currency, digital merch, physical drops, and four subscription tiers from Free Plan to Racer Pass. The Incentive Model earmarks 15% of profits for road accident victims and injured racing competitors. This positions Horizon Zoom effectively against Gameloft competitors.',
         images: [
-          'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/f984c0156706847.636d401e77201.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/d117a8156706847.636d419468267.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/3763c6156706847.636d4194670c1.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/8de913156706847.636f3b772881b.jpg'
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/f984c0156706847.636d401e77201.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/d117a8156706847.636d419468267.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/3763c6156706847.636d4194670c1.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/8de913156706847.636f3b772881b.jpg'
         ],
         layout: 'grid-2'
       }

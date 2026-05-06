@@ -103,13 +103,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
 
   return (
     <>
-      <m.header
-        key={currentPath}
-        initial={{ x: 40, opacity: 0, rotateY: 5 }}
-        animate={{ x: 0, opacity: 1, rotateY: 0 }}
-        exit={{ x: -40, opacity: 0, rotateY: -5 }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        style={{ perspective: "1000px", transformStyle: "preserve-3d" }}
+      <header
         className={`fixed top-0 left-0 w-full z-[100] transition-all duration-300 pointer-events-none ${isScrolled
           ? 'bg-[var(--bg)]/70 backdrop-blur-md border-b-[0.5px] border-[var(--ink)]/5 py-4'
           : 'bg-transparent py-8 md:py-12'
@@ -158,7 +152,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
             </svg>
           </button>
         </div>
-      </m.header>
+      </header>
 
 
       <div className={`fixed inset-0 z-[200] bg-[var(--bg)] flex flex-col px-8 pt-14 pb-12 transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] ${isMobileOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'

@@ -154,10 +154,10 @@ const ProjectDetail: React.FC = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onClick={() => setSelectedImage(null)}
-                className="fixed inset-0 z-[1000] bg-black/95 flex items-center justify-center p-4 md:p-10 cursor-zoom-out"
+                className="fixed inset-0 z-[1000] bg-black/95 overflow-y-auto cursor-zoom-out flex justify-center items-start"
               >
                 <m.button
-                  className="absolute top-10 right-10 text-white/50 hover:text-white p-2 transition-colors"
+                  className="absolute top-10 right-10 text-white/50 hover:text-white p-2 transition-colors z-[1001]"
                   onClick={() => setSelectedImage(null)}
                 >
                   <X size={32} />
@@ -169,7 +169,7 @@ const ProjectDetail: React.FC = () => {
                   transition={{ type: 'spring', damping: 25, stiffness: 200 }}
                   src={selectedImage}
                   alt="Enlarged view"
-                  className="max-w-full max-h-full object-contain shadow-2xl"
+                  className="w-full max-w-[1400px] h-auto shadow-2xl my-4 md:my-10"
                 />
               </m.div>
             )}

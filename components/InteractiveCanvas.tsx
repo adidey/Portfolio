@@ -55,7 +55,7 @@ const ProjectGridItem = ({ project, delay = 0 }: { project: any; delay?: number 
           alt={project.title}
           fetchPriority="high"
           loading="eager"
-          className="absolute inset-0 w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000 group-hover:scale-105"
+          className="absolute inset-0 w-full h-full object-cover opacity-100 transition-all duration-1000 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-[var(--ink)]/5 group-hover:bg-transparent transition-colors duration-700" />
       </div>
@@ -114,7 +114,7 @@ export const InteractiveCanvas = () => {
   }, []);
 
   // Selecting higher-impact projects: Sonora, Aurorae, and Exousia
-  const featured = PROJECTS.filter(p => ['sonora', 'aurorae', 'exousia'].includes(p.id)).slice(0, 3);
+  const featured = PROJECTS.filter(p => ['sonora', 'horizon-zoom', 'exousia'].includes(p.id)).slice(0, 3);
 
   return (
     <LazyMotion features={domMax}>
