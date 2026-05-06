@@ -233,85 +233,6 @@ const ProjectDetail: React.FC = () => {
             </div>
 
             <div>
-              {/* Objective */}
-              {project.brief && (
-                <ProjectSection title="Objective">
-                  <div className="space-y-10">
-                    <p className="text-[22px] md:text-[32px] font-medium leading-tight tracking-tight max-w-4xl text-[var(--ink)]">
-                      {project.brief}
-                    </p>
-                    {project.goal && (
-                      <div className="pt-10 border-t border-[var(--border)]/60">
-                        <p className="text-[9px] uppercase tracking-widest text-[var(--muted)] mb-4 font-black">Strategic Goal</p>
-                        <p className="text-[18px] md:text-[26px] font-bold leading-tight tracking-tight max-w-3xl italic text-[var(--muted)]">
-                          "{project.goal}"
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                </ProjectSection>
-              )}
-
-              {/* Problem */}
-              <ProjectSection title="Problem">
-                <p className="text-[22px] md:text-[32px] font-black leading-tight tracking-tight max-w-4xl">
-                  {project.problem}
-                </p>
-              </ProjectSection>
-
-              {/* Process */}
-              <ProjectSection title="Process">
-                <div className="space-y-12">
-                  <p className="text-[15px] md:text-[17px] leading-relaxed text-[var(--muted)] max-w-2xl">
-                    {project.process}
-                  </p>
-                  {project.processImages && project.processImages.length > 0 && (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                      {project.processImages.map((img, i) => (
-                        <div key={i} className="group">
-                          <div className="aspect-[4/3] overflow-hidden bg-[var(--border)] mb-4 cursor-zoom-in border border-[var(--border)]" onClick={() => setSelectedImage(img)}>
-                            <img src={img} alt={`Process ${i + 1}`} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                          </div>
-                          <p className="text-[9px] uppercase tracking-widest text-[var(--muted)]">Fig. {String(i + 1).padStart(2, '0')}</p>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </ProjectSection>
-
-              {/* ── CASE STUDY SECTIONS (Behance-style) ── */}
-              {project.sections && project.sections.length > 0 && (
-                <div className="py-4">
-                  <div className="py-10 md:py-16 border-b border-[var(--border)]">
-                    <p className="text-[10px] uppercase tracking-[0.5em] text-[var(--muted)] font-black">Case Study</p>
-                  </div>
-                  {project.sections.map((section, i) => (
-                    <CaseSectionBlock key={i} section={section} index={i} />
-                  ))}
-                </div>
-              )}
-
-              {/* Challenges */}
-              {project.challenges && (
-                <ProjectSection title="Challenges">
-                  <p className="text-[15px] md:text-[17px] leading-relaxed text-[var(--muted)] max-w-2xl">
-                    {project.challenges}
-                  </p>
-                </ProjectSection>
-              )}
-
-              {/* Trade-offs */}
-              {project.tradeoffs && (
-                <ProjectSection title="Trade-offs">
-                  <div className="bg-[var(--border)]/30 border border-[var(--border)] p-8 md:p-12 rounded-2xl max-w-3xl">
-                    <p className="text-[18px] md:text-[22px] font-bold leading-tight tracking-tight text-[var(--ink)]">
-                      {project.tradeoffs}
-                    </p>
-                  </div>
-                </ProjectSection>
-              )}
-
               {/* Stack & Impact */}
               <ProjectSection title="Stack & Impact">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -338,44 +259,41 @@ const ProjectDetail: React.FC = () => {
                 </div>
               </ProjectSection>
 
-              {/* Learnings */}
-              {project.learnings && (
-                <ProjectSection title="Learnings">
-                  <p className="text-[15px] md:text-[17px] leading-relaxed text-[var(--muted)] max-w-2xl italic">
-                    {project.learnings}
-                  </p>
-                </ProjectSection>
+              {/* ── CASE STUDY SECTIONS (Behance-style) ── */}
+              {project.sections && project.sections.length > 0 ? (
+                <div className="py-4">
+                  {project.sections.map((section, i) => (
+                    <CaseSectionBlock key={i} section={section} index={i} />
+                  ))}
+                </div>
+              ) : (
+                /* Fallback for older projects without sections */
+                <div className="py-20 md:py-28">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {project.images?.map((img, i) => (
+                      <div key={i} className="aspect-[4/3] overflow-hidden bg-[var(--border)] mb-4 cursor-zoom-in border border-[var(--border)] group" onClick={() => setSelectedImage(img)}>
+                        <img src={img} alt={`Preview ${i + 1}`} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
               )}
 
-              {/* Outcome */}
-              <ProjectSection title="Outcome">
-                <div className="space-y-12">
-                  <p className="text-[22px] md:text-[32px] font-black leading-tight tracking-tight text-[var(--accent)] max-w-4xl">
-                    {project.outcome}
-                  </p>
-                  {project.outcomeImages && (
-                    <div className="grid grid-cols-1 gap-8">
-                      {project.outcomeImages.map((img, i) => (
-                        <div key={i} className="aspect-video overflow-hidden border border-[var(--border)] shadow-sm cursor-zoom-in" onClick={() => setSelectedImage(img)}>
-                          <img src={img} alt="Final result" className="w-full h-full object-cover" />
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                  {project.link && (
-                    <div className="pt-8">
-                      <a
-                        href={project.link.startsWith('http') ? project.link : '#'}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center gap-4 text-[20px] md:text-[32px] font-black uppercase tracking-tight hover:text-[var(--accent)] transition-all group"
-                      >
-                        Explore live project <ExternalLink size={28} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                      </a>
-                    </div>
-                  )}
-                </div>
-              </ProjectSection>
+              {/* External Link */}
+              {project.link && (
+                <ProjectSection title="Live">
+                  <div className="pt-8 pb-20">
+                    <a
+                      href={project.link.startsWith('http') ? project.link : '#'}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-4 text-[20px] md:text-[32px] font-black uppercase tracking-tight hover:text-[var(--accent)] transition-all group"
+                    >
+                      Explore live project <ExternalLink size={28} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    </a>
+                  </div>
+                </ProjectSection>
+              )}
             </div>
 
             {/* Next Project Footer */}

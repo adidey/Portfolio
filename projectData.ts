@@ -77,7 +77,7 @@ export const FULL_PROJECTS: Project[] = [
     title: 'Sonora',
     category: 'Interaction',
     year: '2023',
-    thumbnail: 'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/1bff64173945869.64996929bbc71.png',
+    thumbnail: 'https://mir-s3-cdn-cf.behance.net/project_modules/disp/1bff64173945869.64996929bbc71.png',
     shortDescription: 'A specialized social hub for musicians to network, collaborate, and discover local talent through a tactile, mobile-first experience.',
     context: 'Sonora was built because musicians are scattered across too many platforms and none of them actually understand the creative process. Instagram is for lifestyle. LinkedIn is for corporate networking. Discord is for gamers. There is no dedicated space where a bassist in Bangalore can find a producer in Mumbai based on shared genre, gear, or sound. Sonora is that space — a mobile-first social network designed specifically for the music community, using the tagline Let the wave form to set the tone immediately.',
     brief: 'The brief was to design a high-fidelity mobile ecosystem where discoverability is based on craft rather than follower count. Key screens included a music detection state with a circular radial waveform animation, detailed artist profile cards showing mastery tags and gear lists, a local networking feed, a festival updates editorial grid, and a full settings menu. The UI had to feel like professional studio hardware — dark, tactile, and built for people who work late.',
@@ -89,15 +89,29 @@ export const FULL_PROJECTS: Project[] = [
     tradeoffs: 'I prioritized audio-centric features and deep professional networking over casual social features like reels or stories. Sonora is not a content platform — it is a tool for working musicians. That means I traded scrollable entertainment for high-utility professional features. The dark-only theme was also a firm call: late-night studio sessions are the primary use context, and a light mode would have been a distraction. Every decision was made to respect the physical workflow of someone who actually makes music for a living.',
     learnings: 'Sonora taught me that niche communities require a specific visual vocabulary. You cannot just reskin a generic social template and expect it to resonate — you have to understand the subculture deeply enough to design its language. Working with Samarth on the profile prototypes showed me how much trust users place in platforms that accurately represent their professional identity. The detail in a profile card — the specific gear, the exact mastery level — communicates respect for the user as a serious professional.',
     images: [
-      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/1bff64173945869.64996929bbc71.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/10cbf7173945869.64996929ae819.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/1bf2ea173945869.64996929b209b.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/3156c6173945869.64996929b04c5.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/a1715b173945869.64996929bd635.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/1de6f2173945869.64996929b94b2.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/6602ed173945869.64996929b2cb0.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/2e0c74173945869.64996929baf3d.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/4ec2cd173945869.64996929b7862.png'
+      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/1bff64173945869.64996929bbc71.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/a1715b173945869.64996929bd635.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/b5f03e173945869.64996929b5f9d.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/e01c6f173945869.64996929be668.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/935fe7173945869.64996929b44c7.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/6acf73173945869.64996929b1362.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/d46760173945869.64996929b8533.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/1de6f2173945869.64996929b94b2.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/606c37173945869.64996929b51be.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/6602ed173945869.64996929b2cb0.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/a57728173945869.64996929b6b08.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/65e06b173945869.64996929af603.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/3156c6173945869.64996929b04c5.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/74b9cc173945869.64996929b38e6.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/2e0c74173945869.64996929baf3d.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/10cbf7173945869.64996929ae819.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/05ab92173945869.64996929bc91f.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/7c44d7173945869.64996929ada43.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/1bf2ea173945869.64996929b209b.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/e76c50173945869.64996929ba138.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/1541d1173945869.64996929bf641.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/4ec2cd173945869.64996929b7862.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/fd3c1d173945869.64996929acc54.png'
     ],
     tags: ['Interaction', 'Figma', 'UI Design', 'Mobile Architecture'],
     technologies: ['Figma', 'Photoshop', 'MySQL', 'UI Systems'],
@@ -106,54 +120,79 @@ export const FULL_PROJECTS: Project[] = [
     roleDetail: 'Designed the complete interaction model, information architecture, and high-fidelity mobile prototypes.',
     metrics: ['Increased Visibility of Local Talent', 'Frictionless Collaboration Workflows'],
     processImages: [
-      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/1de6f2173945869.64996929b94b2.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/6602ed173945869.64996929b2cb0.png'
+      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/d46760173945869.64996929b8533.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/1de6f2173945869.64996929b94b2.png'
     ],
     outcomeImages: [
-      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/2e0c74173945869.64996929baf3d.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/4ec2cd173945869.64996929b7862.png'
+      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/2e0c74173945869.64996929baf3d.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/disp/1541d1173945869.64996929bf641.png'
     ],
-    figmaEmbed: '<iframe src="https://www.behance.net/embed/project/173945869?ilo0=1" allowfullscreen lazyload frameborder="0" allow="clipboard-write" refererPolicy="strict-origin-when-cross-origin"></iframe>',
+    figmaEmbed: '<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FEl90BV6exDKrLEsWZbjzI7%2FSonora%3Fpage-id%3D0%253A1%26type%3Ddesign%26node-id%3D6-1014%26viewport%3D964%252C180%252C0.12%26scaling%3Dscale-down%26starting-point-node-id%3D3%253A127%26mode%3Ddesign" allowfullscreen></iframe>',
     sections: [
       {
-        title: 'Hero & Identity',
-        body: 'The opening screen sets the register immediately — dark background, Electric Blue accent, the Sonora wordmark in heavy sans-serif. It is not trying to compete with Instagram; it is deliberately positioning itself as a professional tool. "Let the wave form" is the first thing you read, which frames the entire experience as something for people who take sound seriously.',
-        images: ['https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/1bff64173945869.64996929bbc71.png'],
-        layout: 'full'
-      },
-      {
-        title: 'Music Detection & Dynamic Island',
-        body: 'The music detection state is the centrepiece interaction. A circular radial waveform pulses at the top of the screen, expanding and contracting in sync with the app\'s "Listening" state. The Dynamic Island integration makes this feel natively iOS — the animation bleeds into the hardware notch, turning the camera cutout into an active UI element rather than dead space.',
+        title: 'Hero & Visual Identity',
+        body: 'The sonora visual system is anchored by a deep obsidian background and a high-energy Electric Blue accent palette. The identity is designed to feel like high-end studio hardware — professional, tactile, and authoritative. "Let the wave form" is the primary brand promise, communicating that this is a space for serious craft.',
         images: [
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/10cbf7173945869.64996929ae819.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/1bf2ea173945869.64996929b209b.png'
-        ],
-        layout: 'grid-2'
-      },
-      {
-        title: 'Artist Profile Card',
-        body: 'The artist profile is the densest screen in the app — and that density is deliberate. Genre tags, mastery indicators, gear list, collab history, and location all live on one card. Real musicians have complex professional identities that Instagram bios cannot hold. Sonora\'s profile architecture treats that complexity as a feature, not a problem to solve.',
-        images: ['https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/3156c6173945869.64996929b04c5.png'],
-        layout: 'full'
-      },
-      {
-        title: 'Discovery Feed & Festival Grid',
-        body: 'The local discovery feed surfaces musicians within a defined radius, filtered by genre and instrument. The Festival Updates section breaks from the social feed format entirely — it uses a 12-column editorial grid closer to a music magazine than a timeline. Event cards, lineup announcements, and ticket links live in the same space without fighting for attention.',
-        images: [
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/a1715b173945869.64996929bd635.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/1de6f2173945869.64996929b94b2.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/6602ed173945869.64996929b2cb0.png'
+          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/1bff64173945869.64996929bbc71.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/a1715b173945869.64996929bd635.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/b5f03e173945869.64996929b5f9d.png'
         ],
         layout: 'grid-3'
       },
       {
-        title: 'Settings & Final Screens',
-        body: 'The settings menu and final screens complete the system. Every screen inherits the same dark palette and Electric Blue accent logic — there is no visual inconsistency between the onboarding flow and the deepest settings panel. The information architecture holds from first launch to power user.',
+        title: 'The Mobile Ecosystem',
+        body: 'Sonora is a specialized social hub designed to bridge the gap between musicians. The mobile-first architecture prioritizes speed and discoverability. Key interactions are built around the Z-pattern scan path, ensuring that core features like search, profile, and collab requests are always within reach.',
         images: [
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/2e0c74173945869.64996929baf3d.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/4ec2cd173945869.64996929b7862.png'
+          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/e01c6f173945869.64996929be668.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/935fe7173945869.64996929b44c7.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/6acf73173945869.64996929b1362.png'
+        ],
+        layout: 'grid-3'
+      },
+      {
+        title: 'Music Detection & UI Motion',
+        body: 'The music detection feature uses a radial waveform animation that pulses in real-time. This interaction was engineered to make the technology feel alive. The circular movement mimics the organic flow of sound waves, creating a tactile feedback loop that confirms the app is "listening" to the environment.',
+        images: [
+          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/d46760173945869.64996929b8533.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/1de6f2173945869.64996929b94b2.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/606c37173945869.64996929b51be.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/6602ed173945869.64996929b2cb0.png'
         ],
         layout: 'grid-2'
+      },
+      {
+        title: 'Artist Profile Architecture',
+        body: 'The Artist Profile is the most data-rich screen in the ecosystem. It consolidates genre tags, mastery levels, gear lists, and collaboration history into a single, high-density card. This architecture respects the complexity of a musician\'s professional identity, providing more depth than a standard social media bio.',
+        images: [
+          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/a57728173945869.64996929b6b08.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/65e06b173945869.64996929af603.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/3156c6173945869.64996929b04c5.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/74b9cc173945869.64996929b38e6.png'
+        ],
+        layout: 'grid-2'
+      },
+      {
+        title: 'Networking & Feed Discovery',
+        body: 'The discovery feed is designed to surface local talent based on proximity and skill. The interface uses a clean, grid-based layout for festival updates and artist highlights, ensuring that the visual content — photography and poster art — remains the focus of the experience.',
+        images: [
+          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/2e0c74173945869.64996929baf3d.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/10cbf7173945869.64996929ae819.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/05ab92173945869.64996929bc91f.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/7c44d7173945869.64996929ada43.png'
+        ],
+        layout: 'grid-2'
+      },
+      {
+        title: 'Final Product & Integration',
+        body: 'From onboarding to deep settings, the Sonora experience remains cohesive. The integration of Dynamic Island support and high-fidelity transitions makes the app feel natively woven into the iOS environment. Every screen is a testament to the specialized needs of the music community.',
+        images: [
+          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/1bf2ea173945869.64996929b209b.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/e76c50173945869.64996929ba138.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/1541d1173945869.64996929bf641.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/4ec2cd173945869.64996929b7862.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/disp/fd3c1d173945869.64996929acc54.png'
+        ],
+        layout: 'grid-3'
       }
     ]
   },
@@ -593,16 +632,40 @@ export const FULL_PROJECTS: Project[] = [
         title: 'Logo & 3D Mark',
         body: 'The CREO logo is a 2x2 geometric block with a thick offset drop shadow rendered in Blender — it looks like a physical object sitting on a surface, not a flat vector. That three-dimensionality is the founding statement: this is a studio that understands form as well as graphic design. The Brans-DemiBold typeface carries the same weight. Every letterform is heavy, structured, and impossible to mistake for a generic agency.',
         images: [
-          'https://mir-s3-cdn-cf.behance.net/projects/original/0e92c6162449841.Y3JvcCwxNjE2LDEyNjQsMCww.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/0e92c6162449841.63d6b384666f2.png'
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/22559c162449841.63d62a98ebaa4.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400/e68bad162449841.63d62a98eccb6.png'
         ],
         layout: 'grid-2'
       },
       {
         title: 'Brand System & Palette',
         body: 'Purple (#B66CFF), Yellow (#FFE973), and Mint Green are not chosen at random — each colour has a defined role. Purple leads on primary brand surfaces. Yellow is the accent that signals energy and creativity. Mint anchors supporting elements. The palette is loud enough to own a space but internally logical enough to stay cohesive across wildly different applications.',
-        images: ['https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/711202162449841.63d6b3846759c.png'],
-        layout: 'full'
+        images: [
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/67d725162449841.63d6965078f9b.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/779c99162449841.63d6bee25c966.png'
+        ],
+        layout: 'grid-2'
+      },
+      {
+        title: 'Print & Collateral',
+        body: 'The brand identity extends seamlessly to physical touchpoints. Business cards feature a dense, repeating logo pattern that feels tactile and substantial. Tri-fold brochures leverage the core brand palette to organize content sharply without sacrificing visual impact.',
+        images: [
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/8a8e51162449841.63dcc097d478b.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/4a8698162449841.63d693177c5ad.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/50a658162449841.63d6bfd6266b0.png'
+        ],
+        layout: 'grid-3'
+      },
+      {
+        title: 'Digital & OOH Mockups',
+        body: 'From massive urban billboards to clean digital interfaces, the identity was designed to scale. High-contrast typography paired with the 3D mark ensures CREO remains highly legible and recognizable whether viewed on a 6-inch phone screen or a 6-meter outdoor placement.',
+        images: [
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/b17b69162449841.63d693177d365.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/24d12b162449841.63d693177fd32.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/0f0f40162449841.63d6931779a18.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/dc9d6b162449841.63d693177ef9d.png'
+        ],
+        layout: 'grid-2'
       }
     ]
   },
@@ -638,15 +701,40 @@ export const FULL_PROJECTS: Project[] = [
       {
         title: 'Brand Identity & Logo',
         body: 'The Exousia logo is a human-lightning bolt hybrid — a silhouette mid-stride with an energy bolt replacing the spine. It communicates the core concept in a single mark without any supporting text. The circular emblem frames it with industrial precision. Brans-DemiBold carries the wordmark at the same weight as the mark itself, so neither dominates.',
-        images: ['https://mir-s3-cdn-cf.behance.net/projects/original/f36c99151193447.Y3JvcCwxODQxLDE0NDAsNDEsMA.png'],
-        layout: 'full'
+        images: [
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/4c931f151193447.63077404eb0f7.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/9952c7151193447.63077404eba11.png'
+        ],
+        layout: 'grid-2'
       },
       {
-        title: 'Mobile Dashboard & Hardware',
-        body: 'The mobile UI tracks Total Power Generated in kWh with lime green indicators on a dark background — energy data that feels alive rather than clinical. The hardware prototype shows the PZT sensor layout and the Arduino circuit that drives the footstep-to-light feedback loop. Both tracks are documented in parallel because the engineering credibility is what makes the design ambition believable.',
+        title: 'Product Design & Prototype',
+        body: 'The physical hardware design features PZT sensors mapped to an Arduino-driven feedback loop. The floor tile cross-section was designed in Fusion360 to ensure high-impact loading durability while maintaining a clean, architectural finish for premium commercial spaces.',
         images: [
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/65c87a151193447.6309886470f1a.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/268574151193447.6309886472479.png'
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/982078151193447.63077404ec3b5.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/97d9b6151193447.63077404ecd10.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/5676d6151193447.63077404ed590.png'
+        ],
+        layout: 'grid-3'
+      },
+      {
+        title: 'Mobile Dashboard',
+        body: 'The mobile UI tracks Total Power Generated in kWh with lime green indicators on a dark background — energy data that feels alive rather than clinical. It makes the invisible visible instantly.',
+        images: [
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/357321151193447.63077404edeb0.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/cd420c151193447.63077404ee73a.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/ae1450151193447.63077404eeee8.png'
+        ],
+        layout: 'grid-3'
+      },
+      {
+        title: 'Marketing & OOH',
+        body: 'The "POWER YOUR HOME" marketing campaign scales the brand from individual tiles to massive urban infrastructure. High-contrast billboard mockups demonstrate how the identity cuts through visual noise in environments like train stations and stadiums.',
+        images: [
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/2eb8c5151193447.63077404f05c8.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/3a5893151193447.63077404f14cd.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/6059b6151193447.63077404f1d0d.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/95403d151193447.63077404f2646.png'
         ],
         layout: 'grid-2'
       }
@@ -657,7 +745,7 @@ export const FULL_PROJECTS: Project[] = [
     title: 'Horizon Zoom',
     category: 'Branding',
     year: '2023',
-    thumbnail: '/assets/horizon-zoom/Slide 16_9 - 1.jpg',
+    thumbnail: 'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/8de913156706847.636f3b772881b.jpg',
     shortDescription: 'Brand identity and business case study for a retro-inspired 32-bit arcade racing game.',
     context: 'Horizon Zoom is a full brand and business pitch for a 32-bit arcade bike-racing game — think Asphalt meets classic Nintendo, built for a modern community-first audience. The deck opens with a sleek 3D render of the HORIZON ZOOM wordmark embossed on a pill-shaped badge sitting on a glossy red platform. Minimal, confident, instantly recognizable. The whole project started from one idea: inculcating retro spirit into something modern, targeting the 10-25 age group who grew up on Asphalt but are bored of its monotony.',
     brief: 'Two things needed to happen simultaneously: design the brand identity and write a credible business case. The brand side covered the game HUD design, select-screen UI, logo system, and marketing posters. The business side covered target audience research, competitor analysis (Asphalt/Gameloft, Nintendo Turbo Racer), revenue streams, subscription tiers, retention mechanics, and a charitable incentive model. This was not just a visual brief — it had to be defensible as an actual product pitch.',
@@ -669,13 +757,20 @@ export const FULL_PROJECTS: Project[] = [
     tradeoffs: 'I leaned into the retro aesthetic as a feature, not a compromise — the HUD uses pixelated counters and minimaps which some would call dated, but within this brand it reads as character. I also kept the subscription economy broad (four tiers plus cosmetic currency) which is a lot for a pitch, but I wanted to demonstrate that we had thought through the full player economy rather than just the launch price point.',
     learnings: 'Horizon Zoom taught me that a design pitch without a business case behind it is just decoration. The slides that land hardest are not the brand ones — they are the competition analysis and the incentive model. Understanding your market and being honest about why someone should care is the real design work. I also learned a lot about gaming industry mechanics: retention loops, streamer monetisation, and the psychology of in-game currency. That knowledge has been useful in every product project since.',
     images: [
-      '/assets/horizon-zoom/Frame 1.jpg', 
-      '/assets/horizon-zoom/Slide 16_9 - 1.jpg', 
-      '/assets/horizon-zoom/Slide 16_9 - 8.jpg',
-      '/assets/horizon-zoom/Slide 16_9 - 4.jpg', 
-      '/assets/horizon-zoom/Slide 16_9 - 5.jpg',
-      '/assets/horizon-zoom/Slide 16_9 - 6.jpg', 
-      '/assets/horizon-zoom/Slide 16_9 - 12.jpg'
+      'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/8de913156706847.636f3b772881b.jpg',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/1400/11b173156706847.636bc57463412.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/8463e1156706847.636d401e76332.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/f984c0156706847.636d401e77201.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/e16d31156706847.636d401e74e37.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/ab8d2b156706847.636d401e78ef8.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/0c61a7156706847.636d401e7a967.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/d117a8156706847.636d419468267.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/d7d163156706847.636d491ba636b.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/source/1f1be0156706847.636cfb528cc67.gif',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/source/316b15156706847.636cd6e9c264c.gif',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/source/44cea9156706847.636cfb528dbca.gif',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/source/48e384156706847.636cd6e9bfd5a.gif',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/source/560c9b156706847.636bc57467a0b.gif'
     ],
     tags: ['Brand Identity', 'Strategy', 'Game Design Pitch'],
     technologies: ['Presentation Design', 'Business Modeling', 'Brand Positioning'],
@@ -685,31 +780,55 @@ export const FULL_PROJECTS: Project[] = [
     metrics: ['Subscription Strategy', 'Charitable Incentive Model (15%)'],
     annotations: ['Retro 32-bit Aesthetic', 'Community Focus'],
     processImages: [
-      '/assets/horizon-zoom/Slide 16_9 - 4.jpg', 
-      '/assets/horizon-zoom/Slide 16_9 - 5.jpg'
+      'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/f984c0156706847.636d401e77201.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/e16d31156706847.636d401e74e37.png'
     ],
     outcomeImages: [
-      '/assets/horizon-zoom/Slide 16_9 - 6.jpg', 
-      '/assets/horizon-zoom/Slide 16_9 - 12.jpg'
+      'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/ab8d2b156706847.636d401e78ef8.png',
+      'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/0c61a7156706847.636d401e7a967.png'
     ],
     figmaEmbed: '<iframe src="https://www.behance.net/embed/project/156706847?ilo0=1" allowfullscreen lazyload frameborder="0" allow="clipboard-write" refererPolicy="strict-origin-when-cross-origin"></iframe>',
     sections: [
       {
         title: 'Brand Mark & 3D Hero',
         body: 'The HORIZON ZOOM wordmark is embossed on a pill-shaped badge rendered in 3D — glossy red platform, clean white letterforms, Chrome finish on the badge edge. It is the first visual in the pitch and it sets the register: this is not a student game concept, it is a product pitch. The Racing Red and white palette runs through every subsequent screen without exception.',
-        images: ['/assets/horizon-zoom/Frame 1.jpg', '/assets/horizon-zoom/Slide 16_9 - 1.jpg'],
+        images: [
+          'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/8de913156706847.636f3b772881b.jpg',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400/11b173156706847.636bc57463412.png'
+        ],
         layout: 'grid-2'
       },
       {
         title: 'Game HUD & UI Screens',
         body: 'The game HUD uses pixelated counters and a minimap — 32-bit aesthetic by design, not limitation. The select screen shows the bike customisation depth: clothes, decals, colourways. High-contrast white type on red backgrounds makes every screen readable at a glance, even in a low-light gaming environment.',
-        images: ['/assets/horizon-zoom/Slide 16_9 - 8.jpg', '/assets/horizon-zoom/Slide 16_9 - 4.jpg'],
+        images: [
+          'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/8463e1156706847.636d401e76332.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/f984c0156706847.636d401e77201.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/e16d31156706847.636d401e74e37.png'
+        ],
+        layout: 'grid-3'
+      },
+      {
+        title: 'Motion & Interaction',
+        body: 'A core part of the Horizon Zoom identity relies on dynamic motion. Animated elements loop continuously, demonstrating gameplay sequences, menu transitions, and environmental lighting. These short snippets capture the fast-paced, arcade energy that static screens cannot convey.',
+        images: [
+          'https://mir-s3-cdn-cf.behance.net/project_modules/source/1f1be0156706847.636cfb528cc67.gif',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/source/316b15156706847.636cd6e9c264c.gif',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/source/44cea9156706847.636cfb528dbca.gif',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/source/48e384156706847.636cd6e9bfd5a.gif'
+        ],
         layout: 'grid-2'
       },
       {
         title: 'Business Model & Incentive',
         body: 'Five revenue streams: ads, in-game currency, digital merch, physical drops, and four subscription tiers from Free Plan to Racer Pass ($7.99-$12.99). The Incentive Model earmarks 15% of profits for road accident victims and injured racing competitors — turning a game into a values statement. This is the slide that makes the pitch real.',
-        images: ['/assets/horizon-zoom/Slide 16_9 - 5.jpg', '/assets/horizon-zoom/Slide 16_9 - 6.jpg', '/assets/horizon-zoom/Slide 16_9 - 12.jpg'],
+        images: [
+          'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/ab8d2b156706847.636d401e78ef8.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/0c61a7156706847.636d401e7a967.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/d117a8156706847.636d419468267.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/d7d163156706847.636d491ba636b.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/source/560c9b156706847.636bc57467a0b.gif'
+        ],
         layout: 'grid-3'
       }
     ]
