@@ -238,26 +238,29 @@ export const FULL_PROJECTS: Project[] = [
     figmaEmbed: '<iframe src="https://www.behance.net/embed/project/155839991?ilo0=1" allowfullscreen lazyload frameborder="0" allow="clipboard-write" refererPolicy="strict-origin-when-cross-origin"></iframe>',
     sections: [
       {
-        title: 'Logo System & Grain',
-        body: 'The logomark is four vertical pillars centered around a circle — geometric, load-bearing, and readable at any scale. Every surface carries a 12% roughness grain overlay that was calibrated separately for screen and print output. The grain is not a Photoshop filter applied at the end; it is a structural element baked into the system from the start.',
+        title: 'Digital Interfaces & Mobile',
+        body: 'The brand translates into a digital Art Space UI with no loss of physical weight. NFT grid screens, authentication flows, and collection browsing all inherit the monochromatic system. The grain reads correctly on-screen because the density was calculated for a 72dpi context rather than simply scaled down from print assets.',
         images: [
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/9bf751155839991.636f3ca8730f0.jpg',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/7e8edb155839991.635be8ee3e7aa.png'
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400/b27eeb155839991.635bfaec34816.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/ec97b3155839991.635c05e215e26.png'
         ],
         layout: 'grid-2'
       },
       {
         title: 'Brand Mark Exploration',
         body: 'The final mark came from analogue exploration — thick marker sketches on paper, testing the geometric A and pillar composition before touching Illustrator. Digitizing a hand-drawn form forces precision: every vector point is justified because every stroke was drawn with intention first. The sketch process is part of the case study because it proves the final mark was earned, not generated.',
-        images: ['https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/a8a880155839991.635be8ee3cd76.png'],
-        layout: 'full'
+        images: [
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/7e8edb155839991.635be8ee3e7aa.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/a8a880155839991.635be8ee3cd76.png'
+        ],
+        layout: 'grid-2'
       },
       {
-        title: 'Digital Product UI',
-        body: 'The brand translates into a digital Art Space UI with no loss of physical weight. NFT grid screens, authentication flows, and collection browsing all inherit the monochromatic system. The grain reads correctly on-screen because the density was calculated for a 72dpi context rather than simply scaled down from print assets.',
+        title: 'Logo System & Identity',
+        body: 'The logomark is four vertical pillars centered around a circle — geometric, load-bearing, and readable at any scale. Every surface carries a 12% roughness grain overlay that was calibrated separately for screen and print output. The grain is not a Photoshop filter applied at the end; it is a structural element baked into the system from the start.',
         images: [
           'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/0ab619155839991.635be8ee411d9.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/b27eeb155839991.635bfaec34816.png'
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400/99e32d155839991.635bf63ae2493.png'
         ],
         layout: 'grid-2'
       },
@@ -265,11 +268,10 @@ export const FULL_PROJECTS: Project[] = [
         title: 'Applied Identity & Print',
         body: 'The system holds from a 55mm business card to a four-metre billboard. Business cards use the debossed logomark on a heavy cotton stock — tactile, permanent, impossible to fake. The billboard placement shows how the architectural scale of the LOGO TYPE takes over at large format: at 4 metres wide, the type stops being text and becomes structure.',
         images: [
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/ec97b3155839991.635c05e215e26.png',
           'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/9b6767155839991.635bf63ae32bf.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400/99e32d155839991.635bf63ae2493.png'
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/9bf751155839991.636f3ca8730f0.jpg'
         ],
-        layout: 'grid-3'
+        layout: 'grid-2'
       }
     ]
   },
@@ -632,8 +634,10 @@ export const FULL_PROJECTS: Project[] = [
         title: 'Logo & 3D Mark',
         body: 'The CREO logo is a 2x2 geometric block with a thick offset drop shadow rendered in Blender — it looks like a physical object sitting on a surface, not a flat vector. That three-dimensionality is the founding statement: this is a studio that understands form as well as graphic design. The Brans-DemiBold typeface carries the same weight. Every letterform is heavy, structured, and impossible to mistake for a generic agency.',
         images: [
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/22559c162449841.63d62a98ebaa4.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400/e68bad162449841.63d62a98eccb6.png'
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400/e68bad162449841.63d62a98eccb6.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/67d725162449841.63d6965078f9b.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/50a658162449841.63d6bfd6266b0.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/779c99162449841.63d6bee25c966.png'
         ],
         layout: 'grid-2'
       },
@@ -641,18 +645,31 @@ export const FULL_PROJECTS: Project[] = [
         title: 'Brand System & Palette',
         body: 'Purple (#B66CFF), Yellow (#FFE973), and Mint Green are not chosen at random — each colour has a defined role. Purple leads on primary brand surfaces. Yellow is the accent that signals energy and creativity. Mint anchors supporting elements. The palette is loud enough to own a space but internally logical enough to stay cohesive across wildly different applications.',
         images: [
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/67d725162449841.63d6965078f9b.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/779c99162449841.63d6bee25c966.png'
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/22559c162449841.63d62a98ebaa4.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/0f5b39162449841.63d6bfd6254a8.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/d7bebd162449841.63d695786798e.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/8a8e51162449841.63dcc097d478b.png'
         ],
         layout: 'grid-2'
       },
       {
-        title: 'Print & Collateral',
-        body: 'The brand identity extends seamlessly to physical touchpoints. Business cards feature a dense, repeating logo pattern that feels tactile and substantial. Tri-fold brochures leverage the core brand palette to organize content sharply without sacrificing visual impact.',
+        title: 'Print & Stationary',
+        body: 'The brand identity extends seamlessly to physical touchpoints. Business cards feature a dense, repeating logo pattern that feels tactile and substantial. The bold yellow accents make the cards highly distinctive.',
         images: [
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/8a8e51162449841.63dcc097d478b.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/4a8698162449841.63d693177c5ad.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/50a658162449841.63d6bfd6266b0.png'
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/b17b69162449841.63d693177d365.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/c4e3a7162449841.63d693177e0ce.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/0f0f40162449841.63d6931779a18.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/5e1f6d162449841.63d6931780c1b.png'
+        ],
+        layout: 'grid-2'
+      },
+      {
+        title: 'Editorial & Collateral',
+        body: 'Tri-fold brochures leverage the core brand palette to organize content sharply without sacrificing visual impact. Merch and apparel mockups show the flexibility of the logomark in real-world contexts.',
+        images: [
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/414ffd162449841.63d693177a854.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/3d0805162449841.63d693177b65a.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/4a8698162449841.63d693177c5ad.png'
         ],
         layout: 'grid-3'
       },
@@ -660,9 +677,7 @@ export const FULL_PROJECTS: Project[] = [
         title: 'Digital & OOH Mockups',
         body: 'From massive urban billboards to clean digital interfaces, the identity was designed to scale. High-contrast typography paired with the 3D mark ensures CREO remains highly legible and recognizable whether viewed on a 6-inch phone screen or a 6-meter outdoor placement.',
         images: [
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/b17b69162449841.63d693177d365.png',
           'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/24d12b162449841.63d693177fd32.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/0f0f40162449841.63d6931779a18.png',
           'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/dc9d6b162449841.63d693177ef9d.png'
         ],
         layout: 'grid-2'
@@ -699,44 +714,60 @@ export const FULL_PROJECTS: Project[] = [
     figmaEmbed: '<iframe src="https://www.behance.net/embed/project/151193447?ilo0=1" allowfullscreen lazyload frameborder="0" allow="clipboard-write" refererPolicy="strict-origin-when-cross-origin"></iframe>',
     sections: [
       {
-        title: 'Brand Identity & Logo',
+        title: 'Brand Identity & Visuals',
         body: 'The Exousia logo is a human-lightning bolt hybrid — a silhouette mid-stride with an energy bolt replacing the spine. It communicates the core concept in a single mark without any supporting text. The circular emblem frames it with industrial precision. Brans-DemiBold carries the wordmark at the same weight as the mark itself, so neither dominates.',
         images: [
           'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/4c931f151193447.63077404eb0f7.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/9952c7151193447.63077404eba11.png'
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/77c423151193447.63077404f3727.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/982078151193447.63077404ec3b5.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/4b9537151193447.63077404efe00.png'
         ],
         layout: 'grid-2'
       },
       {
-        title: 'Product Design & Prototype',
+        title: 'Hardware & Engineering',
         body: 'The physical hardware design features PZT sensors mapped to an Arduino-driven feedback loop. The floor tile cross-section was designed in Fusion360 to ensure high-impact loading durability while maintaining a clean, architectural finish for premium commercial spaces.',
         images: [
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/982078151193447.63077404ec3b5.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/97d9b6151193447.63077404ecd10.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/5676d6151193447.63077404ed590.png'
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/cd420c151193447.63077404ee73a.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/c65b41151193447.63077404ef662.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/2eb8c5151193447.63077404f05c8.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/3a5893151193447.63077404f14cd.png'
         ],
-        layout: 'grid-3'
+        layout: 'grid-2'
       },
       {
-        title: 'Mobile Dashboard',
+        title: 'System Integration',
+        body: 'Physical collaterals carry the energy of the brand into the real world. Distinctive typographics and vibrant lime green elements help communicate the scale of energy generation directly to end-users.',
+        images: [
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/58e1b2151193447.63077404f3f26.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/388b62151193447.63077404f2f03.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/6059b6151193447.63077404f1d0d.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/5676d6151193447.63077404ed590.png'
+        ],
+        layout: 'grid-2'
+      },
+      {
+        title: 'Mobile Application',
         body: 'The mobile UI tracks Total Power Generated in kWh with lime green indicators on a dark background — energy data that feels alive rather than clinical. It makes the invisible visible instantly.',
         images: [
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/357321151193447.63077404edeb0.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/cd420c151193447.63077404ee73a.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/ae1450151193447.63077404eeee8.png'
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/97d9b6151193447.63077404ecd10.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/5eb18e151193447.630779e950ebb.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/c04d0e151193447.630774050050e.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/3d31bd151193447.6307740500e25.png'
         ],
-        layout: 'grid-3'
+        layout: 'grid-2'
       },
       {
         title: 'Marketing & OOH',
         body: 'The "POWER YOUR HOME" marketing campaign scales the brand from individual tiles to massive urban infrastructure. High-contrast billboard mockups demonstrate how the identity cuts through visual noise in environments like train stations and stadiums.',
         images: [
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/2eb8c5151193447.63077404f05c8.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/3a5893151193447.63077404f14cd.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/6059b6151193447.63077404f1d0d.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/95403d151193447.63077404f2646.png'
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/9952c7151193447.63077404eba11.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/ae1450151193447.63077404eeee8.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/95403d151193447.63077404f2646.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/357321151193447.63077404edeb0.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400/cac9bf151193447.636f40b79d08e.jpg'
         ],
-        layout: 'grid-2'
+        layout: 'grid-3'
       }
     ]
   },
@@ -790,46 +821,47 @@ export const FULL_PROJECTS: Project[] = [
     figmaEmbed: '<iframe src="https://www.behance.net/embed/project/156706847?ilo0=1" allowfullscreen lazyload frameborder="0" allow="clipboard-write" refererPolicy="strict-origin-when-cross-origin"></iframe>',
     sections: [
       {
-        title: 'Brand Mark & 3D Hero',
-        body: 'The HORIZON ZOOM wordmark is embossed on a pill-shaped badge rendered in 3D — glossy red platform, clean white letterforms, Chrome finish on the badge edge. It is the first visual in the pitch and it sets the register: this is not a student game concept, it is a product pitch. The Racing Red and white palette runs through every subsequent screen without exception.',
+        title: 'Brand Identity & Visuals',
+        body: 'The HORIZON ZOOM wordmark is embossed on a pill-shaped badge rendered in 3D — glossy red platform, clean white letterforms, Chrome finish on the badge edge. It sets the register: this is not a student game concept, it is a product pitch. The Racing Red and white palette runs through every subsequent screen without exception.',
         images: [
-          'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/8de913156706847.636f3b772881b.jpg',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/1400/11b173156706847.636bc57463412.png'
+          'https://mir-s3-cdn-cf.behance.net/project_modules/1400/11b173156706847.636bc57463412.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/ab8d2b156706847.636d401e78ef8.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/source/560c9b156706847.636bc57467a0b.gif',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/0c61a7156706847.636d401e7a967.png'
         ],
         layout: 'grid-2'
       },
       {
-        title: 'Game HUD & UI Screens',
-        body: 'The game HUD uses pixelated counters and a minimap — 32-bit aesthetic by design, not limitation. The select screen shows the bike customisation depth: clothes, decals, colourways. High-contrast white type on red backgrounds makes every screen readable at a glance, even in a low-light gaming environment.',
-        images: [
-          'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/8463e1156706847.636d401e76332.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/f984c0156706847.636d401e77201.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/e16d31156706847.636d401e74e37.png'
-        ],
-        layout: 'grid-3'
-      },
-      {
-        title: 'Motion & Interaction',
+        title: 'Gameplay & Interaction',
         body: 'A core part of the Horizon Zoom identity relies on dynamic motion. Animated elements loop continuously, demonstrating gameplay sequences, menu transitions, and environmental lighting. These short snippets capture the fast-paced, arcade energy that static screens cannot convey.',
         images: [
-          'https://mir-s3-cdn-cf.behance.net/project_modules/source/1f1be0156706847.636cfb528cc67.gif',
           'https://mir-s3-cdn-cf.behance.net/project_modules/source/316b15156706847.636cd6e9c264c.gif',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/source/44cea9156706847.636cfb528dbca.gif',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/source/48e384156706847.636cd6e9bfd5a.gif'
+          'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/8463e1156706847.636d401e76332.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/d7d163156706847.636d491ba636b.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/e16d31156706847.636d401e74e37.png'
         ],
         layout: 'grid-2'
       },
       {
-        title: 'Business Model & Incentive',
-        body: 'Five revenue streams: ads, in-game currency, digital merch, physical drops, and four subscription tiers from Free Plan to Racer Pass ($7.99-$12.99). The Incentive Model earmarks 15% of profits for road accident victims and injured racing competitors — turning a game into a values statement. This is the slide that makes the pitch real.',
+        title: 'HUD & Customisation',
+        body: 'The game HUD uses pixelated counters and a minimap — 32-bit aesthetic by design, not limitation. The select screen shows the bike customisation depth: clothes, decals, colourways. High-contrast white type on red backgrounds makes every screen readable at a glance, even in a low-light gaming environment.',
         images: [
-          'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/ab8d2b156706847.636d401e78ef8.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/0c61a7156706847.636d401e7a967.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/d117a8156706847.636d419468267.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/d7d163156706847.636d491ba636b.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/source/560c9b156706847.636bc57467a0b.gif'
+          'https://mir-s3-cdn-cf.behance.net/project_modules/source/48e384156706847.636cd6e9bfd5a.gif',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/source/1f1be0156706847.636cfb528cc67.gif',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/source/44cea9156706847.636cfb528dbca.gif'
         ],
         layout: 'grid-3'
+      },
+      {
+        title: 'Business Model & Marketing',
+        body: 'Five revenue streams: ads, in-game currency, digital merch, physical drops, and four subscription tiers from Free Plan to Racer Pass. The Incentive Model earmarks 15% of profits for road accident victims and injured racing competitors. This positions Horizon Zoom effectively against Gameloft competitors.',
+        images: [
+          'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/f984c0156706847.636d401e77201.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/d117a8156706847.636d419468267.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/3763c6156706847.636d4194670c1.png',
+          'https://mir-s3-cdn-cf.behance.net/project_modules/disp_webp/8de913156706847.636f3b772881b.jpg'
+        ],
+        layout: 'grid-2'
       }
     ]
   },
@@ -850,8 +882,8 @@ export const FULL_PROJECTS: Project[] = [
     tradeoffs: 'I designed this as a dark mode-only experience. That is a constraint that locks out some users but was the right call for this brand. The Sidemen visual language is built on dark backgrounds, high-contrast type, and vivid accent moments — a light mode would have felt like a completely different brand. I also chose utility and speed over visual experimentation — the UI is clean and fast because the content is the spectacle, not the chrome around it.',
     learnings: 'Creator brands operate more like product companies than traditional media brands — they need the infrastructure of a tech company behind them. This project taught me how to think about information architecture at scale: when you have five distinct business verticals, the IA is not just a UX consideration, it is a business strategy decision. Mapping the user flow diagram before touching the UI was the single most important step in the whole process.',
     images: [
-      '/assets/sidemen/chunk_0.jpg', 
-      '/assets/sidemen/chunk_1.jpg', 
+      '/assets/sidemen/chunk_0.jpg',
+      '/assets/sidemen/chunk_1.jpg',
       '/assets/sidemen/chunk_2.jpg',
       '/assets/sidemen/chunk_3.jpg'
     ],
