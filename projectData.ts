@@ -331,7 +331,7 @@ export const FULL_PROJECTS: Project[] = [
     title: 'Personal Portfolio',
     category: 'UI Design',
     year: '2026',
-    thumbnail: '/assets/portfolio_hero_section_1777819291389.png',
+    thumbnail: '/assets/portfolio/portfolio_hero_section_1777819291389.png',
     shortDescription: 'A definitive architectural overhaul of my digital identity, evolving from our experimental v1 into a refined, commercial-grade archive.',
     context: 'This portfolio is the definitive architectural overhaul of my digital identity. The journey started with a "tool-first" conceptual playground—a v1 that was heavy on experimentation, fluid physics, and testing the limits of interaction. While that iteration proved technical capability, this new version is completely refined. It moves away from the playground aesthetic and establishes a permanent, professional design philosophy built on a mathematically locked 12-column grid system. It functions as a high-end "Archival Folder," where every project is documented with the exact precision found in a professional studio’s records.',
     brief: 'The brief was to engineer a resilient digital infrastructure that communicates founder-level methodology without relying on superfluous animations. Key requirements included sub-second First Contentful Paint (FCP), a unified container metric system, and aggressive typographic scaling. I needed to resolve the visual tension of the first version by standardizing margin sets and stripping away distractions. The goal was to build a permanent, structurally sound system that proves my ability to architect scalable, high-performance web products.',
@@ -342,32 +342,49 @@ export const FULL_PROJECTS: Project[] = [
     challenges: 'The biggest challenge was the "Responsive Rigidity" problem—maintaining the 12-column grid and aggressive typographic scale on mobile viewports without breaking the archival aesthetic. I had to develop a custom fluid-typography system that scales mathematically between breakpoints. Another hurdle was optimizing high-resolution project imagery for a sub-second FCP, ensuring that the visual depth we achieved didn’t compromise performance.',
     tradeoffs: 'I heavily prioritized "Structural Rigidity" and grid-locking over the experimental, free-form navigation we explored in v1. This means the site is far more opinionated about its layout, trading off casual "playfulness" for professional authority. I chose a strictly monochromatic "Stark" theme to highlight the structural clarity of the work, sacrificing color to ensure that the content and the grid remained the primary focus.',
     learnings: 'This evolution taught me that "less is more" only works when the math is perfect. I learned that a rigid structural foundation is the most powerful tool for building user trust, far outweighing flashy interactions. Working on the intersection of Tailwind and React reinforced my belief that design and engineering are inseparable. Moving forward, I am obsessed with "Mathematical Layouts," building systems where every visual decision is backed by a rigorous grid.',
-    images: ['/assets/portfolio_hero_section_1777819291389.png'],
+    images: [
+      '/assets/portfolio/portfolio_hero_section_1777819291389.png',
+      '/assets/portfolio/portfolio_homepage_1777819105532.png',
+      '/assets/portfolio/portfolio_current_homepage_1777819179444.png',
+      '/assets/portfolio-work.jpg',
+      '/assets/portfolio-about.jpg'
+    ],
     tags: ['UX Architecture', 'Framer Motion', 'React 19'],
-    technologies: ['Vite', 'Tailwind', 'Motion UI'],
+    technologies: ['Vite', 'Tailwind v4', 'Motion UI', 'React 19'],
     client: 'Personal Branding',
     role: 'Product Engineer',
     roleDetail: 'Designed the mathematical layout grid and engineered the fluid navigation architecture.',
     metrics: ['Sub-second FCP', 'Mathematical Grid Alignment', 'Reduced TTI Layout Shift'],
     annotations: ['Z-Pattern Execution', 'Fluid Typography'],
     processImages: ['/assets/portfolio-about.jpg'],
-    outcomeImages: ['/assets/portfolio-work.jpg'],
+    outcomeImages: ['/assets/portfolio/portfolio_current_homepage_1777819179444.png'],
     sections: [
       {
-        title: 'Hero & Grid System',
-        body: 'The landing page is built on a 12-column mathematical grid — every margin, every gutter, every typographic step is derived from the same base unit. The hero uses a Z-pattern scan path that guides the eye from name to role to featured project in under two seconds. No decorative elements compete with the content; the structure does all the work.',
-        images: ['/assets/portfolio_hero_section_1777819291389.png'],
+        title: 'Hero & Featured Work',
+        body: 'The landing page is the thesis statement. A 12-column mathematical grid locks every margin, gutter, and typographic step to the same base unit. The Z-pattern scan path guides the eye from name to role to featured projects in under two seconds. Featured project thumbnails display in full colour — no decorative elements compete with the content.',
+        images: [
+          '/assets/portfolio/portfolio_hero_section_1777819291389.png',
+          '/assets/portfolio/portfolio_homepage_1777819105532.png'
+        ],
+        layout: 'grid-2'
+      },
+      {
+        title: 'V1 → V2: The Architectural Evolution',
+        body: 'V1 was a conceptual playground: fluid physics, experimental node graphs, and pushing the outer limits of what React could do visually. Technically impressive but editorially insufficient for presenting serious case studies. V2 is the antithesis — every decision made in service of the content. Physics engines stripped out, free-form navigation replaced with a rigid Z-pattern, colour removed to let the work speak. The result is a system that will age gracefully.',
+        images: [
+          '/assets/portfolio/portfolio_current_homepage_1777819179444.png'
+        ],
         layout: 'full'
       },
       {
-        title: 'Work Index & Project Cards',
-        body: 'The Work index uses a table-style layout rather than a conventional grid of thumbnails. Each project row shows title, category, year, and a short descriptor — scannable in a single pass. Hover states reveal the project thumbnail via a smooth clip-path reveal, keeping the page clean until the user actively engages with a specific entry.',
+        title: 'Work Index',
+        body: 'The Work index foregoes conventional thumbnail grids in favour of a structured table-style layout. Each row exposes title, category, year, and a one-line descriptor — all scannable in a single visual pass. Hover states surface the project thumbnail via a smooth clip-path reveal, ensuring the page remains clean until the user actively engages.',
         images: ['/assets/portfolio-work.jpg'],
         layout: 'full'
       },
       {
-        title: 'About & Process',
-        body: 'The About page uses a split-column layout: biographical text on the left, a structured skills matrix and timeline on the right. The section communicates both the human behind the work and the technical depth required to execute it. Every section uses the same border and spacing logic as the rest of the site — there is no visual inconsistency between pages.',
+        title: 'About & Identity',
+        body: 'The About page uses a split-column layout — biography on the left, a structured skills matrix and timeline on the right. Both halves share the same border system and spacing logic as every other route. There is no visual inconsistency between pages; the grid is the product.',
         images: ['/assets/portfolio-about.jpg'],
         layout: 'full'
       }
@@ -378,8 +395,8 @@ export const FULL_PROJECTS: Project[] = [
     title: 'Spinpod',
     category: 'AI & Music',
     year: '2025',
-    thumbnail: 'https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?auto=format&fit=crop&q=80&w=1200',
-    shortDescription: 'A retro-industrial music controller powered by Gemini AI.',
+    thumbnail: '/assets/spinpod/spinpod_initial_load_1777820630246.png',
+    shortDescription: 'A retro-industrial music controller powered by Gemini AI — UNIT_REV_4.0.',
     context: 'Spinpod is a study in tactile digital interaction, designed to act as a "physical buffer" between the user and digital noise. I wanted to build a hardware-inspired interface that prioritizes deep work by removing the distractions of modern streaming apps. The project is a "Retro-Industrial" experiment, utilizing the Gemini LLM to mood-match audio feeds based on real-time user input. It’s built for those who miss the "weighted" feeling of physical dials and need a dedicated, low-friction environment to enter a creative flow state.',
     brief: 'The brief was to create a tactile AI music controller (UNIT_REV_4.0) that provides a distraction-free listening experience. Key features included physical-style Volume and Seek dials, a hardware-inspired boot sequence, and a suite of industrial signal indicators like "SIGNAL_OVERRIDE" and "PRGM_HOLD." I needed to integrate the Gemini API to decode Spotify schemas and provide intelligent audio recommendations. The goal was to build a digital experience that feels like a solid piece of laboratory equipment, demanding the user’s full presence and focus.',
     goal: 'My primary goal was to establish a sense of "Weight" and "Heft" in a purely digital interface. I wanted to implement a "Tactile Feedback" system where every dial rotation and button press feels physically grounded. By using Gemini AI for mood-matching, I aimed to simplify the choice-making process, allowing the user to focus on their work while the AI handles the audio curation. The objective was to move away from the "Infinite Scroll" of Spotify and towards a "Single-Stream" industrial tool that acts as a dedicated companion for high-performance productivity.',
@@ -390,34 +407,55 @@ export const FULL_PROJECTS: Project[] = [
     tradeoffs: 'I chose "Industrial Character" and "Focus" over having a full-featured music player. This means the user cannot browse their entire library or see lyrics; the app is strictly for "Single-Stream" deep work. I traded off the versatility of a modern UI for the singular authority of a piece of lab equipment. I also prioritized the tactile "heft" of the interface over making it "fast" in the traditional sense, ensuring the boot sequence and dial rotations felt like they were moving actual machinery.',
     learnings: 'Spinpod taught me that "Personality" is a powerful tool in product design. A tool with a specific character is more memorable and more effective than a generic one. I learned the importance of "Tactile UI" in building focus-oriented products. Working with Gemini AI beyond the chatbot model showed me new ways to simplify complex user inputs into singular, actionable outputs. It’s made me want to keep exploring the intersection of AI and industrial design, building tools that feel more like "machines" and less like "software."',
     images: [
-      'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1600',
-      'https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?auto=format&fit=crop&q=80&w=1200',
-      'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&q=80&w=1600'
+      '/assets/spinpod/spinpod_landing_1777820434463.png',
+      '/assets/spinpod/spinpod_initial_load_1777820630246.png',
+      '/assets/spinpod/spinpod_next_track_1777820649171.png',
+      '/assets/spinpod/spinpod_knob_interaction_1777820786768.png',
+      '/assets/spinpod/spinpod_paused_state_1777820721788.png',
+      '/assets/spinpod/spinpod_signal_override_modal_1777820736707.png'
     ],
-    tags: ['React', 'Gemini AI', 'Tailwind CSS'],
+    tags: ['React 19', 'Gemini AI', 'Industrial Design'],
     technologies: ['React 19', 'Google Gemini Pro API', 'Framer Motion', 'Vite'],
     client: 'Self-Initiated',
     role: 'Interaction Designer',
     roleDetail: 'Designed the tactile UI system and implemented the AI-driven playlist logic.',
-    metrics: ['AI-Driven Exploration', 'Tactile Interface', 'Low-Latency Interaction'],
-    annotations: ['Concept: Industrial Design', 'AI Integration'],
-    processImages: ['https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&q=80&w=1600'],
-    outcomeImages: ['https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1600'],
+    metrics: ['AI-Driven Mood Matching', 'Tactile Dial Physics', 'Hardware Boot Sequence'],
+    annotations: ['Industrial UI Design', 'AI Integration', 'Framer Motion Physics'],
+    processImages: ['/assets/spinpod/spinpod_knob_interaction_1777820786768.png'],
+    outcomeImages: ['/assets/spinpod/spinpod_next_track_1777820649171.png'],
     sections: [
       {
-        title: 'The Hardware Interface',
-        body: 'UNIT_REV_4.0 reads like a piece of lab equipment dropped onto your desk. Volume and Seek dials use Framer Motion physics tuned to feel heavy — not just animated. Signal indicators (SIGNAL_OVERRIDE, PRGM_HOLD, AUTO_SCAN) are functional status displays, not decoration. The boot sequence is a real power-up ritual, not a splash screen.',
-        images: ['https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?auto=format&fit=crop&q=80&w=1200'],
-        layout: 'full'
+        title: 'UNIT_REV_4.0 — The Interface',
+        body: 'Spinpod reads like a piece of lab equipment dropped onto your desk. The landing state shows a minimal entry screen — no clutter, just the unit name and a single action. The hardware-inspired boot sequence is a real power-up ritual with diagnostic feedback, not a decorative splash screen. Every label (SIGNAL_OVERRIDE, PRGM_HOLD, AUTO_SCAN) is functional, not decoration.',
+        images: [
+          '/assets/spinpod/spinpod_landing_1777820434463.png',
+          '/assets/spinpod/spinpod_initial_load_1777820630246.png'
+        ],
+        layout: 'grid-2'
+      },
+      {
+        title: 'Tactile Controls & Playback',
+        body: 'Volume and Seek dials use Framer Motion physics tuned to feel heavy — the rotational inertia is deliberately exaggerated so the interaction feels like turning a metal knob, not dragging a slider. The next-track state and active playback view are designed around a single, committed audio stream. No library browsing. No infinite scroll. One track, full focus.',
+        images: [
+          '/assets/spinpod/spinpod_next_track_1777820649171.png',
+          '/assets/spinpod/spinpod_knob_interaction_1777820786768.png'
+        ],
+        layout: 'grid-2'
+      },
+      {
+        title: 'Signal Override & System States',
+        body: 'The SIGNAL_OVERRIDE modal and paused state are where the industrial character is most explicit. These system states use high-contrast monochromatic UI to communicate clearly: the machine is waiting for you. The paused state strips everything back to a single status indicator — an intentional design choice to reduce cognitive load during transitions.',
+        images: [
+          '/assets/spinpod/spinpod_paused_state_1777820721788.png',
+          '/assets/spinpod/spinpod_signal_override_modal_1777820736707.png'
+        ],
+        layout: 'grid-2'
       },
       {
         title: 'AI Mood-Matching',
-        body: 'The Gemini integration parses Spotify schemas and surfaces a single-stream audio recommendation based on the user\'s current context — no browsing, no infinite scroll, just one track queued and ready. A custom caching layer keeps the AI response latency below the perceptual threshold so it feels instantaneous rather than computationally expensive.',
-        images: [
-          'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1600',
-          'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&q=80&w=1600'
-        ],
-        layout: 'grid-2'
+        body: 'The Gemini integration parses the user context and surfaces a single-stream audio recommendation — no browsing, no choice fatigue, just one track queued and ready. A custom caching layer keeps AI response latency below the perceptual threshold so the mood-match feels instantaneous. The Spotify resume flow connects seamlessly, handing control back to the hardware interface the moment audio begins.',
+        images: ['/assets/spinpod/spinpod_spotify_resume_final_1777820573701.webp'],
+        layout: 'full'
       }
     ]
   },
