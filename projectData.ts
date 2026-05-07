@@ -332,16 +332,16 @@ export const FULL_PROJECTS: Project[] = [
     category: 'UI Design',
     year: '2026',
     thumbnail: '/assets/portfolio/portfolio_hero_section_1777819291389.png',
-    shortDescription: 'A definitive architectural overhaul of my digital identity, evolving from our experimental v1 into a refined, commercial-grade archive.',
-    context: 'This portfolio is the definitive architectural overhaul of my digital identity. The journey started with a "tool-first" conceptual playground—a v1 that was heavy on experimentation, fluid physics, and testing the limits of interaction. While that iteration proved technical capability, this new version is completely refined. It moves away from the playground aesthetic and establishes a permanent, professional design philosophy built on a mathematically locked 12-column grid system. It functions as a high-end "Archival Folder," where every project is documented with the exact precision found in a professional studio’s records.',
-    brief: 'The brief was to engineer a resilient digital infrastructure that communicates founder-level methodology without relying on superfluous animations. Key requirements included sub-second First Contentful Paint (FCP), a unified container metric system, and aggressive typographic scaling. I needed to resolve the visual tension of the first version by standardizing margin sets and stripping away distractions. The goal was to build a permanent, structurally sound system that proves my ability to architect scalable, high-performance web products.',
-    goal: 'My primary goal was to establish a rigid Z-pattern layout methodology that controls visual hierarchy across all routes. I wanted to implement a "Performance Index" for every project, holding my own work to a rigorous engineering standard. By using a unified 16mm margin set and a mathematically derived typographic rhythm, I achieved the "Commercial Credibility" that v1 lacked. The ultimate objective was to build a mature platform that recruiters can scan in seconds, while providing immense depth for a multi-hour deep dive.',
-    problem: 'Our very first iteration was highly interactive, but it lacked the strict structural foundation required to present dense case studies effectively. Minimalist design often fails without a grid—white space looks like an error rather than a choice. I saw a need for a site that feels as solid and permanent as brutalist architecture. The problem wasn’t just "showing work," but establishing a cohesive, grown-up visual system that demonstrates an understanding of both design aesthetics and high-performance engineering.',
-    process: 'The process involved a total reconstruction of the site’s underlying math, starting completely fresh from the v1 concepts. I designed a custom 12-column grid system using Tailwind v4 and React 19, ensuring that every pixel is anchored to a global container metric. I spent weeks refining the Z-pattern layout to guide the eye toward key "Recruiter-Ready" data points. Performance was heavily optimized through Vite, deliberately stripping back the heavy physics engines of the past to target a sub-second TTI and zero layout shift.',
-    outcome: 'The result is a highly performant, accessible digital product that functions as a definitive archive of my work. The sub-second FCP ensures an instant first impression, while the rigid grid system provides a premium editorial feel. The transition from our experimental first version to this refined, architectural system makes the evolution from "Designer" to "Product Engineer" crystal clear. It balances aggressive typography with technical precision, establishing a professional identity that is deeply mature.',
-    challenges: 'The biggest challenge was the "Responsive Rigidity" problem—maintaining the 12-column grid and aggressive typographic scale on mobile viewports without breaking the archival aesthetic. I had to develop a custom fluid-typography system that scales mathematically between breakpoints. Another hurdle was optimizing high-resolution project imagery for a sub-second FCP, ensuring that the visual depth we achieved didn’t compromise performance.',
-    tradeoffs: 'I heavily prioritized "Structural Rigidity" and grid-locking over the experimental, free-form navigation we explored in v1. This means the site is far more opinionated about its layout, trading off casual "playfulness" for professional authority. I chose a strictly monochromatic "Stark" theme to highlight the structural clarity of the work, sacrificing color to ensure that the content and the grid remained the primary focus.',
-    learnings: 'This evolution taught me that "less is more" only works when the math is perfect. I learned that a rigid structural foundation is the most powerful tool for building user trust, far outweighing flashy interactions. Working on the intersection of Tailwind and React reinforced my belief that design and engineering are inseparable. Moving forward, I am obsessed with "Mathematical Layouts," building systems where every visual decision is backed by a rigorous grid.',
+    shortDescription: 'A complete architectural rebuild of my digital identity — from experimental v1 playground to a permanent, commercial-grade archive.',
+    context: 'This portfolio is the definitive architectural overhaul of my digital identity. The first version was a tool-first conceptual playground — heavy on fluid physics, experimental navigation, and pushing the limits of what React could render. While that iteration demonstrated raw technical capability, it failed at the actual job: presenting dense, professional case studies with clarity and authority. V2 is the antithesis. Every interaction is deliberate, every pixel is on a mathematical grid, and the monochromatic palette exists specifically so that project work — not the shell — carries all the visual weight. It functions as a permanent archival document, not a demo.',
+    brief: 'Engineer a resilient digital product that communicates a systems-thinking methodology without relying on animation or novelty. Key requirements: sub-second First Contentful Paint, a unified container metric system, aggressive typographic scaling, and a Z-pattern layout that works for both a two-second recruiter scan and a 30-minute deep dive. Resolve the visual tension of v1 by imposing structural rigour across every route.',
+    goal: 'Establish a rigid Z-pattern layout methodology that controls visual hierarchy across all routes simultaneously. Every margin, gutter, and type step is derived from the same base unit. Achieve the commercial credibility that v1 explicitly lacked — a site that reads like a professional studio records rather than a creative experiment.',
+    problem: 'V1 was technically impressive and editorially insufficient. Fluid physics and experimental navigation are memorable for 30 seconds; they actively impede case study comprehension. Minimalist design only works when the math behind it is perfect — empty space without a grid reads as an error, not a choice. The site needed to feel permanent, like brutalist architecture: heavy, intentional, and built to outlast trends.',
+    process: 'Total reconstruction from the base unit up. A global container metric was defined first, then all margins, gutters, and typographic steps were derived from it mathematically. The Z-pattern scan path was prototyped against real recruiter feedback before committing to the layout. Vite was configured to strip all physics libraries from the bundle. Pre-rendering via a custom Chromium script ensures every route is statically served, making the site fast even on a cold cache.',
+    outcome: 'A highly performant, accessible archive that communicates at two speeds: the headline and layout communicate the brand in two seconds; the case studies reward hours of reading. The transition from v1 to v2 is the case study itself — demonstrating an ability to identify the failure mode of your own work and rebuild it with precision. Sub-second FCP, zero layout shift, mathematically locked grid across all five routes.',
+    challenges: 'The core challenge was Responsive Rigidity — preserving the 12-column grid and aggressive typographic scale on mobile without the archival aesthetic collapsing into a generic stack. A custom fluid-type system was required, scaling mathematically between three breakpoints. Optimising high-resolution project imagery for the sub-second FCP target also required significant pipeline work: format conversion, lazy loading boundaries, and explicit aspect-ratio reservation.',
+    tradeoffs: 'Structural rigidity over playfulness. The site is deliberately opinionated — there is one correct way to move through it. v1 offered freeform exploration; v2 offers a controlled editorial path. The monochromatic palette was the major concession: colour was removed from the shell entirely so that it lives exclusively in the project imagery, making thumbnails the only moments of visual surprise on an otherwise stark canvas.',
+    learnings: 'Less is more only functions when the math is perfect. A rigid structural foundation builds user trust more effectively than any animation ever could. The most important design decision in v2 was not something added — it was everything removed. Working at the intersection of Tailwind and React reinforced that design systems and engineering systems are the same thing, expressed in different languages.',
     images: [
       '/assets/portfolio/portfolio_hero_section_1777819291389.png',
       '/assets/portfolio/portfolio_homepage_1777819105532.png',
@@ -349,41 +349,42 @@ export const FULL_PROJECTS: Project[] = [
       '/assets/portfolio-work.jpg',
       '/assets/portfolio-about.jpg'
     ],
-    tags: ['UX Architecture', 'Framer Motion', 'React 19'],
-    technologies: ['Vite', 'Tailwind v4', 'Motion UI', 'React 19'],
+    tags: ['UX Architecture', 'React 19', 'Editorial Design'],
+    technologies: ['React 19', 'Vite', 'Tailwind v4', 'Framer Motion'],
     client: 'Personal Branding',
     role: 'Product Engineer',
-    roleDetail: 'Designed the mathematical layout grid and engineered the fluid navigation architecture.',
-    metrics: ['Sub-second FCP', 'Mathematical Grid Alignment', 'Reduced TTI Layout Shift'],
-    annotations: ['Z-Pattern Execution', 'Fluid Typography'],
-    processImages: ['/assets/portfolio-about.jpg'],
-    outcomeImages: ['/assets/portfolio/portfolio_current_homepage_1777819179444.png'],
+    roleDetail: 'Designed the mathematical grid system and engineered the full navigation architecture from a blank slate.',
+    metrics: ['Sub-second FCP', 'Zero Layout Shift', 'Mathematically Derived Grid'],
+    annotations: ['Z-Pattern Execution', 'Fluid Typography', 'Archival Editorial'],
+    processImages: ['/assets/portfolio/portfolio_current_homepage_1777819179444.png'],
+    outcomeImages: ['/assets/portfolio-work.jpg'],
     sections: [
       {
-        title: 'Hero & Featured Work',
-        body: 'The landing page is the thesis statement. A 12-column mathematical grid locks every margin, gutter, and typographic step to the same base unit. The Z-pattern scan path guides the eye from name to role to featured projects in under two seconds. Featured project thumbnails display in full colour — no decorative elements compete with the content.',
+        title: 'Homepage — Structure as Statement',
+        body: 'The hero communicates the thesis in three lines: BUILDING PRODUCTS WITH STRUCTURE AND INTENT. The layout is Z-pattern by design — the eye moves from the wordmark top-left, across the headline, to the bio paragraph top-right, and drops to the featured projects below. The sub-label DESIGNING BCI INTERFACES anchors the specialist position before the headline even lands. Two CTAs — LEARN MORE and START A PROJECT — give the visitor an immediate directional choice with zero friction.',
         images: [
-          '/assets/portfolio/portfolio_hero_section_1777819291389.png',
-          '/assets/portfolio/portfolio_homepage_1777819105532.png'
+          '/assets/portfolio/portfolio_homepage_1777819105532.png',
+          '/assets/portfolio/portfolio_hero_section_1777819291389.png'
         ],
         layout: 'grid-2'
       },
       {
-        title: 'V1 → V2: The Architectural Evolution',
-        body: 'V1 was a conceptual playground: fluid physics, experimental node graphs, and pushing the outer limits of what React could do visually. Technically impressive but editorially insufficient for presenting serious case studies. V2 is the antithesis — every decision made in service of the content. Physics engines stripped out, free-form navigation replaced with a rigid Z-pattern, colour removed to let the work speak. The result is a system that will age gracefully.',
+        title: 'V1 to V2: Why Everything Was Rebuilt',
+        body: 'The first version was a playground — physics simulations, experimental node-based navigation, scroll-hijacking, heavy Framer Motion sequences. It proved what React could do but failed at the actual job: presenting dense case studies clearly. Recruiters and collaborators needed information, not spectacle. V2 starts from the opposite philosophy. Every physics engine removed. Navigation made instant. The monochromatic palette chosen so that project imagery — not the shell — carries colour. The site ages like a document, not a demo. A system built to last, not to impress for thirty seconds.',
         images: [
           '/assets/portfolio/portfolio_current_homepage_1777819179444.png'
         ],
         layout: 'full'
       },
       {
-        title: 'Work Index',
-        body: 'The Work index foregoes conventional thumbnail grids in favour of a structured table-style layout. Each row exposes title, category, year, and a one-line descriptor — all scannable in a single visual pass. Hover states surface the project thumbnail via a smooth clip-path reveal, ensuring the page remains clean until the user actively engages.',
+        title: 'Project Archive — The Work Index',
+        body: 'The Work page is titled PROJECT ARCHIVE — not a portfolio, not a showcase. An archive implies permanence, curation, and intent. The header uses the same Z-pattern as the homepage: label top-left, headline left, descriptor and count top-right. Below, projects display as large-format full-bleed cards with generous vertical spacing — each project treated as a singular object, not one item in a list. The label 6 SELECTED PROJECTS sets an expectation of quality over quantity before the work is even seen.',
         images: ['/assets/portfolio-work.jpg'],
         layout: 'full'
       },
       {
-        title: 'About & Identity',
+        title: 'About — Systems and Humans',
+        body: 'The About page headline — SYSTEMS AND HUMANS — defines the design philosophy in two words. The split layout places biographical copy on the left and a portrait on the right, making the human behind the technical work explicitly visible. The page positions the practice at the intersection of software systems and human behavior — a framing that separates a systems-thinking product designer from a visual designer. A DOWNLOAD CV button is the singular CTA, making the conversion path unambiguous.',
         images: ['/assets/portfolio-about.jpg'],
         layout: 'full'
       }
