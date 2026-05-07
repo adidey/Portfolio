@@ -201,7 +201,7 @@ export const FULL_PROJECTS: Project[] = [
     title: 'Aurorae',
     category: 'Branding',
     year: '2022',
-    thumbnail: 'https://mir-s3-cdn-cf.behance.net/project_modules/fs/9bf751155839991.636f3ca8730f0.jpg',
+    thumbnail: '/assets/aurorae.png',
     shortDescription: 'A minimalist, high-contrast visual identity and brand study exploring the intersection of grain, form, and analog-inspired digital design.',
     context: 'Aurorae is a brand identity study exploring one specific idea: what happens when you use imperfection as a design material? Modern digital design has a sterility problem — everything is too clean, too flat, too interchangeable. Aurorae pushes in the opposite direction, using high-grain textures, aggressive monochromatic contrast, and architectural scale to make a digital identity feel physically heavy. The brand is built for a premium lifestyle platform positioned at the intersection of fine art and NFT culture.',
     brief: 'The brief was to develop a brutalist, monochromatic brand system that works across the full range of touchpoints — from a 35mm business card to a building-scale billboard. No colour except black, white, and procedural grain. The logomark had to be geometric: four vertical pillars centered around a circle, representing stability and growth. Every asset had to pass one test: does it still read as intentional and premium when stripped of all colour and decoration?',
@@ -212,15 +212,10 @@ export const FULL_PROJECTS: Project[] = [
     challenges: 'Maintaining grain fidelity across scales is technically hard. Too much roughness at small sizes reads as bad pixels. Too little at large sizes reads as lazy. I had to develop a procedural approach — different grain densities for different output sizes — and test everything at final dimensions rather than screen previews. Making a strictly monochromatic palette feel dynamic also required aggressive typographic shifts and precise geometric pattern work to sustain visual interest across long compositions.',
     tradeoffs: 'I chose visual distinctiveness over broad appeal. Aurorae has a very specific mood — it is not for everyone, and that is by design. A brand with a clearly defined target audience is more valuable than one trying to appeal to everyone simultaneously. I also traded decorative colour entirely for the raw power of form and texture, which means the brand depends on its structural integrity to carry all the expressive weight. There is no colour safety net.',
     learnings: 'Aurorae taught me that imperfection is a trust-building tool when deployed with precision. The grain has to look intentional — which means understanding the technical parameters of your output medium well enough to control the noise rather than just adding a filter. I also learned how to use typography as a primary structural element. When the LOGO TYPE is scaled to 400pt, it stops being text and becomes architecture. That shift in register is something I now look for in every brand project.',
-    images: [
-      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/9bf751155839991.636f3ca8730f0.jpg',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/a8a880155839991.635be8ee3cd76.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/7e8edb155839991.635be8ee3e7aa.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/0ab619155839991.635be8ee411d9.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/b27eeb155839991.635bfaec34816.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/ec97b3155839991.635c05e215e26.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/9b6767155839991.635bf63ae32bf.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/99e32d155839991.635bf63ae2493.png'
+        images: [
+      '/assets/aurorae.png',
+      '/assets/aurorae/logo_mark_exploration.png',
+      '/assets/aurorae/brand_concept.png'
     ],
     tags: ['Branding', 'Visual Identity', 'Graphic Design', 'Editorial'],
     technologies: ['Photoshop', 'Illustrator', 'Figma', 'Blender'],
@@ -229,20 +224,20 @@ export const FULL_PROJECTS: Project[] = [
     roleDetail: 'Architected the visual brand language and designed the core textural assets.',
     metrics: ['Brand Distinctiveness', 'Minimalist Precision', 'Textural Depth'],
     processImages: [
-      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/ec97b3155839991.635c05e215e26.png',
-      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/9b6767155839991.635bf63ae32bf.png'
+      '/assets/aurorae.png',
+      '/assets/aurorae/logo_mark_exploration.png'
     ],
     outcomeImages: [
-      'https://mir-s3-cdn-cf.behance.net/project_modules/fs/99e32d155839991.635bf63ae2493.png'
+      '/assets/aurorae/brand_concept.png'
     ],
-    figmaEmbed: '<iframe src="https://www.behance.net/embed/project/155839991?ilo0=1" allowfullscreen lazyload frameborder="0" allow="clipboard-write" refererPolicy="strict-origin-when-cross-origin"></iframe>',
+    figmaEmbed: '<iframe src="/assets/aurorae.png" allowfullscreen lazyload frameborder="0" allow="clipboard-write" refererPolicy="strict-origin-when-cross-origin"></iframe>',
     sections: [
       {
         title: 'Digital Interfaces & Mobile',
         body: 'The brand translates into a digital Art Space UI with no loss of physical weight. NFT grid screens, authentication flows, and collection browsing all inherit the monochromatic system. The grain reads correctly on-screen because the density was calculated for a 72dpi context rather than simply scaled down from print assets.',
         images: [
-          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/b27eeb155839991.635bfaec34816.png',
-          'https://mir-s3-cdn-cf.behance.net/project_modules/fs/ec97b3155839991.635c05e215e26.png'
+          '/assets/aurorae/logo_mark_exploration.png',
+          '/assets/aurorae/brand_concept.png'
         ],
         layout: 'grid-2'
       },
@@ -395,7 +390,7 @@ export const FULL_PROJECTS: Project[] = [
     title: 'Spinpod',
     category: 'Web & Music',
     year: '2025',
-    thumbnail: '/assets/spinpod/spinpod_initial_load_1777820630246.png',
+    thumbnail: '/assets/spinpod/spinpod_next_track_1777820649171.png',
     shortDescription: 'A retro-industrial web music player built around personal, intentional listening.',
     context: 'Spinpod is a study in tactile digital interaction and personal musical agency. Streaming platforms have optimised so hard for discovery algorithms and recommendation engines that the simple act of choosing what you want to listen to has been buried. Spinpod inverts that entirely — it is a hardware-inspired web player that puts complete, deliberate control back in the listener\'s hands. There is no algorithm, no suggestions, no autoplay. Just you, your music, and a unit that feels like it belongs on a studio desk.',
     brief: 'The brief was to build a web music player (UNIT_REV_4.0) that prioritises feel over features. Key design requirements included physical-style Volume and Seek dials, a hardware-inspired boot sequence, and a suite of industrial signal indicators like "SIGNAL_OVERRIDE" and "PRGM_HOLD." The goal was to create a listening experience that feels like operating a solid piece of lab equipment — deliberate, personal, and completely in the user\'s control.',
@@ -452,51 +447,63 @@ export const FULL_PROJECTS: Project[] = [
         layout: 'grid-2'
       },
       {
-        title: 'Spotify Connect & Playback',
-        body: 'The player connects to Spotify and hands full playback control to the user. There is no autoplay, no queue suggestions — the listener feeds in exactly what they want to hear and the unit plays it. The Spotify resume flow is designed to feel seamless: the moment audio begins, the hardware interface takes over and the streaming layer disappears.',
-        images: ['/assets/spinpod/spinpod_spotify_resume_final_1777820573701.webp'],
-        layout: 'full'
+        title: 'Source Input & Playlist Feed',
+        body: 'The entry point is deliberately minimal — SPINPOD CORE_REV: 4.0.0 presents a single text input and a CONNECT_UNIT button. The user pastes a playlist link and boots the unit. No library browsing, no search, no recommendations. If you need to swap sources mid-session, the SIGNAL_OVERRIDE modal surfaces: paste a new SOURCE_PLAYLIST_URL and hit BOOT_FEED. The machine reloads the new source and continues. Every choice of what plays is made by the user, not inferred by an algorithm.',
+        images: [
+          '/assets/spinpod/spinpod_landing_1777820434463.png',
+          '/assets/spinpod/spinpod_signal_override_modal_1777820736707.png'
+        ],
+        layout: 'grid-2'
       }
     ]
   },
   {
     id: 'resume-editor',
-    title: 'Resume Editor',
+    title: 'Single Page Resume',
     category: 'Productivity',
-    year: '2024',
-    thumbnail: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&q=80&w=1200',
-    shortDescription: 'Privacy-focused, single-page resume builder for instant ATS-friendly exports.',
-    context: 'Resume Editor was developed to bridge the gap between "design-heavy" resumes and high-performance ATS readability. Most designers prioritize aesthetic complexity, which often breaks automated recruitment systems. I wanted to build a professional, local-first utility that gives users total agency over their data while providing granular typographic control. It’s a tool for serious professionals who need to manage their experience across varied density modes—ensuring that their resume is as readable to a machine as it is to a human hiring manager.',
-    brief: 'The brief was to engineer a privacy-first, technical resume builder that eliminates the friction of modern recruitment. Key requirements included 100% client-side processing, perfect PDF generation with zero layout shift, and three distinct density modes: "Comfy," "Compact," and "Dense." I needed to implement a system that handles complex line-spacing and margin adjustments (down to the mm) without breaking the single-page constraint. the goal was to provide a professional-grade editorial tool that respects the user’s data privacy and their need for machine-readable output.',
-    goal: 'My primary goal was to establish a "Single-Column Architecture" that guarantees ATS compatibility without sacrificing design quality. I wanted to implement real-time preview features that allow users to experiment with Modern Serif and Humanist Sans font pairings. By using a local-first architecture (Next.js 15), I aimed to ensure that sensitive personal information never leaves the user’s browser. The ultimate objective was to democratize high-end editorial design, providing job-seekers with a tool that manages information density as effectively as a professional typesetter.',
-    problem: 'Mainstream resume builders are often data-harvesting platforms that produce janky, machine-unfriendly PDFs. If a resume contains complex columns or non-standard font encodings, it fails at the first hurdle of the recruitment process. There is a complete lack of dedicated, privacy-focused tools that prioritize "Technical Readability" over generic templates. This leads to a loss of opportunity for highly qualified candidates who are being rejected by automated systems before a human even sees their work.',
-    process: 'The process involved a deep dive into PDF-Lib and client-side rendering optimizations. I developed a custom sidebar that provides real-time control over margins, letter-spacing, and section-level visibility. I engineered three density modes—"Comfy" for early-career profiles and "Dense" for high-experience professionals—to help users maximize their single-page real estate. The interaction model was designed to be snappy and "tool-like," utilizing Next.js 15 and Tailwind v4 to ensure a sub-millisecond feedback loop during typographic adjustments.',
-    outcome: 'The result is a robust, production-grade utility that produces some of the cleanest, most readable resumes in the industry. The "Preview" mode provides a 1:1 match with the final PDF export, ensuring zero surprises for the user. It successfully solves the ATS compatibility problem while maintaining an elite editorial aesthetic. The final project demonstrates a complete understanding of information density and typographic hierarchy, providing a specialized solution for professionals who value both their privacy and their presentation.',
-    challenges: 'The biggest challenge was "The Font Encoding Problem"—ensuring that every character in the generated PDF was perfectly searchable and selectable by automated systems. I had to go through dozens of iterations of the export engine to handle different font weights and kerning values. Another hurdle was building a complex UI that manages real-time layout shifts on the client side without any perceptible lag, requiring strict React optimization and state management.',
-    tradeoffs: 'I chose "Technical Readability" and "Privacy" over having a wide variety of artistic templates. This means the tool is opinionated about its single-column structure, which might limit creative freedom but guarantees professional performance. I also traded cloud-saving features for 100% local-first security, requiring users to manage their own data exports. I prioritized the "utility" of getting a job over the "playfulness" of a typical design tool.',
-    learnings: 'This project taught me that high-stakes design is about functional precision. I learned that the most effective tools are those that respect both the human user and the machine ecosystem they inhabit. Working on local-first architectures reinforced my commitment to data privacy and performance. Moving forward, I want to keep building "Invisible Solutions"—tools that remove the technical hurdles from human processes through rigorous engineering and clean, authoritative design.',
+    year: '2025',
+    thumbnail: '/assets/resume-editor-main.png',
+    shortDescription: 'A local-first, single-page resume builder with real-time typographic control and clean PDF export.',
+        context: 'Single Page Resume is a local-first utility designed for absolute privacy and typographic precision. The product was born from a refusal to accept the data-harvesting models of mainstream resume builders. By processing everything on the client side, I ensured that a candidate’s most sensitive professional data never leaves their machine. The interface is a split-panel composition: a granular control sidebar on the left and a pixel-perfect A4 preview on the right, providing a sub-millisecond feedback loop for every adjustment.',
+    brief: 'The brief was to engineer a resume editor that functions like a professional instrument. Key requirements included: three calibrated density modes (Comfy, Compact, Dense), six curated font pairings tested for ATS compatibility, and mm-level margin controls. The tool had to solve the "overflow problem"—visually enforcing a single-page constraint while providing the tools (like section toggles and density shifts) to make that constraint workable for any experience level.',
+    goal: 'My goal was to democratise high-end editorial typesetting for job seekers. I wanted to build a tool where the user spends less time fighting with formatting and more time refining their narrative. By establishing a "Single Source of Truth" JSON model, I aimed to provide a 1:1 match between the browser preview and the final PDF export—eliminating the "layout shift" that plagues most web-based document tools.',
+    problem: 'Existing resume builders are either too restrictive (templates you can’t tweak) or too loose (word processors that break ATS parsing). Furthermore, cloud-based tools require users to hand over their entire professional history before they can even see a preview. This creates a massive privacy risk and a friction-filled experience for serious professionals who value their time and data security.',
+    process: 'I engineered the editor using a modular state architecture where typography, spacing, and content are handled as independent but reactive layers. The "Density System" was developed by mathematically scaling line-height, section-padding, and font-size in unison, allowing a user to "contract" a three-page draft into a single clean page with a single toggle. I used PDF-Lib for the final export engine, ensuring that all text remains selectable and searchable for automated recruitment systems.',
+    outcome: 'A production-grade utility deployed at singlepageresume.vercel.app. The tool offers three density presets, six font options spanning from Modern Serif to Humanist Sans, and full section visibility control. The "Exceeds one page" warning serves as a designer’s guide, ensuring that every export is professionally formatted for a single-page read. The project stands as a testament to local-first engineering and the power of constrained design.',
+    challenges: 'The primary technical challenge was achieving exact parity between CSS-rendered browser views and the final PDF-Lib export. Browser engines and PDF specifications handle font metrics and spacing differently. I had to build a custom mapping layer to translate web-based REM and EM units into the specific coordinate system used by the PDF engine to guarantee that "what you see is exactly what you get."',
+    tradeoffs: 'I traded "Infinite Templates" for "Guaranteed Quality." The tool opinionatedly enforces a single-column layout because it is the most reliable format for ATS systems and human readers alike. I also prioritised local storage over cloud sync, which means users are responsible for their own data, but in exchange, they get 100% privacy and a significantly faster interface.',
+    learnings: 'This project reinforced the value of opinionated design. By limiting the user’s choices to only "what works," I actually increased their creative efficiency. I also learned the intricacies of document engineering—how subtle changes in kerning and leading can affect the entire structural integrity of a single-page layout. It’s a project that taught me to respect the machine as much as the human reader.',
     images: [
-      'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=1600',
-      'https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&q=80&w=1200'
+      '/assets/resume-editor-main.png',
+      '/assets/resume/dense_layout.png',
+      '/assets/resume/serif_typography.png',
+      '/assets/resume/visibility_toggle.png',
+      '/assets/resume/editing_mode.png'
     ],
     tags: ['Next.js', 'Typescript', 'Design Systems'],
     technologies: ['Next.js 15', 'Tailwind v4', 'PDF-Lib'],
     client: 'Personal Project',
-    role: 'Product Designer',
-    roleDetail: 'Designed the typography-first interface and optimized the export engine for high readability.',
-    metrics: ['ATS-Friendly Export', 'Privacy-Focused Design', 'Clean Typography'],
-    annotations: ['Focus: ATS Optimization', 'Client-side Processing'],
+    role: 'Product Engineer',
+    roleDetail: 'Designed and engineered the full split-panel editor, PDF export pipeline, and typography system.',
+    metrics: ['Zero-Account Tool', 'Local-First Privacy', 'ATS-Safe PDF Export'],
+    annotations: ['Deployed: singlepageresume.vercel.app', 'Client-side Only'],
     sections: [
       {
-        title: 'Editor & Live Preview',
-        body: 'The editor and preview panels live side by side. Every change — font size, line height, margin — updates the preview in under a millisecond. There is no "Generate" button; the output is always current. The sidebar controls are organized by concern: typography, spacing, section visibility — each group collapsible so the tool scales from beginner to power user without cluttering the workspace.',
-        images: ['https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=1600'],
+        title: 'Precision Typesetting Panel',
+        body: 'The editor sidebar is designed as a professional instrument panel. It provides granular sliders for line spacing, letter spacing, and section spacing, alongside numeric margin controls that update the A4 preview in real-time. The goal was to provide the level of control found in Adobe InDesign but within a focused, single-purpose web utility.',
+        images: ['/assets/resume/editing_mode.png'],
         layout: 'full'
       },
       {
-        title: 'Density Modes & Typography',
-        body: 'Three density modes — Comfy, Compact, Dense — adjust line height, section padding, and font size simultaneously using a single toggle. Comfy is for early-career profiles with limited content. Dense packs a decade of experience into one clean page. Modern Serif and Humanist Sans pairings are built-in; both are tested against ATS parsers to ensure no encoding issues on export.',
-        images: ['https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&q=80&w=1200'],
+        title: 'Density & Reflow Logic',
+        body: 'The core of the product is the Density Toggle (Comfy / Compact / Dense). This system doesn’t just shrink text; it mathematically recalibrates the entire document’s hierarchy to ensure that even a dense, high-experience resume maintains elite readability and professional whitespace balance.',
+        images: ['/assets/resume/dense_layout.png'],
+        layout: 'full'
+      },
+      {
+        title: 'Dynamic Visibility & Constraints',
+        body: 'To help users manage the single-page constraint, I implemented per-section visibility toggles. This allows candidates to hide "Projects" or "Skills" to see how the remaining content reflows, enabling them to make deliberate editorial choices without deleting their data. The "Exceeds one page" warning provides the final layer of professional guidance.',
+        images: ['/assets/resume/visibility_toggle.png'],
         layout: 'full'
       }
     ]
