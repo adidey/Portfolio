@@ -384,7 +384,6 @@ export const FULL_PROJECTS: Project[] = [
       },
       {
         title: 'About & Identity',
-        body: 'The About page uses a split-column layout — biography on the left, a structured skills matrix and timeline on the right. Both halves share the same border system and spacing logic as every other route. There is no visual inconsistency between pages; the grid is the product.',
         images: ['/assets/portfolio-about.jpg'],
         layout: 'full'
       }
@@ -393,19 +392,19 @@ export const FULL_PROJECTS: Project[] = [
   {
     id: 'spinpod',
     title: 'Spinpod',
-    category: 'AI & Music',
+    category: 'Web & Music',
     year: '2025',
     thumbnail: '/assets/spinpod/spinpod_initial_load_1777820630246.png',
-    shortDescription: 'A retro-industrial music controller powered by Gemini AI — UNIT_REV_4.0.',
-    context: 'Spinpod is a study in tactile digital interaction, designed to act as a "physical buffer" between the user and digital noise. I wanted to build a hardware-inspired interface that prioritizes deep work by removing the distractions of modern streaming apps. The project is a "Retro-Industrial" experiment, utilizing the Gemini LLM to mood-match audio feeds based on real-time user input. It’s built for those who miss the "weighted" feeling of physical dials and need a dedicated, low-friction environment to enter a creative flow state.',
-    brief: 'The brief was to create a tactile AI music controller (UNIT_REV_4.0) that provides a distraction-free listening experience. Key features included physical-style Volume and Seek dials, a hardware-inspired boot sequence, and a suite of industrial signal indicators like "SIGNAL_OVERRIDE" and "PRGM_HOLD." I needed to integrate the Gemini API to decode Spotify schemas and provide intelligent audio recommendations. The goal was to build a digital experience that feels like a solid piece of laboratory equipment, demanding the user’s full presence and focus.',
-    goal: 'My primary goal was to establish a sense of "Weight" and "Heft" in a purely digital interface. I wanted to implement a "Tactile Feedback" system where every dial rotation and button press feels physically grounded. By using Gemini AI for mood-matching, I aimed to simplify the choice-making process, allowing the user to focus on their work while the AI handles the audio curation. The objective was to move away from the "Infinite Scroll" of Spotify and towards a "Single-Stream" industrial tool that acts as a dedicated companion for high-performance productivity.',
-    problem: 'Modern streaming apps are over-engineered for "Discovery" but under-engineered for "Focus." They distract users with infinite options, breaking the flow state through constant choice-making. Additionally, the flat interaction model of touchscreens lacks the tactile satisfaction of physical hardware. There is a complete absence of a dedicated "Workplace Controller" that respects the user’s need for a physical buffer. The problem is a lack of digital tools that have a specific, industrial character and a singular, focused utility.',
-    process: 'The process involved a deep dive into high-roughness material design and hardware UI patterns. I used "UNIT_REV_4.0" as my architectural base, incorporating specific labels like "SIGNAL_OVERRIDE," "PRGM_HOLD," and "AUTO_SCAN" to anchor the aesthetic. I engineered a custom "Boot" sequence in React 19 that simulates a hardware power-up, complete with diagnostic signal feedback. I spent weeks refining the Framer Motion physics for the dials, ensuring they felt "heavy" rather than just animated. The Gemini integration was architected to parse Spotify URLs and provide context-aware audio streams with minimal latency.',
-    outcome: 'The result is a super-tactile, analog-inspired desk interface that creates a dedicated zone for focused listening. The "Boot" feed successfully transitions the user into a work state, while the AI mood-matching eliminates "choice fatigue." The UI is snappier than a standard app, utilizing high-contrast industrial visuals to provide a premium, authoritative feel. The final build includes the full suite of signal indicators and weighted dials, proving that a digital tool can feel like a physical object if the interaction design is rigorous and intentional.',
-    challenges: 'The biggest challenge was "The Weight Problem"—simulating the physical inertia of a heavy metal dial on a 2D screen. I had to use complex easing functions and micro-animations to sell the "click" and the "drag." Another hurdle was the Gemini AI latency; I had to implement a custom caching layer to ensure that the mood-matching didn’t interrupt the "Hardware Boot" experience. Refining the industrial material textures (the roughness and grain) was also a challenge to ensure they looked premium on high-DPI displays.',
-    tradeoffs: 'I chose "Industrial Character" and "Focus" over having a full-featured music player. This means the user cannot browse their entire library or see lyrics; the app is strictly for "Single-Stream" deep work. I traded off the versatility of a modern UI for the singular authority of a piece of lab equipment. I also prioritized the tactile "heft" of the interface over making it "fast" in the traditional sense, ensuring the boot sequence and dial rotations felt like they were moving actual machinery.',
-    learnings: 'Spinpod taught me that "Personality" is a powerful tool in product design. A tool with a specific character is more memorable and more effective than a generic one. I learned the importance of "Tactile UI" in building focus-oriented products. Working with Gemini AI beyond the chatbot model showed me new ways to simplify complex user inputs into singular, actionable outputs. It’s made me want to keep exploring the intersection of AI and industrial design, building tools that feel more like "machines" and less like "software."',
+    shortDescription: 'A retro-industrial web music player built around personal, intentional listening.',
+    context: 'Spinpod is a study in tactile digital interaction and personal musical agency. Streaming platforms have optimised so hard for discovery algorithms and recommendation engines that the simple act of choosing what you want to listen to has been buried. Spinpod inverts that entirely — it is a hardware-inspired web player that puts complete, deliberate control back in the listener\'s hands. There is no algorithm, no suggestions, no autoplay. Just you, your music, and a unit that feels like it belongs on a studio desk.',
+    brief: 'The brief was to build a web music player (UNIT_REV_4.0) that prioritises feel over features. Key design requirements included physical-style Volume and Seek dials, a hardware-inspired boot sequence, and a suite of industrial signal indicators like "SIGNAL_OVERRIDE" and "PRGM_HOLD." The goal was to create a listening experience that feels like operating a solid piece of lab equipment — deliberate, personal, and completely in the user\'s control.',
+    goal: 'My primary goal was to establish a sense of "Weight" and "Heft" in a purely digital interface. Every dial rotation and button press needed to feel physically grounded — not just animated. The objective was to move away from passive, algorithm-driven listening and towards an intentional, single-stream experience. The user decides what plays. The machine executes with authority.',
+    problem: 'Streaming apps are engineered for infinite discovery at the expense of focused listening. Playlists autoplay, recommendations interrupt, and the interface constantly pulls attention away from the music itself. The flat, gesture-based touchscreen model also lacks the tactile satisfaction of real physical hardware. There was a clear gap for a dedicated web player with genuine personality — one that respects the listener\'s own choices rather than second-guessing them.',
+    process: 'The process involved a deep dive into hardware UI patterns, analog signal design, and high-roughness material aesthetics. I used "UNIT_REV_4.0" as my architectural base, incorporating labels like "SIGNAL_OVERRIDE," "PRGM_HOLD," and "AUTO_SCAN" to ground the industrial character. I engineered a custom boot sequence in React 19 that simulates a hardware power-up with diagnostic signal feedback. The dial physics were the most time-intensive component — tuning Framer Motion easing curves until the rotational inertia felt genuinely heavy rather than just animated.',
+    outcome: 'The result is a tactile, analog-inspired web player that creates a dedicated zone for intentional listening. The boot sequence transitions the user into a deliberate listening state. The industrial visual system — high-contrast monochromatic UI, signal indicators, weighted dials — communicates that this is a tool built for people who care about how their music sounds and how they choose it. No algorithm. No noise. Just control.',
+    challenges: 'The core challenge was "The Weight Problem" — simulating the physical inertia of a heavy metal dial on a 2D screen. Complex easing functions and micro-animations had to sell both the click resistance and the drag. Refining the industrial material textures (grain, roughness) was equally demanding; they needed to read as premium on high-DPI Retina displays without becoming visual noise.',
+    tradeoffs: 'I chose deliberate character over breadth of features. The player does not surface library browsing, lyrics, or autoplay queues. That\'s intentional. The tradeoff is a narrower feature set in exchange for a singular, coherent identity — a tool that knows exactly what it is and does it with conviction.',
+    learnings: 'Spinpod reinforced that personality is one of the most underrated tools in product design. A digital tool with a specific, committed character is more memorable and more effective than a generic one. I also deepened my understanding of tactile interaction design — how micro-animation timing, easing curves, and visual weight work together to create the sensation of physical resistance in a purely software interface.',
     images: [
       '/assets/spinpod/spinpod_landing_1777820434463.png',
       '/assets/spinpod/spinpod_initial_load_1777820630246.png',
@@ -414,13 +413,13 @@ export const FULL_PROJECTS: Project[] = [
       '/assets/spinpod/spinpod_paused_state_1777820721788.png',
       '/assets/spinpod/spinpod_signal_override_modal_1777820736707.png'
     ],
-    tags: ['React 19', 'Gemini AI', 'Industrial Design'],
-    technologies: ['React 19', 'Google Gemini Pro API', 'Framer Motion', 'Vite'],
+    tags: ['React 19', 'Industrial Design', 'Framer Motion'],
+    technologies: ['React 19', 'Framer Motion', 'Vite', 'Tailwind CSS'],
     client: 'Self-Initiated',
     role: 'Interaction Designer',
-    roleDetail: 'Designed the tactile UI system and implemented the AI-driven playlist logic.',
-    metrics: ['AI-Driven Mood Matching', 'Tactile Dial Physics', 'Hardware Boot Sequence'],
-    annotations: ['Industrial UI Design', 'AI Integration', 'Framer Motion Physics'],
+    roleDetail: 'Designed the tactile UI system, dial physics, and industrial interaction language.',
+    metrics: ['Personal Listening Agency', 'Tactile Dial Physics', 'Hardware Boot Sequence'],
+    annotations: ['Industrial UI Design', 'Tactile Interaction', 'Framer Motion Physics'],
     processImages: ['/assets/spinpod/spinpod_knob_interaction_1777820786768.png'],
     outcomeImages: ['/assets/spinpod/spinpod_next_track_1777820649171.png'],
     sections: [
@@ -452,8 +451,8 @@ export const FULL_PROJECTS: Project[] = [
         layout: 'grid-2'
       },
       {
-        title: 'AI Mood-Matching',
-        body: 'The Gemini integration parses the user context and surfaces a single-stream audio recommendation — no browsing, no choice fatigue, just one track queued and ready. A custom caching layer keeps AI response latency below the perceptual threshold so the mood-match feels instantaneous. The Spotify resume flow connects seamlessly, handing control back to the hardware interface the moment audio begins.',
+        title: 'Spotify Connect & Playback',
+        body: 'The player connects to Spotify and hands full playback control to the user. There is no autoplay, no queue suggestions — the listener feeds in exactly what they want to hear and the unit plays it. The Spotify resume flow is designed to feel seamless: the moment audio begins, the hardware interface takes over and the streaming layer disappears.',
         images: ['/assets/spinpod/spinpod_spotify_resume_final_1777820573701.webp'],
         layout: 'full'
       }

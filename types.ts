@@ -8,7 +8,7 @@ export interface CaseSection {
 export interface Project {
   id: string;
   title: string;
-  category: 'Branding' | 'UI Design' | 'Web Development' | 'Interaction' | 'AI & Music' | 'Productivity' | 'macOS Utility';
+  category: 'Branding' | 'UI Design' | 'Web Development' | 'Interaction' | 'AI & Music' | 'Productivity' | 'macOS Utility' | 'Web & Music';
   year: string;
   thumbnail: string;
   shortDescription: string;
