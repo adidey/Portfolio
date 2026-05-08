@@ -327,59 +327,57 @@ export const FULL_PROJECTS: Project[] = [
     category: 'UI Design',
     year: '2026',
     thumbnail: '/assets/portfolio/portfolio_hero_section_1777819291389.png',
-    shortDescription: 'A complete architectural rebuild of my digital identity — from experimental v1 playground to a permanent, commercial-grade archive.',
-    context: 'This portfolio is the definitive architectural overhaul of my digital identity. The first version was a tool-first conceptual playground — heavy on fluid physics, experimental navigation, and pushing the limits of what React could render. While that iteration demonstrated raw technical capability, it failed at the actual job: presenting dense, professional case studies with clarity and authority. V2 is the antithesis. Every interaction is deliberate, every pixel is on a mathematical grid, and the monochromatic palette exists specifically so that project work — not the shell — carries all the visual weight. It functions as a permanent archival document, not a demo.',
-    brief: 'Engineer a resilient digital product that communicates a systems-thinking methodology without relying on animation or novelty. Key requirements: sub-second First Contentful Paint, a unified container metric system, aggressive typographic scaling, and a Z-pattern layout that works for both a two-second recruiter scan and a 30-minute deep dive. Resolve the visual tension of v1 by imposing structural rigour across every route.',
-    goal: 'Establish a rigid Z-pattern layout methodology that controls visual hierarchy across all routes simultaneously. Every margin, gutter, and type step is derived from the same base unit. Achieve the commercial credibility that v1 explicitly lacked — a site that reads like a professional studio records rather than a creative experiment.',
-    problem: 'V1 was technically impressive and editorially insufficient. Fluid physics and experimental navigation are memorable for 30 seconds; they actively impede case study comprehension. Minimalist design only works when the math behind it is perfect — empty space without a grid reads as an error, not a choice. The site needed to feel permanent, like brutalist architecture: heavy, intentional, and built to outlast trends.',
-    process: 'Total reconstruction from the base unit up. A global container metric was defined first, then all margins, gutters, and typographic steps were derived from it mathematically. The Z-pattern scan path was prototyped against real recruiter feedback before committing to the layout. Vite was configured to strip all physics libraries from the bundle. Pre-rendering via a custom Chromium script ensures every route is statically served, making the site fast even on a cold cache.',
-    outcome: 'A highly performant, accessible archive that communicates at two speeds: the headline and layout communicate the brand in two seconds; the case studies reward hours of reading. The transition from v1 to v2 is the case study itself — demonstrating an ability to identify the failure mode of your own work and rebuild it with precision. Sub-second FCP, zero layout shift, mathematically locked grid across all five routes.',
-    challenges: 'The core challenge was Responsive Rigidity — preserving the 12-column grid and aggressive typographic scale on mobile without the archival aesthetic collapsing into a generic stack. A custom fluid-type system was required, scaling mathematically between three breakpoints. Optimising high-resolution project imagery for the sub-second FCP target also required significant pipeline work: format conversion, lazy loading boundaries, and explicit aspect-ratio reservation.',
-    tradeoffs: 'Structural rigidity over playfulness. The site is deliberately opinionated — there is one correct way to move through it. v1 offered freeform exploration; v2 offers a controlled editorial path. The monochromatic palette was the major concession: colour was removed from the shell entirely so that it lives exclusively in the project imagery, making thumbnails the only moments of visual surprise on an otherwise stark canvas.',
-    learnings: 'Less is more only functions when the math is perfect. A rigid structural foundation builds user trust more effectively than any animation ever could. The most important design decision in v2 was not something added — it was everything removed. Working at the intersection of Tailwind and React reinforced that design systems and engineering systems are the same thing, expressed in different languages.',
+    shortDescription: 'A complete architectural rebuild of my digital identity — from an experimental v1 playground to a permanent, commercial-grade archive.',
+    context: 'Let’s be honest: my first portfolio was a mess of "look what I can do" animations. It was a playground of fluid physics and experimental navigation that looked great for thirty seconds but made reading a case study feel like a chore. V2 is the correction. I stripped away the spectacle to build something that functions more like a permanent archival document. The goal was to create a container so rigid and minimal that the only thing carrying visual weight is the work itself. It’s not a demo anymore; it’s a high-performance archive built on React 19 and a custom pre-rendering engine.',
+    brief: 'The brief I set for myself was simple but technically demanding: sub-second First Contentful Paint (FCP), zero layout shift, and a UI that communicates systems-thinking before a single word is read. I needed to resolve the visual tension of v1 by imposing a strict 12-column grid and a Z-pattern layout that works for both a recruiter’s five-second scan and a peer’s deep technical dive. The project also required a custom build pipeline to handle static serving without losing the snappiness of a modern SPA.',
+    goal: 'Establish a "Digital Identity 2.0" that prioritizes utility and authority. I wanted to move away from the "creative technologist" trope and towards a "product engineer" reality. This meant replacing random animations with a "Stacking Effect" folder-style navigation that feels physically grounded. The ultimate goal was to prove that a monochromatic, grid-locked system can feel more premium and alive than a site covered in gradients and physics simulations.',
+    problem: 'V1 was "AI slop" avant-la-lettre—cool to look at, empty to use. The experimental node-based navigation was a failure of UX; it forced users to learn a new language just to see my work. Furthermore, the reliance on heavy physics libraries made the mobile experience sluggish. The site lacked a "Single Source of Truth" for its layout, leading to inconsistencies across different breakpoints. It was an identity crisis in code form.',
+    process: 'I started by defining a "Base Container Metric"—a single mathematical unit that dictates every margin, gutter, and typographic step. I then built a custom pre-rendering script using Puppeteer and @sparticuz/chromium to "bake" the React app into static HTML at build time. This gives me the speed of a static site with the interaction model of React. I also implemented a fluid typography system using CSS `clamp()` that scales between breakpoints without a single jump, ensuring the archival aesthetic holds from a phone to a 5K display.',
+    outcome: 'A highly performant, accessible system that communicates at two speeds. The headline and layout land the brand in seconds, while the case studies reward hours of technical reading. Sub-second FCP, zero CLS, and a mathematically locked grid. The transition from v1 to v2 isn’t just a redesign—it’s the case study itself, proving I can identify the failure modes of my own work and rebuild with precision. It’s the fastest, cleanest version of my digital self.',
+    challenges: 'The biggest challenge was "Responsive Rigidity." Maintaining a 12-column grid and aggressive typographic scale on mobile without it feeling like a generic stack required a lot of custom CSS logic. I also had to optimize high-res project imagery for that sub-second FCP target, which meant building an automated pipeline for format conversion and lazy-loading boundaries. Getting the "Stacking Effect" transitions to feel "weighted" without using a heavy physics engine took weeks of tuning Framer Motion easing curves.',
+    tradeoffs: 'I traded playfulness for professional authority. The site is deliberately opinionated—there is one correct way to move through it. v1 was an open world; v2 is a curated editorial path. I also chose a strictly monochromatic palette for the shell. This was a risk, but it ensures that project imagery is the only source of color on the page, making every thumbnail a moment of visual impact rather than just another element in a busy UI.',
+    learnings: 'Less is more only when the math is perfect. A rigid structural foundation builds trust more effectively than any animation ever could. This project reinforced that design and engineering are the same system expressed in different languages. I also learned that the most important decision in a rebuild isn’t what you add—it’s what you have the courage to remove. Moving to React 19 and Vite 6 also taught me that the "bleeding edge" is only useful if it serves the user’s performance.',
     images: [
-      '/assets/portfolio/portfolio_hero_section_1777819291389.png',
-      '/assets/portfolio/portfolio_homepage_1777819105532.png',
       '/assets/portfolio/portfolio_current_homepage_1777819179444.png',
+      '/assets/portfolio/portfolio_homepage_1777819105532.png',
+      '/assets/portfolio/portfolio_hero_section_1777819291389.png',
       '/assets/portfolio-work.jpg',
       '/assets/portfolio-about.jpg'
     ],
-    tags: ['UX Architecture', 'React 19', 'Editorial Design'],
-    technologies: ['React 19', 'Vite', 'Tailwind v4', 'Framer Motion'],
+    tags: ['UX Architecture', 'React 19', 'Custom SSG', 'Vite 6'],
+    technologies: ['React 19', 'Vite 6', 'Puppeteer (SSG)', 'Tailwind v4', 'Framer Motion'],
     client: 'Personal Branding',
     role: 'Product Engineer',
-    roleDetail: 'Designed the mathematical grid system and engineered the full navigation architecture from a blank slate.',
+    roleDetail: 'Designed the mathematical grid system and engineered the custom pre-rendering pipeline.',
     metrics: ['Sub-second FCP', 'Zero Layout Shift', 'Mathematically Derived Grid'],
-    annotations: ['Z-Pattern Execution', 'Fluid Typography', 'Archival Editorial'],
-    processImages: ['/assets/portfolio/portfolio_current_homepage_1777819179444.png'],
-    outcomeImages: ['/assets/portfolio-work.jpg'],
+    annotations: ['Z-Pattern Execution', 'Folder-Style Navigation', 'Custom SSG Build'],
+    processImages: ['/assets/portfolio/portfolio_homepage_1777819105532.png'],
+    outcomeImages: ['/assets/portfolio/portfolio_current_homepage_1777819179444.png'],
     sections: [
       {
-        title: 'Homepage — Structure as Statement',
-        body: 'The hero communicates the thesis in three lines: BUILDING PRODUCTS WITH STRUCTURE AND INTENT. The layout is Z-pattern by design — the eye moves from the wordmark top-left, across the headline, to the bio paragraph top-right, and drops to the featured projects below. The sub-label DESIGNING BCI INTERFACES anchors the specialist position before the headline even lands. Two CTAs — LEARN MORE and START A PROJECT — give the visitor an immediate directional choice with zero friction.',
+        title: 'V1 vs V2: The Digital Identity Shift',
+        body: 'Comparison of the digital identity evolution. On the left: the old V1 homepage—experimental, node-based, and visually cluttered. On the right: the current V2—brutalist, grid-locked, and content-first. The shift represents a move from "showing off" to "solving for clarity." V1 was a demo; V2 is a document.',
         images: [
           '/assets/portfolio/portfolio_homepage_1777819105532.png',
-          '/assets/portfolio/portfolio_hero_section_1777819291389.png'
+          '/assets/portfolio/portfolio_current_homepage_1777819179444.png'
         ],
         layout: 'grid-2'
       },
       {
-        title: 'V1 to V2: Why Everything Was Rebuilt',
-        body: 'The first version was a playground — physics simulations, experimental node-based navigation, scroll-hijacking, heavy Framer Motion sequences. It proved what React could do but failed at the actual job: presenting dense case studies clearly. Recruiters and collaborators needed information, not spectacle. V2 starts from the opposite philosophy. Every physics engine removed. Navigation made instant. The monochromatic palette chosen so that project imagery — not the shell — carries colour. The site ages like a document, not a demo. A system built to last, not to impress for thirty seconds.',
-        images: [
-          '/assets/portfolio/portfolio_current_homepage_1777819179444.png'
-        ],
+        title: 'Custom Pre-Rendering with Puppeteer',
+        body: 'I didn’t want the overhead of Next.js, but I wanted the SEO and speed of static HTML. I built a custom `prerender.js` script that spins up a Chromium instance, navigates to every route, and scrapes the rendered content into a static file. This "local-first SSG" approach keeps the bundle light and the first paint instantaneous, regardless of the user’s connection.',
+        images: ['/assets/portfolio/portfolio_hero_section_1777819291389.png'],
         layout: 'full'
       },
       {
-        title: 'Project Archive — The Work Index',
-        body: 'The Work page is titled PROJECT ARCHIVE — not a portfolio, not a showcase. An archive implies permanence, curation, and intent. The header uses the same Z-pattern as the homepage: label top-left, headline left, descriptor and count top-right. Below, projects display as large-format full-bleed cards with generous vertical spacing — each project treated as a singular object, not one item in a list. The label 6 SELECTED PROJECTS sets an expectation of quality over quantity before the work is even seen.',
+        title: 'The Folder Navigation System',
+        body: 'Navigation in V2 uses a "Stacking Effect" that mimics a physical folder system. When you move from Work to About, the previous page doesn’t just disappear—it slides and scales as if it’s being tucked away. This provides a spatial mental model for the site, making it feel like a unified physical object rather than a collection of disconnected URLs.',
         images: ['/assets/portfolio-work.jpg'],
         layout: 'full'
       },
       {
-        title: 'About — Systems and Humans',
-        body: 'The About page headline — SYSTEMS AND HUMANS — defines the design philosophy in two words. The split layout places biographical copy on the left and a portrait on the right, making the human behind the technical work explicitly visible. The page positions the practice at the intersection of software systems and human behavior — a framing that separates a systems-thinking product designer from a visual designer. A DOWNLOAD CV button is the singular CTA, making the conversion path unambiguous.',
+        title: 'Mathematical Grid Rigidity',
+        body: 'Every pixel is on a grid. Every margin, gutter, and type step is derived from a base unit of 4px. This mathematical rigidity ensures that the site feels "heavy" and intentional. Even on mobile, the aggressive typographic hierarchy and container metrics maintain the archival aesthetic, preventing the layout from collapsing into a generic vertical stack.',
         images: ['/assets/portfolio-about.jpg'],
         layout: 'full'
       }
@@ -450,7 +448,7 @@ export const FULL_PROJECTS: Project[] = [
         title: 'Source Input & Playlist Feed',
         body: 'The entry point is deliberately minimal — SPINPOD CORE_REV: 4.0.0 presents a single text input and a CONNECT_UNIT button. The user pastes a playlist link and boots the unit. No library browsing, no search, no recommendations. If you need to swap sources mid-session, the SIGNAL_OVERRIDE modal surfaces: paste a new SOURCE_PLAYLIST_URL and hit BOOT_FEED. The machine reloads the new source and continues. Every choice of what plays is made by the user, not inferred by an algorithm.',
         images: [
-          '/assets/spinpod/spinpod_landing_1777820434463.png',
+          '/assets/spinpod/spinpod_landing_1777819291389.png',
           '/assets/spinpod/spinpod_signal_override_modal_1777820736707.png'
         ],
         layout: 'grid-2'
@@ -463,16 +461,16 @@ export const FULL_PROJECTS: Project[] = [
     category: 'Productivity',
     year: '2025',
     thumbnail: '/assets/resume-editor-main.png',
-    shortDescription: 'A local-first, single-page resume builder with real-time typographic control and clean PDF export.',
-        context: 'Single Page Resume is a local-first utility designed for absolute privacy and typographic precision. The product was born from a refusal to accept the data-harvesting models of mainstream resume builders. By processing everything on the client side, I ensured that a candidate’s most sensitive professional data never leaves their machine. The interface is a split-panel composition: a granular control sidebar on the left and a pixel-perfect A4 preview on the right, providing a sub-millisecond feedback loop for every adjustment.',
-    brief: 'The brief was to engineer a resume editor that functions like a professional instrument. Key requirements included: three calibrated density modes (Comfy, Compact, Dense), six curated font pairings tested for ATS compatibility, and mm-level margin controls. The tool had to solve the "overflow problem"—visually enforcing a single-page constraint while providing the tools (like section toggles and density shifts) to make that constraint workable for any experience level.',
-    goal: 'My goal was to democratise high-end editorial typesetting for job seekers. I wanted to build a tool where the user spends less time fighting with formatting and more time refining their narrative. By establishing a "Single Source of Truth" JSON model, I aimed to provide a 1:1 match between the browser preview and the final PDF export—eliminating the "layout shift" that plagues most web-based document tools.',
-    problem: 'Existing resume builders are either too restrictive (templates you can’t tweak) or too loose (word processors that break ATS parsing). Furthermore, cloud-based tools require users to hand over their entire professional history before they can even see a preview. This creates a massive privacy risk and a friction-filled experience for serious professionals who value their time and data security.',
-    process: 'I engineered the editor using a modular state architecture where typography, spacing, and content are handled as independent but reactive layers. The "Density System" was developed by mathematically scaling line-height, section-padding, and font-size in unison, allowing a user to "contract" a three-page draft into a single clean page with a single toggle. I used PDF-Lib for the final export engine, ensuring that all text remains selectable and searchable for automated recruitment systems.',
-    outcome: 'A production-grade utility deployed at singlepageresume.vercel.app. The tool offers three density presets, six font options spanning from Modern Serif to Humanist Sans, and full section visibility control. The "Exceeds one page" warning serves as a designer’s guide, ensuring that every export is professionally formatted for a single-page read. The project stands as a testament to local-first engineering and the power of constrained design.',
-    challenges: 'The primary technical challenge was achieving exact parity between CSS-rendered browser views and the final PDF-Lib export. Browser engines and PDF specifications handle font metrics and spacing differently. I had to build a custom mapping layer to translate web-based REM and EM units into the specific coordinate system used by the PDF engine to guarantee that "what you see is exactly what you get."',
-    tradeoffs: 'I traded "Infinite Templates" for "Guaranteed Quality." The tool opinionatedly enforces a single-column layout because it is the most reliable format for ATS systems and human readers alike. I also prioritised local storage over cloud sync, which means users are responsible for their own data, but in exchange, they get 100% privacy and a significantly faster interface.',
-    learnings: 'This project reinforced the value of opinionated design. By limiting the user’s choices to only "what works," I actually increased their creative efficiency. I also learned the intricacies of document engineering—how subtle changes in kerning and leading can affect the entire structural integrity of a single-page layout. It’s a project that taught me to respect the machine as much as the human reader.',
+    shortDescription: 'A local-first, privacy-driven resume builder with a mathematical density scaling system.',
+    context: 'I built Single Page Resume because I’m tired of tools that harvest your professional history just to give you a PDF. Most resume builders are data-traps disguised as utilities. This is a "local-first" product: your data never leaves your browser’s `localStorage`. No accounts, no database, no "sign up to download." It’s an editorial instrument designed for people who value privacy as much as they value clean typography. The split-panel interface provides a sub-millisecond feedback loop between granular controls and a pixel-perfect A4 preview.',
+    brief: 'The brief was to engineer a document editor that functions with the precision of Adobe InDesign but the accessibility of a web app. Key requirements: three mathematically calibrated density modes (Comfy, Compact, Dense), six ATS-optimized font pairings, and mm-level margin controls. The tool had to solve the "overflow problem" not through truncation, but through intelligent reflow logic that helps users make their experience fit a single, high-impact page.',
+    goal: 'Democratize high-end editorial typesetting for the job market. I wanted to build a tool where the user spends zero time "fighting the layout" and 100% of their time refining their narrative. By establishing a JSON-based "Single Source of Truth," I aimed to eliminate the layout shifts that plague Word or Google Docs, ensuring that the browser preview is a 1:1 match for the final PDF export.',
+    problem: 'The resume market is a binary of bad choices: either rigid templates that break when you add a bullet point, or loose word processors that fail ATS parsing. Furthermore, the cloud-sync model used by modern tools is a massive privacy risk for something as sensitive as a resume. Job seekers are forced to hand over their data to companies that might sell it, just to get a basic document formatted.',
+    process: 'I engineered the editor using a reactive state model where typography, spacing, and content are independent layers. The "Density System" was the most complex part—it uses a mathematical scaling factor (based on REMs) that shrinks line-height, padding, and font-size in unison. This allows a user to "contract" a 1.2-page draft into a perfect 1.0-page resume with a single toggle. I used PDF-Lib for the export engine, building a custom mapping layer to translate CSS coordinates into the PDF’s point-based coordinate system.',
+    outcome: 'A production-grade utility at singlepageresume.vercel.app that has helped users generate thousands of documents without ever storing a single byte of their data. The tool offers a suite of "Guaranteed Quality" controls: from serif/sans font pairings to section-visibility toggles. It’s a testament to the fact that you don’t need a backend to build a high-utility product if you trust the power of the client side.',
+    challenges: 'Achieving "Wysiwyg" parity between a browser (CSS) and a PDF (PDF-Lib) is an engineering nightmare. Browsers handle font metrics and leading differently than the PDF spec. I had to build a custom normalization layer to ensure that if a line of text fits in the preview, it fits in the export. Another challenge was the "Local-First" state management—handling large JSON blobs in `localStorage` while maintaining a 60fps editing experience on lower-end hardware.',
+    tradeoffs: 'I traded "Infinite Choice" for "Guaranteed Success." The tool opinionatedly enforces a single-column layout because it’s the most reliable for both ATS systems and human readers. I also prioritized local storage over cloud sync. While this means the user is responsible for their own data (no "lost password" recovery), the tradeoff is total privacy and a significantly faster, more responsive interface.',
+    learnings: 'Opinionated design is a superpower. By limiting the user’s choices to only "what works," you actually increase their creative speed. I also deepened my understanding of document engineering—the subtle relationship between kerning, leading, and structural integrity. This project taught me that "User Agency" and "Privacy" are the two most important features you can build into a tool, even if they don’t show up on a marketing checklist.',
     images: [
       '/assets/resume-editor-main.png',
       '/assets/resume/dense_layout.png',
@@ -480,29 +478,29 @@ export const FULL_PROJECTS: Project[] = [
       '/assets/resume/visibility_toggle.png',
       '/assets/resume/editing_mode.png'
     ],
-    tags: ['Next.js', 'Typescript', 'Design Systems'],
-    technologies: ['Next.js 15', 'Tailwind v4', 'PDF-Lib'],
-    client: 'Personal Project',
+    tags: ['Local-First', 'Next.js 15', 'PDF Engineering', 'Tailwind 4'],
+    technologies: ['Next.js 15', 'Tailwind v4', 'PDF-Lib', 'TypeScript'],
+    client: 'Self-Initiated',
     role: 'Product Engineer',
-    roleDetail: 'Designed and engineered the full split-panel editor, PDF export pipeline, and typography system.',
-    metrics: ['Zero-Account Tool', 'Local-First Privacy', 'ATS-Safe PDF Export'],
-    annotations: ['Deployed: singlepageresume.vercel.app', 'Client-side Only'],
+    roleDetail: 'Architected the density scaling system and the CSS-to-PDF mapping engine.',
+    metrics: ['Zero-Data Harvesting', '100% Client-Side', 'ATS-Safe Output'],
+    annotations: ['Deployed: singlepageresume.vercel.app', 'Local-First Build'],
     sections: [
       {
-        title: 'Precision Typesetting Panel',
-        body: 'The editor sidebar is designed as a professional instrument panel. It provides granular sliders for line spacing, letter spacing, and section spacing, alongside numeric margin controls that update the A4 preview in real-time. The goal was to provide the level of control found in Adobe InDesign but within a focused, single-purpose web utility.',
-        images: ['/assets/resume/editing_mode.png'],
-        layout: 'full'
-      },
-      {
-        title: 'Density & Reflow Logic',
-        body: 'The core of the product is the Density Toggle (Comfy / Compact / Dense). This system doesn’t just shrink text; it mathematically recalibrates the entire document’s hierarchy to ensure that even a dense, high-experience resume maintains elite readability and professional whitespace balance.',
+        title: 'Reactive Density Engine',
+        body: 'The "Density System" (Comfy / Compact / Dense) isn’t just a simple font-size toggle; it’s a mathematical scaling engine. By adjusting the base REM unit of the preview container, every child element—from the line-height of a bullet point to the vertical padding between sections—recalibrates in unison. This allows a user to "contract" a document that slightly exceeds one page into a perfect A4 fit without breaking the professional typographic hierarchy.',
         images: ['/assets/resume/dense_layout.png'],
         layout: 'full'
       },
       {
-        title: 'Dynamic Visibility & Constraints',
-        body: 'To help users manage the single-page constraint, I implemented per-section visibility toggles. This allows candidates to hide "Projects" or "Skills" to see how the remaining content reflows, enabling them to make deliberate editorial choices without deleting their data. The "Exceeds one page" warning provides the final layer of professional guidance.',
+        title: 'Precision Typesetting Controls',
+        body: 'The editor provides a professional-grade typography panel, allowing users to switch between curated font pairings like "Modern Serif" and "Clean Sans." Beyond simple font choice, I implemented granular sliders for line spacing, letter spacing, and margin control. This level of precision ensures that job seekers can fine-tune their document’s "grey value"—the overall visual density of the page—to match their specific experience level.',
+        images: ['/assets/resume/serif_typography.png'],
+        layout: 'full'
+      },
+      {
+        title: 'Dynamic Visibility & Editorial Choice',
+        body: 'To help users manage the strict single-page constraint, I built a visibility toggle system. Using eye-icons in the sidebar, users can instantly hide or show sections like "Summary" or "Projects" to see how the remaining content reflows. This encourages a deliberate editorial process, helping candidates prioritize their most relevant experience for a specific role without deleting their underlying data.',
         images: ['/assets/resume/visibility_toggle.png'],
         layout: 'full'
       }
