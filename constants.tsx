@@ -14,7 +14,7 @@ export const PROJECTS: Project[] = [
   {
     id: 'vouchr',
     title: 'Vouchr',
-    category: 'Web Platform',
+    category: 'Web Development',
     year: '2025',
     thumbnail: '/assets/vouchr/thumbnail.png',
     shortDescription: 'A substitute marketing platform empowering users through group buying and collaborative deal-making.',
@@ -23,10 +23,12 @@ export const PROJECTS: Project[] = [
     metrics: ['+22% Task-Completion Rate'],
     client: 'University of Melbourne - Capstone',
     images: [
-      '/assets/vouchr/figma_1.png',
-      '/assets/vouchr/figma_2.png',
-      '/assets/vouchr/figma_3.png',
-      '/assets/vouchr/figma_4.png'
+      '/assets/vouchr/vouchr_landing.png',
+      '/assets/vouchr/vouchr_buyer_dashboard.png',
+      '/assets/vouchr/vouchr_buyer_group_details.png',
+      '/assets/vouchr/vouchr_buyer_create_group.png',
+      '/assets/vouchr/vouchr_seller_dashboard.png',
+      '/assets/vouchr/vouchr_retailer_dashboard.png'
     ],
     context: 'Vouchr was developed as a capstone project by a 5-person agile team. It operates as a substitute marketing platform, enabling users to join buying groups and leverage collective purchasing power to negotiate discounts directly from independent sellers.',
     problem: 'Individual consumers lack the purchasing power to access wholesale pricing, while small retailers struggle to secure guaranteed minimum sales volumes without significant upfront marketing costs. We needed to bridge this gap through a unified, intuitive marketplace.',

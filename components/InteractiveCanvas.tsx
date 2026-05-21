@@ -41,7 +41,7 @@ const WordFlipper = () => {
 };
 
 // ─── Component: Project Grid Item ────────────────────────────────────────
-const ProjectGridItem = ({ project, delay = 0 }: { project: any; delay?: number }) => (
+const ProjectGridItem: React.FC<{ project: any; delay?: number }> = ({ project, delay = 0 }) => (
   <m.div 
     initial={{ opacity: 0, y: 15 }}
     animate={{ opacity: 1, y: 0 }}

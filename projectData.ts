@@ -2,6 +2,73 @@ import { Project } from './types';
 
 export const FULL_PROJECTS: Project[] = [
   {
+    id: 'vouchr',
+    title: 'Vouchr',
+    category: 'Web Development',
+    year: '2025',
+    thumbnail: '/assets/vouchr/thumbnail.png',
+    shortDescription: 'A substitute marketing platform empowering users through group buying and collaborative deal-making.',
+    context: 'Vouchr was developed as a capstone project by a 5-person agile team. It operates as a substitute marketing platform, enabling users to join buying groups and leverage collective purchasing power to negotiate discounts directly from independent sellers.',
+    brief: 'The brief was to engineer a responsive, real-time group-buying web platform that automates voucher issuance and handles concurrent commitments securely. Core criteria included real-time inventory and deal sync, JWT-based user authentication, role-based buyer/seller dashboards, and an architecture ready for Dockerized scaling.',
+    goal: 'Our primary goal was to minimize cognitive friction for collective bargain hunters while optimizing volume conversions for local merchants. By introducing a visual progression bar on campaigns, a dual-role dashboard layout, and a backend-verified voucher generation loop, we aimed to make group negotiation feel immediate, safe, and transparent.',
+    problem: 'Individual consumers lack the purchasing power to access wholesale pricing, while small retailers struggle to secure guaranteed minimum sales volumes without significant upfront marketing costs. We needed to bridge this gap through a unified, intuitive marketplace.',
+    process: 'As Lead Designer and Scrum Master, I managed the end-to-end product lifecycle in Jira, aligning sprint goals and backlog priorities. I designed the complete user journey and UI inside Figma—establishing a clear Z-pattern scan path and modern forms—and co-engineered the FastAPI backend, implementing Pydantic data schemas, SQLite transaction locking, and WebSocket channels.',
+    outcome: 'We successfully delivered a high-performance web platform featuring live WebSocket-driven deal updates and automated secure voucher generation. Through rigorous heuristic audits and usability testing, we verified a 22% improvement in the core group-joining and commitment task completion rate, offering a seamless experience from onboarding to voucher generation.',
+    challenges: 'The chief technical challenges were preventing race conditions during concurrent user commits and managing state consistency when WebSocket client connections dropped. We solved this by using database transaction isolation levels in SQLite and a connection manager that recovers missed group-state broadcasts on reconnect.',
+    tradeoffs: 'We chose SQLite over PostgreSQL for local testing to simplify environment spin-up and ensure rapid verification during sprints. This traded off concurrent write speed under heavy write loads but dramatically improved test cycle speeds, backed by clean migration configurations (SQLAlchemy) to ease future production DB shifts.',
+    learnings: 'Vouchr taught me the importance of robust input validation at the API boundary using Pydantic, preventing downstream SQL injection and garbage data entry. It also reinforced that building features for distinct user roles (Buyers vs. Sellers) requires separate dashboard layouts tailored to their specific mental models and goals.',
+    images: [
+      '/assets/vouchr/vouchr_landing.png',
+      '/assets/vouchr/vouchr_buyer_dashboard.png',
+      '/assets/vouchr/vouchr_buyer_group_details.png',
+      '/assets/vouchr/vouchr_buyer_create_group.png',
+      '/assets/vouchr/vouchr_seller_dashboard.png',
+      '/assets/vouchr/vouchr_retailer_dashboard.png'
+    ],
+    tags: ['MERN Stack', 'Figma', 'Agile/Scrum', 'User Research'],
+    technologies: ['FastAPI', 'Python', 'React', 'TypeScript', 'WebSockets', 'SQLite'],
+    client: 'University of Melbourne - Capstone',
+    role: 'Lead Designer & Scrum Master',
+    roleDetail: 'Managed sprints and product backlog in Jira; designed user flows, responsive UI, and co-engineered the FastAPI REST and WebSocket controllers.',
+    metrics: ['+22% Task-Completion Rate', 'Real-time WebSocket Sync', 'Database-Locked Commitments', 'Secure Automated Voucher Issuance'],
+    annotations: ['Group Buying Redefined', 'FastAPI WebSockets Architecture'],
+    processImages: [
+      '/assets/vouchr/vouchr_buyer_create_group.png',
+      '/assets/vouchr/vouchr_buyer_group_details.png'
+    ],
+    outcomeImages: [
+      '/assets/vouchr/vouchr_buyer_dashboard.png',
+      '/assets/vouchr/vouchr_seller_dashboard.png'
+    ],
+    figmaEmbed: '<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fdesign%2FrhZvaJVg10trXxikEaDfhq%2FVOUCHR" allowfullscreen></iframe>',
+    sections: [
+      {
+        title: 'Platform Vision & Entry Flow',
+        body: 'The Vouchr platform welcomes users with a clean, high-contrast entrance page displaying immediate path choices. To maximize usability for first-time visitors, the system provides direct login access to simulated mock accounts representing Buyer, Seller, and Retailer roles. This design decision bypasses tedious sign-up procedures for verification, allowing users to jump straight into active buying dashboards.',
+        images: ['/assets/vouchr/vouchr_landing.png'],
+        layout: 'full'
+      },
+      {
+        title: 'Buyer Hub & Real-time Savings Campaigns',
+        body: 'The Buyer dashboard leverages a structured layout grouping joined campaigns, featured savings, and recommended buying groups. Each campaign card displays critical details: product image, target group size, goal unit price, current member progress, and local region. Real-time WebSocket subscriptions push notifications and update member counters immediately without requiring a full browser refresh.',
+        images: ['/assets/vouchr/vouchr_buyer_dashboard.png'],
+        layout: 'full'
+      },
+      {
+        title: 'Campaign Details & Financial Commitments',
+        body: 'Opening a specific campaign reveals the product descriptions, ongoing seller offers, and active participant counts. To secure a wholesale deal, buyers must make a deposit commitment. The interface highlights active seller offers and includes quick-action buttons to join or leave the group. The system enforces validation logic, preventing buyers from joining full groups or making double commitments.',
+        images: ['/assets/vouchr/vouchr_buyer_group_details.png', '/assets/vouchr/vouchr_buyer_create_group.png'],
+        layout: 'grid-2'
+      },
+      {
+        title: 'Seller Dashboard & Market Opportunities',
+        body: 'Sellers access a dedicated dashboard displaying active buying groups seeking discounts. Opportunities are organized by category and geographic region, showing active buyer demand. The interface allows sellers to review buyer targets, formulate competitive proposals (defining minimum member thresholds and unit prices), and manage their active portfolios with zero latency.',
+        images: ['/assets/vouchr/vouchr_seller_dashboard.png', '/assets/vouchr/vouchr_retailer_dashboard.png'],
+        layout: 'grid-2'
+      }
+    ]
+  },
+  {
     id: 'synapse',
     title: 'Synapse',
     category: 'Interaction',
