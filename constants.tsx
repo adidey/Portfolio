@@ -12,6 +12,23 @@ import { Project, ResumeEntry, SkillGroup } from './types';
  */
 export const PROJECTS: Project[] = [
   {
+    id: 'vouchr',
+    title: 'Vouchr',
+    category: 'Web Platform',
+    year: '2024',
+    thumbnail: '/assets/vouchr/thumbnail.png',
+    shortDescription: 'A real-time group-buying platform that connects buyers to leverage collective purchasing power and negotiate bulk discounts from sellers.',
+    tags: ['React', 'FastAPI', 'WebSockets', 'Group Buying'],
+    role: 'Full Stack Engineer',
+    metrics: ['Real-time Deal Sync', 'Automated Voucher Issuance'],
+    client: 'COMP30022',
+    images: [],
+    context: 'Vouchr is a two-sided marketplace empowering individual consumers to form buying groups, enabling them to negotiate bulk discounts that are typically reserved for large retailers.',
+    problem: 'Individual consumers lack the purchasing power to access wholesale pricing, while independent sellers struggle to guarantee minimum sales volumes without significant upfront marketing costs.',
+    process: 'Developed using a modern React frontend and a Python FastAPI backend. The platform implements robust local credential management, real-time WebSocket connections for live group updates, and a rigorous state machine to manage deal lifecycles from creation through to automated voucher issuance.',
+    outcome: 'A fully functional prototype featuring distinct dashboards for buyers and sellers, secure local database management, and a dynamic voucher generation system upon meeting collective commitment thresholds.'
+  },
+  {
     id: 'synapse',
     title: 'Synapse',
     category: 'Interaction',
