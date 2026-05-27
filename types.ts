@@ -5,6 +5,36 @@ export interface CaseSection {
   layout?: 'full' | 'grid-2' | 'grid-3' | 'wide';
 }
 
+export interface ABTest {
+  hypothesis: string;
+  controlLabel: string;
+  controlDesc: string;
+  variantLabel: string;
+  variantDesc: string;
+  metric: string;
+  controlValue: string;
+  variantValue: string;
+  improvement: string;
+  insight: string;
+  methodology: string;
+}
+
+export interface WCAGCriterion {
+  criterion: string;
+  level: 'A' | 'AA' | 'AAA';
+  status: 'pass' | 'fail' | 'manual';
+  note: string;
+}
+
+export interface WCAGAudit {
+  compliance: 'WCAG 2.2 AA' | 'WCAG 2.1 AA' | 'Partial';
+  contrastRatio: string;
+  focusManagement: string;
+  screenReaderSupport: string;
+  motionSafety: string;
+  criteria: WCAGCriterion[];
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -26,6 +56,8 @@ export interface Project {
   roleDetail?: string;
   metrics?: string[];
   technologies?: string[];
+  abTests?: ABTest[];
+  wcagAudit?: WCAGAudit;
   brief?: string;
   goal?: string;
   link?: string;
