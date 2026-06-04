@@ -15,7 +15,11 @@ import {
   Layers,
   Sparkles,
   TrendingUp,
-  Cpu
+  Cpu,
+  Beaker,
+  Eye,
+  CheckCircle,
+  Activity
 } from 'lucide-react';
 
 const ImageLightboxContext = React.createContext<(src: string) => void>(() => {});
@@ -153,6 +157,8 @@ const ProjectDetail: React.FC = () => {
     if (project.sections && project.sections.length > 0) sections.push('deep-dive');
     if (project.challenges || project.tradeoffs) sections.push('decisions');
     if (project.learnings) sections.push('reflection');
+    if (project.abTests && project.abTests.length > 0) sections.push('ab-testing');
+    if (project.wcagAudit) sections.push('accessibility');
 
     const observers = sections.map(id => {
       const el = document.getElementById(id);
@@ -195,7 +201,9 @@ const ProjectDetail: React.FC = () => {
     { id: 'process', label: '03 / Process' },
     ...(project.sections && project.sections.length > 0 ? [{ id: 'deep-dive', label: '04 / Deep Dive' }] : []),
     ...(project.challenges || project.tradeoffs ? [{ id: 'decisions', label: '05 / Decisions' }] : []),
-    ...(project.learnings ? [{ id: 'reflection', label: '06 / Reflection' }] : [])
+    ...(project.learnings ? [{ id: 'reflection', label: '06 / Reflection' }] : []),
+    ...(project.abTests && project.abTests.length > 0 ? [{ id: 'ab-testing', label: '07 / A/B Testing' }] : []),
+    ...(project.wcagAudit ? [{ id: 'accessibility', label: '08 / Accessibility' }] : [])
   ];
 
   return (
@@ -615,6 +623,165 @@ const ProjectDetail: React.FC = () => {
                               Lead Product Engineer & Designer
                             </span>
                           </div>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                )}
+
+                {/* 07 / A/B TESTING */}
+                {project.abTests && project.abTests.length > 0 && (
+                  <section id="ab-testing" className="scroll-mt-28 space-y-8 border-t border-[var(--border)] pt-16">
+                    <div className="flex items-center gap-3 text-[var(--accent)] font-bold text-[10px] uppercase tracking-[0.4em] mb-2">
+                      <Beaker size={14} /> 07 / A/B TESTING & VALIDATION
+                    </div>
+                    
+                    <h2 
+                      className="text-[32px] md:text-[44px] font-black uppercase tracking-tight text-[var(--ink)] leading-tight mb-4"
+                      style={{ fontFamily: "'Satoshi', sans-serif" }}
+                    >
+                      Empirical Validation
+                    </h2>
+
+                    <div className="space-y-12 pt-4">
+                      {project.abTests.map((test, index) => (
+                        <div key={index} className="border border-[var(--border)] rounded-lg overflow-hidden bg-[var(--surface)] shadow-soft">
+                          {/* Top: Hypothesis */}
+                          <div className="p-6 md:p-8 bg-[#111] text-[#f9f8f4] border-b border-[var(--border)]">
+                            <h4 className="text-[10px] uppercase tracking-[0.3em] text-[var(--accent)] font-black mb-3">HYPOTHESIS</h4>
+                            <p className="text-[15px] leading-relaxed font-medium">{test.hypothesis}</p>
+                          </div>
+
+                          {/* Middle: Control vs Variant */}
+                          <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-[var(--border)]">
+                            <div className="p-6 md:p-8 space-y-4">
+                              <span className="inline-block text-[10px] font-black tracking-widest text-[var(--muted)] uppercase border border-[var(--border)] px-2.5 py-1 rounded-full">Control</span>
+                              <h5 className="text-[14px] font-bold text-[var(--ink)] uppercase tracking-tight">{test.controlLabel}</h5>
+                              <p className="text-[13px] leading-relaxed text-[var(--muted)]">{test.controlDesc}</p>
+                              <div className="pt-4 mt-auto">
+                                <span className="text-[10px] uppercase tracking-widest text-[var(--muted)] font-black block mb-1">Result</span>
+                                <span className="text-[16px] font-black text-[var(--ink)]">{test.controlValue}</span>
+                              </div>
+                            </div>
+                            <div className="p-6 md:p-8 space-y-4 relative bg-[var(--accent)]/5">
+                              <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-[var(--accent)]/20 to-transparent pointer-events-none" />
+                              <span className="inline-block text-[10px] font-black tracking-widest text-[var(--accent)] uppercase border border-[var(--accent)]/30 px-2.5 py-1 rounded-full bg-[var(--accent)]/10">Variant</span>
+                              <h5 className="text-[14px] font-bold text-[var(--ink)] uppercase tracking-tight">{test.variantLabel}</h5>
+                              <p className="text-[13px] leading-relaxed text-[var(--muted)]">{test.variantDesc}</p>
+                              <div className="pt-4 mt-auto">
+                                <span className="text-[10px] uppercase tracking-widest text-[var(--muted)] font-black block mb-1">Result</span>
+                                <span className="text-[16px] font-black text-[var(--accent)]">{test.variantValue}</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Bottom: Insight & Improvement */}
+                          <div className="p-6 md:p-8 border-t border-[var(--border)] grid grid-cols-1 md:grid-cols-12 gap-8">
+                            <div className="md:col-span-4">
+                              <div className="bg-[var(--accent)]/10 text-[var(--accent)] p-4 rounded border border-[var(--accent)]/20 h-full flex flex-col justify-center">
+                                <span className="text-[10px] uppercase tracking-widest font-black mb-2 opacity-80">Key Improvement</span>
+                                <span className="text-[20px] font-black tracking-tight leading-none">{test.improvement}</span>
+                              </div>
+                            </div>
+                            <div className="md:col-span-8 space-y-4">
+                              <div>
+                                <h4 className="text-[10px] uppercase tracking-[0.3em] text-[var(--ink)] font-black mb-2">PSYCHOLOGICAL INSIGHT</h4>
+                                <p className="text-[14px] leading-relaxed text-[var(--muted)]">{test.insight}</p>
+                              </div>
+                              {test.methodology && (
+                                <div className="pt-2">
+                                  <h4 className="text-[10px] uppercase tracking-[0.3em] text-[var(--ink)] font-black mb-2">METHODOLOGY</h4>
+                                  <p className="text-[12px] leading-relaxed text-[var(--muted)] font-mono opacity-80">{test.methodology}</p>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </section>
+                )}
+
+                {/* 08 / ACCESSIBILITY (WCAG) */}
+                {project.wcagAudit && (
+                  <section id="accessibility" className="scroll-mt-28 space-y-8 border-t border-[var(--border)] pt-16">
+                    <div className="flex items-center gap-3 text-[var(--accent)] font-bold text-[10px] uppercase tracking-[0.4em] mb-2">
+                      <Activity size={14} /> 08 / ACCESSIBILITY & INCLUSION
+                    </div>
+                    
+                    <h2 
+                      className="text-[32px] md:text-[44px] font-black uppercase tracking-tight text-[var(--ink)] leading-tight mb-4"
+                      style={{ fontFamily: "'Satoshi', sans-serif" }}
+                    >
+                      WCAG Audit & Compliance
+                    </h2>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 pt-4">
+                      {/* Left: Summary Stats */}
+                      <div className="lg:col-span-1 space-y-6">
+                        <div className="p-6 border border-[var(--border)] rounded-lg bg-[var(--surface)] text-center shadow-soft">
+                          <span className="text-[10px] uppercase tracking-[0.3em] text-[var(--muted)] font-black block mb-2">TARGET COMPLIANCE</span>
+                          <span className="text-[28px] font-black text-[var(--ink)] tracking-tight">{project.wcagAudit.compliance}</span>
+                        </div>
+                        
+                        <div className="space-y-4">
+                          <div className="p-5 border border-[var(--border)] rounded-lg bg-[var(--surface)]">
+                            <div className="flex items-center gap-2 text-[var(--ink)] font-black text-[10px] uppercase tracking-widest mb-3">
+                              <Eye size={14} /> VISUAL CONTRAST
+                            </div>
+                            <p className="text-[13px] leading-relaxed text-[var(--muted)]">{project.wcagAudit.contrastRatio}</p>
+                          </div>
+                          
+                          <div className="p-5 border border-[var(--border)] rounded-lg bg-[var(--surface)]">
+                            <div className="flex items-center gap-2 text-[var(--ink)] font-black text-[10px] uppercase tracking-widest mb-3">
+                              <Activity size={14} /> FOCUS & KEYBOARD
+                            </div>
+                            <p className="text-[13px] leading-relaxed text-[var(--muted)]">{project.wcagAudit.focusManagement}</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Right: Detailed Criteria & Motion */}
+                      <div className="lg:col-span-2 space-y-6">
+                        <div className="p-6 md:p-8 border border-[var(--border)] rounded-lg bg-[var(--surface)] shadow-soft h-full">
+                          <h4 className="text-[11px] uppercase tracking-[0.3em] text-[var(--ink)] font-black mb-6">CRITERIA VALIDATION</h4>
+                          
+                          <div className="space-y-6">
+                            {project.wcagAudit.criteria.map((criterion, i) => (
+                              <div key={i} className="flex gap-4 items-start">
+                                <div className="mt-1">
+                                  {criterion.status === 'pass' ? (
+                                    <CheckCircle size={16} className="text-emerald-500" />
+                                  ) : criterion.status === 'manual' ? (
+                                    <Eye size={16} className="text-amber-500" />
+                                  ) : (
+                                    <X size={16} className="text-red-500" />
+                                  )}
+                                </div>
+                                <div>
+                                  <div className="flex items-center gap-2 mb-1">
+                                    <span className="text-[13px] font-bold text-[var(--ink)]">{criterion.criterion}</span>
+                                    <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-[var(--border)] text-[var(--muted)] uppercase tracking-wider">{criterion.level}</span>
+                                  </div>
+                                  <p className="text-[13px] leading-relaxed text-[var(--muted)]">{criterion.note}</p>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+
+                          {project.wcagAudit.screenReaderSupport && (
+                            <div className="mt-8 pt-6 border-t border-[var(--border)]">
+                              <h4 className="text-[10px] uppercase tracking-[0.3em] text-[var(--ink)] font-black mb-3">SCREEN READER SUPPORT</h4>
+                              <p className="text-[13px] leading-relaxed text-[var(--muted)]">{project.wcagAudit.screenReaderSupport}</p>
+                            </div>
+                          )}
+                          
+                          {project.wcagAudit.motionSafety && (
+                            <div className="mt-6 pt-6 border-t border-[var(--border)]">
+                              <h4 className="text-[10px] uppercase tracking-[0.3em] text-[var(--ink)] font-black mb-3">MOTION SAFETY</h4>
+                              <p className="text-[13px] leading-relaxed text-[var(--muted)]">{project.wcagAudit.motionSafety}</p>
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>
