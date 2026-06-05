@@ -57,6 +57,26 @@ export interface Project {
   metrics?: string[];
   technologies?: string[];
   abTests?: ABTest[];
+  heuristicEvaluations?: {
+    heuristic: string;
+    violation: string;
+    severity: 'Low' | 'Medium' | 'High' | 'Critical';
+    solution: string;
+    impact: string;
+  }[];
+  crowdSurveys?: {
+    objective: string;
+    participants: string;
+    keyFinding: string;
+    designPivot: string;
+  }[];
+  personas?: {
+    name: string;
+    role: string;
+    quote: string;
+    painPoints: string[];
+    goals: string[];
+  }[];
   wcagAudit?: WCAGAudit;
   brief?: string;
   goal?: string;

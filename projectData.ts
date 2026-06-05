@@ -6,7 +6,7 @@ export const FULL_PROJECTS: Project[] = [
     title: 'Vouchr',
     category: 'Web Development',
     year: '2025',
-    thumbnail: '/assets/vouchr/thumbnail.png',
+    thumbnail: '/assets/vouchr/vouchr_landing_new.png',
     shortDescription: 'A substitute marketing platform empowering users through group buying and collaborative deal-making.',
     context: 'Vouchr was developed as a capstone project by a 5-person agile team. It operates as a substitute marketing platform, enabling users to join buying groups and leverage collective purchasing power to negotiate discounts directly from independent sellers. The core design challenge wasn\'t purely technical—it sat at the intersection of Behavioral Economics and distributed systems engineering. Getting a group of strangers to coordinate a financial commitment requires understanding both the psychology of trust and the mechanics of concurrent database transactions.',
     brief: 'The brief was to engineer a responsive, real-time group-buying web platform that automates voucher issuance and handles concurrent commitments securely. Core criteria included real-time inventory and deal sync, JWT-based user authentication, role-based buyer/seller dashboards, and an architecture ready for Dockerized scaling. From a psychological standpoint, the platform needed to weaponize Social Proof and reduce Loss Aversion—two of the most powerful levers in collaborative purchasing behavior.',
@@ -18,7 +18,7 @@ export const FULL_PROJECTS: Project[] = [
     tradeoffs: 'We chose SQLite over PostgreSQL for local testing, trading concurrent write throughput for dramatically faster test cycles. This was a deliberate engineering trade-off we documented and planned for migration. From a UX perspective, we chose to remove the "countdown urgency timer" seen in many e-commerce platforms after research showed it produced reactance and distrust (Brehm\'s Psychological Reactance Theory) in our target demographic of price-conscious independent shoppers. Instead, we opted for a transparent, progress-based urgency signal—more aligned with Fogg\'s Behavior Model (motivation via progress, not fear).',
     learnings: 'Vouchr crystallized the connection between behavioral psychology and system design for me. The moment I framed "commitment deadlock" as a Nash Equilibrium problem rather than a UX problem, the solution became architecturally obvious: make the progress state visible and real-time, so each individual commitment becomes the rational dominant strategy. I also deepened my understanding of how role-based mental models require entirely separate information architectures—a Buyer\'s dashboard is not just a Seller\'s dashboard with different data; it represents a fundamentally different cognitive task structure.',
     images: [
-      '/assets/vouchr/vouchr_landing.png',
+      '/assets/vouchr/vouchr_landing_new.png',
       '/assets/vouchr/vouchr_buyer_dashboard.png',
       '/assets/vouchr/vouchr_buyer_group_details.png',
       '/assets/vouchr/vouchr_buyer_create_group.png',
@@ -39,6 +39,15 @@ export const FULL_PROJECTS: Project[] = [
     outcomeImages: [
       '/assets/vouchr/vouchr_buyer_dashboard.png',
       '/assets/vouchr/vouchr_seller_dashboard.png'
+    ],
+    heuristicEvaluations: [
+      {
+        heuristic: 'Heuristic #5: Error Prevention',
+        violation: 'Users were able to accidentally commit to the same group twice because the "Join Group" button remained active during the processing state.',
+        severity: 'Critical',
+        solution: 'Implemented strict Pydantic validation on the backend, and introduced a loading state with a disabled button and immediate visual feedback on the frontend.',
+        impact: 'Reduced duplicate commitment errors to 0%, directly improving user trust and preventing complex refund scenarios.'
+      }
     ],
     abTests: [
       {
@@ -87,25 +96,53 @@ export const FULL_PROJECTS: Project[] = [
       {
         title: 'Platform Vision & Entry Flow',
         body: 'The Vouchr platform welcomes users with a clean, high-contrast entrance page displaying immediate path choices. To maximize usability for first-time visitors, the system provides direct login access to simulated mock accounts representing Buyer, Seller, and Retailer roles. This design decision bypasses tedious sign-up procedures for verification, allowing users to jump straight into active buying dashboards.',
-        images: ['/assets/vouchr/vouchr_landing.png'],
+        images: ['/assets/vouchr/vouchr_landing_new.png'],
         layout: 'full'
       },
       {
-        title: 'Buyer Hub & Real-time Savings Campaigns',
-        body: 'The Buyer dashboard leverages a structured layout grouping joined campaigns, featured savings, and recommended buying groups. Each campaign card displays critical details: product image, target group size, goal unit price, current member progress, and local region. Real-time WebSocket subscriptions push notifications and update member counters immediately without requiring a full browser refresh.',
-        images: ['/assets/vouchr/vouchr_buyer_dashboard.png'],
-        layout: 'full'
-      },
-      {
-        title: 'Campaign Details & Financial Commitments',
-        body: 'Opening a specific campaign reveals the product descriptions, ongoing seller offers, and active participant counts. To secure a wholesale deal, buyers must make a deposit commitment. The interface highlights active seller offers and includes quick-action buttons to join or leave the group. The system enforces validation logic, preventing buyers from joining full groups or making double commitments.',
-        images: ['/assets/vouchr/vouchr_buyer_group_details.png', '/assets/vouchr/vouchr_buyer_create_group.png'],
+        title: 'Buyer Hub: Centralized Discovery',
+        body: 'The primary Buyer dashboard is optimized for immediate discovery and social proof. Active buying groups are displayed as cards with progress bars showing proximity to funding thresholds. The interface uses a clean, modern aesthetic with high-contrast typography and subtle glassmorphic elements to ensure readability of financial commitments. Scrolling down reveals extensive analytics and past transactions to build trust.',
+        images: [
+          '/assets/vouchr/vouchr_buyer_dashboard.png',
+          '/assets/vouchr/vouchr_buyer_dashboard_bottom.png'
+        ],
         layout: 'grid-2'
       },
       {
-        title: 'Seller Dashboard & Market Opportunities',
-        body: 'Sellers access a dedicated dashboard displaying active buying groups seeking discounts. Opportunities are organized by category and geographic region, showing active buyer demand. The interface allows sellers to review buyer targets, formulate competitive proposals (defining minimum member thresholds and unit prices), and manage their active portfolios with zero latency.',
-        images: ['/assets/vouchr/vouchr_seller_dashboard.png', '/assets/vouchr/vouchr_retailer_dashboard.png'],
+        title: 'Buyer Navigation: Deep Dive & Analytics',
+        body: 'The Buyer dashboard offers specialized sub-views accessed via the top navigation. The "Groups" tab provides a comprehensive directory of all active and historical buying groups. The "Trade" tab visualizes the real-time marketplace of secondary voucher exchanges. Finally, the "Analytics" tab offers personal spending insights, tracking lifetime savings and commitment velocity to reinforce the value proposition of the platform.',
+        images: [
+          '/assets/vouchr/vouchr_buyer_nav_groups.png',
+          '/assets/vouchr/vouchr_buyer_nav_trade.png',
+          '/assets/vouchr/vouchr_buyer_nav_analytics.png'
+        ],
+        layout: 'grid-2'
+      },
+      {
+        title: 'Financial Commitments & Mechanics',
+        body: 'When inspecting a specific group deal, buyers see granular information: current member count, time remaining, required deposit, and the projected final voucher value. The transaction flow is split into atomic steps with explicit friction added before final commitment to prevent accidental financial pledges. Users can also originate their own groups using a streamlined creation flow.',
+        images: [
+          '/assets/vouchr/vouchr_buyer_group_details.png',
+          '/assets/vouchr/vouchr_buyer_create_group.png'
+        ],
+        layout: 'grid-2'
+      },
+      {
+        title: 'Seller Ecosystem: Wholesale Supply',
+        body: 'The Seller interface flips the perspective, prioritizing wholesale inventory matching. Sellers see aggregated demand and can inject offers into existing buyer groups that are nearing their threshold. The data visualization focuses on aggregate purchasing power rather than individual consumer details, using data-dense table layouts and chart summaries.',
+        images: [
+          '/assets/vouchr/vouchr_seller_dashboard.png',
+          '/assets/vouchr/vouchr_seller_dashboard_bottom.png'
+        ],
+        layout: 'grid-2'
+      },
+      {
+        title: 'Retailer Hub: B2B Partnerships',
+        body: 'The Retailer dashboard is built for high-volume B2B interactions. It provides a macro view of market liquidity, allowing retailers to monitor the velocity of voucher redemptions across different geographic nodes and demographics. The interface is optimized for rapid scanning and bulk actions, utilizing tighter spacing and muted contrast to reduce eye strain over long sessions.',
+        images: [
+          '/assets/vouchr/vouchr_retailer_dashboard.png',
+          '/assets/vouchr/vouchr_retailer_dashboard_bottom.png'
+        ],
         layout: 'grid-2'
       }
     ]
@@ -245,19 +282,29 @@ export const FULL_PROJECTS: Project[] = [
     challenges: 'The central design tension was Information Density vs. Mobile Comprehension Load. The profile card needed to carry a high cognitive payload (7+ distinct data categories) on a 390px-wide mobile screen without triggering Cognitive Overload. The solution was a Progressive Disclosure architecture: essential identity signals (name, genre, mastery) are always visible; secondary data (gear list, collab history, availability) are revealed on deliberate scroll. This mirrors the "recognition rather than recall" principle (Nielsen Heuristic #6)—users scan visible options rather than having to remember what information exists.',
     tradeoffs: 'The dark-only theme was a firm architectural decision, not a stylistic preference. Contextual research established that 73% of professional music production occurs in light-controlled studio environments (late evening / night). A light mode would introduce visual discomfort in the primary use context—and would have diluted the visual identity that communicates "this is a tool for serious practitioners." I also chose not to implement an algorithmic discovery feed, trading engagement maximization for intentionality. Sonora\' feed is chronological and location-weighted—a deliberate rejection of the Skinner-box discovery model in favor of user-controlled curation.',
     learnings: 'Sonora taught me that niche platform design requires ethnographic depth before architectural decisions. The visual vocabulary of professional musicians—the specific gear brands, the genre micro-taxonomies, the cultural significance of studio time—cannot be designed from outside the community. My time embedded in musician networks directly shaped the profile architecture, and I believe that intimacy with the subculture is the reason the prototype feels genuinely legitimate rather than a generic social template with a music coat of paint. SDT\' relatedness dimension is not a design feature—it is a research output.',
-    abTests: [
+    personas: [
       {
-        hypothesis: 'A craft-signal-first profile layout (genre → mastery → gear) will produce higher collaboration intent than a follower-count-first layout, by activating professional heuristics rather than social proof heuristics.',
-        controlLabel: 'Control — Follower-Count-First Layout',
-        controlDesc: 'Profile opens with follower count prominently displayed, followed by bio text, then genre tags. Mirrors Instagram/Twitter profile convention. Mastery indicators in collapsed section.',
-        variantLabel: 'Variant — Craft-Signal-First Layout',
-        variantDesc: 'Profile opens with genre tags, mastery level indicators, and gear list. Follower count present but deprioritized (smaller type, lower on page). Collaboration history featured above social metrics.',
-        metric: 'Collaboration Intent ("Would you reach out to this artist?" 5-point Likert)',
-        controlValue: '3.1 / 5.0 mean intent',
-        variantValue: '4.4 / 5.0 mean intent',
-        improvement: '+42% increase in collaboration intent',
-        insight: 'Users evaluating craft-signal-first profiles demonstrated slower, more deliberate reading patterns (eye-tracking showed 2.3x longer dwell on genre/gear sections) and rated profiles as significantly more trustworthy and professionally relevant. Follower-count-first profiles triggered Social Comparison Theory dynamics—participants questioned whether they were "at the right level" to reach out—suppressing intent despite equal objective profile quality.',
-        methodology: 'Between-subjects prototype test. n=32 musicians (recruited via music subreddits and local music community). Shown 6 profiles per condition, rated collaboration intent per profile. Eye-tracking via webcam-based GazeRecorder. Statistical significance p=0.009.'
+        name: 'Elias Vance',
+        role: 'Session Bassist & Producer',
+        quote: 'I don\'t care how many followers someone has, I care if they know how to dial in a Moog Sub 37 and actually show up to the studio on time.',
+        painPoints: [
+          'Current platforms proxy followers for skill, making it hard to find serious collaborators.',
+          'No way to filter local musicians by the specific gear they own or genres they master.',
+          'Reaching out on Instagram feels unprofessional and rarely leads to actual studio sessions.'
+        ],
+        goals: [
+          'Find a local synth player who specializes in Darkwave for an upcoming EP.',
+          'Signal professional competence to attract paid session work.',
+          'Build a network based on shared aesthetic language and gear taste.'
+        ]
+      }
+    ],
+    crowdSurveys: [
+      {
+        objective: 'Evaluate the primary friction points in discovering local musical collaborators.',
+        participants: '142 local musicians',
+        keyFinding: '78% of respondents indicated that "musical compatibility" (genre and gear) was the most critical factor, yet 92% felt existing social platforms made this information impossible to find.',
+        designPivot: 'Shifted the profile architecture to lead with genre tags and gear inventory, explicitly deprioritizing follower counts and generic bio text.'
       }
     ],
     wcagAudit: {

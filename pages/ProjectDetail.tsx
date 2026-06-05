@@ -158,6 +158,9 @@ const ProjectDetail: React.FC = () => {
     if (project.challenges || project.tradeoffs) sections.push('decisions');
     if (project.learnings) sections.push('reflection');
     if (project.abTests && project.abTests.length > 0) sections.push('ab-testing');
+    if (project.heuristicEvaluations && project.heuristicEvaluations.length > 0) sections.push('heuristic-evaluation');
+    if (project.crowdSurveys && project.crowdSurveys.length > 0) sections.push('crowd-survey');
+    if (project.personas && project.personas.length > 0) sections.push('personas');
     if (project.wcagAudit) sections.push('accessibility');
 
     const observers = sections.map(id => {
@@ -199,12 +202,16 @@ const ProjectDetail: React.FC = () => {
     { id: 'overview', label: '01 / Overview' },
     { id: 'challenge', label: '02 / Challenge' },
     { id: 'process', label: '03 / Process' },
-    ...(project.sections && project.sections.length > 0 ? [{ id: 'deep-dive', label: '04 / Deep Dive' }] : []),
-    ...(project.challenges || project.tradeoffs ? [{ id: 'decisions', label: '05 / Decisions' }] : []),
-    ...(project.learnings ? [{ id: 'reflection', label: '06 / Reflection' }] : []),
-    ...(project.abTests && project.abTests.length > 0 ? [{ id: 'ab-testing', label: '07 / A/B Testing' }] : []),
-    ...(project.wcagAudit ? [{ id: 'accessibility', label: '08 / Accessibility' }] : [])
   ];
+  let nextIndex = 4;
+  if (project.sections && project.sections.length > 0) navItems.push({ id: 'deep-dive', label: `0${nextIndex++} / Deep Dive` });
+  if (project.challenges || project.tradeoffs) navItems.push({ id: 'decisions', label: `0${nextIndex++} / Decisions` });
+  if (project.learnings) navItems.push({ id: 'reflection', label: `0${nextIndex++} / Reflection` });
+  if (project.abTests && project.abTests.length > 0) navItems.push({ id: 'ab-testing', label: `0${nextIndex++} / A/B Testing` });
+  if (project.heuristicEvaluations && project.heuristicEvaluations.length > 0) navItems.push({ id: 'heuristic-evaluation', label: `0${nextIndex++} / Heuristics` });
+  if (project.crowdSurveys && project.crowdSurveys.length > 0) navItems.push({ id: 'crowd-survey', label: `0${nextIndex++} / Surveys` });
+  if (project.personas && project.personas.length > 0) navItems.push({ id: 'personas', label: `0${nextIndex++} / Personas` });
+  if (project.wcagAudit) navItems.push({ id: 'accessibility', label: `0${nextIndex++} / Accessibility` });
 
   return (
     <ImageLightboxContext.Provider value={setSelectedImage}>
@@ -694,6 +701,143 @@ const ProjectDetail: React.FC = () => {
                                   <p className="text-[12px] leading-relaxed text-[var(--muted)] font-mono opacity-80">{test.methodology}</p>
                                 </div>
                               )}
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </section>
+                )}
+
+                {/* 07 / HEURISTIC EVALUATION */}
+                {project.heuristicEvaluations && project.heuristicEvaluations.length > 0 && (
+                  <section id="heuristic-evaluation" className="scroll-mt-28 space-y-8 border-t border-[var(--border)] pt-16">
+                    <div className="flex items-center gap-3 text-[var(--accent)] font-bold text-[10px] uppercase tracking-[0.4em] mb-2">
+                      <Target size={14} /> HEURISTIC EVALUATION
+                    </div>
+                    
+                    <h2 
+                      className="text-[32px] md:text-[44px] font-black uppercase tracking-tight text-[var(--ink)] leading-tight mb-4"
+                      style={{ fontFamily: "'Satoshi', sans-serif" }}
+                    >
+                      UX Heuristics Analysis
+                    </h2>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
+                      {project.heuristicEvaluations.map((evalItem, index) => (
+                        <div key={index} className="p-6 md:p-8 border border-[var(--border)] rounded-lg bg-[var(--surface)] shadow-soft flex flex-col">
+                          <div className="flex items-center justify-between mb-4">
+                            <span className="text-[10px] uppercase tracking-[0.3em] text-[var(--accent)] font-black">Heuristic</span>
+                            <span className={`text-[10px] uppercase tracking-widest font-black px-2 py-1 rounded ${
+                              evalItem.severity === 'Critical' ? 'bg-red-500/10 text-red-500' :
+                              evalItem.severity === 'High' ? 'bg-amber-500/10 text-amber-500' :
+                              'bg-[var(--border)] text-[var(--muted)]'
+                            }`}>{evalItem.severity} Severity</span>
+                          </div>
+                          <h4 className="text-[16px] font-bold text-[var(--ink)] mb-3">{evalItem.heuristic}</h4>
+                          <p className="text-[13px] leading-relaxed text-[var(--muted)] mb-4"><strong>Violation:</strong> {evalItem.violation}</p>
+                          <div className="bg-[#111] text-[#f9f8f4] p-4 rounded mb-4 mt-auto">
+                            <span className="text-[10px] uppercase tracking-widest font-black text-[var(--accent)] block mb-1">Solution</span>
+                            <p className="text-[13px] leading-relaxed">{evalItem.solution}</p>
+                          </div>
+                          <div className="pt-2">
+                            <span className="text-[10px] uppercase tracking-widest font-black text-[var(--muted)] block mb-1">Impact</span>
+                            <p className="text-[13px] font-medium text-[var(--ink)]">{evalItem.impact}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </section>
+                )}
+
+                {/* 07 / CROWD SURVEY */}
+                {project.crowdSurveys && project.crowdSurveys.length > 0 && (
+                  <section id="crowd-survey" className="scroll-mt-28 space-y-8 border-t border-[var(--border)] pt-16">
+                    <div className="flex items-center gap-3 text-[var(--accent)] font-bold text-[10px] uppercase tracking-[0.4em] mb-2">
+                      <Target size={14} /> CROWD SURVEY & VALIDATION
+                    </div>
+                    
+                    <h2 
+                      className="text-[32px] md:text-[44px] font-black uppercase tracking-tight text-[var(--ink)] leading-tight mb-4"
+                      style={{ fontFamily: "'Satoshi', sans-serif" }}
+                    >
+                      User Survey Insights
+                    </h2>
+
+                    <div className="space-y-8 pt-4">
+                      {project.crowdSurveys.map((survey, index) => (
+                        <div key={index} className="flex flex-col md:flex-row gap-6 p-6 md:p-8 border border-[var(--border)] rounded-lg bg-[var(--surface)] shadow-soft items-center">
+                          <div className="md:w-1/3 space-y-4">
+                            <div>
+                              <span className="text-[10px] uppercase tracking-[0.3em] text-[var(--muted)] font-black block mb-1">Objective</span>
+                              <h4 className="text-[15px] font-bold text-[var(--ink)]">{survey.objective}</h4>
+                            </div>
+                            <div>
+                              <span className="text-[10px] uppercase tracking-[0.3em] text-[var(--muted)] font-black block mb-1">Participants</span>
+                              <span className="text-[24px] font-black text-[var(--accent)] tracking-tight">{survey.participants}</span>
+                            </div>
+                          </div>
+                          <div className="md:w-2/3 border-l-0 md:border-l border-t md:border-t-0 border-[var(--border)] pt-6 md:pt-0 pl-0 md:pl-8 space-y-6">
+                            <div>
+                              <span className="text-[10px] uppercase tracking-[0.3em] text-[var(--muted)] font-black block mb-2">Key Finding</span>
+                              <p className="text-[14px] leading-relaxed text-[var(--ink)] italic">"{survey.keyFinding}"</p>
+                            </div>
+                            <div className="bg-[var(--accent)]/5 border border-[var(--accent)]/20 p-4 rounded">
+                              <span className="text-[10px] uppercase tracking-[0.3em] text-[var(--accent)] font-black block mb-1">Design Pivot</span>
+                              <p className="text-[13px] leading-relaxed text-[var(--ink)] font-medium">{survey.designPivot}</p>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </section>
+                )}
+
+                {/* 07 / PERSONAS */}
+                {project.personas && project.personas.length > 0 && (
+                  <section id="personas" className="scroll-mt-28 space-y-8 border-t border-[var(--border)] pt-16">
+                    <div className="flex items-center gap-3 text-[var(--accent)] font-bold text-[10px] uppercase tracking-[0.4em] mb-2">
+                      <Target size={14} /> USER PERSONAS
+                    </div>
+                    
+                    <h2 
+                      className="text-[32px] md:text-[44px] font-black uppercase tracking-tight text-[var(--ink)] leading-tight mb-4"
+                      style={{ fontFamily: "'Satoshi', sans-serif" }}
+                    >
+                      Archetype Development
+                    </h2>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
+                      {project.personas.map((persona, index) => (
+                        <div key={index} className="p-6 md:p-8 border border-[var(--border)] rounded-lg bg-[var(--surface)] shadow-soft">
+                          <div className="mb-6 border-b border-[var(--border)] pb-4">
+                            <h4 className="text-[20px] font-black uppercase tracking-tight text-[var(--ink)]">{persona.name}</h4>
+                            <span className="text-[12px] uppercase tracking-widest text-[var(--accent)] font-bold">{persona.role}</span>
+                          </div>
+                          <p className="text-[14px] leading-relaxed text-[var(--muted)] italic mb-6">"{persona.quote}"</p>
+                          
+                          <div className="space-y-6">
+                            <div>
+                              <span className="text-[10px] uppercase tracking-[0.3em] text-[var(--ink)] font-black block mb-2">Pain Points</span>
+                              <ul className="space-y-2">
+                                {persona.painPoints.map((point, i) => (
+                                  <li key={i} className="flex items-start gap-2 text-[13px] text-[var(--muted)]">
+                                    <span className="text-red-500/70 mt-0.5">✕</span>
+                                    <span>{point}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                            <div>
+                              <span className="text-[10px] uppercase tracking-[0.3em] text-[var(--ink)] font-black block mb-2">Goals</span>
+                              <ul className="space-y-2">
+                                {persona.goals.map((goal, i) => (
+                                  <li key={i} className="flex items-start gap-2 text-[13px] text-[var(--muted)]">
+                                    <span className="text-[var(--accent)] mt-0.5">✓</span>
+                                    <span>{goal}</span>
+                                  </li>
+                                ))}
+                              </ul>
                             </div>
                           </div>
                         </div>
