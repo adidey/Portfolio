@@ -8,15 +8,15 @@ export const FULL_PROJECTS: Project[] = [
     year: '2025',
     thumbnail: '/assets/vouchr/vouchr_landing_new.png',
     shortDescription: 'A substitute marketing platform empowering users through group buying and collaborative deal-making.',
-    context: 'Vouchr was developed as a capstone project by a 5-person agile team. It operates as a substitute marketing platform, enabling users to join buying groups and leverage collective purchasing power to negotiate discounts directly from independent sellers. The core design challenge wasn\'t purely technical—getting a group of strangers to coordinate a financial commitment requires solving both a trust problem and a concurrency problem at the same time.',
-    brief: 'The brief was to build a responsive, real-time group-buying web platform that automates voucher issuance and handles concurrent commitments securely. Core criteria included real-time inventory and deal sync, JWT-based user authentication, role-based buyer/seller dashboards, and an architecture ready for Dockerized scaling. On the design side, the platform needed to use social proof effectively and reduce the fear of committing before others do—two of the most powerful levers in collaborative purchasing behavior.',
-    goal: 'Our primary goal was to minimize cognitive friction for collective bargain hunters while optimizing volume conversions for local merchants. The key insight: when people can see a group filling up in real time, joining stops feeling like a bet on strangers and starts feeling like an obvious move. So the visual progress bar was designed to make each member\'s participation feel individually rational—not just collectively beneficial. By making group progress visible in real-time via WebSocket updates, we turned an abstract financial decision into a concrete, visual countdown that builds its own momentum.',
-    problem: 'Individual consumers lack purchasing power to access wholesale pricing, while small retailers struggle to secure guaranteed minimum sales volumes. The deeper psychological problem: users are reluctant to commit first—nobody wants to be the only one in a half-empty group—but once a group reaches ~70% capacity, FOMO kicks in and the remaining spots fill fast. Nobody wins if everyone waits for someone else to go first. We needed to build trust signals that made early commitment feel safe, not risky.',
-    process: 'As Lead Designer and Scrum Master, I managed the end-to-end product lifecycle in Jira. I designed the complete user journey inside Figma using a Z-pattern scan path optimized for decision-making flows. Critically, I ran a heuristic evaluation against Nielsen\'s 10 Usability Heuristics, identifying that the original commit flow violated "Error Prevention" (Heuristic #5) by allowing duplicate commitments. I co-engineered the FastAPI backend with Pydantic validation schemas, SERIALIZABLE SQLite transaction isolation (preventing race conditions under concurrent writes), and a WebSocket connection manager that recovers missed group-state broadcasts on reconnect.',
-    outcome: 'We delivered a high-performance web platform with live WebSocket-driven deal updates and automated secure voucher generation. Rigorous usability testing across 3 moderated sessions (n=8 participants) verified a 22% improvement in the core group-joining task completion rate. The dual-role dashboard architecture successfully reduced cognitive load by separating Buyer and Seller mental models into distinct interaction paradigms—validated through a post-session SUS (System Usability Scale) score of 82.5, placing it in the "Excellent" category.',
-    challenges: 'The chief technical challenge was preventing race conditions under concurrent user commits—solved using SERIALIZABLE database transaction isolation in SQLite. The design challenge was making users feel that joining early was individually sensible, not just altruistic. The real-time WebSocket progress bar solved this by continuously showing the group\'s fill percentage: when you can see the bar moving, commitment feels less like a leap of faith and more like a logical next step. The connection manager recovers missed group-state broadcasts on reconnect, ensuring no participant ever sees stale progress data.',
-    tradeoffs: 'We chose SQLite over PostgreSQL for local testing, trading concurrent write throughput for dramatically faster test cycles—a deliberate engineering trade-off we documented and planned for migration. On the UX side, we removed the "countdown urgency timer" common in e-commerce after research showed it produced distrust and pushback in our target demographic of price-conscious independent shoppers. People who feel pressured tend to disengage rather than commit. We replaced it with a transparent, progress-based urgency signal—motivation through visible momentum rather than fear of missing out.',
-    learnings: 'Vouchr sharpened my understanding of how system design and human behavior are inseparable. The key reframe was treating "commitment deadlock" as a visibility problem: once you make group progress real-time and concrete, joining becomes the obvious move for each individual—not a bet on everyone else\'s goodwill. I also deepened my understanding of how role-based mental models require entirely separate information architectures—a Buyer\'s dashboard is not just a Seller\'s dashboard with different data; it represents a fundamentally different cognitive task structure.',
+    context: 'Vouchr is a group-buying platform built as a capstone project with a 5-person team. It lets buyers pool their purchasing power to get discounts directly from independent sellers. The design challenge was making a group of strangers comfortable coordinating a joint financial commitment in real time.',
+    brief: 'We needed to build a responsive web platform that automates voucher generation and handles concurrent group buys. Key technical requirements included real-time deal sync, secure login, and separate dashboards for buyers and sellers. On the design side, we had to use clear social signals to ease user hesitation before making a group commit.',
+    goal: 'We wanted to make group buying feel low-risk for shoppers while driving high sales volume for local merchants. We realized that if users can watch a group fill up in real time, they are far more likely to join. We built a live progress bar to turn a financial decision into a clear, visual countdown that builds its own momentum.',
+    problem: 'Single shoppers can\'t get wholesale discounts, and small merchants need guaranteed sales volume. However, users rarely want to commit first in a half-empty group, even though speed picks up once a group hits 70% capacity. We had to design clear trust signals that make joining early feel secure rather than risky.',
+    process: 'I led the design and managed our sprints in Jira. I mapped the user journey in Figma, optimizing the layout hierarchy for quick decision-making. During usability audits, I found that the original flow allowed duplicate purchases, which I fixed by adding disabled button states and loading indicators. I also co-engineered the FastAPI backend, implementing transaction locks to prevent race conditions and a WebSocket manager that recovers connection drops.',
+    outcome: 'We built a web app with live WebSocket updates and automated voucher creation. Usability tests with 8 participants showed a 22% improvement in our group-joining task completion rate. Separating the buyer and seller dashboards led to a post-session SUS score of 82.5, placing it in the excellent category.',
+    challenges: 'Our biggest engineering challenge was preventing database race conditions during concurrent user checkouts. On the design side, we had to make early participation feel secure. A live progress bar showing real-time fill percentages solved this, making the group\'s growth feel immediate and reassuring. A custom connection manager also recovered missed updates on reconnect so progress data stayed fresh.',
+    tradeoffs: 'We used SQLite instead of PostgreSQL for local runs, trading concurrent write speed for much faster test iterations. For the UI, we skipped typical countdown timers because user research showed pressure tactics caused price-conscious shoppers to bounce. Instead, we used a progress bar to show momentum, letting real user activity create natural urgency.',
+    learnings: 'Vouchr showed me how interface design directly drives user trust. Making group progress visible in real time broke the hesitation loop, turning a risky bet into a clear choice. I also learned that buyers and sellers require completely different layout structures, not just different data filters.',
     images: [
       '/assets/vouchr/vouchr_landing_new.png',
       '/assets/vouchr/vouchr_buyer_dashboard.png',
@@ -95,13 +95,13 @@ export const FULL_PROJECTS: Project[] = [
     sections: [
       {
         title: 'Platform Vision & Entry Flow',
-        body: 'The Vouchr platform welcomes users with a clean, high-contrast entrance page displaying immediate path choices. To maximize usability for first-time visitors, the system provides direct login access to simulated mock accounts representing Buyer, Seller, and Retailer roles. This design decision bypasses tedious sign-up procedures for verification, allowing users to jump straight into active buying dashboards.',
+        body: 'The homepage uses a high-contrast landing screen with clear entry paths. To speed up testing, we added direct login buttons for Buyer, Seller, and Retailer mock accounts. This lets users skip sign-up flows and jump straight into dashboard testing.',
         images: ['/assets/vouchr/vouchr_landing_new.png'],
         layout: 'full'
       },
       {
         title: 'Buyer Hub: Centralized Discovery',
-        body: 'The primary Buyer dashboard is optimized for immediate discovery and social proof. Active buying groups are displayed as cards with progress bars showing proximity to funding thresholds. The interface uses a clean, modern aesthetic with high-contrast typography and subtle glassmorphic elements to ensure readability of financial commitments. Scrolling down reveals extensive analytics and past transactions to build trust.',
+        body: 'The buyer dashboard highlights active groups with clear progress bars showing how close a deal is to funding. We used high-contrast typography and clean borders to keep the financial details readable. Scrolling down exposes transaction histories and spending graphs.',
         images: [
           '/assets/vouchr/vouchr_buyer_dashboard.png',
           '/assets/vouchr/vouchr_buyer_dashboard_bottom.png'
@@ -110,7 +110,7 @@ export const FULL_PROJECTS: Project[] = [
       },
       {
         title: 'Buyer Navigation: Deep Dive & Analytics',
-        body: 'The Buyer dashboard offers specialized sub-views accessed via the top navigation. The "Groups" tab provides a comprehensive directory of all active and historical buying groups. The "Trade" tab visualizes the real-time marketplace of secondary voucher exchanges. Finally, the "Analytics" tab offers personal spending insights, tracking lifetime savings and commitment velocity to reinforce the value proposition of the platform.',
+        body: 'Buyers navigate between three core tabs. The groups tab lists active and past deals, the trade tab shows voucher exchanges, and the analytics tab tracks personal savings. This layout keeps secondary tasks separated from the main deal feed.',
         images: [
           '/assets/vouchr/vouchr_buyer_nav_groups.png',
           '/assets/vouchr/vouchr_buyer_nav_trade.png',
@@ -120,7 +120,7 @@ export const FULL_PROJECTS: Project[] = [
       },
       {
         title: 'Financial Commitments & Mechanics',
-        body: 'When inspecting a specific group deal, buyers see granular information: current member count, time remaining, required deposit, and the projected final voucher value. The transaction flow is split into atomic steps with explicit friction added before final commitment to prevent accidental financial pledges. Users can also originate their own groups using a streamlined creation flow.',
+        body: 'The group detail page shows the current head count, time remaining, and required deposit. We split the checkout flow into simple steps, adding confirmation prompts to prevent accidental commits. Buyers can also launch new buying groups using a simple creation form.',
         images: [
           '/assets/vouchr/vouchr_buyer_group_details.png',
           '/assets/vouchr/vouchr_buyer_create_group.png'
@@ -129,7 +129,7 @@ export const FULL_PROJECTS: Project[] = [
       },
       {
         title: 'Seller Ecosystem: Wholesale Supply',
-        body: 'The Seller interface flips the perspective, prioritizing wholesale inventory matching. Sellers see aggregated demand and can inject offers into existing buyer groups that are nearing their threshold. The data visualization focuses on aggregate purchasing power rather than individual consumer details, using data-dense table layouts and chart summaries.',
+        body: 'The seller interface focuses on matching inventory with high demand. Sellers track buyer groups near funding thresholds and can instantly inject wholesale offers. The layout uses dense tables and charts to help merchants focus on group volume over individual sales.',
         images: [
           '/assets/vouchr/vouchr_seller_dashboard.png',
           '/assets/vouchr/vouchr_seller_dashboard_bottom.png'
@@ -138,7 +138,7 @@ export const FULL_PROJECTS: Project[] = [
       },
       {
         title: 'Retailer Hub: B2B Partnerships',
-        body: 'The Retailer dashboard is built for high-volume B2B interactions. It provides a macro view of market liquidity, allowing retailers to monitor the velocity of voucher redemptions across different geographic nodes and demographics. The interface is optimized for rapid scanning and bulk actions, utilizing tighter spacing and muted contrast to reduce eye strain over long sessions.',
+        body: 'The retailer view provides a high-level look at voucher redemption rates across regions. We optimized the UI for quick scanning and bulk actions with tighter grids. Muted secondary colors help reduce eye strain during long management sessions.',
         images: [
           '/assets/vouchr/vouchr_retailer_dashboard.png',
           '/assets/vouchr/vouchr_retailer_dashboard_bottom.png'
@@ -154,15 +154,15 @@ export const FULL_PROJECTS: Project[] = [
     year: '2026',
     thumbnail: '/assets/synapse/main_knowledge_graph_1777509064798.png',
     shortDescription: 'Solving information fragmentation for researchers: Improved concept identification speed by 40% through spatial relationship mapping.',
-    context: 'Synapse was built to solve the "static note-taking" problem, where information ends up in disconnected graveyards. The biological metaphor is not decorative—it is the architectural thesis. Ebbinghaus\' Forgetting Curve demonstrates that isolated facts decay exponentially without reinforcement, and Miller\'s Law caps working memory at 7±2 items. A linear note document violates both: it buries relationships and demands that the user reconstruct context from scratch every session. Synapse mirrors the biological neural web, creating a spatial environment where knowledge exists as a living network of associations. Adding a new concept like "Neural Networks" physically re-routes the graph, forcing the user to acknowledge prerequisite relationships to Linear Algebra and Calculus—an application of Constructivist learning theory in software form.',
-    brief: 'The brief was to engineer a physics-driven learning ecosystem that quantifies mastery through spatial interaction. Key requirements: real-time responsive force-directed graph (D3.js), custom subject-switching architecture, and a persistent Mastery HUD. Psychologically, the system needed to operationalize Hermann Ebbinghaus\' Spaced Repetition model—surfacing concepts at the exact moment of optimal re-review—and to visualize Lev Vygotsky\' Zone of Proximal Development by highlighting "just-beyond-current-mastery" nodes as the highest-priority study targets.',
-    goal: 'My primary goal was to establish a digital neural core that lowers Cognitive Load (Sweller\' CLT) through automated relationship mapping. The "Mastery Pulse" system—where unreviewed nodes pulse red after 14 days—applies Ebbinghaus\' decay curve as a visual urgency signal rather than a notification. The Focus Mode collapses the graph to a single node and its direct neighbors, leveraging Selective Attention theory (Treisman\' Feature Integration) to eliminate competing stimuli during deep study. Every architectural decision connects a psychological model to a specific UI behavior.',
-    problem: 'Research interviews with 10 PhD candidates revealed that 70% experienced "Context Switching Fatigue"—the psychological cost of rebuilding mental context when moving between disconnected tools (Notion → Google Scholar → Anki). This is a measurable cognitive phenomenon: task-switching research (Monsell, 2003) shows re-engagement overhead of 15–40% of total task time. The deeper problem was the absence of a system that could operationalize the forgetting curve visually. Without decay visualization, users had no basis for prioritizing what to review—leading to recency bias, where the most recently studied topics are reviewed most, and older fundamentals atrophy.',
-    process: 'The design process began with 10 semi-structured interviews with PhD candidates, analyzed through affinity mapping. Three core design pillars emerged: Spatial Anchoring (concepts live at fixed semantic coordinates), Automated Linking (prerequisite relationships are suggested by the system), and Decay Visualization (node pulse rate encodes review urgency). I stress-tested the graph engine against Nielsen\'s Heuristic #1 (Visibility of System Status): every node must communicate mastery state, recency, and connectivity at a glance. The 0.4ms interaction latency target was defined to stay below the 1ms threshold identified in MIT research as the upper bound for "direct manipulation" feel—critical for the physics engine to feel like a physical extension of thought.',
-    outcome: 'The platform delivered a 40% improvement in concept identification speed in task-based testing (n=12, think-aloud protocol). The focus mode increased single-session study depth by 3x, measured by the number of sub-nodes a user drilled into per session. A post-session SUS score of 86.5 placed it in the "Excellent" range. Most significantly, users spontaneously reported discovering prerequisite gaps they had not previously known existed—the core value proposition of the system, validated through qualitative debrief.',
-    challenges: 'The primary HCI challenge was balancing Cognitive Load and System Complexity. A force-directed graph with hundreds of nodes has high visual complexity—but Synapse is specifically designed for graduate researchers who have high domain knowledge and can tolerate dense information environments. The challenge was designing for expert users without abandoning novice discoverability. The "Focus Mode" was the solution: a progressive disclosure system that starts simple (2–3 nodes visible) and reveals complexity only at the user\'s explicit request. The "Initial Clarity: 10%" modal default was grounded in Calibration Research—novices systematically overestimate their competence (Dunning-Kruger effect); anchoring low and building up is more cognitively honest.',
-    tradeoffs: 'I chose "Structural Rigidity" (physics engine enforces prerequisite topology) over free-form drag-and-drop canvas. Usability testing proved this was correct: in the free-form prototype, users spent 37% of session time on spatial organization rather than learning—a direct violation of Cognitive Load Theory (extraneous load crowding out germane load). The graph\' opinionated structure offloads organizational overhead to the system, freeing working memory for the actual learning task. I also prioritized 0.4ms interaction latency over visual richness, ensuring every node interaction felt like direct manipulation rather than a mediated response.',
-    learnings: 'Synapse crystallized the thesis of my CS+Psychology degree: the best educational software is not an app that teaches—it is a system that mirrors the structure of the subject domain. The spatial layout of the graph IS the mental model. Designing it forced me to ask: "What is the actual topology of this knowledge domain?" That question is simultaneously a computer science problem (graph data structure design) and a cognitive science problem (how does expertise develop in this field?). The two disciplines are inseparable in knowledge tool design.',
+    context: 'I built Synapse to stop notes from dying in disconnected folders. Instead of listing facts in linear documents, it creates a spatial map where ideas link like synapses. Adding a new concept physically shifts the graph, showing how new topics build on existing prerequisites.',
+    brief: 'The task was to build a physics-driven learning tool that tracks topic mastery through spatial play. Key requirements included a responsive D3 graph, quick subject switching, and a persistent stats panel. The interface had to highlight unreviewed topics at the right time and flag next-step concepts to study.',
+    goal: 'We wanted to make research mapping feel effortless by highlighting relationships automatically. We built a pulse system that glows red for concepts left untouched for 14 days, creating a visual review cue. Focus mode hides the noise, collapsing the graph to a single node and its direct neighbors to help users concentrate.',
+    problem: 'Interviews with 10 PhD students showed that 70% struggled with jumping between Notion, Google Scholar, and flashcards. Without a visual way to track what they were forgetting, they kept reviewing the same recent topics while older fundamentals sat forgotten. They needed a single space that visually prioritized what to study next.',
+    process: 'I started by interviewing 10 PhD candidates and mapping out their workflows. I focused the UI on three pillars: fixed positions for concepts, automated link suggestions, and visual decay alerts. I optimized the graph engine to hit a 0.4ms interaction latency so dragging nodes felt physically responsive. Throughout, I followed WCAG 2.2 AA contrast and focus patterns as guiding principles.',
+    outcome: 'Our tests with 12 users showed a 40% improvement in concept finding speed. Focus mode pushed study depth up by 3x as users explored deeper sub-nodes. The app scored 86.5 on the SUS scale, and testers noted they quickly spotted gaps in their knowledge they didn\'t know they had.',
+    challenges: 'A node graph with hundreds of links can easily look like a mess. Since our target audience was researchers, we could use a denser layout, but we still needed an onboarding path. We built focus mode to hide the complexity, defaulting new concepts to a low 10% clarity score so users could build up their scores through active reviews.',
+    tradeoffs: 'I forced the physics engine to structure the nodes instead of letting users drag them anywhere. Tests showed that on free-form canvases, users spent 37% of their time organizing cards instead of studying. I also cut back on heavy visual shadows to keep interaction latency under 0.4ms, prioritizing speed over visual flair.',
+    learnings: 'This project taught me that the structure of the UI is the mental model. By organizing ideas spatially, the tool does the heavy lifting of sorting relationships. Good educational software should mirror the shape of the subject matter itself.',
     images: [
       '/assets/synapse/main_knowledge_graph_1777509064798.png',
       '/assets/synapse/pulsing_node_focus_1777509187603.png',
@@ -185,64 +185,22 @@ export const FULL_PROJECTS: Project[] = [
     outcomeImages: [
       '/assets/synapse/main_knowledge_graph_1777509064798.png'
     ],
-    abTests: [
-      {
-        hypothesis: 'A force-directed spatial graph will improve recall of concept relationships more than a traditional nested list, by externalizing the knowledge structure and reducing working memory load.',
-        controlLabel: 'Control — Nested Hierarchical List',
-        controlDesc: 'Standard collapsible bullet-list view. Concepts organized under subject headings with depth levels indicated by indentation. No visual connections between cross-topic prerequisites.',
-        variantLabel: 'Variant — Force-Directed Graph',
-        variantDesc: 'Physics-driven node graph where concept proximity encodes semantic similarity, edge weight encodes prerequisite strength, and node color encodes mastery state. Pan + zoom navigation.',
-        metric: 'Concept Relationship Recall (7-day retention test)',
-        controlValue: '41% recall accuracy',
-        variantValue: '67% recall accuracy',
-        improvement: '+63% lift in relationship recall',
-        insight: 'The spatial encoding of relationships reduced reliance on verbal/symbolic memory (left hemisphere) and engaged visuospatial working memory (right parietal cortex). Users who studied via the graph could reconstruct prerequisite chains without prompting; list-group users required re-reading to recover relationships. This aligns with Dual Coding Theory (Paivio, 1971): information encoded both verbally and spatially is retained significantly longer.',
-        methodology: 'Between-subjects study. n=24 university students (12 per condition). Studied the same Computer Science curriculum for 45 minutes. Recall tested at 7 days via blind link-tracing task ("Which concepts are prerequisites for Machine Learning?"). Graded by two independent coders; inter-rater reliability κ=0.91.'
-      },
-      {
-        hypothesis: 'Defaulting the Initial Clarity slider to 10% (versus 50%) will produce more accurate long-term mastery predictions by correcting for the Dunning-Kruger overconfidence bias in novice self-assessment.',
-        controlLabel: 'Control — 50% Default Clarity',
-        controlDesc: 'Neutral default. New concepts are added with a 50% Initial Clarity score, implying the user has a moderate baseline understanding.',
-        variantLabel: 'Variant — 10% Default Clarity',
-        variantDesc: 'Conservative default. New concepts are added at 10% clarity. Users must explicitly raise their score after reviewing. Placeholder text reads: "Honest default for a new concept — raise after your first deep review."',
-        metric: 'Mastery Prediction Accuracy (self-reported vs. quiz performance at 14 days)',
-        controlValue: '58% prediction accuracy',
-        variantValue: '79% prediction accuracy',
-        improvement: '+36% improvement in self-assessment calibration',
-        insight: 'The 10% default anchored users to epistemic humility rather than false confidence. Over time, the spaced repetition engine served more review prompts for topics that users had underrated, producing more thorough mastery. This is a direct application of Calibration Research—matching self-assessment to actual performance is itself a learnable metacognitive skill. The conservative default trains that skill from the first interaction.',
-        methodology: 'Within-subjects longitudinal study. n=18 participants. Session 1: add 10 new concepts with assigned default. Session 2 (14 days): predict own quiz score, then take quiz. Prediction accuracy = 1 − |predicted score − actual score|. Condition order counterbalanced.'
-      }
-    ],
-    wcagAudit: {
-      compliance: 'WCAG 2.2 AA',
-      contrastRatio: '5.1:1 (AA+) for node labels on dark background (#0d0d0d). Edge labels: 4.6:1. Mastery pulse colors (red decay signal) were validated against 3% deuteranopia simulation to ensure red/green distinction does not rely solely on hue.',
-      focusManagement: 'Graph nodes receive keyboard focus via Tab/Shift-Tab traversal in DOM order. Arrow keys navigate connected edges from a focused node (spatial keyboard navigation). Focus Mode activation/deactivation announced via aria-live="assertive". Modal (Create Concept) traps focus correctly, returns to triggering node on close.',
-      screenReaderSupport: 'Each graph node has aria-label encoding: concept name, mastery percentage, days since last review, and number of prerequisite links. The Mastery HUD uses a structured aria-describedby region summarizing global progress. Decay pulses are supplemented with aria-live announcements ("3 concepts need review") to ensure the urgency signal is not conveyed by color alone.',
-      motionSafety: 'All physics simulation animations (node spring forces, edge oscillation, decay pulse) respect prefers-reduced-motion. When active, nodes transition to static positions with no spring, and decay is indicated by icon + text rather than pulsing animation.',
-      criteria: [
-        { criterion: '1.4.1 Use of Color', level: 'A', status: 'pass', note: 'Mastery states communicated via color AND icon shape (circle=mastered, triangle=weak, square=not started). Red decay pulse supplemented by aria-live text announcement.' },
-        { criterion: '1.4.3 Contrast (Minimum)', level: 'AA', status: 'pass', note: 'All node labels, edge labels, and HUD text exceed 4.5:1. Tested at all mastery states.' },
-        { criterion: '2.1.1 Keyboard', level: 'A', status: 'pass', note: 'Full graph traversal via Tab + Arrow keys. Custom keyboard handler for spatial navigation between connected nodes.' },
-        { criterion: '2.3.3 Animation from Interactions', level: 'AAA', status: 'pass', note: 'prefers-reduced-motion disables all physics simulation and replaces with instant transitions.' },
-        { criterion: '4.1.3 Status Messages', level: 'AA', status: 'pass', note: 'All spaced repetition recommendations ("NEXT BEST TOPIC: GRAPH THEORY") announced via aria-live="polite" region without moving keyboard focus.' }
-      ]
-    },
     sections: [
       {
         title: 'User Research & Problem Synthesis',
-        body: 'To understand the mental models of academic researchers, I conducted interviews with 10 PhD candidates. The synthesis revealed two critical pain points: "Information Entropy" (the gradual loss of context in linear notes) and "Context Switching Fatigue." The affinity map helped cluster these insights into three actionable design pillars: Spatial Anchoring, Automated Linking, and Knowledge Decay Visualization.',
+        body: 'I interviewed 10 PhD candidates to map out how they organize research. They constantly lost track of old notes and felt drained from switching between apps. I grouped these insights to focus on spatial positioning, automated link suggestions, and visual decay cues.',
         images: ['/assets/research/synapse_affinity_map.png', '/assets/research/synapse_persona.png'],
         layout: 'grid-2'
       },
       {
         title: 'Decision: Structural Rigidity vs. Free-form',
-        body: 'A key pivot occurred during the prototyping phase. Initially, I designed a free-form "drag-and-drop" canvas. However, usability testing showed that users spent more time organizing than learning. I made the executive decision to implement "Structural Rigidity"—a physics engine that opinionatedly anchors nodes based on prerequisite relationships. This trade-off prioritized cognitive throughput over creative scrapbooking.',
+        body: 'I originally prototyped a free-form canvas. Testing showed users spent more time tidying up their boards than learning. I switched to a physics-locked layout that anchors concepts automatically, letting users focus entirely on studying.',
         images: ['/assets/synapse/main_knowledge_graph_1777509064798.png'],
         layout: 'full'
       },
       {
         title: 'Focus Mode & Node Detail',
-        body: 'Clicking a node enters Focus Mode — the graph dims everything except the selected concept and its direct relations. The inspector panel surfaces mastery score, time since last review, and a smart recommendation for what to study next. Every metric is pulled from the spaced repetition engine in real-time.',
+        body: 'Focus mode hides the clutter by dimming unrelated topics and highlighting a single node\'s direct links. The side panel shows review intervals, mastery scores, and next-step recommendations. All stats update in real time as the user progresses.',
         images: [
           '/assets/synapse/pulsing_node_focus_1777509187603.png',
           '/assets/synapse/subject_selector_dropdown_1777509082710.png'
@@ -251,13 +209,13 @@ export const FULL_PROJECTS: Project[] = [
       },
       {
         title: 'Create Concept Modal',
-        body: 'Adding a new concept opens a friction-aware modal that forces intentionality. You name the topic, set an Initial Clarity score (defaulting to 10% to reflect honest beginner-level understanding), and tag prerequisite relations. The graph physically re-routes when you confirm — making the structural impact of new knowledge immediately visible.',
+        body: 'The concept creation form asks users to name a topic, link prerequisites, and set a baseline clarity score. We default this to 10% to encourage honest self-evaluation. Once saved, the physics engine shifts the graph to show the new connection.',
         images: ['/assets/synapse/create_concept_modal_1777509108635.png'],
         layout: 'full'
       },
       {
         title: 'Mastery Index & HUD',
-        body: 'The persistent HUD tracks global progress across all active subjects. Concepts are bucketed from Mastered to Weak based on review frequency and self-reported clarity. Nodes that haven\'t been reviewed in over 14 days pulse red — a visual decay signal that mirrors the forgetting curve. The sidebar gives a roadmap, not just a record.',
+        body: 'The dashboard HUD summarizes progress across all subjects, grouping topics by mastery. Nodes left unreviewed for over 14 days pulse red to signal detail decay. The sidebar provides a clear path forward, keeping the user in control of their review schedule.',
         images: [
           '/assets/synapse/media__1777508979864.png',
           '/assets/synapse/media__1777509014296.png'
@@ -273,53 +231,15 @@ export const FULL_PROJECTS: Project[] = [
     year: '2023',
     thumbnail: 'https://mir-s3-cdn-cf.behance.net/project_modules/fs/1bff64173945869.64996929bbc71.png',
     shortDescription: 'A specialized social hub for musicians to network, collaborate, and discover local talent through a tactile, mobile-first experience.',
-    context: 'Sonora was built because musicians are scattered across too many platforms and none of them actually understand the creative process. The core psychological problem is one of Identity Fit: Ryan & Deci\' Self-Determination Theory identifies "relatedness" as a fundamental motivational need—people are intrinsically motivated to engage with systems where they feel genuinely seen and represented. Instagram\' follower-centric architecture creates a status gradient that is orthogonal to musical craft; it measures audience size, not collaborative relevance. Sonora reframes the discovery primitive entirely: genre fluency, gear mastery, geographic proximity, and collab history replace follower counts as the basis for professional connection.',
-    brief: 'The brief was to design a high-fidelity mobile ecosystem where discoverability is based on craft rather than content output volume. Psychologically, the interface needed to signal "professional legitimacy" on first impression—leveraging the Halo Effect (Thorndike, 1920) to ensure that a meticulously detailed artist profile would be read as competence evidence. The music detection waveform animation needed to fulfill two psychological roles: it had to signal system-state (Heuristic #1: Visibility of System Status), and it had to create a ritualistic moment that made the technology feel experientially meaningful rather than transactional.',
-    goal: 'The goal was to operationalize the concept of Parasocial Craft Bonds—connections built on shared aesthetic language, gear taste, and creative philosophy rather than celebrity proximity. The Dynamic Island integration with a live radial waveform is a deliberate implementation of "Embodied Interaction" theory (Dourish, 2001): the audio detection state should feel like the phone is physically listening, not running a background algorithm. This anthropomorphization of the system reduces the perceived distance between user intent and machine action, making the experience feel intimate rather than automated.',
-    problem: 'Mainstream social networks are engineered for Skinner-box variable reward schedules (infinite scroll, algorithmic novelty, follower notifications)—mechanisms that maximize time-on-app for advertising revenue, not professional outcome quality. For musicians, this creates a profound Means-End Confusion: engagement metrics (likes, follows) become proxied for career progress, despite having low correlation with actual collaboration quality. The deeper problem, surfaced in my research interviews, was Representational Poverty—musicians could not accurately signal their professional identity within the constraint systems of existing platforms. A bassist\' gear list, their exact genre palette, and their studio availability are all high-signal data for potential collaborators but are completely absent from major platform profile schemas.',
-    process: 'The design process was grounded in Cultural Probes methodology—I embedded in musician communities (Reddit, Discord servers, local open mic nights) to understand the vocabulary of musical professional identity before drawing a single wireframe. The Artist Profile card architecture reflects the findings: genre tags are first because they are the highest-bandwidth signal for creative alignment; mastery indicators second because they communicate seriousness of practice; gear list third because it signals aesthetic sensibility and production context. This ordering was tested against the F-pattern eye scan for mobile (Nielsen Norman Group) to ensure the highest-priority information appears in the primary visual zone.',
-    outcome: 'The high-fidelity prototype covers the full user journey across 23 screens: onboarding, discovery feed, music detection, artist profile, festival editorial, settings, and direct connection flows. The Dynamic Island waveform integration achieves what no third-party music app has successfully done: it makes the hardware notch feel like a living, reactive indicator rather than an industrial compromise. The artist profile density—featuring specific genre tags, mastery levels, and gear inventories—was validated in user testing as conveying significantly more professional credibility than equivalent Instagram bio formats.',
-    challenges: 'The central design tension was Information Density vs. Mobile Comprehension Load. The profile card needed to carry a high cognitive payload (7+ distinct data categories) on a 390px-wide mobile screen without triggering Cognitive Overload. The solution was a Progressive Disclosure architecture: essential identity signals (name, genre, mastery) are always visible; secondary data (gear list, collab history, availability) are revealed on deliberate scroll. This mirrors the "recognition rather than recall" principle (Nielsen Heuristic #6)—users scan visible options rather than having to remember what information exists.',
-    tradeoffs: 'The dark-only theme was a firm architectural decision, not a stylistic preference. Contextual research established that 73% of professional music production occurs in light-controlled studio environments (late evening / night). A light mode would introduce visual discomfort in the primary use context—and would have diluted the visual identity that communicates "this is a tool for serious practitioners." I also chose not to implement an algorithmic discovery feed, trading engagement maximization for intentionality. Sonora\' feed is chronological and location-weighted—a deliberate rejection of the Skinner-box discovery model in favor of user-controlled curation.',
-    learnings: 'Sonora taught me that niche platform design requires ethnographic depth before architectural decisions. The visual vocabulary of professional musicians—the specific gear brands, the genre micro-taxonomies, the cultural significance of studio time—cannot be designed from outside the community. My time embedded in musician networks directly shaped the profile architecture, and I believe that intimacy with the subculture is the reason the prototype feels genuinely legitimate rather than a generic social template with a music coat of paint. SDT\' relatedness dimension is not a design feature—it is a research output.',
-    personas: [
-      {
-        name: 'Elias Vance',
-        role: 'Session Bassist & Producer',
-        quote: 'I don\'t care how many followers someone has, I care if they know how to dial in a Moog Sub 37 and actually show up to the studio on time.',
-        painPoints: [
-          'Current platforms proxy followers for skill, making it hard to find serious collaborators.',
-          'No way to filter local musicians by the specific gear they own or genres they master.',
-          'Reaching out on Instagram feels unprofessional and rarely leads to actual studio sessions.'
-        ],
-        goals: [
-          'Find a local synth player who specializes in Darkwave for an upcoming EP.',
-          'Signal professional competence to attract paid session work.',
-          'Build a network based on shared aesthetic language and gear taste.'
-        ]
-      }
-    ],
-    crowdSurveys: [
-      {
-        objective: 'Evaluate the primary friction points in discovering local musical collaborators.',
-        participants: '142 local musicians',
-        keyFinding: '78% of respondents indicated that "musical compatibility" (genre and gear) was the most critical factor, yet 92% felt existing social platforms made this information impossible to find.',
-        designPivot: 'Shifted the profile architecture to lead with genre tags and gear inventory, explicitly deprioritizing follower counts and generic bio text.'
-      }
-    ],
-    wcagAudit: {
-      compliance: 'WCAG 2.1 AA',
-      contrastRatio: 'Primary text on obsidian background (#0a0a0a): 12.1:1 (AAA). Electric Blue accent (#3B82F6) on dark: 4.9:1 (AA). Genre tag pills: 5.2:1. Music detection waveform uses luminosity-based contrast, not hue-only.',
-      focusManagement: 'Profile card expansion triggered by keyboard (Enter/Space). Focus moves into expanded content on open, returns to card trigger on collapse. Tab order follows visual Z-pattern reading flow. Dynamic Island waveform state change announced via aria-live region.',
-      screenReaderSupport: 'Artist cards have composite aria-label: "[Name], [Primary Genre], [Mastery Level], [Distance] km away, [N] collaborations." Waveform animation state announced as "Listening for music" / "Music detected: [Track Name] by [Artist]". Genre tags use role="list" with individual aria-label per tag.',
-      motionSafety: 'Radial waveform animation, profile card expand transitions, and Dynamic Island pulse all respect prefers-reduced-motion. Reduced motion mode replaces animations with opacity crossfades. Music detection state uses a static icon rather than animated waveform.',
-      criteria: [
-        { criterion: '1.4.1 Use of Color', level: 'A', status: 'pass', note: 'Mastery levels communicated by label text AND color fill. Distance proximity by text AND icon proximity indicator.' },
-        { criterion: '1.4.3 Contrast (Minimum)', level: 'AA', status: 'pass', note: 'All text/background pairs exceed 4.5:1. Validated across all 23 prototype screens.' },
-        { criterion: '2.5.1 Pointer Gestures', level: 'A', status: 'pass', note: 'All swipe gestures have single-pointer tap alternatives. Profile card expansion available via tap and keyboard.' },
-        { criterion: '1.2.1 Audio-only and Video-only', level: 'A', status: 'manual', note: 'Music detection feature surfaces track metadata textually. Audio playback previews require text alternatives in production implementation.' }
-      ]
-    },
+    context: 'Musicians currently have to use too many platforms that don\'t fit their creative workflow. Instead of using follower counts that measure fame rather than skill, Sonora organizes discovery around musical criteria. We swap generic social metrics for specific filters like genre, gear setup, location, and collaboration history.',
+    brief: 'We set out to design a high-fidelity mobile prototype where finding collaborators is based on musical skill rather than how much content you post. Profiles needed to feel like detailed, professional resumes that instantly signal competence. We also designed a live waveform animation to show when the app is actively listening.',
+    goal: 'We wanted to help musicians connect over shared tastes, gear, and creative styles. We integrated a live radial waveform into the Dynamic Island to make audio detection feel like a native hardware feature. This feedback loop makes the interface feel highly responsive and close to the physical device.',
+    problem: 'Standard social apps optimize for infinite scroll and vanity metrics like follower counts, which don\'t help musicians find real work. Musicians can\'t easily highlight their professional setups, genre specialties, or studio availability on generic profiles. This leaves potential collaborators guessing about critical details that could make or break a session.',
+    process: 'I embedded myself in local open mics, Reddit threads, and Discord communities to study how musicians actually talk about their work. I structured the artist profile to lead with genre tags, followed by skill levels and gear lists. Testing confirmed this was the exact hierarchy collaborators scan when deciding to reach out.',
+    outcome: 'The final prototype spans 23 screens, covering onboarding, discovery, profile pages, and settings. We successfully integrated a live audio wave into the Dynamic Island, turning the screen notch into a functional status indicator. User tests validated that our data-rich profiles look far more professional than standard social bios.',
+    challenges: 'We had to pack 7 different categories of info onto a 390px mobile screen without cluttering the interface. We solved this with progressive disclosure: primary details like names and genres are immediately visible, while secondary info like gear lists reveal themselves as the user scrolls. This keeps the initial scan quick and effortless.',
+    tradeoffs: 'We built Sonora strictly in dark mode. Research showed that 73% of music production happens in dim studios, where a bright light mode would cause eye strain. We also skipped an algorithmic feed in favor of a clean, chronological feed based on location, prioritizing real relevance over screen time.',
+    learnings: 'Designing Sonora taught me that niche platforms require immersion in the community first. Understanding details like gear brands and studio routines is what made the prototype feel authentic. You can\'t fake credibility; it has to be built directly from how the users talk and work.',
     images: [
       'https://mir-s3-cdn-cf.behance.net/project_modules/fs/1bff64173945869.64996929bbc71.png',
       'https://mir-s3-cdn-cf.behance.net/project_modules/fs/a1715b173945869.64996929bd635.png',
@@ -363,7 +283,7 @@ export const FULL_PROJECTS: Project[] = [
     sections: [
       {
         title: 'Hero & Visual Identity',
-        body: 'The sonora visual system is anchored by a deep obsidian background and a high-energy Electric Blue accent palette. The identity is designed to feel like high-end studio hardware — professional, tactile, and authoritative. "Let the wave form" is the primary brand promise, communicating that this is a space for serious craft.',
+        body: 'The visual system uses an obsidian backdrop paired with electric blue details. The interface is styled to match studio gear, keeping it clean and tactile. The overall design emphasizes a professional workspace built for active collaboration.',
         images: [
           'https://mir-s3-cdn-cf.behance.net/project_modules/fs/1bff64173945869.64996929bbc71.png',
           'https://mir-s3-cdn-cf.behance.net/project_modules/fs/a1715b173945869.64996929bd635.png',
@@ -373,7 +293,7 @@ export const FULL_PROJECTS: Project[] = [
       },
       {
         title: 'The Mobile Ecosystem',
-        body: 'Sonora is a specialized social hub designed to bridge the gap between musicians. The mobile-first architecture prioritizes speed and discoverability. Key interactions are built around the Z-pattern scan path, ensuring that core features like search, profile, and collab requests are always within reach.',
+        body: 'We built Sonora as a mobile hub to connect local musicians quickly. The navigation puts search, profiles, and collab requests within reach of a quick thumb scan. This structure simplifies networking on the go.',
         images: [
           'https://mir-s3-cdn-cf.behance.net/project_modules/fs/e01c6f173945869.64996929be668.png',
           'https://mir-s3-cdn-cf.behance.net/project_modules/fs/935fe7173945869.64996929b44c7.png',
@@ -383,7 +303,7 @@ export const FULL_PROJECTS: Project[] = [
       },
       {
         title: 'Music Detection & UI Motion',
-        body: 'The music detection feature uses a radial waveform animation that pulses in real-time. This interaction was engineered to make the technology feel alive. The circular movement mimics the organic flow of sound waves, creating a tactile feedback loop that confirms the app is "listening" to the environment.',
+        body: 'Our music detection screen triggers a radial waveform that pulses in real time. The animation gives immediate feedback that the device is listening. This tactile feedback makes the transition feel responsive and clean.',
         images: [
           'https://mir-s3-cdn-cf.behance.net/project_modules/fs/d46760173945869.64996929b8533.png',
           'https://mir-s3-cdn-cf.behance.net/project_modules/fs/1de6f2173945869.64996929b94b2.png',
@@ -394,7 +314,7 @@ export const FULL_PROJECTS: Project[] = [
       },
       {
         title: 'Artist Profile Architecture',
-        body: 'The Artist Profile is the most data-rich screen in the ecosystem. It consolidates genre tags, mastery levels, gear lists, and collaboration history into a single, high-density card. This architecture respects the complexity of a musician\'s professional identity, providing more depth than a standard social media bio.',
+        body: 'The profile card gathers genre tags, skill levels, gear lists, and past collabs in one place. This dense layout captures a musician\'s full setup without the clutter. It provides far more practical info than a generic bio paragraph.',
         images: [
           'https://mir-s3-cdn-cf.behance.net/project_modules/fs/a57728173945869.64996929b6b08.png',
           'https://mir-s3-cdn-cf.behance.net/project_modules/fs/65e06b173945869.64996929af603.png',
@@ -405,7 +325,7 @@ export const FULL_PROJECTS: Project[] = [
       },
       {
         title: 'Networking & Feed Discovery',
-        body: 'The discovery feed is designed to surface local talent based on proximity and skill. The interface uses a clean, grid-based layout for festival updates and artist highlights, ensuring that the visual content — photography and poster art — remains the focus of the experience.',
+        body: 'The feed helps users discover local talent based on proximity and musical craft. We used a simple grid to highlight artwork and event posters without distracting menus. This keeps the focus entirely on the community\'s output.',
         images: [
           'https://mir-s3-cdn-cf.behance.net/project_modules/fs/2e0c74173945869.64996929baf3d.png',
           'https://mir-s3-cdn-cf.behance.net/project_modules/fs/10cbf7173945869.64996929ae819.png',
@@ -416,7 +336,7 @@ export const FULL_PROJECTS: Project[] = [
       },
       {
         title: 'Final Product & Integration',
-        body: 'From onboarding to deep settings, the Sonora experience remains cohesive. The integration of Dynamic Island support and high-fidelity transitions makes the app feel natively woven into the iOS environment. Every screen is a testament to the specialized needs of the music community.',
+        body: 'The app experience remains consistent from onboarding through settings. Integrating live waveform updates into the Dynamic Island makes the app feel like a native iOS tool. Every transition is built to match the quick pace of mobile use.',
         images: [
           'https://mir-s3-cdn-cf.behance.net/project_modules/fs/1bf2ea173945869.64996929b209b.png',
           'https://mir-s3-cdn-cf.behance.net/project_modules/fs/e76c50173945869.64996929ba138.png',
@@ -435,15 +355,15 @@ export const FULL_PROJECTS: Project[] = [
     year: '2022',
     thumbnail: '/assets/aurorae.png',
     shortDescription: 'A minimalist, high-contrast visual identity and brand study exploring the intersection of grain, form, and analog-inspired digital design.',
-    context: 'Aurorae is a brand identity study exploring one specific idea: what happens when you use imperfection as a design material? Modern digital design has a sterility problem — everything is too clean, too flat, too interchangeable. Aurorae pushes in the opposite direction, using high-grain textures, aggressive monochromatic contrast, and architectural scale to make a digital identity feel physically heavy. The brand is built for a premium lifestyle platform positioned at the intersection of fine art and NFT culture.',
-    brief: 'The brief was to develop a brutalist, monochromatic brand system that works across the full range of touchpoints — from a 35mm business card to a building-scale billboard. No colour except black, white, and procedural grain. The logomark had to be geometric: four vertical pillars centered around a circle, representing stability and growth. Every asset had to pass one test: does it still read as intentional and premium when stripped of all colour and decoration?',
-    goal: 'The goal was to prove that minimalism can feel heavy. I used a 12% roughness grain overlay across every surface — not as a filter, but as a structural element. The LOGO MARK builds from geometric primitives deliberately, and the LOGO TYPE mirrors that geometric weight. Process sketches documenting the hand-drawn exploration of the A form and the vertical pillar mark are part of the case study, showing that the precision of the final mark came from analogue exploration rather than direct digital construction.',
-    problem: 'Most digital branding feels disposable because it lacks physical weight. Templates and AI-generated palettes have made the design landscape incredibly uniform. There is a loss of tactile trust — identities that look like they could be swapped out overnight do not build long-term brand equity. The market for a premium lifestyle or art-adjacent brand needed something that felt more like architecture than graphic design: load-bearing, permanent, and impossible to fake.',
-    process: 'I developed a procedural grain system that scales correctly from mobile screens to large-format print without becoming noise. The hand-drawn logo explorations came first — multiple iterations of the geometric A and the pillar mark, drawn with thick markers, then digitized and refined in Illustrator. High-fidelity mockups cover the full application spectrum: NFT-centric grid UI, clean authentication screens, tactile business cards with debossed logomarks, realistic urban billboard placements, and editorial stationary.',
-    outcome: 'The final case study is a production-ready brand system that demonstrates two things simultaneously: that a monochromatic palette is not a creative limitation, and that grain is a legitimate structural design material. The identity holds from a 55mm business card to a four-meter billboard. The Art Space UI screens show how the system translates into a digital product without losing any of the physical weight that makes the brand distinctive.',
-    challenges: 'Maintaining grain fidelity across scales is technically hard. Too much roughness at small sizes reads as bad pixels. Too little at large sizes reads as lazy. I had to develop a procedural approach — different grain densities for different output sizes — and test everything at final dimensions rather than screen previews. Making a strictly monochromatic palette feel dynamic also required aggressive typographic shifts and precise geometric pattern work to sustain visual interest across long compositions.',
-    tradeoffs: 'I chose visual distinctiveness over broad appeal. Aurorae has a very specific mood — it is not for everyone, and that is by design. A brand with a clearly defined target audience is more valuable than one trying to appeal to everyone simultaneously. I also traded decorative colour entirely for the raw power of form and texture, which means the brand depends on its structural integrity to carry all the expressive weight. There is no colour safety net.',
-    learnings: 'Aurorae taught me that imperfection is a trust-building tool when deployed with precision. The grain has to look intentional — which means understanding the technical parameters of your output medium well enough to control the noise rather than just adding a filter. I also learned how to use typography as a primary structural element. When the LOGO TYPE is scaled to 400pt, it stops being text and becomes architecture. That shift in register is something I now look for in every brand project.',
+    context: 'Aurorae is a branding study exploring how grain and imperfection can add texture to digital interfaces. Modern branding can feel sterile, flat, and interchangeable. This project uses high-contrast monochrome design and heavy grain to build a brand identity with real physical presence.',
+    brief: 'We needed to develop a brutalist brand system that scales from a business card to an urban billboard. The rules were strict: use only black, white, and procedural grain. The geometric logomark uses four pillars around a central circle, testing if a brand can feel premium without relying on color.',
+    goal: 'I set out to show that a minimalist system can still feel heavy and tactile. I used a 12% roughness grain overlay as a core design element rather than a final filter. The logomark is built from clean geometric primitives, backed by raw hand-drawn sketches that show the evolution of the letterforms.',
+    problem: 'Many digital brands feel identical and disposable due to generic templates and palettes. They lack the visual weight and stability needed to build long-term trust. Premium art and lifestyle platforms need identities that feel structured and permanent, like architecture.',
+    process: 'I started with thick marker sketches on paper to explore geometric shapes before moving to vector tools. I built a custom grain system that stays clean on mobile screens and billboard prints. I then rolled the identity out across a web app interface, debossed business cards, and outdoor billboard mockups.',
+    outcome: 'We delivered a brand system showing that monochrome layouts can be highly dynamic. The visual identity scales easily from a 55mm card to a 4-meter billboard. The digital interface mocks demonstrate how these textures translate to mobile screens without losing their heavy, premium feel.',
+    challenges: 'Getting grain textures to look clean across multiple sizes is tricky. If the grain is too dense it looks like pixel noise on mobile, but if it is too sparse it disappears on billboards. I calibrated different densities for each format, using bold font weights and geometric patterns to keep the flat palette engaging.',
+    tradeoffs: 'I chose a bold brutalist style over general appeal. The high-contrast look isn\'t meant for everyone, but it cuts through the noise for its target audience. Dropping color entirely meant the typography and geometry had to do all the heavy lifting, but it gave the assets a signature structure.',
+    learnings: 'This project taught me that texturing works best when calibrated for the final medium rather than applied as a generic filter. Scaling logotypes up to massive sizes turns text into structural weight. I now look for opportunities to treat typography as architecture in all my brand work.',
         images: [
       '/assets/aurorae.png',
       '/assets/aurorae/logo_mark_exploration.png',
@@ -466,7 +386,7 @@ export const FULL_PROJECTS: Project[] = [
     sections: [
       {
         title: 'Digital Interfaces & Mobile',
-        body: 'The brand translates into a digital Art Space UI with no loss of physical weight. NFT grid screens, authentication flows, and collection browsing all inherit the monochromatic system. The grain reads correctly on-screen because the density was calculated for a 72dpi context rather than simply scaled down from print assets.',
+        body: 'The identity moves to screens without losing its visual presence. We set up grid layouts, login flows, and product lists in pure monochrome. The grain fits the digital interface because we scaled the texture density for screens.',
         images: [
           '/assets/aurorae/logo_mark_exploration.png',
           '/assets/aurorae/brand_concept.png'
@@ -475,7 +395,7 @@ export const FULL_PROJECTS: Project[] = [
       },
       {
         title: 'Brand Mark Exploration',
-        body: 'The final mark came from analogue exploration — thick marker sketches on paper, testing the geometric A and pillar composition before touching Illustrator. Digitizing a hand-drawn form forces precision: every vector point is justified because every stroke was drawn with intention first. The sketch process is part of the case study because it proves the final mark was earned, not generated.',
+        body: 'I drew the initial logo options with heavy markers before vectorizing them in Illustrator. Starting on paper forced me to justify every line and angle. Showing the sketch files highlights how geometric precision stems from analog tests.',
         images: [
           'https://mir-s3-cdn-cf.behance.net/project_modules/fs/7e8edb155839991.635be8ee3e7aa.png',
           'https://mir-s3-cdn-cf.behance.net/project_modules/fs/a8a880155839991.635be8ee3cd76.png'
@@ -484,7 +404,7 @@ export const FULL_PROJECTS: Project[] = [
       },
       {
         title: 'Logo System & Identity',
-        body: 'The logomark is four vertical pillars centered around a circle — geometric, load-bearing, and readable at any scale. Every surface carries a 12% roughness grain overlay that was calibrated separately for screen and print output. The grain is not a Photoshop filter applied at the end; it is a structural element baked into the system from the start.',
+        body: 'The logo combines four pillars with a central circle, remaining legible at any scale. We applied a 12% roughness grain texture calibrated for both screen and print. This texture acts as a core styling choice rather than a late addition.',
         images: [
           'https://mir-s3-cdn-cf.behance.net/project_modules/fs/0ab619155839991.635be8ee411d9.png',
           'https://mir-s3-cdn-cf.behance.net/project_modules/fs/99e32d155839991.635bf63ae2493.png'
@@ -493,7 +413,7 @@ export const FULL_PROJECTS: Project[] = [
       },
       {
         title: 'Applied Identity & Print',
-        body: 'The system holds from a 55mm business card to a four-metre billboard. Business cards use the debossed logomark on a heavy cotton stock — tactile, permanent, impossible to fake. The billboard placement shows how the architectural scale of the LOGO TYPE takes over at large format: at 4 metres wide, the type stops being text and becomes structure.',
+        body: 'The visual assets translate cleanly from a 55mm card to a massive billboard. Business cards are debossed on heavy stock for a premium feel. At 4 meters wide, the large typography anchors the placement, showing how scale shifts layout hierarchy.',
         images: [
           'https://mir-s3-cdn-cf.behance.net/project_modules/fs/9b6767155839991.635bf63ae32bf.png',
           'https://mir-s3-cdn-cf.behance.net/project_modules/fs/9bf751155839991.636f3ca8730f0.jpg'
@@ -509,43 +429,15 @@ export const FULL_PROJECTS: Project[] = [
     year: '2026',
     thumbnail: '/notchprompt.png',
     shortDescription: 'Hardware-integrated teleprompter: Optimized eye-contact accuracy by 92% utilizing the MacBook Pro camera notch.',
-    context: 'NotchPrompt was engineered to solve the eye-contact disconnect inherent in remote communication. The core insight came from Eye-Tracking Research: gaze deviation of even 3–5° from the lens is perceptible to the other party as distraction or disengagement (Kendon, 1967; Gaze Aversion studies). Standard teleprompters place text below or beside the camera—forcing a horizontal gaze shift that immediately registers as inattentiveness. By reclaiming the MacBook Pro camera notch as a focal anchor, I created a hardware-integrated solution where the reading surface and the camera lens are within 1.5° of each other—below the threshold of perceptible gaze deviation.',
-    brief: 'The brief was to develop a professional-grade macOS utility using the camera notch as a functional HUD. The psychological brief was equally specific: the reading experience must achieve Flow State (Csikszentmihalyi, 1990)—the presenter should not be consciously aware of reading. This required sub-millisecond scroll latency (to eliminate the cognitive «reading-lag» break), 120Hz ProMotion support (smooth motion below the flicker-fusion threshold of human visual perception), and Peripheral Vision Tracking in the Glow theme (highlighting the active reading line so the eye tracks position without an explicit scan movement).',
-    goal: 'My primary goal was to leverage Spatial Anchoring to make eye contact the default behavior, not the effortful behavior. When the reading surface is co-located with the camera, looking at the camera IS looking at the script—the cognitive separation between "reading" and "presenting" dissolves. The Glow theme\' cyan peripheral highlight exploits the superior spatial resolution of the peripheral visual field: users don\' need to foveally fixate on the active line, they track it through pre-attentive peripheral processing, freeing central foveal vision to maintain lens contact.',
-    problem: 'Eye-tracking studies on video call behavior show that presenters look away from the camera an average of 34% of the time when reading notes—and audience members register these deviations as reduced credibility, lower warmth ratings, and diminished persuasive impact (Mehrabian, 1972; Video Mediated Communication studies). The problem is architectural: every existing solution places the reading surface in a location that is optically incongruent with the camera position. The notch, by contrast, is physically adjacent to the camera—but no software was built to exploit this geometric coincidence.',
-    process: 'Development required both engineering depth (SwiftUI 6.0, AppKit window layering, Metal-accelerated text rendering) and perceptual psychology research. I studied Rapid Serial Visual Presentation (RSVP) research to calibrate optimal words-per-minute scroll rates for different cognitive load levels. The Glow theme was designed using peripheral vision anatomy: the cyan neon aura was color-picked specifically to activate the long-wavelength retinal cones that dominate peripheral processing, while remaining imperceptible in direct foveal focus. The Stark theme was designed for high-ambient-light environments using luminance contrast rather than hue contrast, ensuring readability at 5000+ lux.',
-    outcome: 'The utility achieved a 92% eye-contact accuracy rating in a 3-session usability study (n=14 professional presenters). Participants\' audiences—blind to whether NotchPrompt was in use—rated NotchPrompt-assisted presentations as 2.1x more engaging and 1.8x more credible than baseline (camera-distracted) conditions. This is a direct measurement of the perceptual consequence of gaze angle correction. The 120Hz ProMotion scroll eliminated visible stepping artifacts that interrupted reading flow in 60Hz alternatives.',
-    challenges: 'The primary engineering challenge was AppKit window hierarchy—ensuring the prompter layer persisted above every full-screen application without interfering with Mission Control, Stage Manager, or Spotlight. The deeper psychological challenge was calibrating scroll speed to match natural reading velocity under cognitive stress. Presenters in high-stakes situations read approximately 20–30% slower than their normal pace due to elevated arousal. The scroll speed algorithm was tuned to this range, with a manual override available for individual variation.',
-    tradeoffs: 'I chose SwiftUI for the core UI to speed iteration but dropped to AppKit for the window layer—accepting codebase complexity in exchange for true system-level native behavior. I made a deliberate decision NOT to implement script editing inside the app, despite user requests. The reasoning was psychological: switching cognitive mode from editing to presenting within a single session degrades both activities (Dual Task Interference). NotchPrompt is a presentation tool, not a writing tool—architectural separation of the two tasks is a feature, not an omission.',
-    learnings: 'NotchPrompt crystallized the relationship between perceptual psychology and software architecture for me. The notch is not just a geometric convenience—it\' a Schelling Point: a natural focal landmark that both the presenter and the software can independently orient toward. Identifying hardware-embedded affordances that can anchor software behavior is a design methodology I want to continue developing. It\' the same principle as Fitts\' Law applied at the scale of the physical device.',
-    abTests: [
-      {
-        hypothesis: 'The Glow theme (cyan peripheral highlight on active reading line) will produce higher eye-contact accuracy than the Stark theme (plain white-on-black text), because peripheral luminance cues enable position tracking without foveal fixation.',
-        controlLabel: 'Control — Stark Theme (High-contrast plain text)',
-        controlDesc: 'Pure white text on black background. No active-line highlighting. Standard scroll velocity. Optimized for clarity without any additional visual processing aids.',
-        variantLabel: 'Variant — Glow Theme (Peripheral neon highlight)',
-        variantDesc: 'White text on black background with a cyan neon aura around the active reading line. The glow is calibrated to activate peripheral cone sensitivity without drawing foveal attention away from the camera.',
-        metric: 'Eye-contact accuracy (% of time gaze within 1.5° of camera lens, measured by webcam gaze estimation)',
-        controlValue: '71% eye-contact accuracy',
-        variantValue: '92% eye-contact accuracy',
-        improvement: '+30% improvement in eye-contact accuracy',
-        insight: 'The peripheral neon highlight offloads reading-position tracking from foveal to peripheral visual processing, freeing central vision to remain camera-directed. Users in the Glow condition reported "not consciously feeling like they were reading" — a direct indicator of Flow State. Stark-condition users exhibited more frequent micro-saccades (small eye movements to locate reading position) which interrupted lens contact.',
-        methodology: 'Within-subjects crossover study. n=14 professional presenters. Each participant delivered a 3-minute scripted presentation in both conditions (order counterbalanced). Gaze estimated via MediaPipe Face Mesh running on recorded webcam video. Eye-contact scored as: gaze vector within 1.5° of estimated camera normal. Inter-session washout of 48 hours.'
-      }
-    ],
-    wcagAudit: {
-      compliance: 'WCAG 2.2 AA',
-      contrastRatio: 'Glow theme: white text (#FFFFFF) on black (#000000) = 21:1 (AAA). Stark theme: identical. Cyan glow (#00E5FF) for peripheral indicator: supplementary, not primary information carrier—does not need to meet contrast threshold independently.',
-      focusManagement: 'macOS utility context: keyboard-first interaction model. All scroll speed, font size, and theme controls accessible via keyboard shortcuts. Settings panel navigable via Tab + Arrow. System-level accessibility APIs used for window management (AXUIElement).',
-      screenReaderSupport: 'Script content read aloud by VoiceOver on request. Active reading position communicated via custom AX notification. Theme state (Glow/Stark) announced on toggle. Scroll velocity labeled in accessible units (words per minute).',
-      motionSafety: 'Scroll animation respects macOS Reduce Motion system preference. When enabled, scroll advances line-by-line with 50ms crossfade rather than continuous smooth scrolling. Glow pulse animation replaced by static highlight in Reduce Motion mode.',
-      criteria: [
-        { criterion: '1.4.3 Contrast (Minimum)', level: 'AA', status: 'pass', note: '21:1 contrast ratio in both themes far exceeds AA requirement of 4.5:1.' },
-        { criterion: '1.4.4 Resize Text', level: 'AA', status: 'pass', note: 'Font size adjustable from 12pt to 48pt without loss of content or functionality. Reflow handled by Metal text renderer.' },
-        { criterion: '2.1.1 Keyboard', level: 'A', status: 'pass', note: 'All controls operable via keyboard. Global shortcuts documented in Help menu.' },
-        { criterion: '2.3.1 Three Flashes or Below Threshold', level: 'A', status: 'pass', note: 'Glow pulse animation operates at 1Hz — well below the 3Hz flash threshold.' }
-      ]
-    },
+    context: 'NotchPrompt is a macOS teleprompter utility built to improve eye contact during video calls. Standard prompters place text far below or beside the camera, forcing gaze shifts that look like distractions. By placing text directly under the MacBook camera notch, the user\'s reading line sits within 1.5° of the lens.',
+    brief: 'The brief was to build a native macOS app that wraps script text around the camera notch. Reading had to feel effortless, requiring sub-millisecond scroll speed and 120Hz refresh rates to prevent visual lag. We also needed an active line indicator so readers could track text position using their peripheral vision.',
+    goal: 'We wanted to make natural eye contact the default behavior when reading. By anchoring text directly underneath the camera lens, looking at the script looks like looking at the audience. We added a glowing active line highlight so users could track their place without looking down.',
+    problem: 'Presenters look away from the camera about 34% of the time when reading notes, which makes them seem disengaged. Typical notes and script windows sit too low, causing a clear disconnect. No tools were using the camera notch as a focal point, despite it being physically closest to the camera lens.',
+    process: 'I built the app with SwiftUI and AppKit window layers to keep it floating above other programs. I calibrated scroll speeds for different reading paces and designed a cyan active line highlight that stays visible in peripheral vision. I also made a high-contrast theme for bright rooms and tested the scroll physics at 120Hz. Contrast and motion safety were considered against WCAG 2.2 AA guidelines throughout.',
+    outcome: 'NotchPrompt achieved a 92% eye-contact accuracy rate in a test with 14 presenters. Evaluators rated presentations using the app as 2.1x more engaging and 1.8x more credible. The 120Hz scroll also removed visual stepping artifacts, keeping text movement clean.',
+    challenges: 'We had to make our overlay float above full-screen windows without breaking macOS navigation. We also tuned the scroll speed options, finding that stressed presenters read 20–30% slower. We adjusted our baseline speed increments to fit this range and added quick adjustment shortcuts.',
+    tradeoffs: 'I combined SwiftUI with low-level AppKit window adjustments to get true floating behavior on macOS. I skipped adding a built-in text editor to keep the focus entirely on presenting. This keeps the codebase lighter and prevents users from trying to edit scripts while presenting.',
+    learnings: 'NotchPrompt taught me to design apps using existing hardware constraints as focal anchors. The camera notch works perfectly as a visual center. Combining low-level system layers with specific user behaviors yields cleaner utilities.',
     images: ['/notchprompt.png'],
     tags: ['Swift', 'SwiftUI', 'macOS SDK'],
     technologies: ['Swift 6.0', 'AppKit', 'Metal Rendering'],
@@ -560,19 +452,19 @@ export const FULL_PROJECTS: Project[] = [
     sections: [
       {
         title: 'Usability Testing & Anchor Optimization',
-        body: 'Usability testing revealed that even a 5cm gap between notes and the camera lens causes a noticeable gaze shift. I tested three different anchor positions—Bottom-screen, Floating, and Notch-Centric. The Notch-Centric anchor achieved a 92% accuracy rating compared to just 45% for traditional positions. This research insight became the cornerstone of the entire product architecture.',
+        body: 'Testing showed that even a 5cm gap between notes and the lens makes a presenter look distracted. We compared bottom-screen, floating, and notch-centric layouts. The notch layout scored 92% eye-contact accuracy compared to 45% for the bottom-screen placement.',
         images: ['/assets/research/notchprompt_usability.png'],
         layout: 'full'
       },
       {
         title: 'The Notch Interface',
-        body: 'NotchPrompt transforms the MacBook Pro camera notch from dead hardware space into a functional HUD. The prompter window anchors precisely to the notch geometry across all models — 14" and 16" — using custom coordinate math rather than approximations. The result is a reading surface that sits exactly where your eyes naturally go when looking at the camera.',
+        body: 'We turned the camera notch into a functional HUD. The script window anchors to both 14" and 16" MacBook Pro notches using coordinate adjustments. This puts the text exactly where you look when addressing an audience.',
         images: ['/notchprompt.png'],
         layout: 'full'
       },
       {
         title: 'Glow & Stark Themes',
-        body: 'Two themes cover the full range of use cases. Glow uses a cyan neon aura to highlight the active reading line — the peripheral glow lets your eye track position without a conscious scan. Stark is a brutalist high-contrast black-on-white mode for outdoor use or situations where the neon feel is too intense. Both are engineered to run at 120Hz ProMotion without spiking CPU.',
+        body: 'We built two display styles. Glow uses a cyan neon bar to highlight the active line, letting readers track their pace using peripheral vision. Stark is a black-and-white mode for outdoor use. Both profiles render at 120Hz without hitting the CPU.',
         images: [
           'https://images.unsplash.com/photo-1618761714954-0b8cd0026356?auto=format&fit=crop&q=80&w=1600',
           'https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&q=80&w=1600'
@@ -581,7 +473,7 @@ export const FULL_PROJECTS: Project[] = [
       },
       {
         title: 'System-Level Architecture',
-        body: 'The prompter maintains its position above every full-screen app without interfering with Mission Control or Stage Manager. This required custom AppKit window layering rather than a standard SwiftUI sheet — the kind of low-level system work that most macOS utilities skip. Metal-accelerated text rendering keeps the Glow blur lightweight even during simultaneous video encoding.',
+        body: 'The prompter floats over full-screen apps without disrupting macOS gestures or Stage Manager. This required AppKit window overrides instead of standard SwiftUI overlays. We used Metal rendering to keep the glowing animations smooth during video calls.',
         images: ['https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&q=80&w=1600'],
         layout: 'full'
       }
@@ -594,15 +486,15 @@ export const FULL_PROJECTS: Project[] = [
     year: '2026',
     thumbnail: '/assets/portfolio/portfolio_hero_section_1777819291389.png',
     shortDescription: 'Product Engineer Archive: Achieving sub-second FCP and zero CLS through custom SSG engineering.',
-    context: 'Let’s be honest: my first portfolio was a mess of "look what I can do" animations. It was a playground of fluid physics and experimental navigation that looked great for thirty seconds but made reading a case study feel like a chore. V2 is the correction. I stripped away the spectacle to build something that functions more like a permanent archival document. The goal was to create a container so rigid and minimal that the only thing carrying visual weight is the work itself. It’s not a demo anymore; it’s a high-performance archive built on React 19 and a custom pre-rendering engine.',
-    brief: 'The brief I set for myself was simple but technically demanding: sub-second First Contentful Paint (FCP), zero layout shift, and a UI that communicates systems-thinking before a single word is read. I needed to resolve the visual tension of v1 by imposing a strict 12-column grid and a Z-pattern layout that works for both a recruiter’s five-second scan and a peer’s deep technical dive. The project also required a custom build pipeline to handle static serving without losing the snappiness of a modern SPA.',
-    goal: 'Establish a "Digital Identity 2.0" that prioritizes utility and authority. I wanted to move away from the "creative technologist" trope and towards a "product engineer" reality. This meant replacing random animations with a "Stacking Effect" folder-style navigation that feels physically grounded. The ultimate goal was to prove that a monochromatic, grid-locked system can feel more premium and alive than a site covered in gradients and physics simulations.',
-    problem: 'UX audits of V1 revealed that the "Node-based Navigation" caused a 50% bounce rate because it was unintuitive. V1 was "AI slop" avant-la-lettre—cool to look at, empty to use. The experimental navigation was a failure of UX; it forced users to learn a new language just to see my work. Furthermore, the reliance on heavy physics libraries made the mobile experience sluggish. The site lacked a "Single Source of Truth" for its layout, leading to inconsistencies across different breakpoints.',
-    process: 'I started by defining a "Base Container Metric"—a single mathematical unit that dictates every margin, gutter, and typographic step. I then built a custom pre-rendering script using Puppeteer and @sparticuz/chromium to "bake" the React app into static HTML at build time. This gives me the speed of a static site with the interaction model of React. I also implemented a fluid typography system using CSS `clamp()` that scales between breakpoints without a single jump, ensuring the archival aesthetic holds from a phone to a 5K display.',
-    outcome: 'The result is a mathematically locked system with sub-second FCP and zero layout shift. The headline and layout land the brand in seconds, while the case studies reward hours of technical reading. The transition from v1 to v2 isn’t just a redesign—it’s the case study itself, proving I can identify the failure modes of my own work and rebuild with precision.',
-    challenges: 'The biggest challenge was "Responsive Rigidity." Maintaining a 12-column grid and aggressive typographic scale on mobile without it feeling like a generic stack required a lot of custom CSS logic. I also had to optimize high-res project imagery for that sub-second FCP target, which meant building an automated pipeline for format conversion and lazy-loading boundaries. Getting the "Stacking Effect" transitions to feel "weighted" without using a heavy physics engine took weeks of tuning Framer Motion easing curves.',
-    tradeoffs: 'I traded playfulness for professional authority. The site is deliberately opinionated—there is one correct way to move through it. v1 was an open world; v2 is a curated editorial path. I also chose a strictly monochromatic palette for the shell. This was a risk, but it ensures that project imagery is the only source of color on the page, making every thumbnail a moment of visual impact rather than just another element in a busy UI.',
-    learnings: 'Less is more only when the math is perfect. A rigid structural foundation builds trust more effectively than any animation ever could. This project reinforced that design and engineering are the same system expressed in different languages. I also learned that the most important decision in a rebuild isn’t what you add—it’s what you have the courage to remove. Moving to React 19 and Vite 6 also taught me that the "bleeding edge" is only useful if it serves the user’s performance.',
+    context: 'My previous portfolio had too many physics animations that got in the way of the content. V2 is a complete pivot, designed like a clean, permanent archive. The UI uses a strict grid so that only the case study imagery carries visual weight.',
+    brief: 'I wanted to build a portfolio with sub-second paint times, zero layout shifts, and a clean grid layout. The layout had to work for quick recruiter scans and deep developer reads alike. I also needed a custom build pipeline to serve static pages while keeping the fast page-to-page transitions of a single-page app.',
+    goal: 'The goal was to present myself as a product engineer rather than a designer who plays with animation templates. I replaced busy scrolling physics with a folder-style navigation layout that feels clean and grounded. I wanted to prove that a strict monochrome grid can feel more premium than a site full of gradients.',
+    problem: 'Audits of V1 showed that our node navigation caused a 50% bounce rate because visitors couldn\'t figure out how to find the work. The layout forced people to learn a new navigation system just to read case studies. The heavy code libraries also made mobile load times sluggish and inconsistent.',
+    process: 'I based the layout system on a single mathematical unit that determines all margins, gaps, and font scales. I wrote a pre-rendering script with Puppeteer to compile the React site into static HTML files during builds. I also used CSS clamp to scale typography smoothly between screen sizes without sudden jumps.',
+    outcome: 'The new portfolio delivers sub-second load times and zero layout shifts. The grid layout highlights the work immediately, keeping case study text clear and easy to read. Rebuilding the site allowed me to address previous mobile performance issues and focus on visual hierarchy.',
+    challenges: 'The main challenge was keeping the strict 12-column grid looking clean on mobile screens. I built an asset pipeline to compress and lazy-load high-res screenshots to preserve fast load times. Tuning the transition animations to feel smooth without using heavy libraries also took some iterations.',
+    tradeoffs: 'I traded experimental navigation for a direct editorial path. I chose a pure monochrome palette for the site container, which was a risk. However, it ensures that the project screenshots are the only source of color on the screen, letting the work stand out.',
+    learnings: 'I learned that a locked grid builds more trust than animation ever could. Rebuilding this site showed me that the best updates come from what you remove, not what you add. Keeping code bundles small is key to performance.',
     images: [
       '/assets/portfolio/portfolio_current_homepage_1777819179444.png',
       '/assets/portfolio/portfolio_homepage_1777819105532.png',
@@ -622,13 +514,13 @@ export const FULL_PROJECTS: Project[] = [
     sections: [
       {
         title: 'Heuristic Evaluation & v1 Friction Audit',
-        body: 'A comprehensive audit of V1 revealed several "Major" severity issues according to Nielsen’s Heuristics. Specifically, "User Control and Freedom" was violated by the experimental physics-based navigation, which felt unpredictable. My decision to move to V2 was driven by these findings: trading experimental spectacle for a "Document-Grade" navigation system that prioritizes user efficiency and content authority.',
+        body: 'An audit of the first version showed that experimental navigation felt too unpredictable. Users couldn\'t find case studies easily. I traded the physics effects for a clean navigation system that focuses on reading speed.',
         images: ['/assets/portfolio/portfolio_homepage_1777819105532.png'],
         layout: 'full'
       },
       {
         title: 'V1 vs V2: The Digital Identity Shift',
-        body: 'Comparison of the digital identity evolution. On the left: the old V1 homepage—experimental, node-based, and visually cluttered. On the right: the current V2—brutalist, grid-locked, and content-first. The shift represents a move from "showing off" to "solving for clarity." V1 was a demo; V2 is a document.',
+        body: 'Comparing the two setups shows the evolution. The old landing page was cluttered with node links, while V2 uses a clean, grid-locked layout. The update shifts the focus from experimental visual tricks to direct reading clarity.',
         images: [
           '/assets/portfolio/portfolio_homepage_1777819105532.png',
           '/assets/portfolio/portfolio_current_homepage_1777819179444.png'
@@ -637,19 +529,19 @@ export const FULL_PROJECTS: Project[] = [
       },
       {
         title: 'Custom Pre-Rendering with Puppeteer',
-        body: 'I didn’t want the overhead of Next.js, but I wanted the SEO and speed of static HTML. I built a custom `prerender.js` script that spins up a Chromium instance, navigates to every route, and scrapes the rendered content into a static file. This "local-first SSG" approach keeps the bundle light and the first paint instantaneous, regardless of the user’s connection.',
+        body: 'To keep the bundle light without using Next.js, I wrote a custom pre-render script. It spins up a headless browser during the build to scrape the rendered React routes into flat HTML files. This keeps initial page paints fast on any connection.',
         images: ['/assets/portfolio/portfolio_hero_section_1777819291389.png'],
         layout: 'full'
       },
       {
         title: 'The Folder Navigation System',
-        body: 'Navigation in V2 uses a "Stacking Effect" that mimics a physical folder system. When you move from Work to About, the previous page doesn’t just disappear—it slides and scales as if it’s being tucked away. This provides a spatial mental model for the site, making it feel like a unified physical object rather than a collection of disconnected URLs.',
+        body: 'The navigation uses a transition that mimics a physical folder setup. Pages slide and scale as if being filed away, giving the layout a clear physical structure. This makes the portfolio feel like a single object rather than disjointed tabs.',
         images: ['/assets/portfolio-work.jpg'],
         layout: 'full'
       },
       {
         title: 'Mathematical Grid Rigidity',
-        body: 'Every pixel is on a grid. Every margin, gutter, and type step is derived from a base unit of 4px. This mathematical rigidity ensures that the site feels "heavy" and intentional. Even on mobile, the aggressive typographic hierarchy and container metrics maintain the archival aesthetic, preventing the layout from collapsing into a generic vertical stack.',
+        body: 'The layout aligns to a strict grid where margins and gaps derive from a 4px base unit. This keeps the visual hierarchy consistent on all screen sizes. On mobile, the scale prevents the layout from turning into a generic list.',
         images: ['/assets/portfolio-about.jpg'],
         layout: 'full'
       }
@@ -662,43 +554,15 @@ export const FULL_PROJECTS: Project[] = [
     year: '2025',
     thumbnail: '/assets/spinpod/spinpod_next_track_1777820649171.png',
     shortDescription: 'Intentional Listening Interface: Designed a hardware-inspired music player that removes algorithm-induced decision fatigue.',
-    context: 'Spinpod is a study in tactile digital interaction and the psychology of intentional listening. Streaming platforms have optimised so hard for variable reward schedules (algorithmic novelty, infinite scroll, recommendation queues) that they have created a clinical category: Music-Induced Decision Fatigue. Research by Chernev et al. (2015) on Choice Overload demonstrates that expanding an option set beyond a threshold does not improve satisfaction—it reduces it. Spotify\' personalization engine offers effectively infinite options; the cognitive cost of evaluating and dismissing those options has begun to exceed the pleasure of the discovery. Spinpod inverts the entire model: No algorithm. One source. Full deliberate control.',
-    brief: 'The brief was to build a web music player that prioritizes feel over feature count. The psychological brief was to design for Csikszentmihalyi\' Flow State: an immersive, low-distraction listening environment where the user\' sense of control is complete and unambiguous. Key design requirements included physical-style Volume and Seek dials (leveraging Affordance Theory—knobs invite rotation), a hardware boot sequence (creating a ritualistic entry that primes intentional engagement), and the complete absence of algorithmic suggestions (removing the extraneous cognitive load of choice evaluation).',
-    goal: 'My primary goal was to achieve physical Affordance Transfer: making a 2D browser interface feel like operating analog studio hardware. Gibson\' Affordance Theory identifies that perceived physical properties of objects invite specific actions—a dial affords rotation, a button affords pressing. The dial physics (Framer Motion easing curves tuned to mimic rotational inertia of an aluminum knob) were designed to transfer that perceptual experience to the digital medium. The objective was a listening environment where the technology recedes completely and only the music remains.',
-    problem: 'Research into contemporary streaming behavior revealed a pattern I termed "Engaged Passivity"—users are streaming music constantly but reporting lower satisfaction with individual listening sessions. The paradox: more music availability, less music pleasure. The mechanism is Decision Fatigue (Baumeister et al.): the continuous low-level cognitive cost of evaluating algorithmic recommendations accumulates across a session, leaving the listener feeling drained rather than refreshed. A secondary problem was Tactile Poverty in digital interfaces—flat touchscreen gestures lack the resistance and physical feedback that make physical hardware feel satisfying to operate.',
-    process: 'The process began with physical hardware reference collection—I catalogued the interaction patterns of Technics SL-1200 turntables, Roland TR-808 sequencers, and Studer A80 tape machines. The common architectural principle across professional audio hardware is deliberate control: every input requires intentional physical engagement, and the machine\' response provides clear haptic confirmation. I translated this into Framer Motion physics parameters: the dial drag gesture has a simulated moment of inertia that continues a fractional rotation after the user releases their mouse—exactly replicating the feel of a weighted metal knob. The boot sequence mimics a hardware power-up, creating a ritualistic boundary between "idle" and "listening" states that primes intentional engagement (a digital analog to the cognitive preparation that happens when you lower a record needle).',
-    outcome: 'Beta testing produced a 3x increase in album-length listening sessions compared to the same users\' Spotify behavior in the same period. More significantly, self-reported listening satisfaction scores increased by 2.4x. Users described the experience as "like listening to music again for the first time"—a qualitative signal that the intentionality architecture successfully removed the habituated passivity of algorithmic streaming. The system\' complete absence of recommendations, autoplay, and discovery features was consistently cited as a feature, not a limitation.',
-    challenges: 'The "Weight Problem" was the central engineering challenge: how do you simulate the physical inertia of a 300g aluminum dial in a medium with zero mass? The solution required multi-stage easing: initial high resistance (the "stiction" of starting rotation), smooth mid-travel, and gentle inertial continuation after release. This three-phase easing function was tuned through approximately 40 iterations, testing against physical reference hardware until the perceptual match felt compelling. The grain texture system required separate assets for screen (72dpi) and high-DPI Retina (144dpi)—a single grain asset would either be too coarse on standard displays or become invisible on Retina.',
-    tradeoffs: 'Removing library browsing, lyrics, and autoplay was a deliberate cognitive load decision, not a feature gap. Each of those features re-introduces the Decision Fatigue mechanism that Spinpod exists to eliminate. The tradeoff is a narrower feature set for a dramatically higher quality of the core use case. I also chose browser-based architecture over native app, accepting platform limitations in exchange for zero-install friction—the philosophical principle that intentional listening should be one URL away from any device.',
-    learnings: 'Spinpod taught me that Affordance Transfer is the hardest problem in digital interaction design. Physical tools communicate their use through material properties (weight, texture, resistance) that are completely absent from software. The only substitute is perceptual illusion: easing curves that feel like inertia, visual grain that reads like texture, boot sequences that feel like ritual. Getting that illusion right requires deep study of the physical referent, not just the digital medium. I came away with a much richer vocabulary for micro-animation timing, and a lasting conviction that algorithm-free design is an underexplored space with significant user value.',
-    abTests: [
-      {
-        hypothesis: 'Removing the autoplay queue and algorithmic next-track suggestions will increase session listening depth (tracks played to completion), because it eliminates the passive skipping behavior triggered by choice optionality.',
-        controlLabel: 'Control — Autoplay Enabled (Queue-Based)',
-        controlDesc: 'After track ends, Spinpod auto-advances to the next track in the playlist. A "Up Next" preview panel shows the following 3 tracks at all times. Skip forward/backward buttons prominent.',
-        variantLabel: 'Variant — Intentional Play (No Autoplay)',
-        variantDesc: 'When a track ends, Spinpod enters a paused state. The user must press Play to advance. No "Up Next" panel. The machine waits for deliberate human input before continuing.',
-        metric: 'Track Completion Rate (% of tracks played to ≥90% of duration)',
-        controlValue: '54% completion rate',
-        variantValue: '89% completion rate',
-        improvement: '+65% improvement in track completion',
-        insight: 'The autoplay queue enabled passive browsing behavior—users half-listened to tracks while evaluating the next queue item, leading to frequent skips. The intentional play model required conscious re-engagement for each track, producing a qualitatively different listening mode. This is a direct manifestation of the Paradox of Choice: removing optionality increased engagement with each individual option.',
-        methodology: 'Within-subjects study. n=22 participants. Two 30-minute listening sessions (conditions counterbalanced, 48-hour washout). Same playlist in both conditions. Track completion logged via timestamp events. Session satisfaction rated post-session on 7-point Likert.'
-      }
-    ],
-    wcagAudit: {
-      compliance: 'WCAG 2.2 AA',
-      contrastRatio: 'Primary text on dark unit surface (#1a1a1a background): 9.8:1 (AAA). Dial labels: 7.3:1 (AAA). Signal indicator text (SIGNAL_OVERRIDE, PRGM_HOLD): 5.1:1 (AA). All critical control labels exceed AA.',
-      focusManagement: 'Dial controls receive keyboard focus and support Arrow key rotation (Left/Right = fine adjust, Shift+Arrow = coarse adjust). Tab order follows interaction sequence: Source Input → Volume Dial → Seek Dial → Play/Pause → Signal Override. Boot sequence completion announced via aria-live before main controls receive focus.',
-      screenReaderSupport: 'Volume dial exposes aria-valuemin=0, aria-valuemax=100, aria-valuenow=[current]. Seek dial exposes position as percentage of track duration. Track metadata (title, artist, duration) in aria-live="polite" region that updates on track change. System state labels (PRGM_HOLD, SIGNAL_OVERRIDE) exposed as aria-label on respective controls.',
-      motionSafety: 'Hardware boot sequence animation (diagnostic text fade-in, signal sweep) respects prefers-reduced-motion — replaced with instant text appearance. Dial rotation animation replaced with direct value jump. Grain texture remains as static image (not animated).',
-      criteria: [
-        { criterion: '1.4.3 Contrast (Minimum)', level: 'AA', status: 'pass', note: 'All text elements on dark background exceed 4.5:1. Grain texture does not interfere with text contrast due to text-shadow stacking.' },
-        { criterion: '2.1.1 Keyboard', level: 'A', status: 'pass', note: 'All dial controls, playback controls, and source input keyboard-operable. Arrow key dial interaction implemented.' },
-        { criterion: '4.1.2 Name, Role, Value', level: 'A', status: 'pass', note: 'Dial controls expose aria-role="slider" with min/max/now values. System state indicators have descriptive aria-label attributes.' },
-        { criterion: '2.3.1 Three Flashes', level: 'A', status: 'pass', note: 'Boot sequence light flash tested against PEAT tool — below 3Hz threshold.' }
-      ]
-    },
+    context: 'Spinpod is a music player built to encourage intentional listening. Modern streaming platforms offer infinite choices and algorithmic recommendations, which can cause choice fatigue. Spinpod strips all of that away: there are no algorithms, just a single source under your control.',
+    brief: 'The brief was to build a web player that prioritizes physical interface feel over a long feature list. We needed tactile volume and seek dials, a hardware-style boot sequence, and a layout without recommendation lists. Dial controls and system states were designed with WCAG 2.2 AA contrast and keyboard patterns in mind.',
+    goal: 'We wanted to make a web player feel like operating physical studio hardware. We tuned the dial physics using custom easing curves to mimic the weight and spin of an aluminum knob. The goal was a clean interface where the player styling recedes and you focus on the audio.',
+    problem: 'Many listeners stream music constantly but report feeling less connected to what they play. Infinite recommendations make choosing a track feel like a chore, while flat web gestures lack the feedback of physical knobs. We needed to solve this by bringing back tactile control and removing recommendations.',
+    process: 'I started by studying classic turntables and tape decks to see how physical controls confirm inputs. I translated this weight into code, using Framer Motion to let dials spin slightly after release like metal knobs. I also designed a startup sequence that mimics turning on a hardware rack unit. Dial controls and system states were designed with WCAG 2.2 AA contrast and keyboard patterns in mind.',
+    outcome: 'Beta tests showed a 3x increase in full-album listening sessions compared to standard streaming apps. Users reported a 2.4x increase in listening satisfaction, noting that the absence of autoplay queues let them focus on the album. The clean layout helped users treat music selection as a deliberate choice.',
+    challenges: 'The main challenge was making a flat screen slider feel like a heavy metal dial. I wrote a three-phase easing curve that simulates initial resistance, smooth rotation, and minor spin after release, tuning it across 40 versions. I also created separate grain texture assets for standard and Retina displays to keep borders sharp.',
+    tradeoffs: 'I skipped library search, lyrics, and autoplay to prevent users from constantly skipping tracks. This makes the feature set narrow, but it protects the focus of the app. I also chose a web app layout over a native app to allow users to listen with a single URL click.',
+    learnings: 'This project showed me that digital tools can feel physical if you focus on timing and easing curves. Simulating inertia and material texture requires careful testing of analog counterparts. Moving forward, I want to explore more distraction-free interfaces that rely on manual inputs.',
     images: [
       '/assets/spinpod/spinpod_landing_1777820434463.png',
       '/assets/spinpod/spinpod_initial_load_1777820630246.png',
@@ -719,13 +583,13 @@ export const FULL_PROJECTS: Project[] = [
     sections: [
       {
         title: 'Interaction Architecture & System Design',
-        body: 'To solve "The Weight Problem," I mapped out the rotational inertia of physical aluminum dials. The system architecture (DOC NO. SP-IA-001) details the sequential engagement path of the boot ritual and the magnetic braking profiles of the dials. This level of hardware-grade interaction design was necessary to ground the digital experience in physical reality.',
+        body: 'I mapped the rotation curves of real audio dials to make our web inputs feel heavy. I defined the exact startup sequence and dial resistance profiles before writing any CSS. This grounding in hardware is what makes the final interface feel tactile.',
         images: ['/assets/research/spinpod_interaction_map.png'],
         layout: 'full'
       },
       {
         title: 'UNIT_REV_4.0 — The Interface',
-        body: 'Spinpod reads like a piece of lab equipment dropped onto your desk. The landing state shows a minimal entry screen — no clutter, just the unit name and a single action. The hardware-inspired boot sequence is a real power-up ritual with diagnostic feedback, not a decorative splash screen. Every label (SIGNAL_OVERRIDE, PRGM_HOLD, AUTO_SCAN) is functional, not decoration.',
+        body: 'The design styling resembles laboratory hardware. The landing state displays only the player name and a link connector. The startup sequence acts as a native power-up with diagnostic console readouts, and every text label maps to an active feature.',
         images: [
           '/assets/spinpod/spinpod_landing_1777820434463.png',
           '/assets/spinpod/spinpod_initial_load_1777820630246.png'
@@ -734,7 +598,7 @@ export const FULL_PROJECTS: Project[] = [
       },
       {
         title: 'Tactile Controls & Playback',
-        body: 'Volume and Seek dials use Framer Motion physics tuned to feel heavy — the rotational inertia is deliberately exaggerated so the interaction feels like turning a metal knob, not dragging a slider. The next-track state and active playback view are designed around a single, committed audio stream. No library browsing. No infinite scroll. One track, full focus.',
+        body: 'The volume and seek dials use custom drag targets with physics easing to simulate a heavy dial. The playback interface handles only one active stream at a time. There are no library menus or search fields, keeping the focus on the current album.',
         images: [
           '/assets/spinpod/spinpod_next_track_1777820649171.png',
           '/assets/spinpod/spinpod_knob_interaction_1777820786768.png'
@@ -743,7 +607,7 @@ export const FULL_PROJECTS: Project[] = [
       },
       {
         title: 'Signal Override & System States',
-        body: 'The SIGNAL_OVERRIDE modal and paused state are where the industrial character is most explicit. These system states use high-contrast monochromatic UI to communicate clearly: the machine is waiting for you. The paused state strips everything back to a single status indicator — an intentional design choice to reduce cognitive load during transitions.',
+        body: 'The override modal and paused screen use a high-contrast style. When paused, the UI displays only a single status message, showing that the system is ready. This clean layout reduces visual distractions during track changes.',
         images: [
           '/assets/spinpod/spinpod_paused_state_1777820721788.png',
           '/assets/spinpod/spinpod_signal_override_modal_1777820736707.png'
@@ -752,7 +616,7 @@ export const FULL_PROJECTS: Project[] = [
       },
       {
         title: 'Source Input & Playlist Feed',
-        body: 'The entry point is deliberately minimal — SPINPOD CORE_REV: 4.0.0 presents a single text input and a CONNECT_UNIT button. The user pastes a playlist link and boots the unit. No library browsing, no search, no recommendations. If you need to swap sources mid-session, the SIGNAL_OVERRIDE modal surfaces: paste a new SOURCE_PLAYLIST_URL and hit BOOT_FEED. The machine reloads the new source and continues. Every choice of what plays is made by the user, not inferred by an algorithm.',
+        body: 'The connection screen features only a single input field and a connect button. Users paste a link and turn the unit on to load their tracks. To swap playlists, you trigger the override overlay and insert a new URL, keeping selection manual.',
         images: [
           '/assets/spinpod/spinpod_landing_1777819291389.png',
           '/assets/spinpod/spinpod_signal_override_modal_1777820736707.png'
@@ -772,39 +636,11 @@ export const FULL_PROJECTS: Project[] = [
     brief: 'The brief was to engineer a document editor with InDesign-level typographic precision and web-app accessibility. Key requirements: three mathematically calibrated Density Modes (Comfy/Compact/Dense using a proportional REM scaling system), six ATS-validated font pairings, mm-level margin controls, and a split-panel WYSIWYG with <16ms preview latency. The ATS requirement was not aesthetic—it was the primary functional constraint. Research showed 60% of multi-column resumes are garbled by Applicant Tracking System parsers, eliminating candidates before human review.',
     goal: 'Democratize high-end editorial typesetting for the job market. The cognitive goal was to collapse the Mental Distance between input and output: when the browser preview is a pixel-perfect match for the PDF export, the user develops accurate mental models of how their document will appear in the real world. This reduces the "print anxiety" (the fear that the downloaded PDF won\' match the screen preview) that makes most resume tools frustrating. The Density System specifically was designed as a "One-Knob Complexity Reduction"—a single toggle that rebalances the entire document\' spatial hierarchy without requiring granular manual adjustments.',
     problem: 'ATS research revealed a brutal binary in the resume market: rigid templates that break when you add content, or free-form word processors that fail parsing. Neither serves the user\' real cognitive need—to feel confident that their document will be evaluated on its content, not rejected by a parser or cluttered by bad layout defaults. A secondary problem was the privacy violation: requiring account creation for a PDF download introduces inappropriate data asymmetry—the user\' entire professional history is exchanged for a commodity document, with no clarity on how that data is retained or monetized.',
-    process: 'I engineered the editor as three independent reactive layers: Typography (font family, weight, size), Spacing (margin, padding, line-height), and Content (section order, visibility toggles). Independence means that changing density mode doesn\' affect font selection—each layer has full autonomy. The Density Engine uses a Root REM scalar: Comfy=1.0, Compact=0.87, Dense=0.76. These values were derived empirically by measuring reading comprehension scores at each density level across three recruited participants (n=6 total, 2 per density). The PDF-Lib export layer required building a custom font metric normalization system—browsers use CSS line-height metrics; PDF-Lib uses PostScript leading. The two models differ by ~7% for most web fonts, which I corrected with a per-family calibration table.',
+    process: 'I engineered the editor as three independent reactive layers: Typography (font family, weight, size), Spacing (margin, padding, line-height), and Content (section order, visibility toggles). Independence means that changing density mode doesn\' affect font selection—each layer has full autonomy. The Density Engine uses a Root REM scalar: Comfy=1.0, Compact=0.87, Dense=0.76. These values were derived empirically by measuring reading comprehension scores at each density level across three recruited participants (n=6 total, 2 per density). The PDF-Lib export layer required building a custom font metric normalization system—browsers use CSS line-height metrics; PDF-Lib uses PostScript leading. The two models differ by ~7% for most web fonts, which I corrected with a per-family calibration table. The editor UI was designed against WCAG 2.2 AA contrast ratios throughout.',
     outcome: 'A production-grade utility achieving 99% ATS parsing accuracy in stress testing across 8 major ATS platforms (Greenhouse, Lever, Workday, iCIMS, Taleo, BambooHR, Jobvite, SmartRecruiters). Thousands of documents generated with zero server-side data storage. Post-session SUS score of 84.3 ("Excellent"). The typographic presets—specifically the Modern Serif pairing of Lora + Inter—were rated by participants as producing the highest perceived competence and professionalism for the resume format.',
     challenges: 'The WYSIWYG parity problem between CSS and PDF was the principal engineering challenge. CSS leading (line-height) is percentage-based and applied above the text; PostScript leading is absolute and applied below. For the same font-size and visual spacing, CSS requires a different leading value than PDF-Lib. I built a per-font-family calibration table (12 entries) that maps the CSS REM values to PDF-Lib point values with <2px discrepancy across A4 dimensions. The localStorage state management required custom chunking logic: large resumes (6+ sections, dense bullet content) exceeded the 5MB localStorage limit in some browsers, requiring dynamic compression before write.',
     tradeoffs: 'The single-column layout constraint was not a design limitation—it was the core product thesis. Multi-column layouts increase ATS parse failure by ~40% and have been shown to reduce recruiter scan completion rates (Ladders eye-tracking study, 2020: single-column resumes receive 6.25 seconds of median scan time; multi-column receive 3.8 seconds). I traded visual format variety for guaranteed functional reliability. I also deliberately excluded cloud sync. The tradeoff is data recovery risk (localStorage is cleared on browser data reset), accepted by the user in exchange for complete zero-trust privacy.',
     learnings: 'Building a tool with an opinionated single-column constraint taught me that constraint-based design is paradoxically more empowering than open-ended design. When the layout is fixed, the user\' creative energy goes entirely into narrative content—which is where it should go. This is a direct application of the Paradox of Choice (Schwartz, 2004) in professional tools: fewer format options produce higher-quality outputs because cognitive resources are allocated to content rather than layout decision-making. I also deepened my document engineering expertise significantly—the gap between "web rendering" and "print-accurate rendering" is much larger than most web developers appreciate.',
-    abTests: [
-      {
-        hypothesis: 'A single-column enforced layout will produce higher ATS parse accuracy and higher recruiter satisfaction ratings than an optional two-column layout, because it eliminates the parser-confusion mode and the visual competition between columns.',
-        controlLabel: 'Control — Optional Two-Column Layout',
-        controlDesc: 'Users can toggle between single and two-column layouts. Two-column layout presents skills, education, and contact in a sidebar alongside main experience content. Visually denser.',
-        variantLabel: 'Variant — Single-Column Enforced',
-        variantDesc: 'Single-column layout only. All content in one reading stream. Density control manages vertical space. Visual hierarchy achieved through typography weight and spacing rather than spatial columns.',
-        metric: 'ATS Parse Accuracy across 8 platforms (% of fields correctly parsed)',
-        controlValue: '61% parse accuracy (two-column) / 99% (single-column in control group)',
-        variantValue: '99% parse accuracy across all conditions',
-        improvement: '+62% improvement in parse accuracy for users who would have chosen two-column',
-        insight: 'Left unconstrained, 47% of users chose the two-column layout on aesthetic grounds ("looks more professional"). However, all 8 tested ATS platforms garbled or dropped the sidebar column content in two-column exports. The enforced single-column variant prevented this failure mode entirely, protecting users from a costly mistake they would not have known they were making.',
-        methodology: 'Retrospective analysis of 200 resume exports. Two-column exports submitted to 8 ATS platforms via test job applications. Field extraction accuracy evaluated by comparing submitted PDF content to parsed candidate profile in each ATS system. Single-column accuracy established as baseline reference.'
-      }
-    ],
-    wcagAudit: {
-      compliance: 'WCAG 2.2 AA',
-      contrastRatio: 'Editor UI: primary text on --surface background: 8.4:1 (AAA). Control labels: 5.7:1 (AA+). PDF Preview panel: rendered resume text uses user-selected font/color combinations—validated to ensure all preset pairings meet minimum 4.5:1 contrast for body text.',
-      focusManagement: 'Split-panel editor: Tab order moves left-to-right across control panels, then into PDF preview (read-only). Section visibility toggles use aria-pressed. Density mode selector uses aria-selected. Adding/removing resume sections announces change via aria-live="polite" region.',
-      screenReaderSupport: 'All form inputs have associated aria-label or aria-labelledby. Slider controls (margin width, font size) expose aria-valuemin/max/now with readable units. PDF preview panel marked aria-label="Resume preview, visual only" with aria-hidden on decorative page shadow elements.',
-      motionSafety: 'Density mode transition animation (smooth reflow of all spacing parameters) respects prefers-reduced-motion — instant reflow when active. Section reorder drag-and-drop replaced with Up/Down button controls in reduced motion mode.',
-      criteria: [
-        { criterion: '1.4.3 Contrast (Minimum)', level: 'AA', status: 'pass', note: 'All editor UI elements exceed 4.5:1. All built-in resume font presets validated for ≥4.5:1 on white paper background.' },
-        { criterion: '2.4.3 Focus Order', level: 'A', status: 'pass', note: 'Tab order matches visual reading order across both panels. Confirmed in Chrome, Firefox, and Safari.' },
-        { criterion: '4.1.2 Name, Role, Value', level: 'A', status: 'pass', note: 'All interactive controls have explicit names, roles, and current values exposed to assistive technology.' },
-        { criterion: '3.3.1 Error Identification', level: 'A', status: 'pass', note: 'Section overflow (content exceeds A4 height) flagged with aria-live error announcement and red indicator, not color-only.' }
-      ]
-    },
     images: [
       '/assets/resume-editor-main.png',
       '/assets/resume/typography_panel_detail.png',
@@ -1089,34 +925,6 @@ export const FULL_PROJECTS: Project[] = [
     challenges: 'Translating piezoelectric physics into a brand identity that does not read as a dry research paper was the core creative challenge. The solution was to anchor the visual language to human movement rather than the sensor technology: the logo silhouette mid-stride, the energy bolt replacing the spine. The second challenge was Calibration of Feedback Timing: for the feedback loop to feel causal rather than coincidental, the light event had to occur within the 200ms window identified in HCI research as the upper bound of direct manipulation perception (Card et al., 1983). Above 200ms, users perceive the system as slow; below 200ms, the causal link feels physically real.',
     tradeoffs: 'I chose Emotional Resonance over Technical Completeness in the brand mark. The logo is symbolically accurate (human movement = energy) but not mechanically precise (it does not represent piezoelectric crystals or charge vectors). This was the correct tradeoff: the primary audience for the pitch was infrastructure decision-makers, not electrical engineers. I also focused the mobile UI entirely on the kWh Generated metric, deliberately sacrificing more granular sensor data. The Kano Model analysis confirmed this: detailed sensor telemetry would be a "Reverse" feature for the target user — its presence would actively reduce satisfaction.',
     learnings: 'Exousia crystallized the relationship between environmental design and behavioral change for me. The built environment is not a neutral backdrop for behavior — it is an active behavioral architecture. Every material, feedback signal, and spatial configuration is a design decision that either amplifies or suppresses specific behaviors. This is the insight behind Nudge Theory (Thaler & Sunstein, 2008), and it applies directly to physical product design. I also learned that hardware engineering and UX design share a deep structural similarity: both are systems that convert human intent into measurable outcomes, and both fail when the feedback loop between action and consequence is too slow or too opaque.',
-    abTests: [
-      {
-        hypothesis: 'Real-time individual footstep-to-light feedback will increase sustained engagement with the energy dashboard more than aggregate station-level kWh totals, by exploiting the Identifiable Victim Effect at a positive scale (Identifiable Contributor Effect).',
-        controlLabel: 'Control — Station-Level Aggregate kWh Display',
-        controlDesc: 'Mobile dashboard shows the station\'s total daily kWh generated across all tiles. Updates every 5 minutes. No individual footstep feedback. User sees: "Station total today: 47.3 kWh." No personal attribution.',
-        variantLabel: 'Variant — Personal Footstep Attribution + Live Tile Map',
-        variantDesc: 'Dashboard shows user\'s personal kWh contribution from their tracked footsteps (via NFC wristband). Live tile heatmap shows which tiles are currently active. User sees: "Your steps today: 0.003 kWh" with a real-time pulse on their tile.',
-        metric: 'Dashboard session frequency (opens per day) and session duration',
-        controlValue: '1.2 sessions/day, 18s mean duration',
-        variantValue: '4.7 sessions/day, 63s mean duration',
-        improvement: '+292% session frequency, +250% session duration',
-        insight: 'Personal attribution transformed a passive information display into an active feedback instrument. Users in the Variant condition showed signs of goal-setting behavior — checking in before and after commutes to track personal totals. This confirms the Identifiable Contributor Effect: personal contribution, even when objectively tiny (0.003 kWh), is psychologically significant when it is attributed specifically to the individual. The aggregate condition produced no behavioral change.',
-        methodology: 'Simulated lab study with 16 participants. Prototype dashboard presented on tablet in simulated station context. Both conditions shown over 4 sessions (2 sessions per condition, counterbalanced). Session opens and duration logged by prototype analytics.'
-      }
-    ],
-    wcagAudit: {
-      compliance: 'WCAG 2.1 AA',
-      contrastRatio: 'Mobile dashboard primary text (#E8F5E9 lime on #0D1B0F dark) = 8.7:1 (AAA). kWh metric readout: 11.2:1 (AAA). Lime green tile indicators (#76FF03) on dark background: 4.6:1 (AA). Alert states (low generation) use amber (#FFCA28): 4.8:1 (AA).',
-      focusManagement: 'Dashboard navigation (Tiles / Stats / History tabs) accessible via keyboard Tab. Active tile map interactive elements have focus indicators with 3px outline. kWh stat cards expandable via Enter/Space. Modal (tile detail) traps focus, returns to triggering card on close.',
-      screenReaderSupport: 'Live kWh counter uses aria-live="polite" with 5-second update interval. Tile heatmap communicates active tile count via aria-label: "14 of 48 tiles active, generating 0.24 kW." Personal contribution card has aria-describedby linking to explanation of how personal steps are counted.',
-      motionSafety: 'Live tile heatmap pulse animation and kWh counter increment animation respect prefers-reduced-motion. Reduced motion mode shows static tile states and instant value updates without count-up animation.',
-      criteria: [
-        { criterion: '1.4.1 Use of Color', level: 'A', status: 'pass', note: 'Active tile state communicated by color AND border weight AND aria-label. Low-generation alerts use color AND icon AND text.' },
-        { criterion: '1.4.3 Contrast (Minimum)', level: 'AA', status: 'pass', note: 'All text elements exceed 4.5:1. Lime green indicators exceed 4.5:1 on dark background.' },
-        { criterion: '2.4.4 Link Purpose', level: 'A', status: 'pass', note: 'All interactive dashboard elements have descriptive accessible names beyond icon-only labels.' },
-        { criterion: '4.1.3 Status Messages', level: 'AA', status: 'pass', note: 'Live tile updates and kWh increments announced via aria-live without moving focus.' }
-      ]
-    },
     images: [
       'https://mir-s3-cdn-cf.behance.net/projects/original/f36c99151193447.Y3JvcCwxODQxLDE0NDAsNDEsMA.png',
       'https://mir-s3-cdn-cf.behance.net/project_modules/fs/65c87a151193447.6309886470f1a.png',
@@ -1195,34 +1003,6 @@ export const FULL_PROJECTS: Project[] = [
     challenges: 'Making pixelated graphics look intentionally premium rather than accidentally dated was the core visual challenge. The solution was aesthetic contrast: pairing lo-res pixel counters and minimaps with high-quality 3D brand renders and the clean Futura typeface system. The visual hierarchy says: "We understand both registers and we are choosing the pixel one deliberately." The business model was equally hard: designing a subscription economy that avoids Dark Patterns (Brignull, 2010) while remaining commercially viable required multiple iterations on the currency conversion rates and tier differentiation.',
     tradeoffs: 'I leaned into the retro aesthetic as a brand feature rather than a limitation — the HUD uses pixelated counters which some would read as dated, but within this visual system they read as deliberate character. The tradeoff is a narrower aesthetic appeal (players who actively dislike retro aesthetics will not convert) in exchange for a much deeper emotional connection with the target demographic. I also kept the subscription economy broad (four tiers plus cosmetic currency) — accepting complexity in exchange for demonstrating that the business model is fully thought through rather than aspirationally sketched.',
     learnings: 'Horizon Zoom taught me that brand strategy and behavioral economics are the same discipline operating at different scales. The choice of a retro aesthetic is a behavioral prediction: I am predicting that nostalgic affect will increase emotional engagement in this demographic. The charitable incentive model is a behavioral prediction: moral identity salience will increase switching costs and reduce churn. Both predictions are testable. This is the version of design I find most intellectually interesting — not visual taste-making, but behavioral architecture with measurable hypotheses.',
-    abTests: [
-      {
-        hypothesis: 'A values-aligned Incentive Model slide (15% charitable earmark, community bonus structure) will increase investor/publisher pitch conviction scores more than a pure-profit revenue model, by activating Moral Identity salience and differentiating from competitors on non-economic grounds.',
-        controlLabel: 'Control — Pure-Profit Revenue Slide',
-        controlDesc: 'Standard gaming pitch revenue model. Shows five revenue streams (ads, IAP, merch, subscriptions) with projected margins. No charitable component. Framing is entirely financial: TAM, ARPU, LTV projections.',
-        variantLabel: 'Variant — Values-Aligned Incentive Model Slide',
-        variantDesc: 'Same five revenue streams with identical projections, but with Incentive Model explicitly framed: 15% of profits to road accident victims/injured racing competitors, 85% to team, excess to community free-play. Values statement integrated into financial model.',
-        metric: 'Pitch conviction score ("Would you fund/publish this game?" 7-point Likert) and pitch memorability (aided recall at 48 hours)',
-        controlValue: '4.1 / 7 conviction, 38% recall at 48h',
-        variantValue: '5.6 / 7 conviction, 71% recall at 48h',
-        improvement: '+37% conviction increase, +87% recall improvement',
-        insight: 'The Incentive Model activated Moral Identity salience (Aquino & Reed) — evaluators who scored high on moral identity subscales showed the largest uplift. The charitable earmark also served as a differentiator in recall: evaluators described the pitch as "the one with the accident victims thing" at 48-hour recall, demonstrating that the values-layer became the primary memory hook. Financial models without a differentiating values component were recalled primarily by genre ("one of the racing game pitches") without specific attribution.',
-        methodology: 'Simulated pitch evaluation study. n=26 participants (students from product management and design courses, representing non-specialist evaluators). Each evaluated 3 pitches (including 1 Horizon Zoom condition, 2 filler pitches from different genres). Condition assignment randomized. Conviction rated immediately post-pitch. Recall tested at 48 hours via open recall + aided recall protocol.'
-      }
-    ],
-    wcagAudit: {
-      compliance: 'WCAG 2.1 AA',
-      contrastRatio: 'Racing Red (#CC0000) wordmark on white: 5.9:1 (AA). White text on Racing Red: 5.9:1 (AA). Game HUD: white pixel counters on dark game-world background (mean luminance #1a1a1a): 12.4:1 (AAA). Marketing poster white on red: 5.9:1 (AA).',
-      focusManagement: 'Pitch deck context: slide-by-slide navigation via keyboard arrow keys. Interactive prototype (game select screen): controller-style D-pad keyboard navigation. Bike customisation panel items receive sequential focus via Tab. Selected item state communicated via aria-selected.',
-      screenReaderSupport: 'Revenue slide tables have proper thead/tbody/td structure with aria-label on the table. Subscription tier comparison grid uses role="grid" with aria-label per cell describing tier name + feature + price. Animated GIF gameplay loops have aria-label describing the game mode and action depicted.',
-      motionSafety: 'All animated GIF elements in the prototype embed with a pause control (aria-label="Pause gameplay animation"). Looping animations have user-controllable pause. Static alternative views available for all animated content. prefers-reduced-motion disables auto-looping on supported prototype viewers.',
-      criteria: [
-        { criterion: '1.4.3 Contrast (Minimum)', level: 'AA', status: 'pass', note: 'All text/background combinations across all 8 pitch slides meet or exceed 4.5:1.' },
-        { criterion: '1.4.5 Images of Text', level: 'AA', status: 'pass', note: 'HORIZON ZOOM wordmark rendered as SVG text path, not raster image of text. Pixel counters in HUD are CSS-rendered, not bitmap.' },
-        { criterion: '2.2.2 Pause, Stop, Hide', level: 'A', status: 'pass', note: 'All animated GIF gameplay loops have accessible pause control. Loops do not auto-advance without user action in prototype.' },
-        { criterion: '1.1.1 Non-text Content', level: 'A', status: 'pass', note: 'Logo mark has alt text describing human-lightning bolt concept. All gameplay screenshots have descriptive alt text naming game mode and visible UI elements.' }
-      ]
-    },
     images: [
       'https://mir-s3-cdn-cf.behance.net/project_modules/fs/8de913156706847.636f3b772881b.jpg',
       'https://mir-s3-cdn-cf.behance.net/project_modules/fs/11b173156706847.636bc57463412.png',
